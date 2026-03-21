@@ -7,17 +7,7 @@ let state = {
   activeRoleFilter: 'All',
 };
 
-// Merge addendum units into UNITS at startup
-Object.entries(ADDENDUM_UNITS).forEach(([factionId, units]) => {
-  // Resolve named char sub-factions to their parent
-  const targetId = NAMED_CHAR_FACTION_MAP[factionId] || factionId;
-  if (UNITS[targetId]) {
-    const existingIds = new Set(UNITS[targetId].map(u => u.id));
-    units.forEach(u => { if (!existingIds.has(u.id)) UNITS[targetId].push(u); });
-  } else {
-    UNITS[targetId] = units;
-  }
-});
+// UNITS is now built by data/faction_map.js from individual faction files
 
 // ============================================================
 // INIT

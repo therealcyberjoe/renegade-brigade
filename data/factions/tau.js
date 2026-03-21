@@ -1,0 +1,135 @@
+const FACTION_TAU = [
+  // ── HQ ──────────────────────────────────────────────────────────────
+  { id:'tau_commander', name:"Commander in Coldstar Battlesuit",
+    stats:['16"','5+','2+','5','5','6','3','9','3+'], role:'HQ', pts:100, min:1, max:1, ppm:0,
+    wargear:['High-output Burst Cannon','Advanced Targeting System'],
+    abilities:['For the Greater Good: When a friendly unit within 6" is charged this unit may fire Overwatch for free',
+               'Command and Control Node: Once per turn one friendly unit within 6" re-rolls hit rolls of 1',
+               '4+ invulnerable save: Shield Generator'] },
+
+  { id:'tau_commander_crisis', name:"Commander in Crisis Battlesuit",
+    stats:['8"','5+','2+','5','5','6','3','9','3+'], role:'HQ', pts:90, min:1, max:1, ppm:0,
+    wargear:['Fusion Blasters','Shield Generator'],
+    abilities:['For the Greater Good',
+               'Manta Strike: Deep strike — arrive 9"+ from enemy',
+               '4+ invulnerable save','Support Systems: May take 2 support systems'] },
+
+  { id:'tau_ethereal', name:"Ethereal",
+    stats:['6"','3+','3+','3','3','4','3','9','6+'], role:'HQ', pts:50, min:1, max:1, ppm:0,
+    wargear:["Equaliser Stave",'Honour Blade'],
+    abilities:['Invocation of the Elements: Choose one elemental power per turn affecting friendly units within 6"',
+               "Failure is Not an Option: Friendly Tau within 6\" auto-pass Morale"] },
+
+  { id:'tau_lone_spear', name:'Kroot Lone-Spear',
+    stats:['8"','2+','2+','4','4','5','4','8','4+'], role:'HQ', pts:80, min:1, max:1, ppm:0, isNew:true,
+    wargear:['Farstalker Longshot','Ritual Blade'],
+    abilities:['Lone Operative: Cannot be targeted by ranged attacks unless within 12"',
+               'Apex Hunter: Re-roll all failed wound rolls against Characters',
+               "Hunter's Mark: Once per battle — pick one enemy Character — re-roll all hit and wound rolls against it until destroyed"] },
+
+  { id:'tau_war_shaper', name:'Kroot War Shaper',
+    stats:['7"','2+','3+','4','3','4','4','8','4+'], role:'HQ', pts:60, min:1, max:1, ppm:0, isNew:true,
+    wargear:['War-blade','Kroot Rifle'],
+    abilities:['Pack Leader: Friendly Kroot units within 6" re-roll hit rolls of 1 and re-roll failed Morale',
+               'Ritual Scarring: Once per battle — friendly Kroot unit within 3" auto-passes Morale',
+               'Swift Ambush: May Advance and still charge'] },
+
+  // ── TROOPS ──────────────────────────────────────────────────────────
+  { id:'tau_fire_warriors', name:'Fire Warrior Strike Team',
+    stats:['6"','4+','4+','3','3','1','1','7','4+'], role:'Troops', pts:70, min:5, max:10, ppm:14,
+    wargear:['Pulse Rifle','Pulse Pistol','Bonding Knife'],
+    abilities:['For the Greater Good: When friendly unit within 6" is charged this unit may fire Overwatch for free',
+               'Bonding Knife Ritual: Re-roll Morale tests of 1',
+               'Photon Grenades: Enemy units charging suffer -1 to their charge roll'] },
+
+  { id:'tau_breacher_team', name:'Breacher Team',
+    stats:['6"','4+','4+','3','3','1','1','7','4+'], role:'Troops', pts:70, min:5, max:10, ppm:14,
+    wargear:['Pulse Blaster','Pulse Pistol','Bonding Knife'],
+    abilities:['For the Greater Good','Bonding Knife Ritual',
+               'Pulse Blaster: Range 5" S6 AP-3 / Range 10" S5 AP-2 / Range 15" S4 AP-1 — degrades with range'] },
+
+  // ── ELITES ──────────────────────────────────────────────────────────
+  { id:'tau_crisis_suits', name:'Crisis Battlesuits',
+    stats:['8"','5+','3+','5','5','3','3','8','3+'], role:'Elites', pts:110, min:3, max:9, ppm:37,
+    wargear:['Burst Cannon','Flamer','Shield Generator'],
+    abilities:['For the Greater Good',
+               'Manta Strike: Deep strike — arrive 9"+ from enemy',
+               '4+ invulnerable save','Support Systems: Each model may take 2 support systems'] },
+
+  { id:'tau_stealth_suits', name:'Stealth Battlesuits',
+    stats:['8"','5+','3+','4','4','2','1','8','3+'], role:'Elites', pts:75, min:3, max:6, ppm:25,
+    wargear:['Burst Cannon','Advanced Targeting System'],
+    abilities:['For the Greater Good',
+               'Shrouded: Always count as being in cover',
+               'Infiltrate: Deploy anywhere more than 9" from enemy before first battle round',
+               '5+ invulnerable save'] },
+
+  { id:'tau_farstalkers', name:'Kroot Farstalkers',
+    stats:['7"','3+','3+','4','3','1','2','7','5+'], role:'Elites', pts:13, min:5, max:10, ppm:13, isNew:true,
+    wargear:['Kroot Rifle','Jagga-blade'],
+    abilities:['Mercenary Hunters: May Infiltrate — move up to 9" before first battle round — cannot end within 9" of enemy',
+               'Fieldcraft: Count as in cover if did not move this turn',
+               "Prey Markers: Each turn mark one enemy unit — friendly T'au add 1 to wound rolls against it"] },
+
+  // ── FAST ATTACK ─────────────────────────────────────────────────────
+  { id:'tau_pathfinders', name:'Pathfinder Team',
+    stats:['7"','4+','4+','3','3','1','1','7','5+'], role:'Fast Attack', pts:55, min:5, max:10, ppm:11,
+    wargear:['Pulse Carbine','Markerlight','Tactical Support Turret'],
+    abilities:['For the Greater Good',
+               'Scouts: Move up to 6" before first battle round',
+               'Markerlight: Successful hit — target unit gains a Markerlight counter (+1 to hit against it per counter)'] },
+
+  { id:'tau_vespid', name:'Vespid Stingwings',
+    stats:['14"','4+','4+','4','4','1','2','6','4+'], role:'Fast Attack', pts:56, min:5, max:15, ppm:11,
+    wargear:['Neutron Blaster'],
+    abilities:['For the Greater Good',
+               'Hit and Run: May Advance and still fire Neutron Blasters',
+               'Neutron Blaster: S5 AP-2 D1 — wounds of 6 deal 1 mortal wound in addition'] },
+
+  { id:'tau_piranha', name:'Piranhas',
+    stats:['16"','5+','4+','4','5','4','2','7','4+'], role:'Fast Attack', pts:55, min:1, max:5, ppm:55,
+    wargear:['Burst Cannon','Seeker Missiles'],
+    abilities:['For the Greater Good',
+               'Jink: 5+ invulnerable save if model Advanced this turn',
+               'Seeker Missiles: One use — S8 AP-2 D3'] },
+
+  // ── HEAVY SUPPORT ───────────────────────────────────────────────────
+  { id:'tau_broadside', name:'Broadside Battlesuits',
+    stats:['5"','5+','3+','5','5','4','2','8','2+'], role:'Heavy Support', pts:80, min:1, max:3, ppm:80,
+    wargear:['Heavy Rail Rifle','Twin Smart Missile System'],
+    abilities:['For the Greater Good',
+               'Relentless: Move and fire Heavy weapons without penalty',
+               'Early Warning Override optional: Overwatch on 5+ instead of 6+'] },
+
+  { id:'tau_hammerhead', name:'Hammerhead Gunship',
+    stats:['12"','5+','3+','6','7','12','3','8','3+'], role:'Heavy Support', pts:135, min:1, max:1, ppm:0,
+    wargear:['Railgun','Twin Smart Missile System'],
+    abilities:['For the Greater Good',
+               'Railgun: S10 AP-4 D6 — on wound roll of 6 deal D3+3 damage instead',
+               'Submunitions: Blast mode — D6 hits S6 AP-1 D1 instead'] },
+
+  { id:'tau_riptide', name:'TX85 Riptide Battlesuit',
+    stats:['10"','5+','3+','8','8','14','4','9','3+'], role:'Heavy Support', pts:185, min:1, max:1, ppm:0,
+    wargear:['Heavy Burst Cannon','Twin Smart Missile System'],
+    abilities:['For the Greater Good',
+               'Nova Reactor: Boost weapon output — add D3 to shots — but on 1 suffer D3 mortal wounds',
+               'Riptide Shield: 5+ invulnerable save',
+               'Support Systems: Take 2 support systems'] },
+
+  // ── LORD OF WAR ─────────────────────────────────────────────────────
+  { id:'tau_stormsurge', name:"KV128 Stormsurge",
+    stats:['8"','5+','3+','8','9','20','4','9','3+'], role:'Lord of War', pts:330, min:1, max:1, ppm:0,
+    wargear:['Pulse Driver Cannon','Pulse Blastcannon'],
+    abilities:['For the Greater Good',
+               'Anchor: If did not move add 1 to all hit rolls',
+               'Cluster Rockets: Once per game fire D6 rockets at different targets',
+               'Titanic','Shield Generator: 5+ invulnerable save'] },
+
+  // ── DEDICATED TRANSPORT ─────────────────────────────────────────────
+  { id:'tau_devilfish', name:'Devilfish',
+    stats:['12"','5+','3+','6','7','10','3','8','3+'], role:'Dedicated Transport', pts:103, min:1, max:1, ppm:0,
+    wargear:['Burst Cannon','Smart Missile System'],
+    abilities:['For the Greater Good',
+               'Transport: Carries 12 Tau Infantry',
+               'Explodes: On 6 when destroyed — D3 mortal wounds within 6"'] },
+];
