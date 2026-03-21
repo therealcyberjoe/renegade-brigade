@@ -21,7 +21,7 @@ const FACTION_GENESTEALER_CULTS = [
                'Meticulous Planner: Once per battle before deployment choose one Cult Ambush bonus — apply to all units instead of rolling'] },
 
   { id:'gc_abominant', name:'Abominant',
-    stats:['6"','3+','5+','5','5','5','4','8','5+'], role:'HQ', pts:85, min:1, max:1, ppm:0,
+    stats:['6"','3+','5+','5','5','5','4','8','5+'], role:'HQ', pts:85, min:1, max:1, ppm:0, isNew:true,
     wargear:['Power Sledgehammer','Electrostatic Gauntlet'],
     abilities:['Cult Ambush',
                'Hypnotic Gaze: At start of Fight phase pick enemy Character within 1" — it fights last',
@@ -29,7 +29,7 @@ const FACTION_GENESTEALER_CULTS = [
                'Monstrous Vigour: At start of each turn roll D6 — on 4+ restore 1 lost wound'] },
 
   { id:'gc_nexos', name:'Nexos',
-    stats:['6"','3+','3+','3','3','3','2','7','5+'], role:'HQ', pts:60, min:1, max:1, ppm:0,
+    stats:['6"','3+','3+','3','3','3','2','7','5+'], role:'Elites', pts:60, min:1, max:1, ppm:0, isNew:true,
     wargear:['Autopistol','Cult Knife'],
     abilities:['Cult Ambush',
                'Invariant Cognition: Once per turn — one friendly GSC unit may re-roll its Cult Ambush dice',
@@ -37,7 +37,7 @@ const FACTION_GENESTEALER_CULTS = [
                'Strategic Coordinator: Once per battle round — one friendly unit arriving from reserve may arrive anywhere on the battlefield edge 9"+ from enemy'] },
 
   { id:'gc_clamavus', name:'Clamavus',
-    stats:['6"','3+','3+','3','3','3','3','7','5+'], role:'HQ', pts:50, min:1, max:1, ppm:0,
+    stats:['6"','3+','3+','3','3','3','3','7','5+'], role:'Elites', pts:50, min:1, max:1, ppm:0, isNew:true,
     wargear:['Autopistol','Cult Knife'],
     abilities:['Cult Ambush',
                'PneuMessage Broadcast: Friendly GSC Infantry within 6" re-roll failed charge rolls',
@@ -45,7 +45,7 @@ const FACTION_GENESTEALER_CULTS = [
                'Insidious Preacher: Once per battle — one friendly unit within 6" auto-passes Morale'] },
 
   { id:'gc_locus', name:'Locus',
-    stats:['8"','2+','2+','3','3','4','5','8','5+'], role:'HQ', pts:45, min:1, max:1, ppm:0,
+    stats:['8"','2+','2+','3','3','4','5','8','5+'], role:'Elites', pts:45, min:1, max:1, ppm:0, isNew:true,
     wargear:['Locus Blades'],
     abilities:['Cult Ambush',
                'Lithe Leaper: Always fights first in Fight phase — may Advance and still charge',
@@ -53,14 +53,14 @@ const FACTION_GENESTEALER_CULTS = [
                'Devoted Protector: Roll D6 when nearby Patriarch or Magus loses a wound — on 2+ this model suffers it instead'] },
 
   { id:'gc_jackal_alphus', name:'Jackal Alphus',
-    stats:['12"','2+','2+','3','3','4','4','8','5+'], role:'HQ', pts:60, min:1, max:1, ppm:0,
+    stats:['12"','2+','2+','3','3','4','4','8','5+'], role:'Elites', pts:60, min:1, max:1, ppm:0, isNew:true,
     wargear:['Autopistol','Sniper Rifle','Cult Knife'],
     abilities:['Cult Ambush','Scouts: Move up to 9" before first battle round',
                'Mark Target: Once per turn — pick one enemy unit within 36" — friendly GSC units add 1 to wound rolls against it until next turn',
                'Lone Operative: Cannot be targeted by ranged attacks unless within 12" of attacker'] },
 
   { id:'gc_kelermorph', name:'Kelermorph',
-    stats:['7"','2+','2+','3','3','4','3','8','5+'], role:'HQ', pts:65, min:1, max:1, ppm:0,
+    stats:['7"','2+','2+','3','3','4','3','8','5+'], role:'Elites', pts:65, min:1, max:1, ppm:0, isNew:true,
     wargear:['Three Liberator Autostubs'],
     abilities:['Cult Ambush',
                'Liberator Autostub: Pistol 1 — S4 AP-1 D2 — each model fires 3 times',
@@ -69,14 +69,14 @@ const FACTION_GENESTEALER_CULTS = [
                'Lone Operative: Cannot be targeted by ranged attacks unless within 12"'] },
 
   { id:'gc_biophagus', name:'Biophagus',
-    stats:['6"','3+','3+','3','3','3','2','7','5+'], role:'HQ', pts:50, min:1, max:1, ppm:0,
+    stats:['6"','3+','3+','3','3','3','2','7','5+'], role:'Elites', pts:50, min:1, max:1, ppm:0, isNew:true,
     wargear:['Injector Goad','Alchemicus Familiar'],
     abilities:['Cult Ambush',
                'Alchemicus Familiar: Friendly GSC Infantry within 6" add 1 to their Toughness characteristic',
                'Augmentation Injector: Once per battle — one friendly Acolytes or Metamorphs unit within 3" improves their wound rolls by 1 for the rest of the battle'] },
 
   { id:'gc_sanctus', name:'Sanctus',
-    stats:['7"','2+','2+','3','3','4','4','8','5+'], role:'HQ', pts:70, min:1, max:1, ppm:0,
+    stats:['7"','2+','2+','3','3','4','4','8','5+'], role:'Elites', pts:70, min:1, max:1, ppm:0, isNew:true,
     wargear:['Sanctus Sniper Rifle','Silencer Pistol','Cult Knife'],
     abilities:['Cult Ambush',
                'Lone Operative: Cannot be targeted by ranged attacks unless within 12"',
@@ -85,7 +85,7 @@ const FACTION_GENESTEALER_CULTS = [
                'Sniper: Wound rolls of 6 deal 1 mortal wound in addition — may target Characters'] },
 
   { id:'gc_reductus', name:'Reductus Saboteur',
-    stats:['7"','3+','3+','3','3','4','3','7','5+'], role:'HQ', pts:55, min:1, max:1, ppm:0,
+    stats:['7"','3+','3+','3','3','4','3','7','5+'], role:'Elites', pts:55, min:1, max:1, ppm:0, isNew:true,
     wargear:['Blasting Charges','Remote Detonator','Cult Knife','Autopistol'],
     abilities:['Cult Ambush',
                'Infiltrate: Move up to 9" before first battle round',
@@ -93,14 +93,14 @@ const FACTION_GENESTEALER_CULTS = [
                'One with the Shadows: Always counts as in cover'] },
 
   { id:'gc_benefictus', name:'Benefictus',
-    stats:['6"','3+','3+','3','3','4','3','8','5+'], role:'HQ', pts:90, min:1, max:1, ppm:0,
+    stats:['6"','3+','3+','3','3','4','3','8','5+'], role:'HQ', pts:90, min:1, max:1, ppm:0, isNew:true,
     wargear:['Psionic Blast','Writhing Tendrils'],
     abilities:['Psyker: Mastery Level 1','Cult Ambush',
                'Psychic Familiar: Add 1 to all Psychic tests',
                'Brainleech Aura: Enemy within 6" subtract 1 from Leadership — regain 1 wound when enemy fails Morale within 6"'] },
 
   { id:'gc_acolyte_iconward', name:'Acolyte Iconward',
-    stats:['6"','3+','3+','4','3','3','3','7','5+'], role:'HQ', pts:50, min:1, max:1, ppm:0,
+    stats:['6"','3+','3+','4','3','3','3','7','5+'], role:'Elites', pts:50, min:1, max:1, ppm:0, isNew:true,
     wargear:['Cult Icon','Autopistol','Cult Knife'],
     abilities:['Cult Ambush',
                'Nexus of Devotion: Friendly GSC Infantry within 6" re-roll failed Morale tests',
@@ -169,7 +169,7 @@ const FACTION_GENESTEALER_CULTS = [
 
   // ── VEHICLE ─────────────────────────────────────────────────────────
   { id:'gc_ridgerunner', name:'Achilles Ridgerunner',
-    stats:['14"','5+','3+','5','6','8','3','6','4+'], role:'Fast Attack', pts:95, min:1, max:3, ppm:95,
+    stats:['14"','5+','3+','5','6','8','3','6','4+'], role:'Fast Attack', pts:95, min:1, max:3, ppm:95, isNew:true,
     wargear:['Heavy Mining Laser','Heavy Stubber','Flare Launcher'],
     options:[
       { group:'Main Weapon', pick:1, choices:[
@@ -190,7 +190,7 @@ const FACTION_GENESTEALER_CULTS = [
 
   // ── HEAVY SUPPORT ───────────────────────────────────────────────────
   { id:'gc_goliath_rockgrinder', name:'Goliath Rockgrinder',
-    stats:['10"','5+','4+','6','7','10','3','6','4+'], role:'Heavy Support', pts:120, min:1, max:1, ppm:0,
+    stats:['10"','5+','4+','6','7','10','3','6','4+'], role:'Heavy Support', pts:120, min:1, max:1, ppm:0, isNew:true,
     wargear:['Cache of Demolition Charges','Heavy Seismic Cannon','Clearance Incinerator'],
     options:[
       { group:'Main Weapon', pick:1, choices:[
