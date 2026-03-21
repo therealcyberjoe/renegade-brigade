@@ -2174,13 +2174,10 @@ function renderFactions() {
   </div>
 </div>
 
-<script>
 let _pendingFactionId = null;
 
 function selectFaction(id) {
-  // If same faction, do nothing
   if (id === state.factionId) return;
-  // If roster has units, warn first
   if (state.roster.length > 0) {
     _pendingFactionId = id;
     document.getElementById('factionModal').style.display = 'flex';
@@ -2218,7 +2215,6 @@ function _applyFactionChange(id) {
   document.getElementById('factionBadge').style.color = faction ? faction.color : '';
   document.getElementById('factionBadge').style.background = faction ? faction.color + '15' : '';
 }
-</script>
 
 function updatePtsLimit() {
   state.ptsLimit = parseInt(document.getElementById('ptsLimitSelect').value);
