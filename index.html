@@ -710,6 +710,82 @@
     color: #4ea86e;
   }
 
+  /* LOADOUT OPTIONS */
+  .loadout-options {
+    margin-bottom: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .loadout-group {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .loadout-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    color: var(--muted);
+    text-transform: uppercase;
+    padding-top: 4px;
+    min-width: 60px;
+    flex-shrink: 0;
+  }
+
+  .loadout-choices {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+
+  .loadout-btn {
+    padding: 3px 8px;
+    background: var(--dark);
+    border: 1px solid var(--border);
+    color: var(--muted);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px;
+    cursor: pointer;
+    transition: all 0.12s;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .loadout-btn:hover {
+    border-color: var(--gold);
+    color: var(--text);
+  }
+
+  .loadout-btn.selected {
+    background: rgba(74,170,90,0.15);
+    border-color: var(--gold);
+    color: var(--gold-light);
+  }
+
+  .loadout-pts {
+    font-size: 10px;
+    color: var(--muted);
+    font-style: italic;
+  }
+
+  .loadout-btn.selected .loadout-pts {
+    color: var(--gold);
+  }
+
+  .unit-notes {
+    font-size: 11px;
+    color: var(--muted);
+    font-style: italic;
+    margin-bottom: 6px;
+    padding: 4px 6px;
+    border-left: 2px solid var(--border);
+  }
+
   /* PRINT VIEW */
   @media print {
     header, .col-left, .col-browser { display: none !important; }
@@ -983,353 +1059,520 @@ const ROLE_SHORT = { 'HQ':'HQ', 'Troops':'TR', 'Elites':'EL', 'Fast Attack':'FA'
 // Units database
 const UNITS = {
   space_marines: [
-    { id:'sm_captain', name:'Captain', role:'HQ', pts:74, wargear:['Power Sword','Bolt Pistol','Artificer Armour'] },
-    { id:'sm_captain_gravis', name:'Captain in Gravis Armour', role:'HQ', pts:100, wargear:['Master-crafted Boltstorm Gauntlet','Flail of the Unforgiven'] },
-    { id:'sm_librarian', name:'Librarian', role:'HQ', pts:90, wargear:['Force Sword','Bolt Pistol','Psychic Hood'] },
-    { id:'sm_chaplain', name:'Chaplain', role:'HQ', pts:85, wargear:['Crozius Arcanum','Bolt Pistol','Rosarius'] },
-    { id:'sm_techmarine', name:'Techmarine', role:'HQ', pts:55, wargear:['Servo-arm','Boltgun','Power Axe'] },
-    { id:'sm_tactical', name:'Tactical Squad', role:'Troops', pts:65, wargear:['Boltguns','Bolt Pistols','Frag & Krak Grenades'] },
-    { id:'sm_scout', name:'Scout Squad', role:'Troops', pts:55, wargear:['Scout Bolters','Combat Knife','Bolt Pistol'] },
-    { id:'sm_intercessors', name:'Intercessor Squad', role:'Troops', pts:85, wargear:['Bolt Rifles','Bolt Pistols','Grenades'] },
-    { id:'sm_assault', name:'Assault Squad', role:'Fast Attack', pts:65, wargear:['Chainsword','Bolt Pistol','Jump Pack'] },
-    { id:'sm_terminators', name:'Terminator Squad', role:'Elites', pts:195, wargear:['Storm Bolters','Power Fists','Terminator Armour'] },
-    { id:'sm_dreadnought', name:'Dreadnought', role:'Elites', pts:110, wargear:['Dreadnought C.C. Weapon','Twin Lascannon'] },
-    { id:'sm_devastators', name:'Devastator Squad', role:'Heavy Support', pts:95, wargear:['Boltguns','Missile Launchers','Signum'] },
-    { id:'sm_predator', name:'Predator', role:'Heavy Support', pts:110, wargear:['Predator Autocannon','Lascannon Sponsons'] },
-    { id:'sm_whirlwind', name:'Whirlwind', role:'Heavy Support', pts:90, wargear:['Whirlwind Multiple Rocket Launcher'] },
-    { id:'sm_land_raider', name:'Land Raider', role:'Heavy Support', pts:285, wargear:['Twin Lascannons','Multi-Melta','Heavy Bolter'] },
-    { id:'sm_rhino', name:'Rhino', role:'Dedicated Transport', pts:72, wargear:['Storm Bolter','Hunter-Killer Missile'] },
-    { id:'sm_drop_pod', name:'Drop Pod', role:'Dedicated Transport', pts:65, wargear:['Storm Bolter'] },
-    { id:'sm_stormraven', name:'Stormraven Gunship', role:'Flyer', pts:233, wargear:['Twin Multi-Melta','Twin Lascannon','Hurricane Bolters'] },
-    { id:'sm_primaris_lt', name:'Primaris Lieutenant', role:'HQ', pts:68, wargear:['Power Sword','Auto Bolt Rifle'] },
-    { id:'sm_hellblasters', name:'Hellblaster Squad', role:'Elites', pts:165, wargear:['Plasma Incinerator','Plasma Pistol'] },
-    { id:'sm_aggressors', name:'Aggressor Squad', role:'Elites', pts:117, wargear:['Auto Boltstorm Gauntlet','Fragstorm Grenade Launcher'] },
-    { id:'sm_inceptors', name:'Inceptor Squad', role:'Fast Attack', pts:115, wargear:['Assault Bolters','Jump Pack'] },
-    { id:'sm_redemptor', name:'Redemptor Dreadnought', role:'Elites', pts:156, wargear:['Macro Plasma Incinerator','Onslaught Gatling Cannon'] },
+    { id:'sm_captain', name:'Captain', stats:['6"','3+','3+','4','4','5','4','9','3+'], role:'HQ', pts:74, wargear:['Power Sword','Bolt Pistol','Artificer Armour'] },
+    { id:'sm_captain_gravis', name:'Captain in Gravis Armour', stats:['5"','3+','3+','4','5','6','4','9','3+'], role:'HQ', pts:100, wargear:['Master-crafted Boltstorm Gauntlet','Flail of the Unforgiven'] },
+    { id:'sm_librarian', name:'Librarian', stats:['6"','3+','3+','4','4','5','3','9','3+'], role:'HQ', pts:90, wargear:['Force Sword','Bolt Pistol','Psychic Hood'] },
+    { id:'sm_chaplain', name:'Chaplain', stats:['6"','3+','3+','4','4','5','4','9','3+'], role:'HQ', pts:85, wargear:['Crozius Arcanum','Bolt Pistol','Rosarius'] },
+    { id:'sm_techmarine', name:'Techmarine', stats:['6"','3+','3+','4','4','4','2','8','3+'], role:'HQ', pts:55, wargear:['Servo-arm','Boltgun','Power Axe'] },
+    { id:'sm_tactical', name:'Tactical Squad', stats:['6"','3+','3+','4','4','1','1','7','3+'], role:'Troops', pts:65, wargear:['Boltguns','Bolt Pistols','Frag & Krak Grenades'] },
+    { id:'sm_scout', name:'Scout Squad', stats:['6"','3+','3+','4','4','1','1','7','4+'], role:'Troops', pts:55, wargear:['Scout Bolters','Combat Knife','Bolt Pistol'] },
+    { id:'sm_intercessors', name:'Intercessor Squad', stats:['6"','3+','3+','4','4','2','2','7','3+'], role:'Troops', pts:85, wargear:['Bolt Rifles','Bolt Pistols','Grenades'] },
+    { id:'sm_assault', name:'Assault Squad', stats:['12"','3+','3+','4','4','1','1','7','3+'], role:'Fast Attack', pts:65, wargear:['Chainsword','Bolt Pistol','Jump Pack'] },
+    { id:'sm_terminators', name:'Terminator Squad', stats:['5"','3+','3+','4','4','2','2','8','2+'], role:'Elites', pts:195, wargear:['Storm Bolters','Power Fists','Terminator Armour'] },
+    { id:'sm_dreadnought', name:'Dreadnought', stats:['6"','3+','3+','6','7','8','4','8','3+'], role:'Elites', pts:110, wargear:['Dreadnought C.C. Weapon','Twin Lascannon'] },
+    { id:'sm_devastators', name:'Devastator Squad', stats:['6"','3+','3+','4','4','1','1','7','3+'], role:'Heavy Support', pts:95, wargear:['Boltguns','Missile Launchers','Signum'] },
+    { id:'sm_predator', name:'Predator', stats:['10"','5+','3+','6','7','11','3','8','3+'], role:'Heavy Support', pts:110, wargear:['Predator Autocannon','Lascannon Sponsons'] },
+    { id:'sm_whirlwind', name:'Whirlwind', stats:['12"','5+','3+','6','6','8','3','8','3+'], role:'Heavy Support', pts:90, wargear:['Whirlwind Multiple Rocket Launcher'] },
+    { id:'sm_land_raider', name:'Land Raider', stats:['10"','5+','3+','8','8','16','6','9','2+'], role:'Heavy Support', pts:285, wargear:['Twin Lascannons','Multi-Melta','Heavy Bolter'] },
+    { id:'sm_rhino', name:'Rhino', stats:['12"','5+','3+','6','6','10','3','8','3+'], role:'Dedicated Transport', pts:72, wargear:['Storm Bolter','Hunter-Killer Missile'] },
+    { id:'sm_drop_pod', name:'Drop Pod', stats:['0"','-','-','5','5','8','-','7','3+'], role:'Dedicated Transport', pts:65, wargear:['Storm Bolter'] },
+    { id:'sm_stormraven', name:'Stormraven Gunship', stats:['20-50"','5+','3+','8','7','14','6','9','3+'], role:'Flyer', pts:233, wargear:['Twin Multi-Melta','Twin Lascannon','Hurricane Bolters'] },
+    { id:'sm_primaris_lt', name:'Primaris Lieutenant', stats:['6"','3+','3+','4','4','5','4','8','3+'], role:'HQ', pts:68, wargear:['Power Sword','Auto Bolt Rifle'] },
+    { id:'sm_hellblasters', name:'Hellblaster Squad', stats:['6"','3+','3+','4','4','2','2','7','3+'], role:'Elites', pts:165, wargear:['Plasma Incinerator','Plasma Pistol'] },
+    { id:'sm_aggressors', name:'Aggressor Squad', stats:['5"','3+','3+','4','5','3','3','7','3+'], role:'Elites', pts:117, wargear:['Auto Boltstorm Gauntlet','Fragstorm Grenade Launcher'] },
+    { id:'sm_inceptors', name:'Inceptor Squad', stats:['10"','3+','3+','4','4','2','2','7','3+'], role:'Fast Attack', pts:115, wargear:['Assault Bolters','Jump Pack'] },
+    { id:'sm_redemptor', name:'Redemptor Dreadnought', stats:['8"','3+','3+','7','7','13','5','8','3+'], role:'Elites', pts:156, wargear:['Macro Plasma Incinerator','Onslaught Gatling Cannon'] },
   ],
   chaos_space_marines: [
-    { id:'csm_lord', name:'Chaos Lord', role:'HQ', pts:76, wargear:['Power Sword','Bolt Pistol','Frag & Krak Grenades'] },
-    { id:'csm_sorcerer', name:'Chaos Sorcerer', role:'HQ', pts:93, wargear:['Force Stave','Bolt Pistol','Infernal Tome'] },
-    { id:'csm_dark_apostle', name:'Dark Apostle', role:'HQ', pts:83, wargear:['Cursed Crozius','Bolt Pistol'] },
-    { id:'csm_squad', name:'Chaos Space Marines', role:'Troops', pts:60, wargear:['Bolt Pistol','Bolter','Frag & Krak Grenades'] },
-    { id:'csm_cultists', name:'Chaos Cultists', role:'Troops', pts:40, wargear:['Autogun','Autopistol','Brutal Assault Weapon'] },
-    { id:'csm_terminators', name:'Chaos Terminators', role:'Elites', pts:155, wargear:['Combi-Bolters','Power Fists','Terminator Armour'] },
-    { id:'csm_chosen', name:'Chosen', role:'Elites', pts:75, wargear:['Boltguns','Bolt Pistols','Veteran of the Long War'] },
-    { id:'csm_possessed', name:'Possessed', role:'Elites', pts:100, wargear:['Hideous Mutations'] },
-    { id:'csm_obliterators', name:'Obliterators', role:'Elites', pts:195, wargear:['Obliterator Fists','Fleshmetal Guns'] },
-    { id:'csm_bikers', name:'Chaos Bikers', role:'Fast Attack', pts:75, wargear:['Twin Bolter','Bolt Pistol','Chainsword'] },
-    { id:'csm_raptors', name:'Raptors', role:'Fast Attack', pts:65, wargear:['Bolt Pistol','Chainaxe','Jump Pack'] },
-    { id:'csm_warp_talons', name:'Warp Talons', role:'Fast Attack', pts:90, wargear:['Lightning Claws','Jump Pack'] },
-    { id:'csm_havocs', name:'Havocs', role:'Heavy Support', pts:60, wargear:['Bolters','Autocannons','Missile Launchers'] },
-    { id:'csm_land_raider', name:'Chaos Land Raider', role:'Heavy Support', pts:225, wargear:['Twin Lascannons','Combi-Bolter'] },
-    { id:'csm_rhino', name:'Chaos Rhino', role:'Dedicated Transport', pts:72, wargear:['Combi-Bolter'] },
-    { id:'csm_predator', name:'Chaos Predator', role:'Heavy Support', pts:100, wargear:['Predator Autocannon'] },
-    { id:'csm_maulerfiend', name:'Maulerfiend', role:'Heavy Support', pts:155, wargear:['Lasher Tendrils','Power Fists'] },
-    { id:'csm_defiler', name:'Defiler', role:'Heavy Support', pts:205, wargear:['Battle Cannon','Twin Heavy Flamer','Reaper Autocannon'] },
+    { id:'csm_lord', name:'Chaos Lord', stats:['6"','3+','3+','4','4','5','4','9','3+'], role:'HQ', pts:76, wargear:['Power Sword','Bolt Pistol','Frag & Krak Grenades'] },
+    { id:'csm_sorcerer', name:'Chaos Sorcerer', stats:['6"','3+','3+','4','4','4','3','9','3+'], role:'HQ', pts:93, wargear:['Force Stave','Bolt Pistol','Infernal Tome'] },
+    { id:'csm_dark_apostle', name:'Dark Apostle', stats:['6"','3+','3+','4','4','4','3','9','3+'], role:'HQ', pts:83, wargear:['Cursed Crozius','Bolt Pistol'] },
+    { id:'csm_squad', name:'Chaos Space Marines', stats:['6"','3+','3+','4','4','1','1','7','3+'], role:'Troops', pts:60, wargear:['Bolt Pistol','Bolter','Frag & Krak Grenades'] },
+    { id:'csm_cultists', name:'Chaos Cultists', stats:['6"','4+','4+','3','3','1','1','6','6+'], role:'Troops', pts:40, wargear:['Autogun','Autopistol','Brutal Assault Weapon'] },
+    { id:'csm_terminators', name:'Chaos Terminators', stats:['5"','3+','3+','4','4','2','2','8','2+'], role:'Elites', pts:155, wargear:['Combi-Bolters','Power Fists','Terminator Armour'] },
+    { id:'csm_chosen', name:'Chosen', stats:['6"','3+','3+','4','4','1','2','8','3+'], role:'Elites', pts:75, wargear:['Boltguns','Bolt Pistols','Veteran of the Long War'] },
+    { id:'csm_possessed', name:'Possessed', stats:['6"','3+','3+','5','4','2','3','8','3+'], role:'Elites', pts:100, wargear:['Hideous Mutations'] },
+    { id:'csm_obliterators', name:'Obliterators', stats:['5"','3+','3+','5','5','3','3','8','2+'], role:'Elites', pts:195, wargear:['Obliterator Fists','Fleshmetal Guns'] },
+    { id:'csm_bikers', name:'Chaos Bikers', stats:['14"','3+','3+','4','5','2','2','7','3+'], role:'Fast Attack', pts:75, wargear:['Twin Bolter','Bolt Pistol','Chainsword'] },
+    { id:'csm_raptors', name:'Raptors', stats:['12"','3+','3+','4','4','1','1','7','3+'], role:'Fast Attack', pts:65, wargear:['Bolt Pistol','Chainaxe','Jump Pack'] },
+    { id:'csm_warp_talons', name:'Warp Talons', stats:['12"','3+','3+','4','4','1','2','8','3+'], role:'Fast Attack', pts:90, wargear:['Lightning Claws','Jump Pack'] },
+    { id:'csm_havocs', name:'Havocs', stats:['6"','3+','3+','4','4','1','1','7','3+'], role:'Heavy Support', pts:60, wargear:['Bolters','Autocannons','Missile Launchers'] },
+    { id:'csm_land_raider', name:'Chaos Land Raider', stats:['10"','5+','3+','8','8','16','6','9','2+'], role:'Heavy Support', pts:225, wargear:['Twin Lascannons','Combi-Bolter'] },
+    { id:'csm_rhino', name:'Chaos Rhino', stats:['12"','5+','3+','6','6','10','3','8','3+'], role:'Dedicated Transport', pts:72, wargear:['Combi-Bolter'] },
+    { id:'csm_predator', name:'Chaos Predator', stats:['10"','5+','3+','6','7','11','3','8','3+'], role:'Heavy Support', pts:100, wargear:['Predator Autocannon'] },
+    { id:'csm_maulerfiend', name:'Maulerfiend', stats:['10"','3+','5+','8','8','12','4','8','3+'], role:'Heavy Support', pts:155, wargear:['Lasher Tendrils','Power Fists'] },
+    { id:'csm_defiler', name:'Defiler', stats:['8"','3+','3+','8','8','18','4','8','3+'], role:'Heavy Support', pts:205, wargear:['Battle Cannon','Twin Heavy Flamer','Reaper Autocannon'] },
   ],
   astra_militarum: [
-    { id:'ag_company_commander', name:'Company Commander', role:'HQ', pts:30, wargear:['Boltgun','Power Sword','Frag Grenades'] },
-    { id:'ag_lord_commissar', name:'Lord Commissar', role:'HQ', pts:40, wargear:['Power Sword','Bolt Pistol','Plasma Pistol'] },
-    { id:'ag_primaris_psyker', name:'Primaris Psyker', role:'HQ', pts:46, wargear:['Force Stave','Laspistol'] },
-    { id:'ag_infantry_squad', name:'Infantry Squad', role:'Troops', pts:40, wargear:['Lasguns','Lasgun','Frag Grenades'] },
-    { id:'ag_veterans', name:'Veteran Squad', role:'Troops', pts:45, wargear:['Lasguns','Hotshot Lasgun','Frag Grenades'] },
-    { id:'ag_conscripts', name:'Conscripts', role:'Troops', pts:50, wargear:['Lasgun'] },
-    { id:'ag_heavy_weapons', name:'Heavy Weapons Squad', role:'Heavy Support', pts:24, wargear:['Mortar','Lascannon','Autocannon'] },
-    { id:'ag_leman_russ', name:'Leman Russ Battle Tank', role:'Heavy Support', pts:167, wargear:['Battle Cannon','Heavy Bolter','Lascannon Sponsons'] },
-    { id:'ag_basilisk', name:'Basilisk', role:'Heavy Support', pts:130, wargear:['Earthshaker Cannon','Heavy Bolter'] },
-    { id:'ag_hellhound', name:'Hellhound', role:'Fast Attack', pts:110, wargear:['Inferno Cannon','Heavy Bolter'] },
-    { id:'ag_rough_riders', name:'Rough Riders', role:'Fast Attack', pts:50, wargear:['Hunting Lance','Bolt Pistol','Combat Blade'] },
-    { id:'ag_storm_troopers', name:'Militarum Tempestus Scions', role:'Elites', pts:55, wargear:['Hellgun','Bolt Pistol','Frag Grenades'] },
-    { id:'ag_chimera', name:'Chimera', role:'Dedicated Transport', pts:83, wargear:['Multi-Laser','Heavy Bolter'] },
-    { id:'ag_valkyrie', name:'Valkyrie', role:'Flyer', pts:160, wargear:['Multi-Laser','Rocket Pods','Heavy Bolters'] },
-    { id:'ag_baneblade', name:'Baneblade', role:'Lord of War', pts:531, wargear:['Baneblade Cannon','Autocannon','Heavy Bolters'] },
-    { id:'ag_shadowsword', name:'Shadowsword', role:'Lord of War', pts:494, wargear:['Volcano Cannon','Sponson Weapons'] },
-    { id:'ag_ogryns', name:'Ogryns', role:'Elites', pts:78, wargear:['Ripper Guns','Bone Edd'] },
-    { id:'ag_ratlings', name:'Ratlings', role:'Elites', pts:30, wargear:['Sniper Rifles','Knives'] },
+    { id:'ag_company_commander', name:'Company Commander', stats:['6"','3+','3+','3','3','4','3','8','5+'], role:'HQ', pts:30, wargear:['Boltgun','Power Sword','Frag Grenades'] },
+    { id:'ag_lord_commissar', name:'Lord Commissar', stats:['6"','3+','3+','3','3','4','3','9','5+'], role:'HQ', pts:40, wargear:['Power Sword','Bolt Pistol','Plasma Pistol'] },
+    { id:'ag_primaris_psyker', name:'Primaris Psyker', stats:['6"','4+','4+','3','3','3','2','7','5+'], role:'HQ', pts:46, wargear:['Force Stave','Laspistol'] },
+    { id:'ag_infantry_squad', name:'Infantry Squad', stats:['6"','4+','4+','3','3','1','1','6','5+'], role:'Troops', pts:40, wargear:['Lasguns','Lasgun','Frag Grenades'] },
+    { id:'ag_veterans', name:'Veteran Squad', stats:['6"','3+','3+','3','3','1','1','7','5+'], role:'Troops', pts:45, wargear:['Lasguns','Hotshot Lasgun','Frag Grenades'] },
+    { id:'ag_conscripts', name:'Conscripts', stats:['6"','5+','5+','3','3','1','1','4','6+'], role:'Troops', pts:50, wargear:['Lasgun'] },
+    { id:'ag_heavy_weapons', name:'Heavy Weapons Squad', stats:['6"','4+','4+','3','3','1','1','6','5+'], role:'Heavy Support', pts:24, wargear:['Mortar','Lascannon','Autocannon'] },
+    { id:'ag_leman_russ', name:'Leman Russ Battle Tank', stats:['10"','5+','3+','6','8','12','3','8','3+'], role:'Heavy Support', pts:167, wargear:['Battle Cannon','Heavy Bolter','Lascannon Sponsons'] },
+    { id:'ag_basilisk', name:'Basilisk', stats:['10"','5+','3+','6','7','11','3','7','3+'], role:'Heavy Support', pts:130, wargear:['Earthshaker Cannon','Heavy Bolter'] },
+    { id:'ag_hellhound', name:'Hellhound', stats:['12"','5+','3+','6','7','11','3','7','3+'], role:'Fast Attack', pts:110, wargear:['Inferno Cannon','Heavy Bolter'] },
+    { id:'ag_rough_riders', name:'Rough Riders', stats:['14"','4+','4+','3','3','2','2','6','5+'], role:'Fast Attack', pts:50, wargear:['Hunting Lance','Bolt Pistol','Combat Blade'] },
+    { id:'ag_storm_troopers', name:'Militarum Tempestus Scions', stats:['6"','3+','3+','3','3','1','1','7','4+'], role:'Elites', pts:55, wargear:['Hellgun','Bolt Pistol','Frag Grenades'] },
+    { id:'ag_chimera', name:'Chimera', stats:['12"','5+','3+','6','7','10','3','7','3+'], role:'Dedicated Transport', pts:83, wargear:['Multi-Laser','Heavy Bolter'] },
+    { id:'ag_valkyrie', name:'Valkyrie', stats:['20-50"','5+','3+','6','6','12','3','8','3+'], role:'Flyer', pts:160, wargear:['Multi-Laser','Rocket Pods','Heavy Bolters'] },
+    { id:'ag_baneblade', name:'Baneblade', stats:['10"','5+','3+','8','9','26','9','8','2+'], role:'Lord of War', pts:531, wargear:['Baneblade Cannon','Autocannon','Heavy Bolters'] },
+    { id:'ag_shadowsword', name:'Shadowsword', stats:['10"','5+','3+','8','9','22','6','8','2+'], role:'Lord of War', pts:494, wargear:['Volcano Cannon','Sponson Weapons'] },
+    { id:'ag_ogryns', name:'Ogryns', stats:['6"','3+','3+','5','5','3','3','7','4+'], role:'Elites', pts:78, wargear:['Ripper Guns','Bone Edd'] },
+    { id:'ag_ratlings', name:'Ratlings', stats:['6"','5+','3+','2','2','1','1','6','6+'], role:'Elites', pts:30, wargear:['Sniper Rifles','Knives'] },
   ],
   tyranids: [
-    { id:'ty_hive_tyrant', name:'Hive Tyrant', role:'HQ', pts:170, wargear:['Monstrous Scything Talons','Heavy Venom Cannon'] },
-    { id:'ty_broodlord', name:'Broodlord', role:'HQ', pts:137, wargear:['Monstrous Rending Claws','Broodlord Claws'] },
-    { id:'ty_tervigon', name:'Tervigon', role:'HQ', pts:175, wargear:['Stifling Musk','Massive Crushing Claws'] },
-    { id:'ty_termagants', name:'Termagant Brood', role:'Troops', pts:40, wargear:['Fleshborer','Claws and Teeth'] },
-    { id:'ty_hormagaunts', name:'Hormagaunt Brood', role:'Troops', pts:50, wargear:['Scything Talons','Claws and Teeth'] },
-    { id:'ty_ripper_swarms', name:'Ripper Swarms', role:'Troops', pts:36, wargear:['Claws, Teeth and Bonnespurs'] },
-    { id:'ty_warriors', name:'Tyranid Warriors', role:'Elites', pts:90, wargear:['Deathspitter','Scything Talons'] },
-    { id:'ty_genestealers', name:'Genestealers', role:'Elites', pts:96, wargear:['Rending Claws','Scything Talons'] },
-    { id:'ty_lictor', name:'Lictor', role:'Elites', pts:37, wargear:['Rending Claws','Flesh Hooks'] },
-    { id:'ty_venomthropes', name:'Venomthropes', role:'Elites', pts:45, wargear:['Toxic Lashes','Stinger Salvo'] },
-    { id:'ty_raveners', name:'Raveners', role:'Fast Attack', pts:45, wargear:['Rending Claws','Scything Talons'] },
-    { id:'ty_gargoyles', name:'Gargoyles', role:'Fast Attack', pts:60, wargear:['Blinding Venom','Fleshborer'] },
-    { id:'ty_harpy', name:'Harpy', role:'Flyer', pts:130, wargear:['Twin Stranglethorn Cannon','Scything Wings'] },
-    { id:'ty_carnifex', name:'Carnifex', role:'Heavy Support', pts:80, wargear:['Monstrous Scything Talons','Bio-plasma'] },
-    { id:'ty_trygon', name:'Trygon', role:'Heavy Support', pts:175, wargear:['Massive Scything Talons','Bio-electric Pulse'] },
-    { id:'ty_tyrannofex', name:'Tyrannofex', role:'Heavy Support', pts:175, wargear:['Rupture Cannon','Acid Spray'] },
-    { id:'ty_toxicrene', name:'Toxicrene', role:'Heavy Support', pts:125, wargear:['Mass of Tentacles','Hypertoxic Miasma'] },
-    { id:'ty_mawloc', name:'Mawloc', role:'Heavy Support', pts:130, wargear:['Terror From the Deep','Distensible Jaws'] },
+    { id:'ty_hive_tyrant', name:'Hive Tyrant', stats:['10"','2+','3+','7','7','12','4','10','3+'], role:'HQ', pts:170, wargear:['Monstrous Scything Talons','Heavy Venom Cannon'] },
+    { id:'ty_broodlord', name:'Broodlord', stats:['8"','2+','4+','6','6','6','5','10','5+'], role:'HQ', pts:137, wargear:['Monstrous Rending Claws','Broodlord Claws'] },
+    { id:'ty_tervigon', name:'Tervigon', stats:['8"','3+','3+','7','8','14','4','10','3+'], role:'HQ', pts:175, wargear:['Stifling Musk','Massive Crushing Claws'] },
+    { id:'ty_termagants', name:'Termagant Brood', stats:['6"','4+','4+','3','3','1','1','5','6+'], role:'Troops', pts:40, wargear:['Fleshborer','Claws and Teeth'] },
+    { id:'ty_hormagaunts', name:'Hormagaunt Brood', stats:['8"','4+','4+','3','3','1','2','5','6+'], role:'Troops', pts:50, wargear:['Scything Talons','Claws and Teeth'] },
+    { id:'ty_ripper_swarms', name:'Ripper Swarms', stats:['5"','4+','4+','3','3','3','4','5','6+'], role:'Troops', pts:36, wargear:['Claws, Teeth and Bonnespurs'] },
+    { id:'ty_warriors', name:'Tyranid Warriors', stats:['6"','3+','3+','4','4','3','3','9','4+'], role:'Elites', pts:90, wargear:['Deathspitter','Scything Talons'] },
+    { id:'ty_genestealers', name:'Genestealers', stats:['8"','3+','4+','4','4','1','3','9','5+'], role:'Elites', pts:96, wargear:['Rending Claws','Scything Talons'] },
+    { id:'ty_lictor', name:'Lictor', stats:['9"','3+','3+','5','4','4','4','9','4+'], role:'Elites', pts:37, wargear:['Rending Claws','Flesh Hooks'] },
+    { id:'ty_venomthropes', name:'Venomthropes', stats:['6"','4+','4+','4','4','2','2','9','4+'], role:'Elites', pts:45, wargear:['Toxic Lashes','Stinger Salvo'] },
+    { id:'ty_raveners', name:'Raveners', stats:['10"','3+','3+','4','4','3','4','9','4+'], role:'Fast Attack', pts:45, wargear:['Rending Claws','Scything Talons'] },
+    { id:'ty_gargoyles', name:'Gargoyles', stats:['12"','4+','4+','3','3','1','1','5','6+'], role:'Fast Attack', pts:60, wargear:['Blinding Venom','Fleshborer'] },
+    { id:'ty_harpy', name:'Harpy', stats:['20-50"','3+','3+','6','6','12','4','9','4+'], role:'Flyer', pts:130, wargear:['Twin Stranglethorn Cannon','Scything Wings'] },
+    { id:'ty_carnifex', name:'Carnifex', stats:['7"','3+','4+','8','8','8','4','7','3+'], role:'Heavy Support', pts:80, wargear:['Monstrous Scything Talons','Bio-plasma'] },
+    { id:'ty_trygon', name:'Trygon', stats:['8"','3+','3+','7','7','14','6','9','3+'], role:'Heavy Support', pts:175, wargear:['Massive Scything Talons','Bio-electric Pulse'] },
+    { id:'ty_tyrannofex', name:'Tyrannofex', stats:['6"','4+','3+','8','8','14','4','9','3+'], role:'Heavy Support', pts:175, wargear:['Rupture Cannon','Acid Spray'] },
+    { id:'ty_toxicrene', name:'Toxicrene', stats:['8"','3+','4+','7','7','12','5','9','3+'], role:'Heavy Support', pts:125, wargear:['Mass of Tentacles','Hypertoxic Miasma'] },
+    { id:'ty_mawloc', name:'Mawloc', stats:['8"','3+','3+','6','6','12','4','9','3+'], role:'Heavy Support', pts:130, wargear:['Terror From the Deep','Distensible Jaws'] },
   ],
   necrons: [
-    { id:'nec_overlord', name:'Overlord', role:'HQ', pts:92, wargear:['Staff of Light','Resurrection Orb'] },
-    { id:'nec_cryptek', name:'Cryptek', role:'HQ', pts:70, wargear:['Arcane Staff','Relic'] },
-    { id:'nec_lord', name:'Necron Lord', role:'HQ', pts:65, wargear:['Staff of Light','Resurrection Orb'] },
-    { id:'nec_warriors', name:'Necron Warriors', role:'Troops', pts:78, wargear:['Gauss Flayer','Living Metal'] },
-    { id:'nec_immortals', name:'Immortals', role:'Troops', pts:85, wargear:['Gauss Blaster','Living Metal'] },
-    { id:'nec_lychguard', name:'Lychguard', role:'Elites', pts:130, wargear:['Hyperphase Sword','Dispersion Shield'] },
-    { id:'nec_deathmarks', name:'Deathmarks', role:'Elites', pts:95, wargear:['Synaptic Disintegrator'] },
-    { id:'nec_flayed_ones', name:'Flayed Ones', role:'Elites', pts:57, wargear:['Flayer Claws'] },
-    { id:'nec_triarch_praetorians', name:'Triarch Praetorians', role:'Elites', pts:80, wargear:['Rod of Covenant','Voidblade'] },
-    { id:'nec_destroyers', name:'Destroyers', role:'Fast Attack', pts:140, wargear:['Gauss Cannon','Living Metal'] },
-    { id:'nec_tomb_blades', name:'Tomb Blades', role:'Fast Attack', pts:57, wargear:['Twin Gauss Blaster','Nebuloscope'] },
-    { id:'nec_heavy_destroyers', name:'Heavy Destroyers', role:'Heavy Support', pts:55, wargear:['Heavy Gauss Cannon'] },
-    { id:'nec_doomsday_ark', name:'Doomsday Ark', role:'Heavy Support', pts:193, wargear:['Doomsday Cannon','Twin Gauss Flayer'] },
-    { id:'nec_annihilation_barge', name:'Annihilation Barge', role:'Heavy Support', pts:130, wargear:['Tesla Destructor','Twin Tesla Cannon'] },
-    { id:'nec_catacomb_cmd', name:'Catacomb Command Barge', role:'HQ', pts:152, wargear:['Staff of Light','Gauss Cannon'] },
-    { id:'nec_monolith', name:'Monolith', role:'Lord of War', pts:310, wargear:['Four Gauss Flux Arcs','Particle Whip'] },
-    { id:'nec_triarch_stalker', name:'Triarch Stalker', role:'Heavy Support', pts:130, wargear:['Heat Ray','Particle Shredder','Twin Heavy Gauss Cannon'] },
+    { id:'nec_overlord', name:'Overlord', stats:['5"','3+','3+','5','5','5','3','10','3+'], role:'HQ', pts:92, wargear:['Staff of Light','Resurrection Orb'] },
+    { id:'nec_cryptek', name:'Cryptek', stats:['5"','4+','3+','4','4','4','1','10','3+'], role:'HQ', pts:70, wargear:['Arcane Staff','Relic'] },
+    { id:'nec_lord', name:'Necron Lord', stats:['5"','3+','3+','5','5','4','2','10','3+'], role:'HQ', pts:65, wargear:['Staff of Light','Resurrection Orb'] },
+    { id:'nec_warriors', name:'Necron Warriors', stats:['5"','3+','3+','4','4','1','1','10','4+'], role:'Troops', pts:78, wargear:['Gauss Flayer','Living Metal'] },
+    { id:'nec_immortals', name:'Immortals', stats:['5"','3+','3+','4','4','1','1','10','3+'], role:'Troops', pts:85, wargear:['Gauss Blaster','Living Metal'] },
+    { id:'nec_lychguard', name:'Lychguard', stats:['5"','3+','3+','5','5','2','2','10','3+'], role:'Elites', pts:130, wargear:['Hyperphase Sword','Dispersion Shield'] },
+    { id:'nec_deathmarks', name:'Deathmarks', stats:['5"','3+','3+','4','4','1','1','10','3+'], role:'Elites', pts:95, wargear:['Synaptic Disintegrator'] },
+    { id:'nec_flayed_ones', name:'Flayed Ones', stats:['5"','3+','3+','4','4','1','3','10','4+'], role:'Elites', pts:57, wargear:['Flayer Claws'] },
+    { id:'nec_triarch_praetorians', name:'Triarch Praetorians', stats:['8"','3+','3+','5','5','2','2','10','3+'], role:'Elites', pts:80, wargear:['Rod of Covenant','Voidblade'] },
+    { id:'nec_destroyers', name:'Destroyers', stats:['10"','3+','3+','4','4','2','2','10','3+'], role:'Fast Attack', pts:140, wargear:['Gauss Cannon','Living Metal'] },
+    { id:'nec_tomb_blades', name:'Tomb Blades', stats:['14"','3+','3+','4','4','2','1','10','3+'], role:'Fast Attack', pts:57, wargear:['Twin Gauss Blaster','Nebuloscope'] },
+    { id:'nec_heavy_destroyers', name:'Heavy Destroyers', stats:['10"','3+','3+','4','4','2','2','10','3+'], role:'Heavy Support', pts:55, wargear:['Heavy Gauss Cannon'] },
+    { id:'nec_doomsday_ark', name:'Doomsday Ark', stats:['10"','5+','3+','6','7','11','3','10','3+'], role:'Heavy Support', pts:193, wargear:['Doomsday Cannon','Twin Gauss Flayer'] },
+    { id:'nec_annihilation_barge', name:'Annihilation Barge', stats:['12"','5+','3+','6','7','10','3','10','3+'], role:'Heavy Support', pts:130, wargear:['Tesla Destructor','Twin Tesla Cannon'] },
+    { id:'nec_catacomb_cmd', name:'Catacomb Command Barge', stats:['12"','3+','3+','6','6','9','4','10','3+'], role:'HQ', pts:152, wargear:['Staff of Light','Gauss Cannon'] },
+    { id:'nec_monolith', name:'Monolith', stats:['6"','5+','3+','8','8','20','3','10','3+'], role:'Lord of War', pts:310, wargear:['Four Gauss Flux Arcs','Particle Whip'] },
+    { id:'nec_triarch_stalker', name:'Triarch Stalker', stats:['8"','3+','3+','6','6','10','3','10','3+'], role:'Heavy Support', pts:130, wargear:['Heat Ray','Particle Shredder','Twin Heavy Gauss Cannon'] },
   ],
   orks: [
-    { id:'ork_warboss', name:'Warboss', role:'HQ', pts:70, wargear:['Power Klaw','Shoota','Stikkbombs'] },
-    { id:'ork_big_mek', name:'Big Mek', role:'HQ', pts:55, wargear:['Kustom Force Field','Slugga','Choppa'] },
-    { id:'ork_weirdboy', name:'Weirdboy', role:'HQ', pts:62, wargear:['Weirdboy Staff','Smash'] },
-    { id:'ork_boyz', name:'Boyz', role:'Troops', pts:60, wargear:['Slugga','Choppa','Stikkbombs'] },
-    { id:'ork_gretchin', name:'Gretchin', role:'Troops', pts:30, wargear:['Grot Blasters'] },
-    { id:'ork_nobz', name:"Nobz", role:'Elites', pts:50, wargear:['Big Choppas','Sluggas'] },
-    { id:'ork_meganobz', name:"Meganobz", role:'Elites', pts:105, wargear:['Kombi-Skorchas','Power Klaw'] },
-    { id:'ork_kommandos', name:'Kommandos', role:'Elites', pts:50, wargear:['Slugga','Choppa','Bomb Squigs'] },
-    { id:'ork_deffkoptas', name:'Deffkoptas', role:'Fast Attack', pts:55, wargear:['Twin Rokkit Launcha','Choppa'] },
-    { id:'ork_warbikers', name:'Warbikers', role:'Fast Attack', pts:60, wargear:['Dakkaguns','Choppa'] },
-    { id:'ork_stormboyz', name:'Stormboyz', role:'Fast Attack', pts:55, wargear:['Slugga','Choppa','Rokkit Pack'] },
-    { id:'ork_lootas', name:'Lootas', role:'Heavy Support', pts:75, wargear:['Deffgun'] },
-    { id:'ork_killa_kans', name:'Killa Kans', role:'Heavy Support', pts:75, wargear:['Rokkit Launcha','Klaw of Mork'] },
-    { id:'ork_deff_dread', name:'Deff Dread', role:'Heavy Support', pts:80, wargear:['Dread Klaw','Rokkits'] },
-    { id:'ork_battlewagon', name:'Battlewagon', role:'Heavy Support', pts:145, wargear:["Deff Rolla",'Kannon','Big Shoota'] },
-    { id:'ork_gorkanaut', name:'Gorkanaut', role:'Lord of War', pts:325, wargear:['Deffstorm Mega-Shoota','Skorcha','Power Klaw'] },
-    { id:'ork_trukk', name:'Trukk', role:'Dedicated Transport', pts:70, wargear:['Big Shoota','Wreckin Ball'] },
+    { id:'ork_warboss', name:'Warboss', stats:['5"','2+','4+','5','5','6','4','8','4+'], role:'HQ', pts:70, wargear:['Power Klaw','Shoota','Stikkbombs'] },
+    { id:'ork_big_mek', name:'Big Mek', stats:['5"','3+','4+','4','4','4','3','7','4+'], role:'HQ', pts:55, wargear:['Kustom Force Field','Slugga','Choppa'] },
+    { id:'ork_weirdboy', name:'Weirdboy', stats:['5"','3+','4+','4','4','4','3','7','6+'], role:'HQ', pts:62, wargear:['Weirdboy Staff','Smash'] },
+    { id:'ork_boyz', name:'Boyz', stats:['5"','3+','5+','4','4','1','1','6','6+'], role:'Troops', pts:60, wargear:['Slugga','Choppa','Stikkbombs'] },
+    { id:'ork_gretchin', name:'Gretchin', stats:['5"','5+','4+','2','2','1','1','4','6+'], role:'Troops', pts:30, wargear:['Grot Blasters'] },
+    { id:'ork_nobz', name:"Nobz", stats:['5"','3+','4+','5','4','2','2','7','4+'], role:'Elites', pts:50, wargear:['Big Choppas','Sluggas'] },
+    { id:'ork_meganobz', name:"Meganobz", stats:['4"','3+','4+','5','5','3','3','7','2+'], role:'Elites', pts:105, wargear:['Kombi-Skorchas','Power Klaw'] },
+    { id:'ork_kommandos', name:'Kommandos', stats:['6"','3+','4+','4','4','1','2','7','6+'], role:'Elites', pts:50, wargear:['Slugga','Choppa','Bomb Squigs'] },
+    { id:'ork_deffkoptas', name:'Deffkoptas', stats:['14"','3+','4+','4','4','3','2','6','4+'], role:'Fast Attack', pts:55, wargear:['Twin Rokkit Launcha','Choppa'] },
+    { id:'ork_warbikers', name:'Warbikers', stats:['14"','3+','4+','4','5','2','2','6','4+'], role:'Fast Attack', pts:60, wargear:['Dakkaguns','Choppa'] },
+    { id:'ork_stormboyz', name:'Stormboyz', stats:['12"','3+','4+','4','4','1','1','6','6+'], role:'Fast Attack', pts:55, wargear:['Slugga','Choppa','Rokkit Pack'] },
+    { id:'ork_lootas', name:'Lootas', stats:['5"','4+','4+','4','4','1','1','6','6+'], role:'Heavy Support', pts:75, wargear:['Deffgun'] },
+    { id:'ork_killa_kans', name:'Killa Kans', stats:['6"','3+','4+','5','5','5','3','7','3+'], role:'Heavy Support', pts:75, wargear:['Rokkit Launcha','Klaw of Mork'] },
+    { id:'ork_deff_dread', name:'Deff Dread', stats:['6"','3+','4+','6','6','8','4','7','3+'], role:'Heavy Support', pts:80, wargear:['Dread Klaw','Rokkits'] },
+    { id:'ork_battlewagon', name:'Battlewagon', stats:['10"','5+','5+','7','8','16','4','8','3+'], role:'Heavy Support', pts:145, wargear:["Deff Rolla",'Kannon','Big Shoota'] },
+    { id:'ork_gorkanaut', name:'Gorkanaut', stats:['8"','3+','4+','8','8','18','6','8','3+'], role:'Lord of War', pts:325, wargear:['Deffstorm Mega-Shoota','Skorcha','Power Klaw'] },
+    { id:'ork_trukk', name:'Trukk', stats:['12"','5+','5+','5','6','10','3','6','4+'], role:'Dedicated Transport', pts:70, wargear:['Big Shoota','Wreckin Ball'] },
   ],
   eldar: [
-    { id:'el_autarch', name:'Autarch', role:'HQ', pts:71, wargear:['Fusion Gun','Power Sword','Mandiblasters'] },
-    { id:'el_farseer', name:'Farseer', role:'HQ', pts:110, wargear:['Witchblade','Shuriken Pistol','Spirit Stones'] },
-    { id:'el_spiritseer', name:'Spiritseer', role:'HQ', pts:65, wargear:['Witch Staff','Shuriken Pistol'] },
-    { id:'el_wraithguard', name:'Wraithguard', role:'Troops', pts:165, wargear:['Wraithcannons','Spirit Stones'] },
-    { id:'el_dire_avengers', name:'Dire Avengers', role:'Troops', pts:56, wargear:['Avenger Shuriken Catapult','Diresword'] },
-    { id:'el_guardians', name:'Guardian Defenders', role:'Troops', pts:55, wargear:['Shuriken Catapult','Heavy Weapon Platform'] },
-    { id:'el_striking_scorpions', name:'Striking Scorpions', role:'Elites', pts:90, wargear:['Scorpion Chainsword','Scorpion Claw','Mandiblasters'] },
-    { id:'el_howling_banshees', name:'Howling Banshees', role:'Elites', pts:80, wargear:['Power Sword','Shuriken Pistol','Banshee Mask'] },
-    { id:'el_fire_dragons', name:'Fire Dragons', role:'Elites', pts:92, wargear:['Fusion Gun','Melta Bomb'] },
-    { id:'el_swooping_hawks', name:'Swooping Hawks', role:'Fast Attack', pts:90, wargear:['Lasblaster','Haywire Grenades','Jump Pack'] },
-    { id:'el_warp_spiders', name:'Warp Spiders', role:'Fast Attack', pts:103, wargear:['Death Spinner','Warp Jump Generator'] },
-    { id:'el_dark_reapers', name:'Dark Reapers', role:'Heavy Support', pts:100, wargear:['Reaper Launcher','Reaper Rangefinder'] },
-    { id:'el_fire_prism', name:'Fire Prism', role:'Heavy Support', pts:155, wargear:['Prism Cannon','Twin Shuriken Catapult'] },
-    { id:'el_wave_serpent', name:'Wave Serpent', role:'Dedicated Transport', pts:122, wargear:['Twin Shuriken Cannon','Energy Field'] },
-    { id:'el_wraithlord', name:'Wraithlord', role:'Heavy Support', pts:90, wargear:['Ghostglaive','Shuriken Catapults','Flamers'] },
-    { id:'el_wraithknight', name:'Wraithknight', role:'Lord of War', pts:415, wargear:['Heavy Wraithcannons','Scatter Laser'] },
-    { id:'el_falcon', name:'Falcon', role:'Heavy Support', pts:130, wargear:['Bright Lance','Shuriken Cannon','Pulse Laser'] },
+    { id:'el_autarch', name:'Autarch', stats:['7"','2+','2+','3','3','5','4','9','3+'], role:'HQ', pts:71,
+      wargear:['Mandiblasters'],
+      options:[
+        { group:'Melee', pick:1, choices:[
+          { label:'Power Sword', pts:0, default:true },
+          { label:'Scorpion Chainsword', pts:0 },
+          { label:'Banshee Blade', pts:5 },
+        ]},
+        { group:'Ranged', pick:1, choices:[
+          { label:'Shuriken Pistol', pts:0, default:true },
+          { label:'Fusion Gun', pts:8 },
+          { label:'Reaper Launcher', pts:10 },
+          { label:'Death Spinner', pts:5 },
+        ]},
+        { group:'Mount', pick:1, choices:[
+          { label:'On Foot', pts:0, default:true },
+          { label:'Jetbike', pts:15 },
+        ]},
+      ]
+    },
+    { id:'el_autarch_bike', name:'Autarch on Jetbike', stats:['14"','2+','2+','3','3','5','4','9','3+'], role:'HQ', pts:86,
+      wargear:['Jetbike','Mandiblasters','Laser Lance'],
+      options:[
+        { group:'Ranged', pick:1, choices:[
+          { label:'Laser Lance', pts:0, default:true },
+          { label:'Fusion Gun', pts:5 },
+          { label:'Reaper Launcher', pts:8 },
+        ]},
+      ]
+    },
+    { id:'el_farseer', name:'Farseer', stats:['7"','3+','2+','3','3','5','1','9','6+'], role:'HQ', pts:110, wargear:['Witchblade','Shuriken Pistol','Spirit Stones'] },
+    { id:'el_farseer_bike', name:'Farseer on Jetbike', stats:['14"','3+','2+','3','3','5','1','9','4+'], role:'HQ', pts:135,
+      wargear:['Jetbike','Singing Spear','Shuriken Pistol','Spirit Stones'],
+      options:[
+        { group:'Weapon', pick:1, choices:[
+          { label:'Witchblade', pts:0, default:true },
+          { label:'Singing Spear', pts:3 },
+        ]},
+      ]
+    },
+    { id:'el_spiritseer', name:'Spiritseer', stats:['7"','3+','3+','3','3','4','2','8','6+'], role:'HQ', pts:65, wargear:['Witch Staff','Shuriken Pistol'] },
+    { id:'el_warlock', name:'Warlock', stats:['7"','3+','3+','3','3','2','1','8','6+'], role:'Elites', pts:45,
+      wargear:['Witchblade','Shuriken Pistol'],
+      options:[
+        { group:'Weapon', pick:1, choices:[
+          { label:'Witchblade', pts:0, default:true },
+          { label:'Singing Spear', pts:3 },
+        ]},
+      ]
+    },
+    { id:'el_warlock_bike', name:'Warlock on Jetbike', stats:['14"','3+','3+','3','3','2','1','8','4+'], role:'Elites', pts:65,
+      wargear:['Jetbike','Witchblade','Shuriken Pistol'],
+      options:[
+        { group:'Weapon', pick:1, choices:[
+          { label:'Witchblade', pts:0, default:true },
+          { label:'Singing Spear', pts:3 },
+        ]},
+      ]
+    },
+    { id:'el_seer_council_bike', name:'Seer Council on Jetbikes', stats:['14"','3+','3+','3','3','2','1','8','4+'], role:'Elites', pts:65,
+      wargear:['Jetbikes','Witchblades','Singing Spears','Shuriken Pistols'],
+      notes:'Per model cost. Min 3 models. Each may take Singing Spear (+3pts) or Witchblade.'
+    },
+    { id:'el_wraithguard', name:'Wraithguard', stats:['5"','3+','3+','5','6','3','1','10','3+'], role:'Troops', pts:165, wargear:['Wraithcannons','Spirit Stones'] },
+    { id:'el_wraithblades', name:'Wraithblades', stats:['5"','3+','3+','6','6','3','3','10','3+'], role:'Troops', pts:155,
+      wargear:['Ghostaxe','Forceshield'],
+      options:[
+        { group:'Weapon', pick:1, choices:[
+          { label:'Ghostaxe & Forceshield', pts:0, default:true },
+          { label:'Paired Wraithswords', pts:0 },
+        ]},
+      ]
+    },
+    { id:'el_dire_avengers', name:'Dire Avengers', stats:['7"','3+','3+','3','3','1','1','8','4+'], role:'Troops', pts:56, wargear:['Avenger Shuriken Catapult','Diresword'] },
+    { id:'el_guardians', name:'Guardian Defenders', stats:['7"','4+','3+','3','3','1','1','7','5+'], role:'Troops', pts:55, wargear:['Shuriken Catapult','Heavy Weapon Platform'] },
+    { id:'el_storm_guardians', name:'Storm Guardians', stats:['7"','3+','4+','3','3','1','2','7','5+'], role:'Troops', pts:50, wargear:['Shuriken Pistol','Chainsword'] },
+    { id:'el_rangers', name:'Rangers', stats:['7"','3+','3+','3','3','1','1','7','5+'], role:'Troops', pts:60, wargear:['Ranger Long Rifle','Shuriken Pistol','Cameleoline'] },
+    { id:'el_striking_scorpions', name:'Striking Scorpions', stats:['7"','3+','3+','4','3','1','2','8','3+'], role:'Elites', pts:90, wargear:['Scorpion Chainsword','Scorpion Claw','Mandiblasters'] },
+    { id:'el_howling_banshees', name:'Howling Banshees', stats:['8"','2+','3+','3','3','1','4','8','4+'], role:'Elites', pts:80, wargear:['Power Sword','Shuriken Pistol','Banshee Mask'] },
+    { id:'el_fire_dragons', name:'Fire Dragons', stats:['7"','3+','3+','3','3','1','1','8','4+'], role:'Elites', pts:92, wargear:['Fusion Gun','Melta Bomb'] },
+    { id:'el_harlequins_troop', name:'Harlequin Troupe', role:'Elites', pts:78, wargear:['Harlequin Caress','Harlequin Kiss','Shuriken Pistol'] },
+    { id:'el_swooping_hawks', name:'Swooping Hawks', stats:['14"','3+','3+','3','3','1','1','8','4+'], role:'Fast Attack', pts:90, wargear:['Lasblaster','Haywire Grenades','Jump Pack'] },
+    { id:'el_warp_spiders', name:'Warp Spiders', stats:['7"','3+','3+','3','3','1','2','8','3+'], role:'Fast Attack', pts:103, wargear:['Death Spinner','Warp Jump Generator'] },
+    { id:'el_vyper', name:'Vyper', stats:['16"','4+','3+','4','5','4','2','8','4+'], role:'Fast Attack', pts:45,
+      wargear:['Shuriken Cannon','Shuriken Catapult'],
+      options:[
+        { group:'Main Weapon', pick:1, choices:[
+          { label:'Shuriken Cannon', pts:0, default:true },
+          { label:'Bright Lance', pts:15 },
+          { label:'Scatter Laser', pts:10 },
+          { label:'Starcannon', pts:10 },
+        ]},
+      ]
+    },
+    { id:'el_windriders', name:'Windriders', stats:['16"','3+','3+','3','4','2','2','8','4+'], role:'Fast Attack', pts:18,
+      wargear:['Shuriken Catapult'],
+      options:[
+        { group:'Weapon', pick:1, choices:[
+          { label:'Shuriken Catapult', pts:0, default:true },
+          { label:'Shuriken Cannon', pts:5 },
+          { label:'Scatter Laser', pts:8 },
+        ]},
+      ]
+    },
+    { id:'el_dark_reapers', name:'Dark Reapers', stats:['7"','3+','3+','3','3','1','1','8','3+'], role:'Heavy Support', pts:100, wargear:['Reaper Launcher','Reaper Rangefinder'] },
+    { id:'el_fire_prism', name:'Fire Prism', stats:['16"','5+','3+','6','7','10','3','9','3+'], role:'Heavy Support', pts:155,
+      wargear:['Prism Cannon','Twin Shuriken Catapult'],
+      options:[
+        { group:'Secondary', pick:1, choices:[
+          { label:'Twin Shuriken Catapult', pts:0, default:true },
+          { label:'Shuriken Cannon', pts:5 },
+        ]},
+      ]
+    },
+    { id:'el_night_spinner', name:'Night Spinner', stats:['16"','5+','3+','6','7','10','3','9','3+'], role:'Heavy Support', pts:115, wargear:['Doomweaver','Twin Shuriken Catapult'] },
+    { id:'el_war_walker', name:'War Walker', stats:['10"','3+','3+','5','5','4','2','8','5+'], role:'Heavy Support', pts:35,
+      wargear:['2x Shuriken Cannons'],
+      options:[
+        { group:'Left Arm', pick:1, choices:[
+          { label:'Shuriken Cannon', pts:0, default:true },
+          { label:'Scatter Laser', pts:5 },
+          { label:'Bright Lance', pts:10 },
+          { label:'Starcannon', pts:8 },
+        ]},
+        { group:'Right Arm', pick:1, choices:[
+          { label:'Shuriken Cannon', pts:0, default:true },
+          { label:'Scatter Laser', pts:5 },
+          { label:'Bright Lance', pts:10 },
+          { label:'Starcannon', pts:8 },
+        ]},
+      ]
+    },
+    { id:'el_wave_serpent', name:'Wave Serpent', stats:['16"','5+','3+','6','7','13','3','9','3+'], role:'Dedicated Transport', pts:122,
+      wargear:['Energy Field'],
+      options:[
+        { group:'Main Weapon', pick:1, choices:[
+          { label:'Twin Shuriken Cannon', pts:0, default:true },
+          { label:'Twin Bright Lance', pts:15 },
+          { label:'Twin Scatter Laser', pts:10 },
+          { label:'Twin Starcannon', pts:10 },
+          { label:'Twin Shuriken Catapult', pts:-5 },
+        ]},
+      ]
+    },
+    { id:'el_wraithlord', name:'Wraithlord', stats:['8"','3+','4+','10','8','10','4','10','3+'], role:'Heavy Support', pts:90,
+      wargear:['Ghostglaive','2x Shuriken Catapults'],
+      options:[
+        { group:'Heavy Weapon 1', pick:1, choices:[
+          { label:'None', pts:0, default:true },
+          { label:'Bright Lance', pts:20 },
+          { label:'Scatter Laser', pts:14 },
+          { label:'Starcannon', pts:15 },
+          { label:'Shuriken Cannon', pts:10 },
+        ]},
+        { group:'Heavy Weapon 2', pick:1, choices:[
+          { label:'None', pts:0, default:true },
+          { label:'Bright Lance', pts:20 },
+          { label:'Scatter Laser', pts:14 },
+          { label:'Starcannon', pts:15 },
+          { label:'Flamers', pts:5 },
+        ]},
+      ]
+    },
+    { id:'el_wraithknight', name:'Wraithknight', stats:['12"','3+','3+','10','10','24','4','10','3+'], role:'Lord of War', pts:415,
+      wargear:['Wraithbone Fists'],
+      options:[
+        { group:'Main Weapons', pick:1, choices:[
+          { label:'Heavy Wraithcannons (pair)', pts:0, default:true },
+          { label:'Titanic Sword + Suncannon', pts:35 },
+          { label:'Titanic Glaive', pts:15 },
+        ]},
+      ]
+    },
+    { id:'el_falcon', name:'Falcon', stats:['16"','5+','3+','6','7','10','3','9','3+'], role:'Heavy Support', pts:130,
+      wargear:['Pulse Laser','Shuriken Cannon'],
+      options:[
+        { group:'Secondary', pick:1, choices:[
+          { label:'Shuriken Cannon', pts:0, default:true },
+          { label:'Scatter Laser', pts:5 },
+          { label:'Bright Lance', pts:10 },
+          { label:'Starcannon', pts:8 },
+        ]},
+      ]
+    },
   ],
   tau: [
-    { id:'tau_commander', name:'Commander in Coldstar Battlesuit', role:'HQ', pts:100, wargear:['High-output Burst Cannon','Advanced Targeting System'] },
-    { id:'tau_commander_crisis', name:'Commander in Crisis Battlesuit', role:'HQ', pts:90, wargear:['Fusion Blasters','Shield Generator'] },
-    { id:'tau_ethereal', name:'Ethereal', role:'HQ', pts:50, wargear:['Equaliser Stave','Honour Blade'] },
-    { id:'tau_fire_warriors', name:'Fire Warrior Strike Team', role:'Troops', pts:70, wargear:['Pulse Rifle','Pulse Pistol','Bonding Knife'] },
-    { id:'tau_breacher_team', name:'Breacher Team', role:'Troops', pts:70, wargear:['Pulse Blaster','Pulse Pistol','Bonding Knife'] },
-    { id:'tau_crisis_suits', name:'Crisis Battlesuits', role:'Elites', pts:110, wargear:['Burst Cannon','Flamer','Shield Generator'] },
-    { id:'tau_stealth_suits', name:'Stealth Battlesuits', role:'Elites', pts:75, wargear:['Burst Cannon','Advanced Targeting System'] },
-    { id:'tau_pathfinders', name:'Pathfinder Team', role:'Fast Attack', pts:55, wargear:['Pulse Carbine','Markerlight','Tactical Support Turret'] },
-    { id:'tau_vespid', name:'Vespid Stingwings', role:'Fast Attack', pts:56, wargear:['Neutron Blaster'] },
-    { id:'tau_piranha', name:'Piranhas', role:'Fast Attack', pts:55, wargear:['Burst Cannon','Seeker Missiles'] },
-    { id:'tau_broadside', name:'Broadside Battlesuits', role:'Heavy Support', pts:80, wargear:['Heavy Rail Rifle','Twin Smart Missile System'] },
-    { id:'tau_hammerhead', name:'Hammerhead Gunship', role:'Heavy Support', pts:135, wargear:['Railgun','Twin Smart Missile System'] },
-    { id:'tau_riptide', name:'TX85 Piranha Riptide', role:'Heavy Support', pts:185, wargear:['Heavy Burst Cannon','Twin Smart Missile System'] },
-    { id:'tau_devilfish', name:'Devilfish', role:'Dedicated Transport', pts:103, wargear:['Burst Cannon','Smart Missile System'] },
-    { id:'tau_stormsurge', name:'KV128 Stormsurge', role:'Lord of War', pts:330, wargear:['Pulse Driver Cannon','Pulse Blastcannon'] },
+    { id:'tau_commander', name:'Commander in Coldstar Battlesuit', stats:['16"','5+','2+','5','5','6','3','9','3+'], role:'HQ', pts:100, wargear:['High-output Burst Cannon','Advanced Targeting System'] },
+    { id:'tau_commander_crisis', name:'Commander in Crisis Battlesuit', stats:['8"','5+','2+','5','5','6','3','9','3+'], role:'HQ', pts:90, wargear:['Fusion Blasters','Shield Generator'] },
+    { id:'tau_ethereal', name:'Ethereal', stats:['6"','3+','3+','3','3','4','3','9','6+'], role:'HQ', pts:50, wargear:['Equaliser Stave','Honour Blade'] },
+    { id:'tau_fire_warriors', name:'Fire Warrior Strike Team', stats:['6"','4+','4+','3','3','1','1','7','4+'], role:'Troops', pts:70, wargear:['Pulse Rifle','Pulse Pistol','Bonding Knife'] },
+    { id:'tau_breacher_team', name:'Breacher Team', stats:['6"','4+','4+','3','3','1','1','7','4+'], role:'Troops', pts:70, wargear:['Pulse Blaster','Pulse Pistol','Bonding Knife'] },
+    { id:'tau_crisis_suits', name:'Crisis Battlesuits', stats:['8"','5+','3+','5','5','3','3','8','3+'], role:'Elites', pts:110, wargear:['Burst Cannon','Flamer','Shield Generator'] },
+    { id:'tau_stealth_suits', name:'Stealth Battlesuits', stats:['8"','5+','3+','4','4','2','1','8','3+'], role:'Elites', pts:75, wargear:['Burst Cannon','Advanced Targeting System'] },
+    { id:'tau_pathfinders', name:'Pathfinder Team', stats:['7"','4+','4+','3','3','1','1','7','5+'], role:'Fast Attack', pts:55, wargear:['Pulse Carbine','Markerlight','Tactical Support Turret'] },
+    { id:'tau_vespid', name:'Vespid Stingwings', stats:['14"','4+','4+','4','4','1','2','6','4+'], role:'Fast Attack', pts:56, wargear:['Neutron Blaster'] },
+    { id:'tau_piranha', name:'Piranhas', stats:['16"','5+','4+','4','5','4','2','7','4+'], role:'Fast Attack', pts:55, wargear:['Burst Cannon','Seeker Missiles'] },
+    { id:'tau_broadside', name:'Broadside Battlesuits', stats:['5"','5+','3+','5','5','4','2','8','2+'], role:'Heavy Support', pts:80, wargear:['Heavy Rail Rifle','Twin Smart Missile System'] },
+    { id:'tau_hammerhead', name:'Hammerhead Gunship', stats:['12"','5+','3+','6','7','12','3','8','3+'], role:'Heavy Support', pts:135, wargear:['Railgun','Twin Smart Missile System'] },
+    { id:'tau_riptide', name:'TX85 Piranha Riptide', stats:['10"','5+','3+','8','8','14','4','9','3+'], role:'Heavy Support', pts:185, wargear:['Heavy Burst Cannon','Twin Smart Missile System'] },
+    { id:'tau_devilfish', name:'Devilfish', stats:['12"','5+','3+','6','7','10','3','8','3+'], role:'Dedicated Transport', pts:103, wargear:['Burst Cannon','Smart Missile System'] },
+    { id:'tau_stormsurge', name:'KV128 Stormsurge', stats:['8"','5+','3+','8','9','20','4','9','3+'], role:'Lord of War', pts:330, wargear:['Pulse Driver Cannon','Pulse Blastcannon'] },
     { id:'tau_stormblade', name:'TX4 Piranha', role:'Fast Attack', pts:55, wargear:['Burst Cannon','Seeker Missile'] },
   ],
   dark_eldar: [
-    { id:'de_archon', name:'Archon', role:'HQ', pts:68, wargear:['Husk Blade','Blast Pistol','Shadow Field'] },
-    { id:'de_succubus', name:'Succubus', role:'HQ', pts:60, wargear:['Agoniser','Blast Pistol','Plasma Grenades'] },
-    { id:'de_haemonculus', name:'Haemonculus', role:'HQ', pts:70, wargear:['Electrocorrosive Whip','Stinger Pistol'] },
-    { id:'de_kabalite_warriors', name:'Kabalite Warriors', role:'Troops', pts:45, wargear:['Splinter Rifle','Splinter Pistol','Plasma Grenades'] },
-    { id:'de_wyches', name:'Wyches', role:'Troops', pts:50, wargear:['Wych Weapons','Blast Pistol','Plasma Grenades'] },
-    { id:'de_incubi', name:'Incubi', role:'Elites', pts:72, wargear:['Klaive'] },
-    { id:'de_mandrakes', name:'Mandrakes', role:'Elites', pts:68, wargear:["Baleblast","Glimmersteel Blade"] },
-    { id:'de_wracks', name:'Wracks', role:'Elites', pts:45, wargear:['Wrack Blades','Ossefactor'] },
-    { id:'de_hellions', name:'Hellions', role:'Fast Attack', pts:55, wargear:['Hellglaive','Stunclaw','Splinter Pods'] },
-    { id:'de_reavers', name:'Reavers', role:'Fast Attack', pts:55, wargear:['Splinter Rifle','Blaster','Bladevanes'] },
-    { id:'de_scourges', name:'Scourges', role:'Fast Attack', pts:70, wargear:['Splinter Carbine','Various Heavy Weapons'] },
-    { id:'de_ravager', name:'Ravager', role:'Heavy Support', pts:115, wargear:['Three Dark Lances'] },
-    { id:'de_talos', name:'Talos', role:'Heavy Support', pts:100, wargear:['Macro-scalpel','Chain-flails','Talos Ichor Injector'] },
-    { id:'de_raider', name:'Raider', role:'Dedicated Transport', pts:75, wargear:['Dark Lance','Night Shields'] },
-    { id:'de_venom', name:'Venom', role:'Dedicated Transport', pts:65, wargear:['Twin Splinter Rifle','Splinter Cannon'] },
+    { id:'de_archon', name:'Archon', stats:['7"','2+','2+','3','3','5','5','9','4+'], role:'HQ', pts:68, wargear:['Husk Blade','Blast Pistol','Shadow Field'] },
+    { id:'de_succubus', name:'Succubus', stats:['7"','2+','2+','3','3','4','5','8','4+'], role:'HQ', pts:60, wargear:['Agoniser','Blast Pistol','Plasma Grenades'] },
+    { id:'de_haemonculus', name:'Haemonculus', stats:['7"','3+','3+','3','3','4','3','8','6+'], role:'HQ', pts:70, wargear:['Electrocorrosive Whip','Stinger Pistol'] },
+    { id:'de_kabalite_warriors', name:'Kabalite Warriors', stats:['7"','3+','3+','3','3','1','1','7','4+'], role:'Troops', pts:45, wargear:['Splinter Rifle','Splinter Pistol','Plasma Grenades'] },
+    { id:'de_wyches', name:'Wyches', stats:['7"','3+','3+','3','3','1','2','7','4+'], role:'Troops', pts:50, wargear:['Wych Weapons','Blast Pistol','Plasma Grenades'] },
+    { id:'de_incubi', name:'Incubi', stats:['7"','3+','3+','4','3','1','2','8','3+'], role:'Elites', pts:72, wargear:['Klaive'] },
+    { id:'de_mandrakes', name:'Mandrakes', stats:['7"','3+','3+','3','3','1','2','8','5+'], role:'Elites', pts:68, wargear:["Baleblast","Glimmersteel Blade"] },
+    { id:'de_wracks', name:'Wracks', stats:['7"','3+','3+','3','3','1','1','7','5+'], role:'Elites', pts:45, wargear:['Wrack Blades','Ossefactor'] },
+    { id:'de_hellions', name:'Hellions', stats:['12"','3+','3+','3','3','1','2','7','4+'], role:'Fast Attack', pts:55, wargear:['Hellglaive','Stunclaw','Splinter Pods'] },
+    { id:'de_reavers', name:'Reavers', stats:['16"','3+','3+','3','4','2','2','7','4+'], role:'Fast Attack', pts:55, wargear:['Splinter Rifle','Blaster','Bladevanes'] },
+    { id:'de_scourges', name:'Scourges', stats:['14"','3+','3+','3','3','1','2','7','4+'], role:'Fast Attack', pts:70, wargear:['Splinter Carbine','Various Heavy Weapons'] },
+    { id:'de_ravager', name:'Ravager', stats:['14"','5+','3+','5','6','8','3','8','4+'], role:'Heavy Support', pts:115, wargear:['Three Dark Lances'] },
+    { id:'de_talos', name:'Talos', stats:['7"','3+','4+','6','6','7','4','8','3+'], role:'Heavy Support', pts:100, wargear:['Macro-scalpel','Chain-flails','Talos Ichor Injector'] },
+    { id:'de_raider', name:'Raider', stats:['14"','5+','3+','5','6','8','3','8','4+'], role:'Dedicated Transport', pts:75, wargear:['Dark Lance','Night Shields'] },
+    { id:'de_venom', name:'Venom', stats:['16"','5+','3+','4','5','6','3','8','4+'], role:'Dedicated Transport', pts:65, wargear:['Twin Splinter Rifle','Splinter Cannon'] },
   ],
   chaos_daemons: [
-    { id:'cd_bloodthirster', name:'Bloodthirster', role:'HQ', pts:270, wargear:['Axe of Khorne','Mighty Lash of Khorne','Warp-forged Armour'] },
-    { id:'cd_lord_change', name:"Lord of Change", role:'HQ', pts:240, wargear:['Baleful Sword','Infernal Gateway'] },
-    { id:'cd_great_unclean', name:'Great Unclean One', role:'HQ', pts:270, wargear:['Bilesword','Bileblade','Putrid Cloud'] },
-    { id:'cd_keeper', name:'Keeper of Secrets', role:'HQ', pts:240, wargear:['Witstealer Sword','Shining Aegis'] },
-    { id:'cd_bloodletters', name:'Bloodletters', role:'Troops', pts:90, wargear:['Hellblades'] },
-    { id:'cd_plaguebearers', name:'Plaguebearers', role:'Troops', pts:90, wargear:['Plaguesword','Daemonic Plague Bell'] },
-    { id:'cd_daemonettes', name:'Daemonettes', role:'Troops', pts:80, wargear:['Piercing Claws'] },
-    { id:'cd_horrors', name:'Pink Horrors', role:'Troops', pts:90, wargear:['Coruscating Flames'] },
-    { id:'cd_bloodcrushers', name:'Bloodcrushers', role:'Elites', pts:120, wargear:['Hellblade','Juggernaut'] },
-    { id:'cd_flamers', name:'Flamers of Tzeentch', role:'Fast Attack', pts:92, wargear:['Warpflame'] },
-    { id:'cd_screamers', name:'Screamers of Tzeentch', role:'Fast Attack', pts:90, wargear:['Lamprey Bite','Slashing Attack'] },
-    { id:'cd_skull_cannon', name:'Skull Cannon', role:'Heavy Support', pts:130, wargear:['Burning Skulls','Gnashing Maw'] },
-    { id:'cd_soul_grinder', name:'Soul Grinder', role:'Heavy Support', pts:175, wargear:['Warpsword','Phlegm Bombardment'] },
-    { id:'cd_bel_akor', name:"Be'lakor", role:'Lord of War', pts:240, wargear:['Blade of Shadows','Aegis of Chaos'] },
+    { id:'cd_bloodthirster', name:'Bloodthirster', stats:['10"','2+','4+','8','8','14','6','10','4+'], role:'HQ', pts:270, wargear:['Axe of Khorne','Mighty Lash of Khorne','Warp-forged Armour'] },
+    { id:'cd_lord_change', name:"Lord of Change", stats:['15"','3+','2+','6','6','16','3','10','4+'], role:'HQ', pts:240, wargear:['Baleful Sword','Infernal Gateway'] },
+    { id:'cd_great_unclean', name:'Great Unclean One', stats:['5"','3+','3+','7','8','18','5','9','4+'], role:'HQ', pts:270, wargear:['Bilesword','Bileblade','Putrid Cloud'] },
+    { id:'cd_keeper', name:'Keeper of Secrets', stats:['14"','2+','3+','6','6','12','6','10','4+'], role:'HQ', pts:240, wargear:['Witstealer Sword','Shining Aegis'] },
+    { id:'cd_bloodletters', name:'Bloodletters', stats:['6"','3+','4+','4','3','1','1','7','5+'], role:'Troops', pts:90, wargear:['Hellblades'] },
+    { id:'cd_plaguebearers', name:'Plaguebearers', stats:['5"','4+','4+','3','4','1','1','7','5+'], role:'Troops', pts:90, wargear:['Plaguesword','Daemonic Plague Bell'] },
+    { id:'cd_daemonettes', name:'Daemonettes', stats:['7"','3+','3+','3','3','1','2','7','5+'], role:'Troops', pts:80, wargear:['Piercing Claws'] },
+    { id:'cd_horrors', name:'Pink Horrors', stats:['6"','4+','4+','3','3','1','1','7','6+'], role:'Troops', pts:90, wargear:['Coruscating Flames'] },
+    { id:'cd_bloodcrushers', name:'Bloodcrushers', stats:['10"','3+','4+','5','5','3','3','8','3+'], role:'Elites', pts:120, wargear:['Hellblade','Juggernaut'] },
+    { id:'cd_flamers', name:'Flamers of Tzeentch', stats:['9"','3+','3+','4','4','2','2','7','5+'], role:'Fast Attack', pts:92, wargear:['Warpflame'] },
+    { id:'cd_screamers', name:'Screamers of Tzeentch', stats:['16"','3+','3+','4','4','2','3','7','5+'], role:'Fast Attack', pts:90, wargear:['Lamprey Bite','Slashing Attack'] },
+    { id:'cd_skull_cannon', name:'Skull Cannon', stats:['8"','3+','3+','7','7','8','4','8','4+'], role:'Heavy Support', pts:130, wargear:['Burning Skulls','Gnashing Maw'] },
+    { id:'cd_soul_grinder', name:'Soul Grinder', stats:['10"','3+','3+','8','8','18','4','8','3+'], role:'Heavy Support', pts:175, wargear:['Warpsword','Phlegm Bombardment'] },
+    { id:'cd_bel_akor', name:"Be'lakor", stats:['14"','2+','2+','8','8','16','7','10','4+'], role:'Lord of War', pts:240, wargear:['Blade of Shadows','Aegis of Chaos'] },
   ],
   // Abbreviated factions - key units only
   blood_angels: [
-    { id:'ba_dante', name:'Commander Dante', role:'HQ', pts:195, wargear:['Axe Mortalis','Perdition Pistol','Inferno Pistol'] },
-    { id:'ba_mephiston', name:'Mephiston, Lord of Death', role:'HQ', pts:165, wargear:['Force Sword','Plasma Pistol'] },
-    { id:'ba_captain', name:'Captain', role:'HQ', pts:74, wargear:['Power Sword','Bolt Pistol'] },
-    { id:'ba_death_company', name:'Death Company Marines', role:'Elites', pts:95, wargear:['Chainsword','Bolt Pistol','Jump Pack'] },
-    { id:'ba_sanguinary_guard', name:'Sanguinary Guard', role:'Elites', pts:160, wargear:['Encarmine Sword','Angelus Boltgun'] },
-    { id:'ba_assault', name:'Assault Squad', role:'Fast Attack', pts:65, wargear:['Chainsword','Bolt Pistol','Jump Pack'] },
-    { id:'ba_tactical', name:'Tactical Squad', role:'Troops', pts:65, wargear:['Boltguns','Bolt Pistols'] },
-    { id:'ba_intercessors', name:'Intercessor Squad', role:'Troops', pts:85, wargear:['Bolt Rifles'] },
-    { id:'ba_baal_predator', name:'Baal Predator', role:'Fast Attack', pts:130, wargear:['Twin Assault Cannon','Heavy Bolter Sponsons'] },
-    { id:'ba_land_raider', name:'Land Raider', role:'Heavy Support', pts:285, wargear:['Twin Lascannons','Multi-Melta'] },
+    { id:'ba_dante', stats:['12"','2+','2+','4','4','6','5','10','2+'], name:'Commander Dante', role:'HQ', pts:195, wargear:['Axe Mortalis','Perdition Pistol','Inferno Pistol'] },
+    { id:'ba_mephiston', stats:['6"','2+','2+','5','4','6','5','10','2+'], name:'Mephiston, Lord of Death', role:'HQ', pts:165, wargear:['Force Sword','Plasma Pistol'] },
+    { id:'ba_captain', stats:['6"','3+','3+','4','4','5','4','9','3+'], name:'Captain', role:'HQ', pts:74, wargear:['Power Sword','Bolt Pistol'] },
+    { id:'ba_death_company', stats:['12"','3+','3+','4','4','1','2','8','3+'], name:'Death Company Marines', role:'Elites', pts:95, wargear:['Chainsword','Bolt Pistol','Jump Pack'] },
+    { id:'ba_sanguinary_guard', stats:['12"','3+','3+','4','4','2','2','8','2+'], name:'Sanguinary Guard', role:'Elites', pts:160, wargear:['Encarmine Sword','Angelus Boltgun'] },
+    { id:'ba_assault', stats:['12"','3+','3+','4','4','1','1','7','3+'], name:'Assault Squad', role:'Fast Attack', pts:65, wargear:['Chainsword','Bolt Pistol','Jump Pack'] },
+    { id:'ba_tactical', stats:['6"','3+','3+','4','4','1','1','7','3+'], name:'Tactical Squad', role:'Troops', pts:65, wargear:['Boltguns','Bolt Pistols'] },
+    { id:'ba_intercessors', stats:['6"','3+','3+','4','4','2','2','7','3+'], name:'Intercessor Squad', role:'Troops', pts:85, wargear:['Bolt Rifles'] },
+    { id:'ba_baal_predator', stats:['12"','5+','3+','6','7','11','3','8','3+'], name:'Baal Predator', role:'Fast Attack', pts:130, wargear:['Twin Assault Cannon','Heavy Bolter Sponsons'] },
+    { id:'ba_land_raider', stats:['10"','5+','3+','8','8','16','6','9','2+'], name:'Land Raider', role:'Heavy Support', pts:285, wargear:['Twin Lascannons','Multi-Melta'] },
   ],
   dark_angels: [
-    { id:'da_azrael', name:'Supreme Grand Master Azrael', role:'HQ', pts:180, wargear:['Lion Helm','Sword of Secrets'] },
-    { id:'da_ezekiel', name:'Ezekiel', role:'HQ', pts:115, wargear:['Sword of Secrets','Bolt Pistol'] },
-    { id:'da_librarian', name:'Librarian', role:'HQ', pts:90, wargear:['Force Sword','Bolt Pistol'] },
-    { id:'da_deathwing', name:'Deathwing Terminators', role:'Elites', pts:215, wargear:['Storm Bolters','Power Fists'] },
-    { id:'da_ravenwing', name:'Ravenwing Black Knights', role:'Fast Attack', pts:130, wargear:['Corvus Hammer','Plasma Talon'] },
-    { id:'da_tactical', name:'Tactical Squad', role:'Troops', pts:65, wargear:['Boltguns','Bolt Pistols'] },
-    { id:'da_intercessors', name:'Intercessor Squad', role:'Troops', pts:85, wargear:['Bolt Rifles'] },
-    { id:'da_land_raider', name:'Land Raider Redeemer', role:'Heavy Support', pts:303, wargear:['Flamestorm Cannon','Multi-Melta'] },
+    { id:'da_azrael', stats:['6"','2+','2+','4','4','6','5','10','2+'], name:'Supreme Grand Master Azrael', role:'HQ', pts:180, wargear:['Lion Helm','Sword of Secrets'] },
+    { id:'da_ezekiel', stats:['6"','3+','3+','4','4','5','3','9','3+'], name:'Ezekiel', role:'HQ', pts:115, wargear:['Sword of Secrets','Bolt Pistol'] },
+    { id:'da_librarian', stats:['6"','3+','3+','4','4','5','3','9','3+'], name:'Librarian', role:'HQ', pts:90, wargear:['Force Sword','Bolt Pistol'] },
+    { id:'da_deathwing', stats:['5"','3+','3+','4','4','2','2','8','2+'], name:'Deathwing Terminators', role:'Elites', pts:215, wargear:['Storm Bolters','Power Fists'] },
+    { id:'da_ravenwing', stats:['14"','3+','3+','4','5','2','3','8','3+'], name:'Ravenwing Black Knights', role:'Fast Attack', pts:130, wargear:['Corvus Hammer','Plasma Talon'] },
+    { id:'da_tactical', stats:['6"','3+','3+','4','4','1','1','7','3+'], name:'Tactical Squad', role:'Troops', pts:65, wargear:['Boltguns','Bolt Pistols'] },
+    { id:'da_intercessors', stats:['6"','3+','3+','4','4','2','2','7','3+'], name:'Intercessor Squad', role:'Troops', pts:85, wargear:['Bolt Rifles'] },
+    { id:'da_land_raider', stats:['10"','5+','3+','8','8','16','6','9','2+'], name:'Land Raider Redeemer', role:'Heavy Support', pts:303, wargear:['Flamestorm Cannon','Multi-Melta'] },
   ],
   space_wolves: [
-    { id:'sw_ragnar', name:'Ragnar Blackmane', role:'HQ', pts:130, wargear:['Frostfang','Bolt Pistol','Frenzied Charge'] },
-    { id:'sw_logan', name:'Logan Grimnar', role:'HQ', pts:215, wargear:['Axe Morkai','Storm Bolter'] },
-    { id:'sw_wolf_guard', name:'Wolf Guard', role:'Elites', pts:90, wargear:['Bolt Pistol','Chainsword'] },
-    { id:'sw_blood_claws', name:'Blood Claws', role:'Troops', pts:65, wargear:['Bolt Pistol','Chainsword'] },
-    { id:'sw_grey_hunters', name:'Grey Hunters', role:'Troops', pts:65, wargear:['Boltgun','Bolt Pistol'] },
-    { id:'sw_fenrisian_wolves', name:'Fenrisian Wolves', role:'Fast Attack', pts:40, wargear:['Fenrisian Bite'] },
-    { id:'sw_long_fangs', name:'Long Fangs', role:'Heavy Support', pts:95, wargear:['Boltgun','Missile Launchers'] },
-    { id:'sw_land_raider', name:'Land Raider', role:'Heavy Support', pts:285, wargear:['Twin Lascannons'] },
+    { id:'sw_ragnar', stats:['6"','2+','2+','4','4','5','5','9','3+'], name:'Ragnar Blackmane', role:'HQ', pts:130, wargear:['Frostfang','Bolt Pistol','Frenzied Charge'] },
+    { id:'sw_logan', stats:['5"','2+','2+','4','4','6','4','10','2+'], name:'Logan Grimnar', role:'HQ', pts:215, wargear:['Axe Morkai','Storm Bolter'] },
+    { id:'sw_wolf_guard', stats:['6"','3+','3+','4','4','1','2','8','3+'], name:'Wolf Guard', role:'Elites', pts:90, wargear:['Bolt Pistol','Chainsword'] },
+    { id:'sw_blood_claws', stats:['6"','3+','3+','4','4','1','1','7','3+'], name:'Blood Claws', role:'Troops', pts:65, wargear:['Bolt Pistol','Chainsword'] },
+    { id:'sw_grey_hunters', stats:['6"','3+','3+','4','4','1','1','7','3+'], name:'Grey Hunters', role:'Troops', pts:65, wargear:['Boltgun','Bolt Pistol'] },
+    { id:'sw_fenrisian_wolves', stats:['10"','3+','5+','4','4','1','2','5','6+'], name:'Fenrisian Wolves', role:'Fast Attack', pts:40, wargear:['Fenrisian Bite'] },
+    { id:'sw_long_fangs', stats:['6"','3+','3+','4','4','1','1','7','3+'], name:'Long Fangs', role:'Heavy Support', pts:95, wargear:['Boltgun','Missile Launchers'] },
+    { id:'sw_land_raider', stats:['10"','5+','3+','8','8','16','6','9','2+'], name:'Land Raider', role:'Heavy Support', pts:285, wargear:['Twin Lascannons'] },
   ],
   grey_knights: [
-    { id:'gk_grand_master', name:'Grand Master in Nemesis Dreadknight', role:'HQ', pts:245, wargear:['Nemesis Doomfist','Gatling Psilencer'] },
-    { id:'gk_librarian', name:'Librarian', role:'HQ', pts:110, wargear:['Nemesis Force Sword','Storm Bolter'] },
-    { id:'gk_interceptors', name:'Interceptors', role:'Fast Attack', pts:150, wargear:['Storm Bolter','Nemesis Force Sword'] },
-    { id:'gk_paladins', name:'Paladins', role:'Elites', pts:210, wargear:['Storm Bolters','Nemesis Force Halberds'] },
-    { id:'gk_strike_squad', name:'Strike Squad', role:'Troops', pts:120, wargear:['Storm Bolter','Nemesis Force Sword'] },
-    { id:'gk_nemesis_dreadknight', name:'Nemesis Dreadknight', role:'Heavy Support', pts:200, wargear:['Nemesis Doomfists','Gatling Psilencer'] },
+    { id:'gk_grand_master', stats:['6"','3+','3+','5','6','8','4','9','2+'], name:'Grand Master in Nemesis Dreadknight', role:'HQ', pts:245, wargear:['Nemesis Doomfist','Gatling Psilencer'] },
+    { id:'gk_librarian', stats:['6"','3+','3+','4','4','5','3','9','3+'], name:'Librarian', role:'HQ', pts:110, wargear:['Nemesis Force Sword','Storm Bolter'] },
+    { id:'gk_interceptors', stats:['12"','3+','3+','4','4','2','3','8','3+'], name:'Interceptors', role:'Fast Attack', pts:150, wargear:['Storm Bolter','Nemesis Force Sword'] },
+    { id:'gk_paladins', stats:['5"','3+','3+','4','4','3','4','9','2+'], name:'Paladins', role:'Elites', pts:210, wargear:['Storm Bolters','Nemesis Force Halberds'] },
+    { id:'gk_strike_squad', stats:['6"','3+','3+','4','4','2','3','8','3+'], name:'Strike Squad', role:'Troops', pts:120, wargear:['Storm Bolter','Nemesis Force Sword'] },
+    { id:'gk_nemesis_dreadknight', stats:['10"','3+','3+','6','7','13','4','8','2+'], name:'Nemesis Dreadknight', role:'Heavy Support', pts:200, wargear:['Nemesis Doomfists','Gatling Psilencer'] },
   ],
   deathwatch: [
-    { id:'dw_watch_master', name:'Watch Master', role:'HQ', pts:130, wargear:["Guardian Spear","Tome of the Rites"] },
-    { id:'dw_kill_team', name:'Deathwatch Kill Team', role:'Elites', pts:100, wargear:['Special Issue Ammunition','Storm Bolter'] },
-    { id:'dw_veterans', name:'Deathwatch Veterans', role:'Elites', pts:85, wargear:['Boltgun','Bolt Pistol','Special Issue Ammunition'] },
-    { id:'dw_bikers', name:'Deathwatch Bikers', role:'Fast Attack', pts:80, wargear:['Twin Boltgun','Special Issue Ammunition'] },
-    { id:'dw_terminator', name:'Terminator Squad', role:'Elites', pts:195, wargear:['Storm Bolter','Power Fist'] },
-    { id:'dw_intercessors', name:'Intercessor Squad', role:'Troops', pts:85, wargear:['Bolt Rifles'] },
+    { id:'dw_watch_master', stats:['6"','2+','2+','4','4','5','4','9','3+'], name:'Watch Master', role:'HQ', pts:130, wargear:["Guardian Spear","Tome of the Rites"] },
+    { id:'dw_kill_team', stats:['6"','3+','3+','4','4','2','2','8','3+'], name:'Deathwatch Kill Team', role:'Elites', pts:100, wargear:['Special Issue Ammunition','Storm Bolter'] },
+    { id:'dw_veterans', stats:['6"','3+','3+','4','4','1','2','8','3+'], name:'Deathwatch Veterans', role:'Elites', pts:85, wargear:['Boltgun','Bolt Pistol','Special Issue Ammunition'] },
+    { id:'dw_bikers', stats:['14"','3+','3+','4','5','2','2','8','3+'], name:'Deathwatch Bikers', role:'Fast Attack', pts:80, wargear:['Twin Boltgun','Special Issue Ammunition'] },
+    { id:'dw_terminator', stats:['5"','3+','3+','4','4','2','2','8','2+'], name:'Terminator Squad', role:'Elites', pts:195, wargear:['Storm Bolter','Power Fist'] },
+    { id:'dw_intercessors', stats:['6"','3+','3+','4','4','2','2','7','3+'], name:'Intercessor Squad', role:'Troops', pts:85, wargear:['Bolt Rifles'] },
   ],
   adeptus_mechanicus: [
-    { id:'am_belisarius', name:'Belisarius Cawl', role:'HQ', pts:200, wargear:['Mechadendrites','Omnissian Axe'] },
-    { id:'am_tech_priest', name:'Tech-Priest Dominus', role:'HQ', pts:90, wargear:['Volkite Blaster','Macrostubber','Omnissian Axe'] },
-    { id:'am_skitarii_rangers', name:'Skitarii Rangers', role:'Troops', pts:40, wargear:['Galvanic Rifle','Omnispex'] },
-    { id:'am_skitarii_vanguard', name:'Skitarii Vanguard', role:'Troops', pts:40, wargear:['Radium Carbine','Omnispex'] },
-    { id:'am_sicarian', name:'Sicarian Ruststalkers', role:'Elites', pts:75, wargear:['Transonic Razor','Chordclaw'] },
-    { id:'am_electropriests', name:'Fulgurite Electro-Priests', role:'Elites', pts:65, wargear:['Electroleech Stave','Electrostatic Gauntlets'] },
-    { id:'am_ironstriders', name:'Ironstrider Ballistarii', role:'Fast Attack', pts:60, wargear:['Twin Cognis Lascannon'] },
-    { id:'am_kastelan', name:'Kastelan Robots', role:'Heavy Support', pts:80, wargear:['Kastelan Fist','Kastelan Phosphor Blaster'] },
-    { id:'am_dunecrawler', name:'Onager Dunecrawler', role:'Heavy Support', pts:90, wargear:['Neutron Laser','Cognis Heavy Stubber'] },
+    { id:'am_belisarius', stats:['7"','3+','3+','5','5','8','4','9','2+'], name:'Belisarius Cawl', role:'HQ', pts:200, wargear:['Mechadendrites','Omnissian Axe'] },
+    { id:'am_tech_priest', stats:['6"','3+','3+','3','3','4','2','9','3+'], name:'Tech-Priest Dominus', role:'HQ', pts:90, wargear:['Volkite Blaster','Macrostubber','Omnissian Axe'] },
+    { id:'am_skitarii_rangers', stats:['6"','4+','3+','3','3','1','1','6','4+'], name:'Skitarii Rangers', role:'Troops', pts:40, wargear:['Galvanic Rifle','Omnispex'] },
+    { id:'am_skitarii_vanguard', stats:['6"','4+','3+','3','3','1','1','6','4+'], name:'Skitarii Vanguard', role:'Troops', pts:40, wargear:['Radium Carbine','Omnispex'] },
+    { id:'am_sicarian', stats:['8"','3+','3+','3','3','2','3','7','4+'], name:'Sicarian Ruststalkers', role:'Elites', pts:75, wargear:['Transonic Razor','Chordclaw'] },
+    { id:'am_electropriests', stats:['6"','3+','5+','3','3','1','2','7','6+'], name:'Fulgurite Electro-Priests', role:'Elites', pts:65, wargear:['Electroleech Stave','Electrostatic Gauntlets'] },
+    { id:'am_ironstriders', stats:['8"','3+','3+','4','5','3','2','8','4+'], name:'Ironstrider Ballistarii', role:'Fast Attack', pts:60, wargear:['Twin Cognis Lascannon'] },
+    { id:'am_kastelan', stats:['8"','3+','3+','6','7','6','3','10','3+'], name:'Kastelan Robots', role:'Heavy Support', pts:80, wargear:['Kastelan Fist','Kastelan Phosphor Blaster'] },
+    { id:'am_dunecrawler', stats:['8"','5+','3+','6','7','11','3','8','3+'], name:'Onager Dunecrawler', role:'Heavy Support', pts:90, wargear:['Neutron Laser','Cognis Heavy Stubber'] },
   ],
   sisters_of_battle: [
-    { id:'sob_canoness', name:'Canoness', role:'HQ', pts:55, wargear:['Power Sword','Bolt Pistol','Rosarius'] },
-    { id:'sob_celestine', name:'Saint Celestine', role:'HQ', pts:200, wargear:['The Ardent Blade','Plasma Pistol'] },
-    { id:'sob_battle_sisters', name:'Battle Sister Squad', role:'Troops', pts:55, wargear:['Bolter','Bolt Pistol','Frag Grenade'] },
-    { id:'sob_seraphim', name:'Seraphim Squad', role:'Fast Attack', pts:65, wargear:['Bolt Pistols','Jump Pack'] },
-    { id:'sob_celestians', name:'Celestian Squad', role:'Elites', pts:65, wargear:['Bolter','Bolt Pistol'] },
-    { id:'sob_repressor', name:'Repressor', role:'Dedicated Transport', pts:80, wargear:['Storm Bolter','Flamer'] },
-    { id:'sob_exorcist', name:'Exorcist', role:'Heavy Support', pts:145, wargear:['Exorcist Missile Launcher'] },
+    { id:'sob_canoness', stats:['6"','2+','2+','3','3','4','4','9','3+'], name:'Canoness', role:'HQ', pts:55, wargear:['Power Sword','Bolt Pistol','Rosarius'] },
+    { id:'sob_celestine', stats:['12"','2+','2+','3','3','5','4','9','3+'], name:'Saint Celestine', role:'HQ', pts:200, wargear:['The Ardent Blade','Plasma Pistol'] },
+    { id:'sob_battle_sisters', stats:['6"','3+','3+','3','3','1','1','7','3+'], name:'Battle Sister Squad', role:'Troops', pts:55, wargear:['Bolter','Bolt Pistol','Frag Grenade'] },
+    { id:'sob_seraphim', stats:['12"','3+','3+','3','3','1','2','7','3+'], name:'Seraphim Squad', role:'Fast Attack', pts:65, wargear:['Bolt Pistols','Jump Pack'] },
+    { id:'sob_celestians', stats:['6"','3+','3+','3','3','1','1','8','3+'], name:'Celestian Squad', role:'Elites', pts:65, wargear:['Bolter','Bolt Pistol'] },
+    { id:'sob_repressor', stats:['10"','5+','3+','6','7','10','3','8','3+'], name:'Repressor', role:'Dedicated Transport', pts:80, wargear:['Storm Bolter','Flamer'] },
+    { id:'sob_exorcist', stats:['10"','5+','3+','6','8','11','3','8','3+'], name:'Exorcist', role:'Heavy Support', pts:145, wargear:['Exorcist Missile Launcher'] },
   ],
   adeptus_custodes: [
-    { id:'ac_captain_general', name:'Captain-General Trajann Valoris', role:'HQ', pts:210, wargear:['Watcher\'s Axe','Misericordia'] },
-    { id:'ac_shield_captain', name:'Shield-Captain', role:'HQ', pts:150, wargear:['Guardian Spear','Misericordia'] },
-    { id:'ac_custodian_guard', name:'Custodian Guard', role:'Troops', pts:160, wargear:['Guardian Spear','Misericordia'] },
-    { id:'ac_vertus_praetors', name:'Vertus Praetors', role:'Fast Attack', pts:165, wargear:['Hurricane Bolter','Interceptor Lance'] },
-    { id:'ac_venerable_contemptor', name:'Venerable Contemptor Dreadnought', role:'Elites', pts:195, wargear:['Multi-Melta','Dreadnought C.C. Weapon'] },
-    { id:'ac_land_raider', name:'Grav-Land Raider', role:'Heavy Support', pts:350, wargear:['Twin Lascannons','Heavy Bolter'] },
+    { id:'ac_captain_general', stats:['6"','2+','2+','5','5','6','6','10','2+'], name:'Captain-General Trajann Valoris', role:'HQ', pts:210, wargear:['Watcher\'s Axe','Misericordia'] },
+    { id:'ac_shield_captain', stats:['6"','2+','2+','5','5','6','5','10','2+'], name:'Shield-Captain', role:'HQ', pts:150, wargear:['Guardian Spear','Misericordia'] },
+    { id:'ac_custodian_guard', stats:['6"','2+','2+','5','5','3','4','9','2+'], name:'Custodian Guard', role:'Troops', pts:160, wargear:['Guardian Spear','Misericordia'] },
+    { id:'ac_vertus_praetors', stats:['14"','2+','2+','5','5','3','4','9','2+'], name:'Vertus Praetors', role:'Fast Attack', pts:165, wargear:['Hurricane Bolter','Interceptor Lance'] },
+    { id:'ac_venerable_contemptor', stats:['9"','2+','2+','7','8','10','4','9','2+'], name:'Venerable Contemptor Dreadnought', role:'Elites', pts:195, wargear:['Multi-Melta','Dreadnought C.C. Weapon'] },
+    { id:'ac_land_raider', stats:['10"','5+','2+','8','9','18','6','9','2+'], name:'Grav-Land Raider', role:'Heavy Support', pts:350, wargear:['Twin Lascannons','Heavy Bolter'] },
   ],
   imperial_knights: [
-    { id:'ik_knight_warden', name:'Knight Warden', role:'Lord of War', pts:430, wargear:['Avenger Gatling Cannon','Thunderstrike Gauntlet','Reaper Chainsword'] },
-    { id:'ik_knight_gallant', name:'Knight Gallant', role:'Lord of War', pts:420, wargear:['Thunderstrike Gauntlet','Reaper Chainsword'] },
-    { id:'ik_knight_paladin', name:'Knight Paladin', role:'Lord of War', pts:430, wargear:['Rapid-fire Battle Cannon','Reaper Chainsword'] },
-    { id:'ik_knight_errant', name:'Knight Errant', role:'Lord of War', pts:430, wargear:['Thermal Cannon','Reaper Chainsword'] },
-    { id:'ik_knight_crusader', name:'Knight Crusader', role:'Lord of War', pts:440, wargear:['Twin Icarus Autocannons','Avenger Gatling Cannon'] },
-    { id:'ik_armiger_warglaive', name:'Armiger Warglaive', role:'Heavy Support', pts:180, wargear:['Thermal Spear','Reaper Chain-Cleaver'] },
-    { id:'ik_armiger_helverin', name:'Armiger Helverin', role:'Heavy Support', pts:180, wargear:['Twin Armiger Autocannons'] },
-    { id:'ik_canis_rex', name:'Sir Hekhtur and Canis Rex', role:'Lord of War', pts:525, wargear:['Las-impulsor','Reaper Chainsword','Freedom\'s Hand'] },
+    { id:'ik_knight_warden', stats:['12"','3+','3+','8','8','24','4','9','3+'], name:'Knight Warden', role:'Lord of War', pts:430, wargear:['Avenger Gatling Cannon','Thunderstrike Gauntlet','Reaper Chainsword'] },
+    { id:'ik_knight_gallant', stats:['12"','3+','3+','8','8','24','4','9','3+'], name:'Knight Gallant', role:'Lord of War', pts:420, wargear:['Thunderstrike Gauntlet','Reaper Chainsword'] },
+    { id:'ik_knight_paladin', stats:['12"','3+','3+','8','8','24','4','9','3+'], name:'Knight Paladin', role:'Lord of War', pts:430, wargear:['Rapid-fire Battle Cannon','Reaper Chainsword'] },
+    { id:'ik_knight_errant', stats:['12"','3+','3+','8','8','24','4','9','3+'], name:'Knight Errant', role:'Lord of War', pts:430, wargear:['Thermal Cannon','Reaper Chainsword'] },
+    { id:'ik_knight_crusader', stats:['12"','3+','3+','8','8','24','4','9','3+'], name:'Knight Crusader', role:'Lord of War', pts:440, wargear:['Twin Icarus Autocannons','Avenger Gatling Cannon'] },
+    { id:'ik_armiger_warglaive', stats:['10"','3+','3+','6','9','12','3','8','3+'], name:'Armiger Warglaive', role:'Heavy Support', pts:180, wargear:['Thermal Spear','Reaper Chain-Cleaver'] },
+    { id:'ik_armiger_helverin', stats:['10"','3+','3+','6','9','12','3','8','3+'], name:'Armiger Helverin', role:'Heavy Support', pts:180, wargear:['Twin Armiger Autocannons'] },
+    { id:'ik_canis_rex', stats:['12"','3+','3+','8','12','24','4','9','3+'], name:'Sir Hekhtur and Canis Rex', role:'Lord of War', pts:525, wargear:['Las-impulsor','Reaper Chainsword','Freedom\'s Hand'] },
   ],
   genestealer_cults: [
-    { id:'gc_patriarch', name:'Patriarch', role:'HQ', pts:140, wargear:['Monstrous Rending Claws','Mind Control'] },
-    { id:'gc_magus', name:'Magus', role:'HQ', pts:55, wargear:['Force Stave','Autopistol','Psyker'] },
-    { id:'gc_primus', name:'Primus', role:'HQ', pts:60, wargear:['Needle Pistol','Bonesword','Toxin Injector'] },
-    { id:'gc_acolytes', name:'Acolyte Hybrids', role:'Troops', pts:50, wargear:['Hand Flamer','Autopistol','Mining Tools'] },
-    { id:'gc_neophytes', name:'Neophyte Hybrids', role:'Troops', pts:40, wargear:['Autogun','Autopistol','Shotgun'] },
-    { id:'gc_purestrain', name:'Purestrain Genestealers', role:'Elites', pts:96, wargear:['Rending Claws','Scything Talons'] },
-    { id:'gc_metamorphs', name:'Hybrid Metamorphs', role:'Elites', pts:55, wargear:['Metamorph Mutations','Autopistol'] },
-    { id:'gc_abberrants', name:'Aberrants', role:'Elites', pts:65, wargear:['Hypermorph Talon','Heavy Mining Pick'] },
-    { id:'gc_atalan_jackals', name:'Atalan Jackals', role:'Fast Attack', pts:55, wargear:['Shotgun','Demo Charges','Atalan Blade'] },
-    { id:'gc_goliath_truck', name:'Goliath Truck', role:'Dedicated Transport', pts:85, wargear:['Heavy Stubber','Twin Autocannon'] },
+    { id:'gc_patriarch', stats:['8"','2+','4+','6','6','5','5','10','5+'], name:'Patriarch', role:'HQ', pts:140, wargear:['Monstrous Rending Claws','Mind Control'] },
+    { id:'gc_magus', stats:['6"','3+','3+','3','3','4','3','7','6+'], name:'Magus', role:'HQ', pts:55, wargear:['Force Stave','Autopistol','Psyker'] },
+    { id:'gc_primus', stats:['6"','2+','3+','3','3','4','4','7','5+'], name:'Primus', role:'HQ', pts:60, wargear:['Needle Pistol','Bonesword','Toxin Injector'] },
+    { id:'gc_acolytes', stats:['6"','3+','3+','4','3','1','2','6','5+'], name:'Acolyte Hybrids', role:'Troops', pts:50, wargear:['Hand Flamer','Autopistol','Mining Tools'] },
+    { id:'gc_neophytes', stats:['6"','4+','3+','3','3','1','1','6','5+'], name:'Neophyte Hybrids', role:'Troops', pts:40, wargear:['Autogun','Autopistol','Shotgun'] },
+    { id:'gc_purestrain', stats:['8"','3+','4+','4','4','1','3','9','5+'], name:'Purestrain Genestealers', role:'Elites', pts:96, wargear:['Rending Claws','Scything Talons'] },
+    { id:'gc_metamorphs', stats:['6"','3+','4+','4','3','1','2','6','5+'], name:'Hybrid Metamorphs', role:'Elites', pts:55, wargear:['Metamorph Mutations','Autopistol'] },
+    { id:'gc_abberrants', stats:['6"','3+','5+','5','4','3','3','6','5+'], name:'Aberrants', role:'Elites', pts:65, wargear:['Hypermorph Talon','Heavy Mining Pick'] },
+    { id:'gc_atalan_jackals', stats:['12"','3+','3+','3','3','2','2','6','5+'], name:'Atalan Jackals', role:'Fast Attack', pts:55, wargear:['Shotgun','Demo Charges','Atalan Blade'] },
+    { id:'gc_goliath_truck', stats:['12"','5+','4+','5','6','10','3','6','4+'], name:'Goliath Truck', role:'Dedicated Transport', pts:85, wargear:['Heavy Stubber','Twin Autocannon'] },
   ],
   thousand_sons: [
-    { id:'ts_magnus', name:'Magnus the Red', role:'Lord of War', pts:415, wargear:['Blade of Magnus','Gaze of Magnus'] },
-    { id:'ts_sorcerer', name:'Sorcerer in Terminator Armour', role:'HQ', pts:110, wargear:['Force Stave','Combi-Melta'] },
-    { id:'ts_ahriman', name:'Ahriman on Disc of Tzeentch', role:'HQ', pts:175, wargear:['Black Staff of Ahriman','Inferno Bolt Pistol'] },
-    { id:'ts_rubric_marines', name:'Rubric Marines', role:'Troops', pts:75, wargear:['Inferno Boltguns','Soul Reaper Cannon'] },
-    { id:'ts_scarab_occult', name:'Scarab Occult Terminators', role:'Elites', pts:165, wargear:['Inferno Combi-Bolter','Khopesh'] },
-    { id:'ts_exalted_sorcerers', name:'Exalted Sorcerers', role:'Elites', pts:120, wargear:['Force Stave','Inferno Bolt Pistol'] },
-    { id:'ts_tzaangors', name:'Tzaangors', role:'Troops', pts:70, wargear:['Tzaangor Blades','Autopistol'] },
+    { id:'ts_magnus', stats:['16"','2+','2+','8','8','18','7','10','4+'], name:'Magnus the Red', role:'Lord of War', pts:415, wargear:['Blade of Magnus','Gaze of Magnus'] },
+    { id:'ts_sorcerer', stats:['5"','3+','3+','4','4','4','3','9','2+'], name:'Sorcerer in Terminator Armour', role:'HQ', pts:110, wargear:['Force Stave','Combi-Melta'] },
+    { id:'ts_ahriman', stats:['16"','3+','3+','4','4','5','3','9','3+'], name:'Ahriman on Disc of Tzeentch', role:'HQ', pts:175, wargear:['Black Staff of Ahriman','Inferno Bolt Pistol'] },
+    { id:'ts_rubric_marines', stats:['5"','3+','3+','4','4','1','1','9','3+'], name:'Rubric Marines', role:'Troops', pts:75, wargear:['Inferno Boltguns','Soul Reaper Cannon'] },
+    { id:'ts_scarab_occult', stats:['5"','3+','3+','4','4','2','2','9','2+'], name:'Scarab Occult Terminators', role:'Elites', pts:165, wargear:['Inferno Combi-Bolter','Khopesh'] },
+    { id:'ts_exalted_sorcerers', stats:['16"','3+','3+','4','4','4','3','9','3+'], name:'Exalted Sorcerers', role:'Elites', pts:120, wargear:['Force Stave','Inferno Bolt Pistol'] },
+    { id:'ts_tzaangors', stats:['6"','3+','4+','4','4','1','2','7','5+'], name:'Tzaangors', role:'Troops', pts:70, wargear:['Tzaangor Blades','Autopistol'] },
   ],
   death_guard: [
-    { id:'dg_mortarion', name:'Mortarion', role:'Lord of War', pts:475, wargear:['Silence','Phosphex Bombs','The Lantern'] },
-    { id:'dg_daemon_prince', name:'Daemon Prince of Nurgle', role:'HQ', pts:165, wargear:['Malefic Talon','Plague Spewer'] },
-    { id:'dg_lord', name:'Lord of Contagion', role:'HQ', pts:115, wargear:['Plaguereaper','Manreaper'] },
-    { id:'dg_plague_marines', name:'Plague Marines', role:'Troops', pts:90, wargear:['Boltgun','Plague Knives','Plague Champion'] },
-    { id:'dg_poxwalkers', name:'Poxwalkers', role:'Troops', pts:60, wargear:['Improvised Weapon','Putrescent Vitality'] },
-    { id:'dg_blightlord', name:'Blightlord Terminators', role:'Elites', pts:175, wargear:['Combi-Bolter','Flail of Corruption'] },
-    { id:'dg_deathshroud', name:'Deathshroud Bodyguard', role:'Elites', pts:175, wargear:['Manreaper','Plaguespurt Gauntlet'] },
-    { id:'dg_bloat_drone', name:'Foetid Bloat-drone', role:'Fast Attack', pts:105, wargear:['Fleshmower','Plague Probe'] },
-    { id:'dg_plagueburst', name:'Plagueburst Crawler', role:'Heavy Support', pts:175, wargear:['Plagueburst Mortar','Entropy Cannon'] },
+    { id:'dg_mortarion', stats:['9"','2+','2+','8','8','18','7','10','3+'], name:'Mortarion', role:'Lord of War', pts:475, wargear:['Silence','Phosphex Bombs','The Lantern'] },
+    { id:'dg_daemon_prince', stats:['8"','3+','4+','7','6','8','4','9','3+'], name:'Daemon Prince of Nurgle', role:'HQ', pts:165, wargear:['Malefic Talon','Plague Spewer'] },
+    { id:'dg_lord', stats:['5"','3+','3+','4','5','5','3','9','3+'], name:'Lord of Contagion', role:'HQ', pts:115, wargear:['Plaguereaper','Manreaper'] },
+    { id:'dg_plague_marines', stats:['5"','3+','3+','4','5','1','1','8','3+'], name:'Plague Marines', role:'Troops', pts:90, wargear:['Boltgun','Plague Knives','Plague Champion'] },
+    { id:'dg_poxwalkers', stats:['5"','5+','5+','3','4','1','1','5','7+'], name:'Poxwalkers', role:'Troops', pts:60, wargear:['Improvised Weapon','Putrescent Vitality'] },
+    { id:'dg_blightlord', stats:['4"','3+','3+','4','5','2','2','8','2+'], name:'Blightlord Terminators', role:'Elites', pts:175, wargear:['Combi-Bolter','Flail of Corruption'] },
+    { id:'dg_deathshroud', stats:['5"','3+','3+','4','5','2','2','8','3+'], name:'Deathshroud Bodyguard', role:'Elites', pts:175, wargear:['Manreaper','Plaguespurt Gauntlet'] },
+    { id:'dg_bloat_drone', stats:['10"','3+','3+','6','6','8','2','8','3+'], name:'Foetid Bloat-drone', role:'Fast Attack', pts:105, wargear:['Fleshmower','Plague Probe'] },
+    { id:'dg_plagueburst', stats:['7"','5+','3+','7','8','12','2','8','3+'], name:'Plagueburst Crawler', role:'Heavy Support', pts:175, wargear:['Plagueburst Mortar','Entropy Cannon'] },
   ],
   world_eaters: [
-    { id:'we_angron', name:'Angron, Daemon Primarch', role:'Lord of War', pts:450, isNew:true, wargear:["Samni'arius and Spinegrinder","The Butcher's Nails"] },
-    { id:'we_kharn', name:"Khârn the Betrayer", role:'HQ', pts:125, wargear:['Gorechild','Plasma Pistol'] },
-    { id:'we_lord', name:'Lord of Skulls', role:'HQ', pts:220, wargear:['Goredrinker','Hacker Chainaxe'] },
-    { id:'we_berzerkers', name:'Khorne Berzerkers (updated)', role:'Troops', pts:17, isNew:true, wargear:['Chainaxe','Bolt Pistol','Icon of Wrath'] },
-    { id:'we_jakhals', name:'Jakhals', role:'Troops', pts:5, isNew:true, wargear:['Mauling Blade','Autopistol','Rabid Devotion'] },
-    { id:'we_eightbound', name:'Eightbound', role:'Elites', pts:45, isNew:true, wargear:['Eightbound Eviscerators','Daemonic Blessings','4+ Invulnerable'] },
-    { id:'we_invocatus', name:'Invocatus', role:'HQ', pts:140, isNew:true, wargear:['Flamespout','Hellforged Axe','Juggernaut Bladed Horn'] },
-    { id:'we_lord_jugger', name:'Chaos Lord on Juggernaut', role:'HQ', pts:115, isNew:true, wargear:['Combi-bolter','Chainsword','Juggernaut Horn'] },
-    { id:'we_terminators', name:'Chaos Terminators', role:'Elites', pts:155, wargear:['Power Fists','Combi-Bolters'] },
-    { id:'we_flesh_hounds', name:'Flesh Hounds of Khorne', role:'Fast Attack', pts:80, wargear:['Gore-drenched Fangs','Collar of Khorne'] },
-    { id:'we_skull_cannon', name:'Skull Cannon', role:'Heavy Support', pts:130, wargear:['Burning Skulls'] },
+    { id:'we_angron', stats:['16"','2+','5+','8','8','18','8','10','4+'], name:'Angron, Daemon Primarch', role:'Lord of War', pts:450, isNew:true, wargear:["Samni'arius and Spinegrinder","The Butcher's Nails"] },
+    { id:'we_kharn', stats:['6"','2+','3+','5','4','5','5','9','3+'], name:"Khârn the Betrayer", role:'HQ', pts:125, wargear:['Gorechild','Plasma Pistol'] },
+    { id:'we_lord', stats:['6"','3+','3+','4','4','5','4','9','3+'], name:'Lord of Skulls', role:'HQ', pts:220, wargear:['Goredrinker','Hacker Chainaxe'] },
+    { id:'we_berzerkers', stats:['6"','3+','4+','4','4','1','2','8','3+'], name:'Khorne Berzerkers (updated)', role:'Troops', pts:17, isNew:true, wargear:['Chainaxe','Bolt Pistol','Icon of Wrath'] },
+    { id:'we_jakhals', stats:['6"','4+','5+','3','3','1','2','6','6+'], name:'Jakhals', role:'Troops', pts:5, isNew:true, wargear:['Mauling Blade','Autopistol','Rabid Devotion'] },
+    { id:'we_eightbound', stats:['6"','2+','3+','5','5','3','4','8','3+'], name:'Eightbound', role:'Elites', pts:45, isNew:true, wargear:['Eightbound Eviscerators','Daemonic Blessings','4+ Invulnerable'] },
+    { id:'we_invocatus', stats:['10"','2+','3+','5','5','6','5','9','3+'], name:'Invocatus', role:'HQ', pts:140, isNew:true, wargear:['Flamespout','Hellforged Axe','Juggernaut Bladed Horn'] },
+    { id:'we_lord_jugger', stats:['10"','2+','3+','5','5','6','5','9','3+'], name:'Chaos Lord on Juggernaut', role:'HQ', pts:115, isNew:true, wargear:['Combi-bolter','Chainsword','Juggernaut Horn'] },
+    { id:'we_terminators', stats:['5"','3+','3+','4','4','2','2','8','2+'], name:'Chaos Terminators', role:'Elites', pts:155, wargear:['Power Fists','Combi-Bolters'] },
+    { id:'we_flesh_hounds', stats:['10"','3+','4+','4','4','1','2','6','5+'], name:'Flesh Hounds of Khorne', role:'Fast Attack', pts:80, wargear:['Gore-drenched Fangs','Collar of Khorne'] },
+    { id:'we_skull_cannon', stats:['8"','3+','3+','7','7','8','4','8','4+'], name:'Skull Cannon', role:'Heavy Support', pts:130, wargear:['Burning Skulls'] },
   ],
   emperors_children: [
-    { id:'ec_fulgrim', name:'Fulgrim, Daemon Primarch', role:'Lord of War', pts:455, isNew:true, wargear:['Blade of the Laer',"Serpent's Scales",'Daemonic'] },
-    { id:'ec_noise_marines', name:'Noise Marines', role:'Troops', pts:18, isNew:true, wargear:['Sonic Blaster','Blastmaster','Doom Siren'] },
-    { id:'ec_lord', name:'Chaos Lord', role:'HQ', pts:76, wargear:['Power Sword','Bolt Pistol'] },
-    { id:'ec_sorcerer', name:'Chaos Sorcerer', role:'HQ', pts:93, wargear:['Force Stave','Bolt Pistol'] },
-    { id:'ec_csm', name:'Chaos Space Marines', role:'Troops', pts:60, wargear:['Bolter','Bolt Pistol'] },
-    { id:'ec_terminators', name:'Chaos Terminators', role:'Elites', pts:155, wargear:['Storm Bolters','Power Fists'] },
-    { id:'ec_havocs', name:'Havocs', role:'Heavy Support', pts:60, wargear:['Bolters','Autocannons'] },
-    { id:'ec_rhino', name:'Chaos Rhino', role:'Dedicated Transport', pts:72, wargear:['Combi-Bolter'] },
+    { id:'ec_fulgrim', stats:['14"','2+','2+','7','7','18','8','10','4+'], name:'Fulgrim, Daemon Primarch', role:'Lord of War', pts:455, isNew:true, wargear:['Blade of the Laer',"Serpent's Scales",'Daemonic'] },
+    { id:'ec_noise_marines', stats:['6"','3+','3+','4','4','1','1','8','3+'], name:'Noise Marines', role:'Troops', pts:18, isNew:true, wargear:['Sonic Blaster','Blastmaster','Doom Siren'] },
+    { id:'ec_lord', stats:['6"','3+','3+','4','4','5','4','9','3+'], name:'Chaos Lord', role:'HQ', pts:76, wargear:['Power Sword','Bolt Pistol'] },
+    { id:'ec_sorcerer', stats:['6"','3+','3+','4','4','4','3','9','3+'], name:'Chaos Sorcerer', role:'HQ', pts:93, wargear:['Force Stave','Bolt Pistol'] },
+    { id:'ec_csm', stats:['6"','3+','3+','4','4','1','1','7','3+'], name:'Chaos Space Marines', role:'Troops', pts:60, wargear:['Bolter','Bolt Pistol'] },
+    { id:'ec_terminators', stats:['5"','3+','3+','4','4','2','2','8','2+'], name:'Chaos Terminators', role:'Elites', pts:155, wargear:['Storm Bolters','Power Fists'] },
+    { id:'ec_havocs', stats:['6"','3+','3+','4','4','1','1','7','3+'], name:'Havocs', role:'Heavy Support', pts:60, wargear:['Bolters','Autocannons'] },
+    { id:'ec_rhino', stats:['12"','5+','3+','6','6','10','3','8','3+'], name:'Chaos Rhino', role:'Dedicated Transport', pts:72, wargear:['Combi-Bolter'] },
   ],
   leagues_of_votann: [
-    { id:'lov_kahl', name:'Kâhl', role:'HQ', pts:90, isNew:true, wargear:['Autoch-pattern Combi-bolter','Forgewrought Plasma Axe','5+ Invulnerable'] },
-    { id:'lov_uthar', name:'Ûthar the Destined', role:'HQ', pts:130, isNew:true, wargear:['Blade of the Ancestors','Volkanite Disintegrator','4+ Invulnerable'] },
-    { id:'lov_einhyr_champ', name:'Einhyr Champion', role:'HQ', pts:115, isNew:true, wargear:['Concussion Gauntlet','Plasma Blade','Exo-armour','4+ Invulnerable'] },
-    { id:'lov_grimnyr', name:'Grimnyr', role:'HQ', pts:85, isNew:true, wargear:['Ancestral Wrath','Ancestral Ward Stave','CORV Familiars'] },
-    { id:'lov_ironmaster', name:'Brôkhyr Iron-Master', role:'HQ', pts:95, isNew:true, wargear:['Conversion Beamer','Forgewrought Plasma Axe','E-COG Drones'] },
-    { id:'lov_hearthkyn', name:'Hearthkyn Warriors', role:'Troops', pts:13, isNew:true, wargear:['Autoch-pattern Bolter','Ion Blaster','Grim Endurance'] },
-    { id:'lov_einhyr_guard', name:'Einhyr Hearthguard', role:'Elites', pts:38, isNew:true, wargear:['Concussion Gauntlet','Volkanite Disintegrator','4+ Invulnerable','Exo-armour'] },
-    { id:'lov_beserks', name:'Cthonian Beserks', role:'Elites', pts:28, isNew:true, wargear:['Concussion Maul','Mole Grenade Launcher','Berserk Charge'] },
-    { id:'lov_pioneers', name:'Hernkyn Pioneers', role:'Fast Attack', pts:32, isNew:true, wargear:['Twin Bolt Cannon','Rollbar Searchlight','Hard to Hit'] },
-    { id:'lov_hekaton', name:'Hekaton Land Fortress', role:'Heavy Support', pts:290, isNew:true, wargear:['Heavy Magna-rail Cannon','Autoch-pattern Bolter Arrays','Transport 12'] },
-    { id:'lov_earthshakers', name:'Cthonian Earthshakers', role:'Heavy Support', pts:30, isNew:true, wargear:['Seismic Cannon','Mole Grenade Launcher','Indirect Fire'] },
-    { id:'lov_sagitaur', name:'Sagitaur ATV', role:'Dedicated Transport', pts:80, isNew:true, wargear:['Twin Bolt Cannon','Sagitaur Missile Launcher','Transport 6'] },
+    { id:'lov_kahl', stats:['5"','3+','3+','4','4','5','4','9','3+'], name:'Kâhl', role:'HQ', pts:90, isNew:true, wargear:['Autoch-pattern Combi-bolter','Forgewrought Plasma Axe','5+ Invulnerable'] },
+    { id:'lov_uthar', stats:['5"','2+','2+','4','4','6','5','9','3+'], name:'Ûthar the Destined', role:'HQ', pts:130, isNew:true, wargear:['Blade of the Ancestors','Volkanite Disintegrator','4+ Invulnerable'] },
+    { id:'lov_einhyr_champ', stats:['4"','2+','3+','5','5','6','5','9','2+'], name:'Einhyr Champion', role:'HQ', pts:115, isNew:true, wargear:['Concussion Gauntlet','Plasma Blade','Exo-armour','4+ Invulnerable'] },
+    { id:'lov_grimnyr', stats:['5"','4+','3+','3','3','4','2','9','4+'], name:'Grimnyr', role:'HQ', pts:85, isNew:true, wargear:['Ancestral Wrath','Ancestral Ward Stave','CORV Familiars'] },
+    { id:'lov_ironmaster', stats:['5"','3+','3+','4','4','5','3','9','3+'], name:'Brôkhyr Iron-Master', role:'HQ', pts:95, isNew:true, wargear:['Conversion Beamer','Forgewrought Plasma Axe','E-COG Drones'] },
+    { id:'lov_hearthkyn', stats:['5"','3+','3+','4','4','1','2','8','4+'], name:'Hearthkyn Warriors', role:'Troops', pts:13, isNew:true, wargear:['Autoch-pattern Bolter','Ion Blaster','Grim Endurance'] },
+    { id:'lov_einhyr_guard', stats:['4"','3+','3+','5','5','2','3','8','2+'], name:'Einhyr Hearthguard', role:'Elites', pts:38, isNew:true, wargear:['Concussion Gauntlet','Volkanite Disintegrator','4+ Invulnerable','Exo-armour'] },
+    { id:'lov_beserks', stats:['6"','3+','5+','5','4','2','4','7','4+'], name:'Cthonian Beserks', role:'Elites', pts:28, isNew:true, wargear:['Concussion Maul','Mole Grenade Launcher','Berserk Charge'] },
+    { id:'lov_pioneers', stats:['12"','3+','3+','4','5','3','3','8','3+'], name:'Hernkyn Pioneers', role:'Fast Attack', pts:32, isNew:true, wargear:['Twin Bolt Cannon','Rollbar Searchlight','Hard to Hit'] },
+    { id:'lov_hekaton', stats:['10"','5+','3+','8','8','16','3','9','2+'], name:'Hekaton Land Fortress', role:'Heavy Support', pts:290, isNew:true, wargear:['Heavy Magna-rail Cannon','Autoch-pattern Bolter Arrays','Transport 12'] },
+    { id:'lov_earthshakers', stats:['4"','4+','3+','3','4','2','1','8','4+'], name:'Cthonian Earthshakers', role:'Heavy Support', pts:30, isNew:true, wargear:['Seismic Cannon','Mole Grenade Launcher','Indirect Fire'] },
+    { id:'lov_sagitaur', stats:['14"','5+','3+','5','6','8','2','8','3+'], name:'Sagitaur ATV', role:'Dedicated Transport', pts:80, isNew:true, wargear:['Twin Bolt Cannon','Sagitaur Missile Launcher','Transport 6'] },
   ],
 };
 
@@ -1337,131 +1580,131 @@ const UNITS = {
 // These are appended at runtime so base faction data stays clean.
 const ADDENDUM_UNITS = {
   space_marines: [
-    { id:'sm_eradicators', name:'Eradicators', role:'Elites', pts:35, isNew:true, wargear:['Multi-melta','Bolt Pistol','Total Obliteration'] },
-    { id:'sm_brutalis', name:'Brutalis Dreadnought', role:'Elites', pts:175, isNew:true, wargear:['Brutalis Fists','Twin Bolt Rifles','Ferocious Charge'] },
-    { id:'sm_ballistus', name:'Ballistus Dreadnought', role:'Heavy Support', pts:155, isNew:true, wargear:['Lascannon','Twin Fragstorm Launcher','Targeting Protocols'] },
-    { id:'sm_infernus', name:'Infernus Marines', role:'Elites', pts:22, isNew:true, wargear:['Pyreblaster','Bolt Pistol','Wall of Flame'] },
-    { id:'sm_judiciar', name:'Judiciar', role:'Elites', pts:80, isNew:true, wargear:['Tempormortis','Bolt Pistol','3+ Invulnerable','Death Knell'] },
-    { id:'sm_apoth_biologis', name:'Apothecary Biologis', role:'Elites', pts:65, isNew:true, wargear:['Absolvor Bolt Pistol','Narthecium','Biological Expertise'] },
-    { id:'sm_company_heroes', name:'Company Heroes', role:'Elites', pts:75, isNew:true, wargear:['Relic Blade','Company Banner','Bolt Rifles','Honour of Chapter'] },
-    { id:'sm_lt_titus', name:'Lieutenant Titus (Ultramarines)', role:'HQ', pts:95, isNew:true, wargear:['Might of Ultramar','Master-crafted Bolter','3+ Invulnerable'] },
+    { id:'sm_eradicators', stats:['5"','3+','3+','4','4','2','2','8','3+'], name:'Eradicators', role:'Elites', pts:35, isNew:true, wargear:['Multi-melta','Bolt Pistol','Total Obliteration'] },
+    { id:'sm_brutalis', stats:['8"','2+','3+','8','10','12','5','9','2+'], name:'Brutalis Dreadnought', role:'Elites', pts:175, isNew:true, wargear:['Brutalis Fists','Twin Bolt Rifles','Ferocious Charge'] },
+    { id:'sm_ballistus', stats:['6"','4+','2+','8','10','12','3','9','2+'], name:'Ballistus Dreadnought', role:'Heavy Support', pts:155, isNew:true, wargear:['Lascannon','Twin Fragstorm Launcher','Targeting Protocols'] },
+    { id:'sm_infernus', stats:['6"','3+','3+','4','4','2','2','8','3+'], name:'Infernus Marines', role:'Elites', pts:22, isNew:true, wargear:['Pyreblaster','Bolt Pistol','Wall of Flame'] },
+    { id:'sm_judiciar', stats:['6"','2+','3+','4','4','5','4','9','3+'], name:'Judiciar', role:'Elites', pts:80, isNew:true, wargear:['Tempormortis','Bolt Pistol','3+ Invulnerable','Death Knell'] },
+    { id:'sm_apoth_biologis', stats:['6"','3+','3+','4','4','4','3','9','3+'], name:'Apothecary Biologis', role:'Elites', pts:65, isNew:true, wargear:['Absolvor Bolt Pistol','Narthecium','Biological Expertise'] },
+    { id:'sm_company_heroes', stats:['6"','3+','3+','4','4','2','2','9','3+'], name:'Company Heroes', role:'Elites', pts:75, isNew:true, wargear:['Relic Blade','Company Banner','Bolt Rifles','Honour of Chapter'] },
+    { id:'sm_lt_titus', stats:['6"','2+','2+','4','4','5','5','9','3+'], name:'Lieutenant Titus (Ultramarines)', role:'HQ', pts:95, isNew:true, wargear:['Might of Ultramar','Master-crafted Bolter','3+ Invulnerable'] },
   ],
   blood_angels: [
-    { id:'ba_dc_brutalis', name:'Death Company Brutalis Dreadnought', role:'Elites', pts:185, isNew:true, wargear:['Brutalis Fists','Twin Bolt Rifles','Black Rage','Red Thirst'] },
+    { id:'ba_dc_brutalis', stats:['8"','2+','3+','8','10','12','5','9','2+'], name:'Death Company Brutalis Dreadnought', role:'Elites', pts:185, isNew:true, wargear:['Brutalis Fists','Twin Bolt Rifles','Black Rage','Red Thirst'] },
   ],
   dark_angels: [
-    { id:'da_lion', name:"Lion El'Jonson, Primarch", role:'Lord of War', pts:350, isNew:true, wargear:['The Lion Sword','Wolf Blade','4+ Invulnerable','Lord of the First'] },
+    { id:'da_lion', stats:['7"','2+','2+','6','6','14','6','10','2+'], name:"Lion El'Jonson, Primarch", role:'Lord of War', pts:350, isNew:true, wargear:['The Lion Sword','Wolf Blade','4+ Invulnerable','Lord of the First'] },
   ],
   chaos_space_marines: [
-    { id:'csm_vashtorr', name:'Vashtorr the Arkifane', role:'Lord of War', pts:380, isNew:true, wargear:['The Soul Shrive',"Arkifane's Claw",'Daemonforge Blast','4+ Invulnerable'] },
-    { id:'csm_acc_cultists', name:'Accursed Cultists', role:'Troops', pts:12, isNew:true, wargear:['Cursed Weapons','Autopistol','Mutant Resilience'] },
-    { id:'csm_dark_commune', name:'Dark Commune', role:'HQ', pts:55, isNew:true, wargear:["Demagogue's Staff",'Crude Weapons','Unholy Invocations'] },
+    { id:'csm_vashtorr', stats:['12"','2+','2+','7','7','14','6','10','3+'], name:'Vashtorr the Arkifane', role:'Lord of War', pts:380, isNew:true, wargear:['The Soul Shrive',"Arkifane's Claw",'Daemonforge Blast','4+ Invulnerable'] },
+    { id:'csm_acc_cultists', stats:['6"','3+','5+','4','4','2','3','7','5+'], name:'Accursed Cultists', role:'Troops', pts:12, isNew:true, wargear:['Cursed Weapons','Autopistol','Mutant Resilience'] },
+    { id:'csm_dark_commune', stats:['6"','3+','3+','3','3','3','2','8','5+'], name:'Dark Commune', role:'HQ', pts:55, isNew:true, wargear:["Demagogue's Staff",'Crude Weapons','Unholy Invocations'] },
   ],
   thousand_sons: [
-    { id:'ts_infernal_master', name:'Infernal Master', role:'HQ', pts:90, isNew:true, wargear:['Force Stave','Bolt Pistol','Malefic Pacts','Mastery Level 1'] },
+    { id:'ts_infernal_master', stats:['6"','3+','3+','3','3','4','3','9','3+'], name:'Infernal Master', role:'HQ', pts:90, isNew:true, wargear:['Force Stave','Bolt Pistol','Malefic Pacts','Mastery Level 1'] },
   ],
   death_guard: [
-    { id:'dg_miasmic', name:'Miasmic Malignifier', role:'Fortification', pts:75, isNew:true, wargear:['Putrid Miasma','Diseased Structure','Explodes'] },
+    { id:'dg_miasmic', stats:['-','-','-','-','8','8','-','-','3+'], name:'Miasmic Malignifier', role:'Fortification', pts:75, isNew:true, wargear:['Putrid Miasma','Diseased Structure','Explodes'] },
   ],
   chaos_daemons: [
-    { id:'cd_belakor_updated', name:"Be'lakor, The Dark Master (updated)", role:'Lord of War', pts:410, isNew:true, wargear:['Blade of Shadows','Daemonic Claws','Shadow Form','Mastery Level 2'] },
+    { id:'cd_belakor_updated', stats:['14"','2+','2+','8','8','18','7','10','4+'], name:"Be'lakor, The Dark Master (updated)", role:'Lord of War', pts:410, isNew:true, wargear:['Blade of Shadows','Daemonic Claws','Shadow Form','Mastery Level 2'] },
   ],
   eldar: [
-    { id:'el_illic', name:'Illic Nightspear', role:'HQ', pts:100, isNew:true, wargear:['Voidbringer','Appear Unbidden','Ancient Hunter'] },
-    { id:'el_baharroth', name:'Baharroth, Cry of the Wind', role:'HQ', pts:120, isNew:true, wargear:['Swiftstrike','Lasblaster','Grenade Pack','Phoenix Lord 4+'] },
-    { id:'el_fuegan', name:'Fuegan, The Burning Lance', role:'HQ', pts:165, isNew:true, wargear:['The Fire Axe','Firepike','The Burning','Phoenix Lord 4+'] },
-    { id:'el_autarch_way', name:'Autarch Wayleaper', role:'HQ', pts:100, isNew:true, wargear:['Blade of Anaris','Reaper Launcher','Path of Command','4+ Invulnerable'] },
-    { id:'el_hemlock', name:'Hemlock Wraithfighter', role:'Flyer', pts:190, isNew:true, wargear:['Twin Heavy D-scythes','Spirit Stones','Mindshock'] },
-    { id:'el_shroud_runners', name:'Shroud Runners', role:'Fast Attack', pts:35, isNew:true, wargear:['Ranger Long Rifle','Jetbike Cannon','Scouts','Outflank'] },
-    { id:'el_lhykhis', name:'Lhykhis, Warp Spider Exarch', role:'Elites', pts:110, isNew:true, wargear:['Twin Death Spinner','Powerblades','Warp Jump','4+ Invulnerable'] },
-    { id:'el_irillyth', name:'Irillyth, Shade of Twilight', role:'HQ', pts:140, isNew:true, wargear:['Spear of Starlight','Twilight Wraith','Phoenix Lord 4+','Veil of Twilight'] },
-    { id:'el_shadow_spectres', name:'Shadow Spectres', role:'Elites', pts:22, isNew:true, wargear:['Prism Rifle','Holofield 5+ Invulnerable','Compact Formation'] },
+    { id:'el_illic', stats:['7"','2+','2+','3','3','4','4','9','5+'], name:'Illic Nightspear', role:'HQ', pts:100, isNew:true, wargear:['Voidbringer','Appear Unbidden','Ancient Hunter'] },
+    { id:'el_baharroth', stats:['14"','2+','2+','3','3','5','5','9','4+'], name:'Baharroth, Cry of the Wind', role:'HQ', pts:120, isNew:true, wargear:['Swiftstrike','Lasblaster','Grenade Pack','Phoenix Lord 4+'] },
+    { id:'el_fuegan', stats:['7"','2+','2+','4','4','6','5','9','3+'], name:'Fuegan, The Burning Lance', role:'HQ', pts:165, isNew:true, wargear:['The Fire Axe','Firepike','The Burning','Phoenix Lord 4+'] },
+    { id:'el_autarch_way', stats:['12"','2+','2+','3','3','5','4','9','3+'], name:'Autarch Wayleaper', role:'HQ', pts:100, isNew:true, wargear:['Blade of Anaris','Reaper Launcher','Path of Command','4+ Invulnerable'] },
+    { id:'el_hemlock', stats:['20-60"','6+','3+','6','6','8','1','9','3+'], name:'Hemlock Wraithfighter', role:'Flyer', pts:190, isNew:true, wargear:['Twin Heavy D-scythes','Spirit Stones','Mindshock'] },
+    { id:'el_shroud_runners', stats:['16"','3+','3+','3','4','2','2','8','4+'], name:'Shroud Runners', role:'Fast Attack', pts:35, isNew:true, wargear:['Ranger Long Rifle','Jetbike Cannon','Scouts','Outflank'] },
+    { id:'el_lhykhis', stats:['7"','2+','2+','3','3','5','5','9','3+'], name:'Lhykhis, Warp Spider Exarch', role:'Elites', pts:110, isNew:true, wargear:['Twin Death Spinner','Powerblades','Warp Jump','4+ Invulnerable'] },
+    { id:'el_irillyth', stats:['12"','2+','2+','3','3','6','4','9','4+'], name:'Irillyth, Shade of Twilight', role:'HQ', pts:140, isNew:true, wargear:['Spear of Starlight','Twilight Wraith','Phoenix Lord 4+','Veil of Twilight'] },
+    { id:'el_shadow_spectres', stats:['12"','3+','3+','3','3','1','2','8','4+'], name:'Shadow Spectres', role:'Elites', pts:22, isNew:true, wargear:['Prism Rifle','Holofield 5+ Invulnerable','Compact Formation'] },
   ],
   dark_eldar: [
-    { id:'de_court_archon', name:'Court of the Archon', role:'Elites', pts:30, isNew:true, wargear:['Mixed Specialists','Lethal Companions','Sslyth/Ur-Ghul/Medusae/Lhamean'] },
+    { id:'de_court_archon', stats:['7"','3+','3+','3','3','1','2','8','4+'], name:'Court of the Archon', role:'Elites', pts:30, isNew:true, wargear:['Mixed Specialists','Lethal Companions','Sslyth/Ur-Ghul/Medusae/Lhamean'] },
   ],
   orks: [
-    { id:'ork_mozrog', name:'Mozrog Skragbad', role:'HQ', pts:185, isNew:true, wargear:["Skragbad's Klaw","Big Chompa's Jaws",'Ere We Go'] },
-    { id:'ork_beast_boyz', name:'Beast Snagga Boyz', role:'Troops', pts:11, isNew:true, wargear:['Choppa','Slugga','Anti-vehicle Instincts'] },
-    { id:'ork_squighog', name:'Squighog Boys', role:'Fast Attack', pts:35, isNew:true, wargear:['Squighog Jaws','Stikka','Born to Scrap'] },
-    { id:'ork_nob_squig', name:'Nob on Smasha Squig', role:'HQ', pts:90, isNew:true, wargear:['Smasha Squig Jaws','Power Klaw','4+ Invulnerable'] },
-    { id:'ork_beastboss', name:'Beastboss', role:'HQ', pts:95, isNew:true, wargear:['Beastchoppa','Thump Gun','4+ Invulnerable','Beast Snagga Aura'] },
-    { id:'ork_beastboss_squig', name:'Beastboss on Squigosaur', role:'HQ', pts:160, isNew:true, wargear:['Boss Klaw',"Squigosaur's Jaws",'4+ Invulnerable','Beasthide'] },
-    { id:'ork_kill_rig', name:'Kill Rig / Hunta Rig', role:'Heavy Support', pts:230, isNew:true, wargear:['Supa-Lobba','Squig Launcha','Snagga Klaw','Transport 12'] },
+    { id:'ork_mozrog', stats:['10"','2+','5+','7','8','10','5','8','4+'], name:'Mozrog Skragbad', role:'HQ', pts:185, isNew:true, wargear:["Skragbad's Klaw","Big Chompa's Jaws",'Ere We Go'] },
+    { id:'ork_beast_boyz', stats:['6"','3+','5+','4','4','2','2','7','6+'], name:'Beast Snagga Boyz', role:'Troops', pts:11, isNew:true, wargear:['Choppa','Slugga','Anti-vehicle Instincts'] },
+    { id:'ork_squighog', stats:['10"','3+','5+','5','5','3','4','7','4+'], name:'Squighog Boys', role:'Fast Attack', pts:35, isNew:true, wargear:['Squighog Jaws','Stikka','Born to Scrap'] },
+    { id:'ork_nob_squig', stats:['10"','2+','5+','6','6','5','5','8','4+'], name:'Nob on Smasha Squig', role:'HQ', pts:90, isNew:true, wargear:['Smasha Squig Jaws','Power Klaw','4+ Invulnerable'] },
+    { id:'ork_beastboss', stats:['6"','2+','4+','5','5','5','5','9','4+'], name:'Beastboss', role:'HQ', pts:95, isNew:true, wargear:['Beastchoppa','Thump Gun','4+ Invulnerable','Beast Snagga Aura'] },
+    { id:'ork_beastboss_squig', stats:['10"','2+','5+','6','7','8','5','9','4+'], name:'Beastboss on Squigosaur', role:'HQ', pts:160, isNew:true, wargear:['Boss Klaw',"Squigosaur's Jaws",'4+ Invulnerable','Beasthide'] },
+    { id:'ork_kill_rig', stats:['9"','3+','5+','8','9','18','4','8','3+'], name:'Kill Rig / Hunta Rig', role:'Heavy Support', pts:230, isNew:true, wargear:['Supa-Lobba','Squig Launcha','Snagga Klaw','Transport 12'] },
   ],
   tau: [
-    { id:'tau_farstalkers', name:'Kroot Farstalkers', role:'Elites', pts:13, isNew:true, wargear:['Kroot Rifle','Jagga-blade','Fieldcraft','Prey Markers'] },
-    { id:'tau_lone_spear', name:'Kroot Lone-Spear', role:'HQ', pts:80, isNew:true, wargear:['Farstalker Longshot','Ritual Blade','Lone Operative','Apex Hunter'] },
-    { id:'tau_war_shaper', name:'Kroot War Shaper', role:'HQ', pts:60, isNew:true, wargear:['War-blade','Kroot Rifle','Pack Leader','Swift Ambush'] },
+    { id:'tau_farstalkers', stats:['7"','3+','3+','4','3','1','2','7','5+'], name:'Kroot Farstalkers', role:'Elites', pts:13, isNew:true, wargear:['Kroot Rifle','Jagga-blade','Fieldcraft','Prey Markers'] },
+    { id:'tau_lone_spear', stats:['8"','2+','2+','4','4','5','4','8','4+'], name:'Kroot Lone-Spear', role:'HQ', pts:80, isNew:true, wargear:['Farstalker Longshot','Ritual Blade','Lone Operative','Apex Hunter'] },
+    { id:'tau_war_shaper', stats:['7"','2+','3+','4','3','4','4','8','4+'], name:'Kroot War Shaper', role:'HQ', pts:60, isNew:true, wargear:['War-blade','Kroot Rifle','Pack Leader','Swift Ambush'] },
   ],
   necrons: [
-    { id:'nec_silent_king', name:'The Silent King (Szarekh)', role:'Lord of War', pts:420, isNew:true, wargear:['Sceptre of Eternal Glory','Flaymr Cannons','Lokhust Escorts','4+ Invulnerable'] },
-    { id:'nec_skorpekh_lord', name:'Skorpekh Lord', role:'HQ', pts:130, isNew:true, wargear:['Flensing Claw','Hyperphase Harvester','Destroyer Cult Aura'] },
-    { id:'nec_illuminor', name:'Illuminor Szeras', role:'HQ', pts:145, isNew:true, wargear:['Eldritch Lance','Mechatendrils','The Great Work'] },
-    { id:'nec_void_dragon', name:'The Void Dragon', role:'Lord of War', pts:350, isNew:true, wargear:['Talons of the Void Dragon','Ray of the Void','Cosmic Power','4+ Invulnerable'] },
-    { id:'nec_skorpekh_dest', name:'Skorpekh Destroyers', role:'Elites', pts:40, isNew:true, wargear:['Hyperphase Threshers','Relentless Advance','Frenzied Charge'] },
-    { id:'nec_reanimator', name:'Canoptek Reanimator', role:'Heavy Support', pts:100, isNew:true, wargear:['Atomiser Beam','Reanimation Beam','Reanimation Tendrils'] },
-    { id:'nec_lokhust_heavy', name:'Lokhust Heavy Destroyer', role:'Heavy Support', pts:65, isNew:true, wargear:['Gauss Destructor','Lethal Precision'] },
-    { id:'nec_ophydian', name:'Ophydian Destroyers', role:'Elites', pts:42, isNew:true, wargear:['Hyperphase Reap-blades','Atomiser Beam','Burrowing Assault'] },
-    { id:'nec_chronomancer', name:'Canoptek Chronomancer', role:'HQ', pts:90, isNew:true, wargear:['Aeonstave','Entropic Lance','Temporal Displacement','Chronometron'] },
-    { id:'nec_psychomancer', name:'Psychomancer', role:'HQ', pts:80, isNew:true, wargear:['Abyssal Lance','Frightener','Writhing Worldscape'] },
-    { id:'nec_convergence', name:'Convergence of Dominion', role:'Fortification', pts:70, isNew:true, wargear:['Starstele Network x3','Transdimensional Recall'] },
+    { id:'nec_silent_king', stats:['10"','2+','2+','7','7','18','6','10','2+'], name:'The Silent King (Szarekh)', role:'Lord of War', pts:420, isNew:true, wargear:['Sceptre of Eternal Glory','Flaymr Cannons','Lokhust Escorts','4+ Invulnerable'] },
+    { id:'nec_skorpekh_lord', stats:['8"','2+','3+','6','6','6','5','10','3+'], name:'Skorpekh Lord', role:'HQ', pts:130, isNew:true, wargear:['Flensing Claw','Hyperphase Harvester','Destroyer Cult Aura'] },
+    { id:'nec_illuminor', stats:['10"','3+','3+','5','5','6','3','10','3+'], name:'Illuminor Szeras', role:'HQ', pts:145, isNew:true, wargear:['Eldritch Lance','Mechatendrils','The Great Work'] },
+    { id:'nec_void_dragon', stats:['10"','2+','2+','8','8','16','6','10','4+'], name:'The Void Dragon', role:'Lord of War', pts:350, isNew:true, wargear:['Talons of the Void Dragon','Ray of the Void','Cosmic Power','4+ Invulnerable'] },
+    { id:'nec_skorpekh_dest', stats:['8"','3+','3+','5','5','3','3','10','3+'], name:'Skorpekh Destroyers', role:'Elites', pts:40, isNew:true, wargear:['Hyperphase Threshers','Relentless Advance','Frenzied Charge'] },
+    { id:'nec_reanimator', stats:['8"','4+','4+','6','6','8','2','10','3+'], name:'Canoptek Reanimator', role:'Heavy Support', pts:100, isNew:true, wargear:['Atomiser Beam','Reanimation Beam','Reanimation Tendrils'] },
+    { id:'nec_lokhust_heavy', stats:['8"','3+','3+','5','5','4','2','10','3+'], name:'Lokhust Heavy Destroyer', role:'Heavy Support', pts:65, isNew:true, wargear:['Gauss Destructor','Lethal Precision'] },
+    { id:'nec_ophydian', stats:['10"','3+','3+','5','5','3','4','10','3+'], name:'Ophydian Destroyers', role:'Elites', pts:42, isNew:true, wargear:['Hyperphase Reap-blades','Atomiser Beam','Burrowing Assault'] },
+    { id:'nec_chronomancer', stats:['7"','3+','3+','4','4','4','3','10','3+'], name:'Canoptek Chronomancer', role:'HQ', pts:90, isNew:true, wargear:['Aeonstave','Entropic Lance','Temporal Displacement','Chronometron'] },
+    { id:'nec_psychomancer', stats:['7"','3+','3+','4','4','4','3','10','3+'], name:'Psychomancer', role:'HQ', pts:80, isNew:true, wargear:['Abyssal Lance','Frightener','Writhing Worldscape'] },
+    { id:'nec_convergence', stats:['-','-','-','-','7','4','-','-','3+'], name:'Convergence of Dominion', role:'Fortification', pts:70, isNew:true, wargear:['Starstele Network x3','Transdimensional Recall'] },
   ],
   tyranids: [
-    { id:'ty_neurotyrant', name:'Neurotyrant', role:'HQ', pts:130, isNew:true, wargear:['Psychic Scream','Neurotyrant Claws','Psychic Resonance','Mastery Level 2'] },
-    { id:'ty_von_ryan', name:"Von Ryan's Leapers", role:'Fast Attack', pts:30, isNew:true, wargear:['Leaper Talons','Prehensile Tail','Death Pounce','Skulker'] },
-    { id:'ty_winged_prime', name:'Winged Tyranid Prime', role:'HQ', pts:95, isNew:true, wargear:['Scything Talons','Devourer','Alpha Predator','5+ Invulnerable'] },
-    { id:'ty_screamer_killer', name:'Screamer-Killer', role:'Heavy Support', pts:140, isNew:true, wargear:['Clawed Forelimbs','Bio-plasmic Scream','Feeder Tendrils','Frenzied Charge'] },
-    { id:'ty_barbgaunts', name:'Barbgaunts', role:'Troops', pts:9, isNew:true, wargear:['Barblauncher','Symbiotic Targeting'] },
-    { id:'ty_norn_emissary', name:'Norn Emissary', role:'Lord of War', pts:290, isNew:true, wargear:['Massive Rending Claws','Psychic Lance','Synaptic Nexus','4+ Invulnerable'] },
-    { id:'ty_norn_assimilator', name:'Norn Assimilator', role:'Lord of War', pts:270, isNew:true, wargear:['Bio-cannon','Rending Claws','Spine Banks','Impervious Hide'] },
-    { id:'ty_deathleaper', name:'Deathleaper', role:'HQ', pts:85, isNew:true, wargear:['Rending Claws','Flesh Hooks','Lone Operative','Chameleonic Skin'] },
-    { id:'ty_neurolictor', name:'Neurolictor', role:'Elites', pts:75, isNew:true, wargear:['Rending Claws','Neuroshock','Synapse','Lone Operative'] },
-    { id:'ty_psychophage', name:'Psychophage', role:'Heavy Support', pts:135, isNew:true, wargear:['Psychic Devourment','Talons and Claws','Psychic Hunger'] },
-    { id:'ty_parasite', name:'Parasite of Mortrex', role:'Elites', pts:65, isNew:true, wargear:['Claws and Stinger','Implant Attack','Lone Operative','5+ Invulnerable'] },
+    { id:'ty_neurotyrant', stats:['6"','3+','3+','4','4','6','3','10','4+'], name:'Neurotyrant', role:'HQ', pts:130, isNew:true, wargear:['Psychic Scream','Neurotyrant Claws','Psychic Resonance','Mastery Level 2'] },
+    { id:'ty_von_ryan', stats:['10"','3+','4+','4','4','2','4','8','4+'], name:"Von Ryan's Leapers", role:'Fast Attack', pts:30, isNew:true, wargear:['Leaper Talons','Prehensile Tail','Death Pounce','Skulker'] },
+    { id:'ty_winged_prime', stats:['12"','2+','3+','5','4','5','4','10','3+'], name:'Winged Tyranid Prime', role:'HQ', pts:95, isNew:true, wargear:['Scything Talons','Devourer','Alpha Predator','5+ Invulnerable'] },
+    { id:'ty_screamer_killer', stats:['8"','3+','5+','7','7','10','4','7','3+'], name:'Screamer-Killer', role:'Heavy Support', pts:140, isNew:true, wargear:['Clawed Forelimbs','Bio-plasmic Scream','Feeder Tendrils','Frenzied Charge'] },
+    { id:'ty_barbgaunts', stats:['5"','4+','4+','3','3','1','1','7','6+'], name:'Barbgaunts', role:'Troops', pts:9, isNew:true, wargear:['Barblauncher','Symbiotic Targeting'] },
+    { id:'ty_norn_emissary', stats:['8"','2+','2+','8','9','14','6','10','2+'], name:'Norn Emissary', role:'Lord of War', pts:290, isNew:true, wargear:['Massive Rending Claws','Psychic Lance','Synaptic Nexus','4+ Invulnerable'] },
+    { id:'ty_norn_assimilator', stats:['7"','3+','2+','8','9','14','4','9','2+'], name:'Norn Assimilator', role:'Lord of War', pts:270, isNew:true, wargear:['Bio-cannon','Rending Claws','Spine Banks','Impervious Hide'] },
+    { id:'ty_deathleaper', stats:['10"','2+','3+','5','4','6','6','10','3+'], name:'Deathleaper', role:'HQ', pts:85, isNew:true, wargear:['Rending Claws','Flesh Hooks','Lone Operative','Chameleonic Skin'] },
+    { id:'ty_neurolictor', stats:['9"','3+','3+','5','4','5','5','10','4+'], name:'Neurolictor', role:'Elites', pts:75, isNew:true, wargear:['Rending Claws','Neuroshock','Synapse','Lone Operative'] },
+    { id:'ty_psychophage', stats:['9"','3+','4+','6','7','10','5','9','4+'], name:'Psychophage', role:'Heavy Support', pts:135, isNew:true, wargear:['Psychic Devourment','Talons and Claws','Psychic Hunger'] },
+    { id:'ty_parasite', stats:['12"','2+','4+','5','4','5','5','9','4+'], name:'Parasite of Mortrex', role:'Elites', pts:65, isNew:true, wargear:['Claws and Stinger','Implant Attack','Lone Operative','5+ Invulnerable'] },
   ],
   genestealer_cults: [
-    { id:'gc_reductus', name:'Reductus Saboteur', role:'HQ', pts:55, isNew:true, wargear:['Blasting Charges','Remote Detonator','Cult Knife','Infiltrate'] },
-    { id:'gc_benefictus', name:'Benefictus', role:'HQ', pts:90, isNew:true, wargear:['Psionic Blast','Writhing Tendrils','Psychic Familiar','Neural Flare'] },
+    { id:'gc_reductus', stats:['7"','3+','3+','3','3','4','3','7','5+'], name:'Reductus Saboteur', role:'HQ', pts:55, isNew:true, wargear:['Blasting Charges','Remote Detonator','Cult Knife','Infiltrate'] },
+    { id:'gc_benefictus', stats:['6"','3+','3+','3','3','4','3','8','5+'], name:'Benefictus', role:'HQ', pts:90, isNew:true, wargear:['Psionic Blast','Writhing Tendrils','Psychic Familiar','Neural Flare'] },
   ],
   adeptus_custodes: [
-    { id:'ac_valoris', name:'Trajann Valoris (updated)', role:'HQ', pts:175, isNew:true, wargear:["Watcher's Axe",'Balistus Grenade Launcher','4+ Invulnerable',"Captain-General Aura"] },
-    { id:'ac_allarus', name:'Allarus Custodians', role:'Elites', pts:65, isNew:true, wargear:['Castellan Axe','Balistus Grenade Launcher','4+ Invulnerable','Teleport Strike'] },
-    { id:'ac_vertus_new', name:'Vertus Praetors (updated)', role:'Fast Attack', pts:60, isNew:true, wargear:['Interceptor Lance','Salvo Launcher','4+ Invulnerable','Sweeping Advance'] },
-    { id:'ac_wardens', name:'Custodian Wardens', role:'Troops', pts:55, isNew:true, wargear:['Castellan Axe','Warden Halberd','4+ Invulnerable','Bulwark of Humanity'] },
-    { id:'ac_achillus', name:'Achillus Dreadnought', role:'Elites', pts:195, isNew:true, wargear:['Dreadspear','Twin Adrathic Destructor','4+ Invulnerable'] },
-    { id:'ac_caladius', name:'Caladius Grav-Tank', role:'Heavy Support', pts:185, isNew:true, wargear:['Twin Adrathic Destructor','Twin Lastrum Bolt Cannon','4+ Invulnerable','Hard to Hit'] },
+    { id:'ac_valoris', stats:['6"','2+','2+','5','5','7','6','10','2+'], name:'Trajann Valoris (updated)', role:'HQ', pts:175, isNew:true, wargear:["Watcher's Axe",'Balistus Grenade Launcher','4+ Invulnerable',"Captain-General Aura"] },
+    { id:'ac_allarus', stats:['5"','2+','2+','5','5','3','4','9','2+'], name:'Allarus Custodians', role:'Elites', pts:65, isNew:true, wargear:['Castellan Axe','Balistus Grenade Launcher','4+ Invulnerable','Teleport Strike'] },
+    { id:'ac_vertus_new', stats:['14"','2+','2+','5','5','3','4','9','2+'], name:'Vertus Praetors (updated)', role:'Fast Attack', pts:60, isNew:true, wargear:['Interceptor Lance','Salvo Launcher','4+ Invulnerable','Sweeping Advance'] },
+    { id:'ac_wardens', stats:['6"','2+','2+','5','5','3','4','10','2+'], name:'Custodian Wardens', role:'Troops', pts:55, isNew:true, wargear:['Castellan Axe','Warden Halberd','4+ Invulnerable','Bulwark of Humanity'] },
+    { id:'ac_achillus', stats:['8"','2+','2+','8','10','14','5','10','2+'], name:'Achillus Dreadnought', role:'Elites', pts:195, isNew:true, wargear:['Dreadspear','Twin Adrathic Destructor','4+ Invulnerable'] },
+    { id:'ac_caladius', stats:['14"','4+','2+','8','9','12','3','9','2+'], name:'Caladius Grav-Tank', role:'Heavy Support', pts:185, isNew:true, wargear:['Twin Adrathic Destructor','Twin Lastrum Bolt Cannon','4+ Invulnerable','Hard to Hit'] },
   ],
   astra_militarum: [
-    { id:'ag_lord_solar', name:'Lord Solar Leontus', role:'HQ', pts:125, isNew:true, wargear:["Sol's Righteous Gaze",'Conquest','Grand Strategist','4+ Invulnerable'] },
-    { id:'ag_ursula_creed', name:'Ursula Creed', role:'HQ', pts:75, isNew:true, wargear:['Plasma Pistol','Power Sword','Voice of Command','Tactical Genius'] },
-    { id:'ag_rogal_dorn', name:'Rogal Dorn Battle Tank', role:'Heavy Support', pts:310, isNew:true, wargear:['Oppressor Cannon','Co-axial Multi-melta','2x Castigator Gatling Cannons'] },
-    { id:'ag_kasrkin', name:'Kasrkin', role:'Elites', pts:14, isNew:true, wargear:['Hot-shot Lasgun','Hot-shot Laspistol','Elite Soldiers','Grav-chute Insertion'] },
+    { id:'ag_lord_solar', stats:['12"','3+','2+','4','4','6','4','10','3+'], name:'Lord Solar Leontus', role:'HQ', pts:125, isNew:true, wargear:["Sol's Righteous Gaze",'Conquest','Grand Strategist','4+ Invulnerable'] },
+    { id:'ag_ursula_creed', stats:['6"','4+','3+','3','3','4','3','9','5+'], name:'Ursula Creed', role:'HQ', pts:75, isNew:true, wargear:['Plasma Pistol','Power Sword','Voice of Command','Tactical Genius'] },
+    { id:'ag_rogal_dorn', stats:['10"','5+','3+','8','11','18','3','9','2+'], name:'Rogal Dorn Battle Tank', role:'Heavy Support', pts:310, isNew:true, wargear:['Oppressor Cannon','Co-axial Multi-melta','2x Castigator Gatling Cannons'] },
+    { id:'ag_kasrkin', stats:['6"','3+','3+','3','3','1','2','8','4+'], name:'Kasrkin', role:'Elites', pts:14, isNew:true, wargear:['Hot-shot Lasgun','Hot-shot Laspistol','Elite Soldiers','Grav-chute Insertion'] },
   ],
   adeptus_mechanicus: [
-    { id:'am_serberys_raiders', name:'Serberys Raiders', role:'Fast Attack', pts:28, isNew:true, wargear:['Cavalry Sabre','Archeo-revolver','Scouts','Hard to Hit'] },
-    { id:'am_sulphurhounds', name:'Serberys Sulphurhounds', role:'Fast Attack', pts:30, isNew:true, wargear:['Phosphor Pistols','Clawed Limbs','Bounding Advance'] },
-    { id:'am_pteraxii_stery', name:'Pteraxii Sterylizors', role:'Fast Attack', pts:26, isNew:true, wargear:['Phosphor Torch','Taser Goad','Inferno Descent'] },
-    { id:'am_pteraxii_sky', name:'Pteraxii Skystalkers', role:'Fast Attack', pts:22, isNew:true, wargear:['Pteraxii Flechette Carbine','Scintillating Blade','Aerial Drop'] },
-    { id:'am_arch_strat', name:'Archaeopter Stratagemini', role:'Flyer', pts:130, isNew:true, wargear:['Command Uplink','2x Cognis Heavy Stubbers','Stratagem Uplink'] },
-    { id:'am_arch_trans', name:'Archaeopter Transvector', role:'Flyer', pts:125, isNew:true, wargear:['2x Cognis Heavy Stubbers','Transport 10','Blistering Advance'] },
-    { id:'am_arch_fusilave', name:'Archaeopter Fusilave', role:'Flyer', pts:135, isNew:true, wargear:['Bomb Rack','2x Cognis Heavy Stubbers','Strafing Run'] },
-    { id:'am_skorpius_dune', name:'Skorpius Dunerider', role:'Dedicated Transport', pts:95, isNew:true, wargear:['Twin Cognis Heavy Stubber','Transport 11','Drifting Advance'] },
-    { id:'am_skorpius_dis', name:'Skorpius Disintegrator', role:'Heavy Support', pts:130, isNew:true, wargear:['Belleros Energy Cannon','Ferrumite Cannon','3x Cognis Stubbers'] },
+    { id:'am_serberys_raiders', stats:['14"','3+','3+','3','4','2','3','7','4+'], name:'Serberys Raiders', role:'Fast Attack', pts:28, isNew:true, wargear:['Cavalry Sabre','Archeo-revolver','Scouts','Hard to Hit'] },
+    { id:'am_sulphurhounds', stats:['14"','3+','3+','3','4','2','3','7','4+'], name:'Serberys Sulphurhounds', role:'Fast Attack', pts:30, isNew:true, wargear:['Phosphor Pistols','Clawed Limbs','Bounding Advance'] },
+    { id:'am_pteraxii_stery', stats:['12"','3+','3+','3','3','2','3','7','4+'], name:'Pteraxii Sterylizors', role:'Fast Attack', pts:26, isNew:true, wargear:['Phosphor Torch','Taser Goad','Inferno Descent'] },
+    { id:'am_pteraxii_sky', stats:['12"','3+','3+','3','3','2','2','7','4+'], name:'Pteraxii Skystalkers', role:'Fast Attack', pts:22, isNew:true, wargear:['Pteraxii Flechette Carbine','Scintillating Blade','Aerial Drop'] },
+    { id:'am_arch_strat', stats:['20-60"','6+','3+','6','7','10','2','8','4+'], name:'Archaeopter Stratagemini', role:'Flyer', pts:130, isNew:true, wargear:['Command Uplink','2x Cognis Heavy Stubbers','Stratagem Uplink'] },
+    { id:'am_arch_trans', stats:['20-60"','6+','3+','6','7','10','2','8','4+'], name:'Archaeopter Transvector', role:'Flyer', pts:125, isNew:true, wargear:['2x Cognis Heavy Stubbers','Transport 10','Blistering Advance'] },
+    { id:'am_arch_fusilave', stats:['20-60"','6+','3+','6','7','10','2','8','4+'], name:'Archaeopter Fusilave', role:'Flyer', pts:135, isNew:true, wargear:['Bomb Rack','2x Cognis Heavy Stubbers','Strafing Run'] },
+    { id:'am_skorpius_dune', stats:['12"','5+','3+','6','8','11','3','8','3+'], name:'Skorpius Dunerider', role:'Dedicated Transport', pts:95, isNew:true, wargear:['Twin Cognis Heavy Stubber','Transport 11','Drifting Advance'] },
+    { id:'am_skorpius_dis', stats:['12"','5+','3+','6','8','11','3','8','3+'], name:'Skorpius Disintegrator', role:'Heavy Support', pts:130, isNew:true, wargear:['Belleros Energy Cannon','Ferrumite Cannon','3x Cognis Stubbers'] },
   ],
   sisters_of_battle: [
-    { id:'sob_morvenn_vahl', name:'Morvenn Vahl', role:'HQ', pts:180, isNew:true, wargear:['Lance of Illumination','Purgator Missile Launcher','Paragon Fist','4+ Invulnerable'] },
-    { id:'sob_palatine', name:'Palatine', role:'HQ', pts:65, isNew:true, wargear:['Bolt Pistol','Power Sword','Blazing Radiance','Spiritual Leader'] },
-    { id:'sob_dogmata', name:'Dogmata', role:'HQ', pts:70, isNew:true, wargear:['Mace of the Righteous','Condemnor Boltgun','Verse of Holy War'] },
-    { id:'sob_sacresants', name:'Celestian Sacresants', role:'Elites', pts:18, isNew:true, wargear:['Anointed Halberd','Sacresant Shield 5+ Inv','Bodyguard'] },
-    { id:'sob_paragon', name:'Paragon Warsuits', role:'Heavy Support', pts:55, isNew:true, wargear:['Multi-melta / Heavy Bolter','Paragon War Blade','Righteous Charge'] },
-    { id:'sob_castigator', name:'Castigator', role:'Heavy Support', pts:160, isNew:true, wargear:['Castigator Battle Cannon','2x Hurricane Bolters','Shield of Faith'] },
+    { id:'sob_morvenn_vahl', stats:['6"','2+','2+','5','6','8','6','10','2+'], name:'Morvenn Vahl', role:'HQ', pts:180, isNew:true, wargear:['Lance of Illumination','Purgator Missile Launcher','Paragon Fist','4+ Invulnerable'] },
+    { id:'sob_palatine', stats:['6"','2+','2+','3','3','4','4','9','3+'], name:'Palatine', role:'HQ', pts:65, isNew:true, wargear:['Bolt Pistol','Power Sword','Blazing Radiance','Spiritual Leader'] },
+    { id:'sob_dogmata', stats:['6"','3+','3+','3','3','4','3','9','3+'], name:'Dogmata', role:'HQ', pts:70, isNew:true, wargear:['Mace of the Righteous','Condemnor Boltgun','Verse of Holy War'] },
+    { id:'sob_sacresants', stats:['6"','2+','3+','3','3','2','3','8','3+'], name:'Celestian Sacresants', role:'Elites', pts:18, isNew:true, wargear:['Anointed Halberd','Sacresant Shield 5+ Inv','Bodyguard'] },
+    { id:'sob_paragon', stats:['8"','3+','3+','5','6','4','4','8','2+'], name:'Paragon Warsuits', role:'Heavy Support', pts:55, isNew:true, wargear:['Multi-melta / Heavy Bolter','Paragon War Blade','Righteous Charge'] },
+    { id:'sob_castigator', stats:['10"','4+','3+','6','9','12','3','8','3+'], name:'Castigator', role:'Heavy Support', pts:160, isNew:true, wargear:['Castigator Battle Cannon','2x Hurricane Bolters','Shield of Faith'] },
   ],
   imperial_knights: [
-    { id:'ik_war_dog_stalker', name:'War Dog Stalker', role:'Heavy Support', pts:145, isNew:true, wargear:['Reaper Chaintalon','Stormspear Rocket Pod','Ion Shield 5+'] },
-    { id:'ik_war_dog_karnivore', name:'War Dog Karnivore', role:'Heavy Support', pts:135, isNew:true, wargear:['Paired Reaper Chaintalons','Ion Shield 5+','Hunter Instincts'] },
-    { id:'ik_war_dog_brigand', name:'War Dog Brigand', role:'Heavy Support', pts:155, isNew:true, wargear:['Avenger Gatling Cannon','Thermal Spear','Ion Shield 5+'] },
-    { id:'ik_canis_rex_new', name:'Canis Rex (updated)', role:'Lord of War', pts:430, isNew:true, wargear:['Reaper Chainsword','Thermal Cannon','Ironstorm Missile Pod','Ion Shield 4+'] },
+    { id:'ik_war_dog_stalker', stats:['10"','3+','3+','6','9','12','3','8','3+'], name:'War Dog Stalker', role:'Heavy Support', pts:145, isNew:true, wargear:['Reaper Chaintalon','Stormspear Rocket Pod','Ion Shield 5+'] },
+    { id:'ik_war_dog_karnivore', stats:['10"','2+','4+','6','9','12','4','8','3+'], name:'War Dog Karnivore', role:'Heavy Support', pts:135, isNew:true, wargear:['Paired Reaper Chaintalons','Ion Shield 5+','Hunter Instincts'] },
+    { id:'ik_war_dog_brigand', stats:['10"','3+','3+','6','9','12','3','8','3+'], name:'War Dog Brigand', role:'Heavy Support', pts:155, isNew:true, wargear:['Avenger Gatling Cannon','Thermal Spear','Ion Shield 5+'] },
+    { id:'ik_canis_rex_new', stats:['12"','3+','3+','8','12','24','4','9','3+'], name:'Canis Rex (updated)', role:'Lord of War', pts:430, isNew:true, wargear:['Reaper Chainsword','Thermal Cannon','Ironstorm Missile Pod','Ion Shield 4+'] },
   ],
 };
 
@@ -1560,7 +1803,7 @@ function updatePtsLimit() {
 }
 
 function updateTotalPoints() {
-  const total = state.roster.reduce((s, u) => s + u.basePoints * u.qty, 0);
+  const total = state.roster.reduce((s, u) => s + (u.basePoints + (u.optionPts||0)) * u.qty, 0);
   document.getElementById('totalPts').textContent = total.toLocaleString();
   const pct = Math.min((total / state.ptsLimit) * 100, 100);
   const bar = document.getElementById('ptsBar');
@@ -1644,23 +1887,70 @@ function addUnit(unitId) {
   const unit = factionUnits.find(u => u.id === unitId);
   if (!unit) return;
 
-  const existing = state.roster.find(r => r.unitId === unitId);
-  if (existing) {
-    existing.qty++;
-  } else {
-    state.roster.push({
-      unitId,
-      name: unit.name,
-      role: unit.role,
-      basePoints: unit.pts,
-      qty: 1,
-      wargear: [...unit.wargear],
+  // For units with options, always add a fresh entry (not quantity stacking)
+  // so each instance can have its own loadout
+  const hasOptions = unit.options && unit.options.length > 0;
+
+  if (!hasOptions) {
+    const existing = state.roster.find(r => r.unitId === unitId);
+    if (existing) { existing.qty++; renderRoster(); updateTotalPoints(); renderForceOrg(); return; }
+  }
+
+  // Build default selections
+  const selections = {};
+  let optionPts = 0;
+  if (unit.options) {
+    unit.options.forEach(opt => {
+      const def = opt.choices.find(c => c.default) || opt.choices[0];
+      selections[opt.group] = def.label;
+      optionPts += def.pts;
     });
   }
+
+  // Generate a unique instance id so the same unit can be added multiple times with different loadouts
+  const instanceId = unitId + '_' + Date.now();
+
+  state.roster.push({
+    unitId: instanceId,
+    baseUnitId: unitId,
+    name: unit.name,
+    role: unit.role,
+    basePoints: unit.pts,
+    optionPts,
+    selections,
+    qty: 1,
+    wargear: [...unit.wargear],
+    hasOptions: !!unit.options,
+    options: unit.options || [],
+    notes: unit.notes || null,
+  });
 
   renderRoster();
   updateTotalPoints();
   renderForceOrg();
+}
+
+function changeLoadout(instanceId, group, label, pts) {
+  const entry = state.roster.find(r => r.unitId === instanceId);
+  if (!entry) return;
+  // Find old pts for this group
+  const opt = entry.options.find(o => o.group === group);
+  if (!opt) return;
+  const oldChoice = opt.choices.find(c => c.label === entry.selections[group]);
+  const oldPts = oldChoice ? oldChoice.pts : 0;
+  entry.selections[group] = label;
+  entry.optionPts = (entry.optionPts - oldPts) + pts;
+  updateTotalPoints();
+  // Re-render just the pts display without full re-render to avoid losing focus
+  const ptsEl = document.getElementById('upts_' + instanceId);
+  if (ptsEl) ptsEl.textContent = ((entry.basePoints + entry.optionPts) * entry.qty) + ' pts';
+  const secPtsEl = document.getElementById('secpts_' + instanceId);
+  if (secPtsEl) {
+    const role = entry.role;
+    // recalc section pts
+    const rolePts = state.roster.filter(u => u.role === role).reduce((s,u) => s + (u.basePoints + u.optionPts) * u.qty, 0);
+    document.querySelectorAll('[data-role-pts="' + role + '"]').forEach(el => el.textContent = rolePts + ' pts');
+  }
 }
 
 function changeQty(unitId, delta) {
@@ -1705,14 +1995,40 @@ function renderRoster() {
   ROLES.forEach(role => {
     const units = grouped[role];
     if (!units.length) return;
-    const rolePts = units.reduce((s, u) => s + u.basePoints * u.qty, 0);
+    const rolePts = units.reduce((s, u) => s + (u.basePoints + (u.optionPts||0)) * u.qty, 0);
     html += `<div class="roster-section">
       <div class="roster-section-title">
         <span>${role}</span>
-        <span class="roster-section-pts">${rolePts} pts</span>
+        <span class="roster-section-pts" data-role-pts="${role}">${rolePts} pts</span>
       </div>`;
     units.forEach(u => {
-      const totalPts = u.basePoints * u.qty;
+      const totalPts = (u.basePoints + (u.optionPts||0)) * u.qty;
+      const safeId = u.unitId.replace(/[^a-zA-Z0-9_]/g, '_');
+
+      // Build options HTML
+      let optionsHtml = '';
+      if (u.hasOptions && u.options.length) {
+        optionsHtml = `<div class="loadout-options">`;
+        u.options.forEach(opt => {
+          optionsHtml += `<div class="loadout-group">
+            <span class="loadout-label">${opt.group}:</span>
+            <div class="loadout-choices">`;
+          opt.choices.forEach(choice => {
+            const isSelected = u.selections[opt.group] === choice.label;
+            const ptsLabel = choice.pts > 0 ? ` +${choice.pts}` : choice.pts < 0 ? ` ${choice.pts}` : '';
+            optionsHtml += `<button class="loadout-btn ${isSelected ? 'selected' : ''}"
+              onclick="changeLoadout('${u.unitId}','${opt.group}','${choice.label}',${choice.pts}); renderRoster(); updateTotalPoints();">
+              ${choice.label}${ptsLabel ? `<span class="loadout-pts">${ptsLabel}</span>` : ''}
+            </button>`;
+          });
+          optionsHtml += `</div></div>`;
+        });
+        optionsHtml += `</div>`;
+      }
+
+      // Notes
+      const notesHtml = u.notes ? `<div class="unit-notes">${u.notes}</div>` : '';
+
       html += `
         <div class="roster-unit">
           <div class="roster-unit-top">
@@ -1723,12 +2039,14 @@ function renderRoster() {
                 <span class="qty-value">${u.qty}</span>
                 <button class="qty-btn" onclick="changeQty('${u.unitId}', 1)">+</button>
               </div>
-              <div class="roster-unit-pts">${totalPts} pts</div>
+              <div class="roster-unit-pts" id="upts_${safeId}">${totalPts} pts</div>
               <button class="remove-btn" onclick="removeUnit('${u.unitId}')" title="Remove">✕</button>
             </div>
           </div>
+          ${optionsHtml}
+          ${notesHtml}
           <div class="wargear-list">
-            ${u.wargear.map(wg => `<span class="wargear-tag active" onclick="toggleWargear('${u.unitId}', '${wg}')">${wg}</span>`).join('')}
+            ${u.wargear.map(wg => `<span class="wargear-tag active">${wg}</span>`).join('')}
           </div>
         </div>`;
     });
@@ -1784,7 +2102,7 @@ function renderForceOrg() {
 function renderValidation() {
   const list = document.getElementById('validationList');
   const msgs = [];
-  const total = state.roster.reduce((s, u) => s + u.basePoints * u.qty, 0);
+  const total = state.roster.reduce((s, u) => s + (u.basePoints + (u.optionPts||0)) * u.qty, 0);
   const rule = DETACHMENT_RULES[state.detachment] || DETACHMENT_RULES.battalion;
 
   if (!state.factionId) {
@@ -1834,7 +2152,7 @@ function renderValidation() {
 
 function buildListText() {
   const faction = FACTIONS.find(f => f.id === state.factionId);
-  const total = state.roster.reduce((s, u) => s + u.basePoints * u.qty, 0);
+  const total = state.roster.reduce((s, u) => s + (u.basePoints + (u.optionPts||0)) * u.qty, 0);
   let lines = [
     `=== ${state.armyName || 'Unnamed Army'} ===`,
     `Faction: ${faction ? faction.name : 'None'}`,
@@ -1852,7 +2170,7 @@ function buildListText() {
     if (!units.length) return;
     lines.push(`[ ${role.toUpperCase()} ]`);
     units.forEach(u => {
-      lines.push(`  × ${u.qty}  ${u.name}  (${u.basePoints * u.qty} pts)`);
+      lines.push(`  × ${u.qty}  ${u.name}  (${(u.basePoints + (u.optionPts||0)) * u.qty} pts)`);
       if (u.wargear.length) lines.push(`       Wargear: ${u.wargear.join(', ')}`);
     });
     lines.push('');
@@ -1862,13 +2180,111 @@ function buildListText() {
 }
 
 function printList() {
+  const faction = FACTIONS.find(f => f.id === state.factionId);
+  const total = state.roster.reduce((s, u) => s + (u.basePoints + (u.optionPts||0)) * u.qty, 0);
+  const detachName = document.getElementById('detachmentType').options[document.getElementById('detachmentType').selectedIndex].text;
+  const armyName = state.armyName || 'Unnamed Army';
+
+  const grouped = {};
+  ROLES.forEach(r => grouped[r] = []);
+  state.roster.forEach(u => (grouped[u.role] || grouped['Elites']).push(u));
+
+  const STAT_HEADERS = ['M','WS','BS','S','T','W','A','Ld','Sv'];
+
+  let sections = '';
+  ROLES.forEach(role => {
+    const units = grouped[role];
+    if (!units.length) return;
+    const rolePts = units.reduce((s,u) => s + (u.basePoints+(u.optionPts||0))*u.qty, 0);
+
+    let unitsHtml = '';
+    units.forEach(u => {
+      const pts = (u.basePoints + (u.optionPts||0)) * u.qty;
+      const allFactionUnits = UNITS[state.factionId] || [];
+      const sourceUnit = allFactionUnits.find(x => x.id === (u.baseUnitId || u.unitId));
+      const stats = sourceUnit && sourceUnit.stats ? sourceUnit.stats : null;
+
+      const statBlock = stats ? `
+        <table class="stat-table">
+          <thead><tr>${STAT_HEADERS.map(h => `<th>${h}</th>`).join('')}</tr></thead>
+          <tbody><tr>${stats.map(s => `<td>${s}</td>`).join('')}</tr></tbody>
+        </table>` : '';
+
+      let loadoutLines = [];
+      if (u.selections && Object.keys(u.selections).length) {
+        Object.entries(u.selections).forEach(([grp, choice]) => {
+          loadoutLines.push(`<span class="loadout-item"><b>${grp}:</b> ${choice}</span>`);
+        });
+      }
+      const loadoutHtml = loadoutLines.length ? `<div class="loadout-row">${loadoutLines.join('')}</div>` : '';
+      const wargearHtml = u.wargear.length ? `<div class="wargear-row"><b>Wargear:</b> ${u.wargear.join(', ')}</div>` : '';
+
+      unitsHtml += `
+        <div class="unit-card">
+          <div class="unit-card-header">
+            <span class="unit-card-name">${u.qty > 1 ? `&times;${u.qty} ` : ''}${u.name}${u.isNew ? ' &#10022;' : ''}</span>
+            <span class="unit-card-pts">${pts} pts</span>
+          </div>
+          ${statBlock}${loadoutHtml}${wargearHtml}
+        </div>`;
+    });
+
+    sections += `
+      <div class="role-section">
+        <div class="role-header"><span>${role.toUpperCase()}</span><span>${rolePts} pts</span></div>
+        ${unitsHtml}
+      </div>`;
+  });
+
+  const printHTML = `<!DOCTYPE html><html><head><meta charset="UTF-8">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:Arial,sans-serif; font-size:11px; color:#111; background:#fff; padding:16px; }
+  .page-header { border-bottom:3px solid #222; padding-bottom:10px; margin-bottom:16px; display:flex; justify-content:space-between; align-items:flex-end; }
+  .army-title { font-size:20px; font-weight:700; }
+  .army-meta { font-size:12px; color:#555; margin-top:3px; }
+  .army-pts { font-size:24px; font-weight:700; color:#2a6e3a; }
+  .army-pts-label { font-size:10px; color:#888; text-transform:uppercase; letter-spacing:0.1em; }
+  .role-section { margin-bottom:14px; }
+  .role-header { font-size:10px; font-weight:700; letter-spacing:0.2em; text-transform:uppercase; color:#fff; background:#222; padding:3px 8px; display:flex; justify-content:space-between; margin-bottom:4px; }
+  .unit-card { border:1px solid #ccc; margin-bottom:4px; page-break-inside:avoid; }
+  .unit-card-header { display:flex; justify-content:space-between; align-items:center; padding:4px 8px; background:#efefef; border-bottom:1px solid #ccc; }
+  .unit-card-name { font-size:13px; font-weight:700; }
+  .unit-card-pts { font-size:12px; font-weight:700; color:#2a6e3a; }
+  .stat-table { width:100%; border-collapse:collapse; }
+  .stat-table th { background:#333; color:#fff; font-size:9px; letter-spacing:0.08em; padding:2px 4px; text-align:center; }
+  .stat-table td { border:1px solid #ccc; padding:2px 4px; text-align:center; font-size:11px; font-weight:600; }
+  .loadout-row { padding:3px 8px; font-size:10px; color:#333; border-bottom:1px solid #eee; display:flex; flex-wrap:wrap; gap:10px; }
+  .wargear-row { padding:3px 8px; font-size:10px; color:#555; }
+</style>
+</head><body>
+<div class="page-header">
+  <div>
+    <div class="army-title">${armyName}</div>
+    <div class="army-meta">${faction ? faction.name : ''} &nbsp;&middot;&nbsp; ${detachName}</div>
+  </div>
+  <div style="text-align:right">
+    <div class="army-pts-label">Total Points</div>
+    <div class="army-pts">${total} / ${state.ptsLimit}</div>
+  </div>
+</div>
+${sections}
+</body></html>`;
+
+  // window.open works fine on live HTTPS sites when called from a direct user click
   const win = window.open('', '_blank');
-  win.document.write(`<html><head><title>Army List</title><style>
-    body { font-family: monospace; font-size: 13px; padding: 24px; color: #222; }
-    pre { white-space: pre-wrap; }
-  </style></head><body><pre>${buildListText()}</pre></body></html>`);
+  if (!win) {
+    alert('Print blocked — please allow popups for this site in your browser settings, then try again.');
+    return;
+  }
+  win.document.open();
+  win.document.write(printHTML);
   win.document.close();
-  win.print();
+  // Small delay to let styles render before triggering print dialog
+  setTimeout(() => {
+    win.focus();
+    win.print();
+  }, 400);
 }
 
 function exportTxt() {
