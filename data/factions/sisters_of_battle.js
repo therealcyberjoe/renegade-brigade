@@ -14,7 +14,7 @@ const FACTION_SISTERS_OF_BATTLE = [
                'Acts of Faith','Geminae Superia: Two bodyguard models absorb wounds before Celestine'] },
 
   { id:'sob_morvenn_vahl', name:'Morvenn Vahl',
-    stats:['6"','2+','2+','5','6','8','6','10','2+'], role:'HQ', pts:180, min:1, max:1, ppm:0, isNew:true,
+    stats:['6"','2+','2+','5','6','8','6','10','2+'], role:'HQ', pts:180, min:1, max:1, ppm:0, isNew:true, isNew:true, isNew:true,
     wargear:['Lance of Illumination','Purgator Missile Launcher','Paragon Fist'],
     abilities:['Armour of the Righteous: 2+ save — 4+ invulnerable save',
                'Abbess Sanctorum: Friendly Adepta Sororitas within 6" re-roll all failed hit rolls',
@@ -22,21 +22,21 @@ const FACTION_SISTERS_OF_BATTLE = [
                'Righteous Wrath (Warlord): Once per battle may fire all ranged weapons twice in one Shooting phase'] },
 
   { id:'sob_palatine', name:'Palatine',
-    stats:['6"','2+','2+','3','3','4','4','9','3+'], role:'HQ', pts:65, min:1, max:1, ppm:0, isNew:true,
+    stats:['6"','2+','2+','3','3','4','4','9','3+'], role:'HQ', pts:65, min:1, max:1, ppm:0, isNew:true, isNew:true, isNew:true,
     wargear:['Bolt Pistol','Power Sword'],
     abilities:['Shield of Faith','Acts of Faith',
                'Blazing Radiance: Friendly Adepta Sororitas within 6" re-roll hit rolls of 1',
                'Spiritual Leader: Friendly Adepta Sororitas within 6" gain 5+ Feel No Pain'] },
 
   { id:'sob_dogmata', name:'Dogmata',
-    stats:['6"','3+','3+','3','3','4','3','9','3+'], role:'HQ', pts:70, min:1, max:1, ppm:0, isNew:true,
+    stats:['6"','3+','3+','3','3','4','3','9','3+'], role:'HQ', pts:70, min:1, max:1, ppm:0, isNew:true, isNew:true, isNew:true,
     wargear:['Mace of the Righteous','Condemnor Boltgun'],
     abilities:['Shield of Faith','Acts of Faith',
                'Verse of Holy War: Once per turn — friendly Adepta Sororitas within 6" re-roll wound rolls of 1 until end of phase',
                'Penances and Prayers: Once per battle restore D3 wounds to one friendly Character within 3"'] },
 
   { id:'sob_ephrael', name:'Ephrael Stern',
-    stats:['7"','2+','2+','3','3','5','5','9','3+'], role:'HQ', pts:95, min:1, max:1, ppm:0, isNew:true,
+    stats:['7"','2+','2+','3','3','5','5','9','3+'], role:'HQ', pts:95, min:1, max:1, ppm:0, isNew:true, isNew:true, isNew:true,
     wargear:['The Ardent Blade','Plasma Pistol'],
     abilities:['Psyker: Mastery Level 1',
                "The Heretic's Bane: Wound rolls of 6 against enemy Characters deal D3 mortal wounds",
@@ -63,14 +63,14 @@ const FACTION_SISTERS_OF_BATTLE = [
                'Bodyguard: Roll D6 when nearby Canoness loses wound — on 2+ Celestian suffers it instead'] },
 
   { id:'sob_sacresants', name:'Celestian Sacresants',
-    stats:['6"','2+','3+','3','3','2','3','8','3+'], role:'Elites', pts:18, min:5, max:10, ppm:18, isNew:true,
+    stats:['6"','2+','3+','3','3','2','3','8','3+'], role:'Elites', pts:18, min:5, max:10, ppm:18, isNew:true, isNew:true,
     wargear:['Anointed Halberd','Sacresant Shield'],
     abilities:['Shield of Faith','Acts of Faith',
                'Sacresant Shield: 5+ invulnerable save for all models in unit',
                'Bodyguard: Roll D6 when friendly Adepta Sororitas Character within 3" loses wound — on 2+ this unit suffers it'] },
 
   { id:'sob_paragon', name:'Paragon Warsuits',
-    stats:['8"','3+','3+','5','6','4','4','8','2+'], role:'Heavy Support', pts:55, min:3, max:6, ppm:55, isNew:true,
+    stats:['8"','3+','3+','5','6','4','4','8','2+'], role:'Heavy Support', pts:55, min:3, max:6, ppm:55, isNew:true, isNew:true,
     wargear:['Multi-melta or Heavy Bolter','Paragon War Blade'],
     abilities:['Shield of Faith','Acts of Faith',
                'Righteous Charge: On turn this unit charges add 1 to wound rolls in Fight phase'] },
@@ -89,7 +89,7 @@ const FACTION_SISTERS_OF_BATTLE = [
                'Smoke Launchers','Explodes: On 6 when destroyed — D3 mortal wounds within 6"'] },
 
   { id:'sob_castigator', name:'Castigator',
-    stats:['10"','4+','3+','6','9','12','3','8','3+'], role:'Heavy Support', pts:160, min:1, max:1, ppm:0, isNew:true,
+    stats:['10"','4+','3+','6','9','12','3','8','3+'], role:'Heavy Support', pts:160, min:1, max:1, ppm:0, isNew:true, isNew:true, isNew:true,
     wargear:['Castigator Battle Cannon','2x Hurricane Bolters'],
     abilities:['Shield of Faith','Acts of Faith',
                'Castigator Battle Cannon: Heavy D6 S9 AP-2 DD3+1 Blast',
@@ -97,7 +97,7 @@ const FACTION_SISTERS_OF_BATTLE = [
 
   // ── NAMED CHARACTERS ────────────────────────────────────────────────
   { id:'sob_junith', name:'Canoness Junith Eruita',
-    stats:['6"','2+','2+','3','3','5','4','9','3+'], role:'HQ', pts:95, min:1, max:1, ppm:0,
+    stats:['6"','2+','2+','3','3','5','4','9','3+'], role:'HQ', pts:95, min:1, max:1, ppm:0, isNew:true, isNew:true,
     wargear:['The Sceptre of the Matriarch','Brazier of Holy Fire'],
     abilities:['Shield of Faith','Acts of Faith',
                'Pulpit of Saint Holline: This model never needs line of sight to issue orders — friendly Adepta Sororitas within 6" re-roll hit rolls of 1',
@@ -106,7 +106,7 @@ const FACTION_SISTERS_OF_BATTLE = [
                'Order of Our Martyred Lady only (or any Order)'] },
 
   { id:'sob_imagifier', name:'Imagifier',
-    stats:['6"','3+','3+','3','3','3','2','7','3+'], role:'Elites', pts:50, min:1, max:1, ppm:0,
+    stats:['6"','3+','3+','3','3','3','2','7','3+'], role:'Elites', pts:50, min:1, max:1, ppm:0, isNew:true, isNew:true,
     wargear:['Bolt Pistol','Power Sword'],
     abilities:['Shield of Faith','Acts of Faith',
                'Simulacrum Imperialis: Choose one of three tales — Stoic / Defiant / Glorious — buff changes each turn',
@@ -115,21 +115,21 @@ const FACTION_SISTERS_OF_BATTLE = [
                'Tale of the Warrior: Friendly Adepta Sororitas within 6" re-roll wound rolls of 1'] },
 
   { id:'sob_hospitaller', name:'Sister Hospitaller',
-    stats:['6"','3+','3+','3','3','3','2','7','3+'], role:'Elites', pts:45, min:1, max:1, ppm:0,
+    stats:['6"','3+','3+','3','3','3','2','7','3+'], role:'Elites', pts:45, min:1, max:1, ppm:0, isNew:true, isNew:true,
     wargear:['Bolt Pistol','Chirurgeon Tools'],
     abilities:['Shield of Faith','Acts of Faith',
                'Narthecium: At end of each Movement phase return one slain model to a friendly Adepta Sororitas unit within 3"',
                'Ministorum Physician: Friendly Characters within 3" may re-roll Feel No Pain rolls'] },
 
   { id:'sob_dialogus', name:'Sister Dialogus',
-    stats:['6"','3+','3+','3','3','3','2','7','3+'], role:'Elites', pts:40, min:1, max:1, ppm:0,
+    stats:['6"','3+','3+','3','3','3','2','7','3+'], role:'Elites', pts:40, min:1, max:1, ppm:0, isNew:true, isNew:true,
     wargear:['Bolt Pistol','Litanies of Faith'],
     abilities:['Shield of Faith','Acts of Faith',
                'Litanies of Faith: Friendly Adepta Sororitas within 6" add 1 to Acts of Faith rolls',
                'Amplified Voice: Double the range of one friendly Character\'s aura ability within 6" once per turn'] },
 
   { id:'sob_repentia_superior', name:'Repentia Superior',
-    stats:['6"','2+','3+','3','3','4','4','8','4+'], role:'HQ', pts:45, min:1, max:1, ppm:0,
+    stats:['6"','2+','3+','3','3','4','4','8','4+'], role:'HQ', pts:45, min:1, max:1, ppm:0, isNew:true, isNew:true,
     wargear:['Neural Whips'],
     abilities:['Shield of Faith','Acts of Faith',
                'Righteous Rage: Friendly Repentia within 6" re-roll all failed hit rolls',
@@ -137,7 +137,7 @@ const FACTION_SISTERS_OF_BATTLE = [
                'Neural Whips: AP-2 — on wound roll of 6 deal 1 mortal wound in addition'] },
 
   { id:'sob_mortifier', name:'Mortifier',
-    stats:['8"','3+','4+','4','5','5','4','7','4+'], role:'Elites', pts:65, min:1, max:3, ppm:65,
+    stats:['8"','3+','4+','4','5','5','4','7','4+'], role:'Elites', pts:65, min:1, max:3, ppm:65, isNew:true,
     wargear:['Penitent Buzz-blades','Penitent Flails'],
     options:[
       { group:'Weapons', pick:1, choices:[
@@ -151,14 +151,14 @@ const FACTION_SISTERS_OF_BATTLE = [
                'Explodes: On 6 when destroyed — D3 mortal wounds within 3"'] },
 
   { id:'sob_anchorite', name:'Anchorite',
-    stats:['6"','3+','3+','5','5','6','4','8','3+'], role:'Elites', pts:80, min:1, max:1, ppm:0, isNew:true,
+    stats:['6"','3+','3+','5','5','6','4','8','3+'], role:'Elites', pts:80, min:1, max:1, ppm:0, isNew:true, isNew:true, isNew:true,
     wargear:['Multi-melta','Power Fist','Siege Wrecker'],
     abilities:['Shield of Faith','Acts of Faith',
                'Unyielding Penitent: 5+ Feel No Pain — never affected by negative Leadership modifiers',
                'Death by Penance: When this model charges — deal D3 mortal wounds to one enemy within 1"'] },
 
   { id:'sob_retributors', name:'Retributor Squad',
-    stats:['6"','3+','3+','3','3','1','1','7','3+'], role:'Heavy Support', pts:55, min:5, max:10, ppm:11,
+    stats:['6"','3+','3+','3','3','1','1','7','3+'], role:'Heavy Support', pts:55, min:5, max:10, ppm:11, isNew:true,
     wargear:['Heavy Bolter','Bolt Pistol'],
     options:[
       { group:'Heavy Weapons (up to 4)', pick:1, choices:[
@@ -174,7 +174,7 @@ const FACTION_SISTERS_OF_BATTLE = [
 
   // ── LORD OF WAR ──────────────────────────────────────────────────────
   { id:'sob_triumph', name:'Triumph of Saint Katherine',
-    stats:['6"','3+','3+','3','3','18','14','9','3+'], role:'Lord of War', pts:185, min:1, max:1, ppm:0,
+    stats:['6"','3+','3+','3','3','18','14','9','3+'], role:'Lord of War', pts:185, min:1, max:1, ppm:0, isNew:true, isNew:true,
     wargear:["Martyr's Sword","Praesidium Protectiva",'6x Bolt Pistols','Relic Weapons'],
     abilities:['Shield of Faith: 6+ invulnerable save — and 4+ invulnerable save from Praesidium Protectiva',
                'Acts of Faith',
