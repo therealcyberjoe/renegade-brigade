@@ -769,6 +769,20 @@
     color: var(--gold);
   }
 
+  .loadout-note {
+    display: block;
+    font-size: 9px;
+    color: var(--muted);
+    font-style: italic;
+    margin-top: 1px;
+    opacity: 0.8;
+  }
+
+  .loadout-btn.selected .loadout-note {
+    color: var(--gold);
+    opacity: 0.7;
+  }
+
   .unit-notes {
     font-size: 11px;
     color: var(--muted);

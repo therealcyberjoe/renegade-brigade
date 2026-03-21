@@ -153,37 +153,70 @@ const FACTION_GENESTEALER_CULTS = [
   // ── FAST ATTACK ─────────────────────────────────────────────────────
   { id:'gc_atalan_jackals', name:'Atalan Jackals',
     stats:['12"','3+','3+','3','3','2','2','6','5+'], role:'Fast Attack', pts:55, min:5, max:15, ppm:11,
-    wargear:['Shotgun','Demo Charges','Atalan Blade'],
-    abilities:['Cult Ambush','Scouts: Move up to 6" before first battle round',
-               'Jink: 5+ invulnerable save if unit Advanced this turn'] },
+    wargear:['Atalan Shotgun','Atalan Blade','Demo Charge'],
+    options:[
+      { group:'Heavy Weapon (1 per 5 models)', pick:1, choices:[
+        { label:'None', pts:0, default:true },
+        { label:'Heavy Stubber', pts:5, note:'1 per 5 models' },
+        { label:'Mining Laser', pts:10, note:'1 per 5 models' },
+        { label:'Grenade Launcher', pts:5, note:'1 per 5 models' },
+      ]},
+    ],
+    abilities:['Cult Ambush',
+               'Scouts: Move up to 9" before first battle round',
+               'Jink: 5+ invulnerable save if unit Advanced this turn',
+               'Quad Bikes: Each model is mounted — ignore terrain penalties for movement'] },
 
-  { id:'gc_cult_guerrilla', name:'Cult Guerrilla [Crucible]',
-    stats:['6"','3+','3+','3','3','1','2','7','5+'], role:'Fast Attack', pts:60, min:5, max:10, ppm:12,
-    wargear:['Autopistol','Cult Knife','Demo Charge'],
-    abilities:['Cult Ambush','Infiltrate: Move up to 9" before first battle round',
-               'Hit and Run: May Advance and still charge in same turn',
-               'Guerrilla Tactics: If unit Falls Back may still shoot and charge this turn'] },
+  // ── VEHICLE ─────────────────────────────────────────────────────────
+  { id:'gc_ridgerunner', name:'Achilles Ridgerunner',
+    stats:['14"','5+','3+','5','6','8','3','6','4+'], role:'Fast Attack', pts:95, min:1, max:3, ppm:95,
+    wargear:['Heavy Mining Laser','Heavy Stubber','Flare Launcher'],
+    options:[
+      { group:'Main Weapon', pick:1, choices:[
+        { label:'Heavy Mining Laser', pts:0, default:true },
+        { label:'Missile Launcher', pts:5 },
+        { label:'Mortar', pts:0 },
+      ]},
+      { group:'Secondary', pick:1, choices:[
+        { label:'Heavy Stubber', pts:0, default:true },
+        { label:'Twin Autocannon', pts:5 },
+        { label:'Seismic Cannon', pts:5 },
+      ]},
+    ],
+    abilities:['Cult Ambush',
+               'Scouts: Move up to 9" before first battle round',
+               'Flare Launcher: Once per game — subtract 1 from all hit rolls targeting this model until next turn',
+               'Explodes: On 6 when destroyed — D3 mortal wounds within 3"'] },
 
   // ── HEAVY SUPPORT ───────────────────────────────────────────────────
-  { id:'gc_cult_insurrectionist', name:'Cult Insurrectionist [Crucible]',
-    stats:['6"','4+','3+','3','3','1','1','6','5+'], role:'Heavy Support', pts:80, min:5, max:10, ppm:16,
-    wargear:['Autopistol','Heavy Stubber','Mining Laser'],
+  { id:'gc_goliath_rockgrinder', name:'Goliath Rockgrinder',
+    stats:['10"','5+','4+','6','7','10','3','6','4+'], role:'Heavy Support', pts:120, min:1, max:1, ppm:0,
+    wargear:['Cache of Demolition Charges','Heavy Seismic Cannon','Clearance Incinerator'],
+    options:[
+      { group:'Main Weapon', pick:1, choices:[
+        { label:'Heavy Seismic Cannon', pts:0, default:true },
+        { label:'Heavy Mining Laser', pts:5 },
+      ]},
+      { group:'Secondary', pick:1, choices:[
+        { label:'Clearance Incinerator', pts:0, default:true },
+        { label:'Twin Autocannon', pts:5 },
+      ]},
+    ],
     abilities:['Cult Ambush',
-               'Heavy Firepower: May fire Heavy weapons without penalty if did not move',
-               'Fire Support: Friendly GSC units within 6" re-roll hit rolls of 1 in Shooting phase'] },
+               'Drilldozer Blade: On a charge deal D3 mortal wounds to each unit within 1"',
+               'Cache of Demo Charges: Once per game — Assault D6+3 auto-hit S6 AP-2 D2 within 6"',
+               'Explodes: On 6 when destroyed — D3 mortal wounds within 3"'] },
 
+  // ── DEDICATED TRANSPORT ─────────────────────────────────────────────
   { id:'gc_goliath_truck', name:'Goliath Truck',
     stats:['12"','5+','4+','5','6','10','3','6','4+'], role:'Dedicated Transport', pts:85, min:1, max:1, ppm:0,
     wargear:['Heavy Stubber','Twin Autocannon'],
+    options:[
+      { group:'Secondary', pick:1, choices:[
+        { label:'Heavy Stubber', pts:0, default:true },
+        { label:'Heavy Flamer', pts:5 },
+      ]},
+    ],
     abilities:['Cult Ambush','Transport: Carries 10 Infantry',
                'Explodes: On 6 when destroyed — D3 mortal wounds within 3"'] },
-
-  // ── VOICE OF THE PATRIARCH ───────────────────────────────────────────
-  { id:'gc_voice_patriarch', name:'Voice of the Patriarch [Crucible]',
-    stats:['6"','3+','3+','3','3','3','3','8','5+'], role:'HQ', pts:70, min:1, max:1, ppm:0,
-    wargear:['Autopistol','Cult Knife'],
-    abilities:['Cult Ambush',
-               'Psychic Conduit: Friendly Psykers within 9" add 1 to Psychic tests',
-               'Voice of Command: Once per turn — one friendly GSC unit within 12" may re-roll all failed hit rolls until end of phase',
-               'Devotional Aura: Friendly GSC Infantry within 6" auto-pass Morale'] },
 ];

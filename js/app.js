@@ -335,9 +335,10 @@ function renderRoster() {
           opt.choices.forEach(choice => {
             const isSelected = u.selections[opt.group] === choice.label;
             const ptsLabel = choice.pts > 0 ? ` +${choice.pts}` : choice.pts < 0 ? ` ${choice.pts}` : '';
+            const noteLabel = choice.note ? `<span class="loadout-note">${choice.note}</span>` : '';
             optionsHtml += `<button class="loadout-btn ${isSelected ? 'selected' : ''}"
               onclick="changeLoadout('${u.unitId}','${opt.group}','${choice.label}',${choice.pts}); renderRoster(); updateTotalPoints();">
-              ${choice.label}${ptsLabel ? `<span class="loadout-pts">${ptsLabel}</span>` : ''}
+              ${choice.label}${ptsLabel ? `<span class="loadout-pts">${ptsLabel}</span>` : ''}${noteLabel}
             </button>`;
           });
           optionsHtml += `</div></div>`;
