@@ -7,24 +7,6 @@ let state = {
   activeRoleFilter: 'All',
 };
 
-// Named character faction -> parent faction mapping
-const NAMED_CHAR_FACTION_MAP = {
-  'space_marines_named': 'space_marines',
-  'astra_militarum_named': 'astra_militarum',
-  'orks_named': 'orks',
-  'space_wolves_named': 'space_wolves',
-  'blood_angels_named': 'blood_angels',
-  'tyranids_named': 'tyranids',
-  'necrons_named': 'necrons',
-  'chaos_space_marines_named': 'chaos_space_marines',
-  'eldar_named': 'eldar',
-  'dark_angels_named': 'dark_angels',
-  'adeptus_mechanicus_named': 'adeptus_mechanicus',
-  'sisters_of_battle_named': 'sisters_of_battle',
-  'genestealer_cults_named': 'genestealer_cults',
-  'chaos_daemons_named': 'chaos_daemons',
-};
-
 // Merge addendum units into UNITS at startup
 Object.entries(ADDENDUM_UNITS).forEach(([factionId, units]) => {
   // Resolve named char sub-factions to their parent
