@@ -25,6 +25,7 @@ const FACTION_UNIT_MAP = {
   'world_eaters': FACTION_WORLD_EATERS,
   'emperors_children': FACTION_EMPERORS_CHILDREN,
   'leagues_of_votann': FACTION_LEAGUES_OF_VOTANN,
+  'harlequins': FACTION_HARLEQUINS,
 };
 
 // Build UNITS object from new faction files (replaces old UNITS data)
