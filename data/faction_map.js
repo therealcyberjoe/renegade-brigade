@@ -24,9 +24,8 @@ const FACTION_UNIT_MAP = {
   'death_guard': FACTION_DEATH_GUARD,
   'world_eaters': FACTION_WORLD_EATERS,
   'emperors_children': FACTION_EMPERORS_CHILDREN,
+  'black_templars': FACTION_BLACK_TEMPLARS,
   'leagues_of_votann': FACTION_LEAGUES_OF_VOTANN,
-  'harlequins': FACTION_HARLEQUINS,
-  'harlequins': FACTION_HARLEQUINS,
 };
 
 // Build UNITS object from new faction files (replaces old UNITS data)

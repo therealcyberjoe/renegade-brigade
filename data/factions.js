@@ -25,4 +25,5 @@ const FACTIONS = [
   { id: 'chaos_daemons', name: 'Chaos Daemons', color: '#993322' },
   { id: 'leagues_of_votann', name: 'Leagues of Votann', color: '#cc9944' },
   { id: 'emperors_children', name: "Emperor's Children", color: '#cc44bb' },
+  { id: 'black_templars', name: 'Black Templars', color: '#f0c030' },
 ];
