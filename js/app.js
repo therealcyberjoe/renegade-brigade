@@ -243,12 +243,12 @@ function changeLoadout(instanceId, group, label, pts) {
   updateTotalPoints();
   // Re-render just the pts display without full re-render to avoid losing focus
   const ptsEl = document.getElementById('upts_' + instanceId);
-  if (ptsEl) ptsEl.textContent = ((entry.basePoints + entry.optionPts) * entry.qty) + ' pts';
+  if (ptsEl) ptsEl.textContent = (((entry.basePoints + entry.optionPts) + (entry.ppm||0) * Math.max(0,(entry.models||entry.minModels)-entry.minModels)) * entry.qty) + ' pts';
   const secPtsEl = document.getElementById('secpts_' + instanceId);
   if (secPtsEl) {
     const role = entry.role;
     // recalc section pts
-    const rolePts = state.roster.filter(u => u.role === role).reduce((s,u) => s + (u.basePoints + u.optionPts) * u.qty, 0);
+    const rolePts = state.roster.filter(u => u.role === role).reduce((s,u) => s + ((u.basePoints + (u.optionPts||0)) + (u.ppm||0) * Math.max(0,(u.models||u.minModels||1)-( u.minModels||1))) * u.qty, 0);
     document.querySelectorAll('[data-role-pts="' + role + '"]').forEach(el => el.textContent = rolePts + ' pts');
   }
 }
