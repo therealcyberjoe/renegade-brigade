@@ -148,7 +148,7 @@ const FACTION_TAU = [
                '5+ invulnerable save'] },
 
   { id:'tau_farstalkers', name:'Kroot Farstalkers',
-    stats:['7"','3+','3+','4','3','1','2','7','5+'], role:'Elites', pts:13, min:5, max:10, ppm:13, isNew:true,
+    stats:['7"','3+','3+','4','3','1','2','7','5+'], role:'Elites', pts:65, min:5, max:10, ppm:13, isNew:true,
     wargear:['Kroot Rifle','Jagga-blade'],
     abilities:['Infiltrate: Move up to 9" before first battle round',
                'Fieldcraft: Count as in cover if did not move',
