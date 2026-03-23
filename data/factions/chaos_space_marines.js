@@ -60,7 +60,7 @@ const FACTION_CHAOS_SPACE_MARINES = [
                'Expendable: Do not count for Morale if within 6" of a Chaos Lord'] },
 
   { id:'csm_acc_cultists', name:'Accursed Cultists',
-    stats:['6"','3+','5+','4','4','2','3','7','5+'], role:'Troops', pts:12, min:5, max:20, ppm:12, isNew:true,
+    stats:['6"','3+','5+','4','4','2','3','7','5+'], role:'Troops', pts:60, min:5, max:20, ppm:12, isNew:true,
     wargear:['Cursed Weapons','Autopistol'],
     abilities:['Mutant Resilience: Re-roll Morale tests — each model that dies on 5+ does not count as a casualty for Morale',
                'Tide of Corruption: For each 5 models in this unit enemy within 1" subtract 1 from Leadership',

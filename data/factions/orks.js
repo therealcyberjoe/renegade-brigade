@@ -102,7 +102,7 @@ const FACTION_ORKS = [
                'Expendable: Enemy units may not choose to shoot Gretchin if other Ork units are closer'] },
 
   { id:'ork_beast_boyz', name:'Beast Snagga Boyz',
-    stats:['6"','3+','5+','4','4','2','2','7','6+'], role:'Troops', pts:11, min:10, max:20, ppm:11, isNew:true,
+    stats:['6"','3+','5+','4','4','2','2','7','6+'], role:'Troops', pts:110, min:10, max:20, ppm:11, isNew:true,
     wargear:['Choppa','Slugga'],
     abilities:["'Ere We Go: Re-roll failed charge rolls",
                'Anti-vehicle Instincts: Re-roll hit rolls of 1 against Vehicles and Monsters',
@@ -150,7 +150,7 @@ const FACTION_ORKS = [
                'Unstable Rokkit Pack: Each time this unit Advances roll D6 — on 1 one model suffers 1 mortal wound'] },
 
   { id:'ork_squighog', name:'Squighog Boys',
-    stats:['10"','3+','5+','5','5','3','4','7','4+'], role:'Fast Attack', pts:35, min:3, max:6, ppm:35, isNew:true,
+    stats:['10"','3+','5+','5','5','3','4','7','4+'], role:'Fast Attack', pts:105, min:3, max:6, ppm:35, isNew:true,
     wargear:['Squighog Jaws','Stikka'],
     abilities:["'Ere We Go",
                "Born to Scrap: May Advance and still charge in same turn",

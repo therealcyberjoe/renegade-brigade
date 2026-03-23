@@ -33,7 +33,7 @@ const FACTION_WORLD_EATERS = [
                'Frenzied Charge: Add 2 to Attacks on turn it charges'] },
 
   { id:'we_berzerkers', name:'Khorne Berzerkers',
-    stats:['6"','3+','4+','4','4','1','2','8','3+'], role:'Troops', pts:17, min:8, max:12, ppm:17, isNew:true,
+    stats:['6"','3+','4+','4','4','1','2','8','3+'], role:'Troops', pts:136, min:8, max:12, ppm:17, isNew:true,
     wargear:['Chainaxe','Bolt Pistol'],
     abilities:["Blood for the Blood God: +1 Attack in Fight phase",
                'Icon of Wrath: Re-roll failed charge rolls if unit has Icon Bearer',
@@ -41,14 +41,14 @@ const FACTION_WORLD_EATERS = [
                'Skull Champion: +1A and Ld9 — may take plasma pistol / power fist / power sword'] },
 
   { id:'we_jakhals', name:'Jakhals',
-    stats:['6"','4+','5+','3','3','1','2','6','6+'], role:'Troops', pts:5, min:8, max:20, ppm:5, isNew:true,
+    stats:['6"','4+','5+','3','3','1','2','6','6+'], role:'Troops', pts:40, min:8, max:20, ppm:5, isNew:true,
     wargear:['Mauling Blade','Autopistol'],
     abilities:["Blood for the Blood God",
                'Rabid Devotion: When destroyed on 4+ a friendly World Eaters Core within 6" gains +1 Attack until end of Fight phase',
                'Dishonoured upgrade: S4 T4 W2 A3 Sv5+ at +10pts per model'] },
 
   { id:'we_eightbound', name:'Eightbound',
-    stats:['6"','2+','3+','5','5','3','4','8','3+'], role:'Elites', pts:45, min:3, max:6, ppm:45, isNew:true,
+    stats:['6"','2+','3+','5','5','3','4','8','3+'], role:'Elites', pts:135, min:3, max:6, ppm:45, isNew:true,
     wargear:['Eightbound Eviscerators'],
     abilities:['Daemonic Blessings: 4+ invulnerable save',
                "Khorne's Chosen: Re-roll hit rolls of 1 — +1 Attack if within 1\" of enemy at start of Fight phase",

@@ -63,14 +63,14 @@ const FACTION_SISTERS_OF_BATTLE = [
                'Bodyguard: Roll D6 when nearby Canoness loses wound — on 2+ Celestian suffers it instead'] },
 
   { id:'sob_sacresants', name:'Celestian Sacresants',
-    stats:['6"','2+','3+','3','3','2','3','8','3+'], role:'Elites', pts:18, min:5, max:10, ppm:18, isNew:true, isNew:true,
+    stats:['6"','2+','3+','3','3','2','3','8','3+'], role:'Elites', pts:90, min:5, max:10, ppm:18, isNew:true, isNew:true,
     wargear:['Anointed Halberd','Sacresant Shield'],
     abilities:['Shield of Faith','Acts of Faith',
                'Sacresant Shield: 5+ invulnerable save for all models in unit',
                'Bodyguard: Roll D6 when friendly Adepta Sororitas Character within 3" loses wound — on 2+ this unit suffers it'] },
 
   { id:'sob_paragon', name:'Paragon Warsuits',
-    stats:['8"','3+','3+','5','6','4','4','8','2+'], role:'Heavy Support', pts:55, min:3, max:6, ppm:55, isNew:true, isNew:true,
+    stats:['8"','3+','3+','5','6','4','4','8','2+'], role:'Heavy Support', pts:165, min:3, max:6, ppm:55, isNew:true, isNew:true,
     wargear:['Multi-melta or Heavy Bolter','Paragon War Blade'],
     abilities:['Shield of Faith','Acts of Faith',
                'Righteous Charge: On turn this unit charges add 1 to wound rolls in Fight phase'] },

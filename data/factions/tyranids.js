@@ -85,7 +85,7 @@ const FACTION_TYRANIDS = [
                'Swarm: Unit of 6+ never takes Morale tests'] },
 
   { id:'ty_barbgaunts', name:'Barbgaunts',
-    stats:['5"','4+','4+','3','3','1','1','7','6+'], role:'Troops', pts:9, min:5, max:10, ppm:9, isNew:true,
+    stats:['5"','4+','4+','3','3','1','1','7','6+'], role:'Troops', pts:45, min:5, max:10, ppm:9, isNew:true,
     wargear:['Barblauncher'],
     abilities:['Symbiotic Targeting: Friendly Synapse within 12" — Barblauncher becomes Assault D3',
                'Expendable Swarm: Does not take Morale tests within 12" of Synapse'] },
@@ -139,7 +139,7 @@ const FACTION_TYRANIDS = [
                'Blinding Venom: Enemy units that lose models to Gargoyles in melee subtract 1 from hit rolls until next turn'] },
 
   { id:'ty_von_ryan', name:"Von Ryan's Leapers",
-    stats:['10"','3+','4+','4','4','2','4','8','4+'], role:'Fast Attack', pts:30, min:3, max:9, ppm:30, isNew:true,
+    stats:['10"','3+','4+','4','4','2','4','8','4+'], role:'Fast Attack', pts:90, min:3, max:9, ppm:30, isNew:true,
     wargear:['Leaper Talons','Prehensile Tail'],
     abilities:['Death Pounce: Deep strike — deploy 9"+ from enemy — add 2 to charge roll following turn',
                'Skulker: Always in cover within 1" of terrain',

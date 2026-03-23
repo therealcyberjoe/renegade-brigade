@@ -28,7 +28,7 @@ const FACTION_ADEPTUS_CUSTODES = [
                'Sworn Protectors: Auto-pass Morale'] },
 
   { id:'ac_wardens', name:'Custodian Wardens',
-    stats:['6"','2+','2+','5','5','3','4','10','2+'], role:'Troops', pts:55, min:3, max:10, ppm:55, isNew:true,
+    stats:['6"','2+','2+','5','5','3','4','10','2+'], role:'Troops', pts:165, min:3, max:10, ppm:55, isNew:true,
     wargear:['Castellan Axe','Balistus Grenade Launcher'],
     abilities:['Auramite and Adamantine: 4+ invulnerable save',
                'Bulwark of Humanity: Friendly Adeptus Custodes within 3" gain +1 to saving throws (max 2+)'] },

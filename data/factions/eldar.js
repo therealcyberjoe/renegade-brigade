@@ -216,7 +216,7 @@ const FACTION_ELDAR = [
                'Jetbike: 14" Move','Conclave: May form a Seer Council on Jetbikes'] },
 
   { id:'el_seer_council_bike', name:'Seer Council on Jetbikes',
-    stats:['14"','3+','3+','3','3','2','1','8','4+'], role:'Elites', pts:65, min:3, max:10, ppm:65,
+    stats:['14"','3+','3+','3','3','2','1','8','4+'], role:'Elites', pts:195, min:3, max:10, ppm:65,
     wargear:['Jetbikes','Witchblades','Singing Spears','Shuriken Pistols'],
     abilities:['Psyker: Each model is Mastery Level 1',
                'Runes of Battle: Each model knows Smite + 1 power',
@@ -224,7 +224,7 @@ const FACTION_ELDAR = [
                'Jetbike: 14" Move'] },
 
   { id:'el_shadow_spectres', name:'Shadow Spectres',
-    stats:['12"','3+','3+','3','3','1','2','8','4+'], role:'Elites', pts:22, min:4, max:10, ppm:22, isNew:true,
+    stats:['12"','3+','3+','3','3','1','2','8','4+'], role:'Elites', pts:88, min:4, max:10, ppm:22, isNew:true,
     wargear:['Prism Rifle','Holofield'],
     abilities:['Holofield: 5+ invulnerable save',
                'Compact Formation: Models within 6" of 2+ other models add 1 to Prism Rifle hit rolls',
@@ -268,7 +268,7 @@ const FACTION_ELDAR = [
     abilities:['Battle Focus','Jink: 5+ invulnerable save if Vyper Advanced this turn'] },
 
   { id:'el_windriders', name:'Windriders',
-    stats:['16"','3+','3+','3','4','2','2','8','4+'], role:'Fast Attack', pts:18, min:3, max:12, ppm:18,
+    stats:['16"','3+','3+','3','4','2','2','8','4+'], role:'Fast Attack', pts:54, min:3, max:12, ppm:18,
     wargear:['Shuriken Catapult'],
     options:[
       { group:'Weapon', pick:1, choices:[
@@ -282,7 +282,7 @@ const FACTION_ELDAR = [
                'Jetbike: 16" Move — ignore terrain penalties'] },
 
   { id:'el_shroud_runners', name:'Shroud Runners',
-    stats:['16"','3+','3+','3','4','2','2','8','4+'], role:'Fast Attack', pts:35, min:3, max:9, ppm:35, isNew:true,
+    stats:['16"','3+','3+','3','4','2','2','8','4+'], role:'Fast Attack', pts:105, min:3, max:9, ppm:35, isNew:true,
     wargear:['Ranger Long Rifle','Jetbike Cannon','Shuriken Pistol'],
     abilities:['Scouts: Move up to 9" before first battle round',
                'Outflank: Or hold in reserve — arrive within 6" of any battlefield edge 9"+ from enemy',

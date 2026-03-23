@@ -124,14 +124,14 @@ const FACTION_NECRONS = [
                'Deep Strike: Arrive 9"+ from enemy'] },
 
   { id:'nec_skorpekh_dest', name:'Skorpekh Destroyers',
-    stats:['8"','3+','3+','5','5','3','3','10','3+'], role:'Elites', pts:40, min:3, max:6, ppm:40, isNew:true,
+    stats:['8"','3+','3+','5','5','3','3','10','3+'], role:'Elites', pts:120, min:3, max:6, ppm:40, isNew:true,
     wargear:['Hyperphase Threshers'],
     abilities:['Reanimation Protocols',
                'Relentless Advance: May Advance and still charge',
                'Frenzied Charge: Add 2 to Attacks on turn it charges'] },
 
   { id:'nec_ophydian', name:'Ophydian Destroyers',
-    stats:['10"','3+','3+','5','5','3','4','10','3+'], role:'Elites', pts:42, min:3, max:6, ppm:42, isNew:true,
+    stats:['10"','3+','3+','5','5','3','4','10','3+'], role:'Elites', pts:126, min:3, max:6, ppm:42, isNew:true,
     wargear:['Hyperphase Reap-blades','Atomiser Beam'],
     abilities:['Burrowing Assault: Deep strike — arrive 9"+ from enemy — cannot charge same turn',
                'Reanimation Protocols',

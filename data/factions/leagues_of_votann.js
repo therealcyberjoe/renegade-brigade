@@ -37,7 +37,7 @@ const FACTION_LEAGUES_OF_VOTANN = [
                'Methodical Craft: Friendly Leagues of Votann Vehicle within 6" re-roll hit rolls of 1'] },
 
   { id:'lov_hearthkyn', name:'Hearthkyn Warriors',
-    stats:['5"','3+','3+','4','4','1','2','8','4+'], role:'Troops', pts:13, min:5, max:10, ppm:13, isNew:true,
+    stats:['5"','3+','3+','4','4','1','2','8','4+'], role:'Troops', pts:65, min:5, max:10, ppm:13, isNew:true,
     wargear:['Autoch-pattern Bolter','Ion Blaster'],
     abilities:['Grim Endurance',
                'Grim Efficiency: May fire Rapid Fire at full rate after Advancing but -1 to hit rolls',
@@ -45,7 +45,7 @@ const FACTION_LEAGUES_OF_VOTANN = [
                'Ironkin: Up to 2 may be Ironkin — W2 and 4+ invulnerable (+5pts each)'] },
 
   { id:'lov_einhyr_guard', name:'Einhyr Hearthguard',
-    stats:['4"','3+','3+','5','5','2','3','8','2+'], role:'Elites', pts:38, min:3, max:5, ppm:38, isNew:true,
+    stats:['4"','3+','3+','5','5','2','3','8','2+'], role:'Elites', pts:114, min:3, max:5, ppm:38, isNew:true,
     wargear:['Concussion Gauntlet','Volkanite Disintegrator'],
     abilities:['Grim Endurance','4+ invulnerable save',
                'Exo-armour: Ignores penalty for moving and firing Heavy weapons',
@@ -53,14 +53,14 @@ const FACTION_LEAGUES_OF_VOTANN = [
                'Teleport Strike: Arrive from reserve 6"+ from enemy — cannot charge same turn'] },
 
   { id:'lov_beserks', name:'Cthonian Beserks',
-    stats:['6"','3+','5+','5','4','2','4','7','4+'], role:'Elites', pts:28, min:5, max:10, ppm:28, isNew:true,
+    stats:['6"','3+','5+','5','4','2','4','7','4+'], role:'Elites', pts:140, min:5, max:10, ppm:28, isNew:true,
     wargear:['Concussion Maul'],
     abilities:['Grim Endurance',
                'Berserk Charge: Add 2 to Attacks on turn it charges',
                'No Retreat: Auto-pass Morale tests'] },
 
   { id:'lov_pioneers', name:'Hernkyn Pioneers',
-    stats:['12"','3+','3+','4','5','3','3','8','3+'], role:'Fast Attack', pts:32, min:3, max:9, ppm:32, isNew:true,
+    stats:['12"','3+','3+','4','5','3','3','8','3+'], role:'Fast Attack', pts:96, min:3, max:9, ppm:32, isNew:true,
     wargear:['Twin Bolt Cannon'],
     abilities:['Grim Endurance',
                'Scouts: Move up to 9" before first battle round',
@@ -75,7 +75,7 @@ const FACTION_LEAGUES_OF_VOTANN = [
                'Explodes: On 6 when destroyed — D6 mortal wounds within 6"'] },
 
   { id:'lov_earthshakers', name:'Cthonian Earthshakers',
-    stats:['4"','4+','3+','3','4','2','1','8','4+'], role:'Heavy Support', pts:30, min:3, max:9, ppm:30, isNew:true,
+    stats:['4"','4+','3+','3','4','2','1','8','4+'], role:'Heavy Support', pts:90, min:3, max:9, ppm:30, isNew:true,
     wargear:['Seismic Cannon','Mole Grenade Launcher'],
     abilities:['Grim Endurance',
                'Dug In: If did not move add 1 to hit rolls and re-roll number of shots for Seismic Cannon',
