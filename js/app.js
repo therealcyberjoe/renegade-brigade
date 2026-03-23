@@ -159,7 +159,7 @@ function renderUnitBrowser() {
 
   list.innerHTML = filtered.map(u => {
     const sizeLabel = u.min ? (u.min === u.max ? `${u.min} models` : `${u.min}–${u.max} models`) : '';
-    const ptsLabel = u.ppm && u.min ? `${u.pts} + ${u.ppm}pts/model` : u.min > 1 ? `${u.pts} (${u.min} models)` : `${u.pts} pts`;
+    const ptsLabel = u.ppm && u.min > 1 ? `${u.pts}pts (${u.min} min) +${u.ppm}ea` : u.ppm ? `${u.pts}pts +${u.ppm}pts/model` : u.min > 1 ? `${u.pts}pts (${u.min} models)` : `${u.pts}pts`;
     return `
     <div class="unit-row">
       <div style="flex:1;min-width:0;">
