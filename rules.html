@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Warhammer 40,000 — 8th Edition Rules Primer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Barlow+Condensed:wght@300;400;600;700&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0e0e10;
+    --panel: #16161a;
+    --border: #2a2a32;
+    --text: #d4d4d8;
+    --muted: #71717a;
+    --gold: #c9a84c;
+    --green: #4aaa5a;
+    --red: #8b2020;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Barlow', sans-serif;
+    font-size: 14px;
+    line-height: 1.7;
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 40px 24px 80px;
+  }
+
+  /* ── HEADER ── */
+  .page-header {
+    text-align: center;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 32px;
+    margin-bottom: 40px;
+  }
+
+  .page-header img {
+    width: 56px;
+    height: 56px;
+    object-fit: contain;
+    margin-bottom: 16px;
+  }
+
+  .page-header h1 {
+    font-family: 'Cinzel', serif;
+    font-size: 22px;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+
+  .page-header p {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 13px;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+  }
+
+  .back-link {
+    display: inline-block;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    margin-bottom: 32px;
+  }
+
+  .back-link:hover { color: var(--green); }
+
+  /* ── SECTIONS ── */
+  .section {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    margin-bottom: 24px;
+    overflow: hidden;
+  }
+
+  .section-header {
+    background: #1c1c22;
+    border-bottom: 1px solid var(--border);
+    padding: 12px 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .section-number {
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    color: var(--gold);
+    background: rgba(201,168,76,0.1);
+    border: 1px solid rgba(201,168,76,0.3);
+    padding: 2px 8px;
+    letter-spacing: 0.1em;
+  }
+
+  .section-title {
+    font-family: 'Cinzel', serif;
+    font-size: 13px;
+    letter-spacing: 0.15em;
+    color: var(--text);
+    text-transform: uppercase;
+  }
+
+  .section-body {
+    padding: 20px;
+  }
+
+  .section-body p {
+    margin-bottom: 12px;
+    color: var(--text);
+  }
+
+  .section-body p:last-child { margin-bottom: 0; }
+
+  /* ── PHASE BLOCKS ── */
+  .phase-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 12px;
+    margin-top: 12px;
+  }
+
+  .phase {
+    border: 1px solid var(--border);
+    padding: 14px;
+  }
+
+  .phase-name {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 8px;
+  }
+
+  .phase p {
+    font-size: 13px;
+    color: #a1a1aa;
+    margin-bottom: 0 !important;
+  }
+
+  /* ── TABLES ── */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 12px 0;
+    font-size: 13px;
+  }
+
+  th {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    background: #1c1c22;
+    padding: 8px 12px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+  }
+
+  td {
+    padding: 8px 12px;
+    border-bottom: 1px solid var(--border);
+    color: var(--text);
+  }
+
+  tr:last-child td { border-bottom: none; }
+  tr:nth-child(even) { background: rgba(255,255,255,0.02); }
+
+  /* ── CALLOUTS ── */
+  .callout {
+    border-left: 3px solid var(--gold);
+    padding: 12px 16px;
+    background: rgba(201,168,76,0.05);
+    margin: 12px 0;
+    font-size: 13px;
+    color: #a1a1aa;
+  }
+
+  .callout strong {
+    color: var(--gold);
+    font-family: 'Barlow Condensed', sans-serif;
+    letter-spacing: 0.05em;
+    font-size: 12px;
+    text-transform: uppercase;
+  }
+
+  .callout.red {
+    border-left-color: #8b3030;
+    background: rgba(139,48,48,0.05);
+  }
+
+  .callout.red strong { color: #c46060; }
+
+  .callout.green {
+    border-left-color: var(--green);
+    background: rgba(74,170,90,0.05);
+  }
+
+  .callout.green strong { color: var(--green); }
+
+  /* ── STAT PROFILE ── */
+  .stat-profile {
+    display: flex;
+    gap: 0;
+    margin: 12px 0;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 12px;
+    overflow-x: auto;
+  }
+
+  .stat-cell {
+    flex: 1;
+    text-align: center;
+    border: 1px solid var(--border);
+    border-right: none;
+    min-width: 40px;
+  }
+
+  .stat-cell:last-child { border-right: 1px solid var(--border); }
+
+  .stat-label {
+    background: #1c1c22;
+    border-bottom: 1px solid var(--border);
+    padding: 4px;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    color: var(--gold);
+    text-transform: uppercase;
+  }
+
+  .stat-value {
+    padding: 6px 4px;
+    color: var(--text);
+    font-size: 13px;
+  }
+
+  /* ── WEAPON TABLE EXAMPLE ── */
+  .example-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin: 16px 0 6px;
+  }
+
+  /* ── DICE ROLL SEQUENCE ── */
+  .roll-sequence {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 12px 0;
+    flex-wrap: wrap;
+  }
+
+  .roll-step {
+    background: #1c1c22;
+    border: 1px solid var(--border);
+    padding: 8px 14px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.05em;
+    text-align: center;
+    min-width: 90px;
+  }
+
+  .roll-step span {
+    display: block;
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 2px;
+  }
+
+  .roll-arrow {
+    color: var(--gold);
+    font-size: 16px;
+  }
+
+  /* ── TOC ── */
+  .toc {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-top: 12px;
+  }
+
+  .toc a {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 13px;
+    color: var(--muted);
+    text-decoration: none;
+    letter-spacing: 0.05em;
+    padding: 4px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .toc a:hover { color: var(--green); }
+
+  .toc a span {
+    color: var(--gold);
+    margin-right: 8px;
+    font-size: 11px;
+  }
+
+  /* ── PRINT / PDF ── */
+  @media print {
+    body { background: #fff; color: #111; max-width: 100%; }
+    .section { border: 1px solid #ccc; }
+    .section-header { background: #f0f0f0; }
+    .phase { border: 1px solid #ccc; }
+    .callout { border-left-color: #888; background: #f8f8f8; }
+    th { background: #f0f0f0; color: #333; }
+    .back-link, .print-btn { display: none; }
+    :root { --text: #111; --muted: #555; --gold: #8B6914; --bg: #fff; --panel: #fff; --border: #ccc; }
+  }
+
+  /* ── BUTTONS ── */
+  .action-bar {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 32px;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 9px 20px;
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--text);
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+  }
+
+  .btn:hover { border-color: var(--green); color: var(--green); }
+  .btn.primary { background: var(--green); border-color: var(--green); color: #0e0e10; font-weight: 700; }
+  .btn.primary:hover { background: #5acc6a; }
+</style>
+</head>
+<body>
+
+<a href="index.html" class="back-link">← Back to Army Builder</a>
+
+<div class="page-header">
+  <img src="assets/logo.png" alt="Renegade Brigade">
+  <h1>Rules Primer</h1>
+  <p>Warhammer 40,000 · 8th Edition · Community Reference Guide</p>
+</div>
+
+<div class="action-bar">
+  <button class="btn primary" onclick="window.print()">⬇ Save as PDF</button>
+  <a href="index.html" class="btn">← Army Builder</a>
+</div>
+
+<div class="section">
+  <div class="section-header">
+    <span class="section-number">00</span>
+    <span class="section-title">Contents</span>
+  </div>
+  <div class="section-body">
+    <div class="toc">
+      <a href="#stats"><span>01</span> Unit Profiles</a>
+      <a href="#turn"><span>02</span> The Battle Round</a>
+      <a href="#movement"><span>03</span> Movement Phase</a>
+      <a href="#psychic"><span>04</span> Psychic Phase</a>
+      <a href="#shooting"><span>05</span> Shooting Phase</a>
+      <a href="#charge"><span>06</span> Charge Phase</a>
+      <a href="#fight"><span>07</span> Fight Phase</a>
+      <a href="#morale"><span>08</span> Morale Phase</a>
+      <a href="#weapons"><span>09</span> Weapon Types</a>
+      <a href="#terrain"><span>10</span> Terrain & Cover</a>
+      <a href="#detachments"><span>11</span> Detachments & CP</a>
+      <a href="#keywords"><span>12</span> Keywords</a>
+    </div>
+  </div>
+</div>
+
+<!-- 01 UNIT PROFILES -->
+<div class="section" id="stats">
+  <div class="section-header">
+    <span class="section-number">01</span>
+    <span class="section-title">Unit Profiles — Reading a Datasheet</span>
+  </div>
+  <div class="section-body">
+    <p>Every unit in the game has a datasheet that defines how it moves, fights and survives. The stat line runs across the top of the datasheet. Here is what each value means:</p>
+
+    <div class="example-label">Example — Space Marine Intercessor</div>
+    <div class="stat-profile">
+      <div class="stat-cell"><div class="stat-label">M</div><div class="stat-value">6"</div></div>
+      <div class="stat-cell"><div class="stat-label">WS</div><div class="stat-value">3+</div></div>
+      <div class="stat-cell"><div class="stat-label">BS</div><div class="stat-value">3+</div></div>
+      <div class="stat-cell"><div class="stat-label">S</div><div class="stat-value">4</div></div>
+      <div class="stat-cell"><div class="stat-label">T</div><div class="stat-value">4</div></div>
+      <div class="stat-cell"><div class="stat-label">W</div><div class="stat-value">2</div></div>
+      <div class="stat-cell"><div class="stat-label">A</div><div class="stat-value">2</div></div>
+      <div class="stat-cell"><div class="stat-label">Ld</div><div class="stat-value">7</div></div>
+      <div class="stat-cell"><div class="stat-label">Sv</div><div class="stat-value">3+</div></div>
+    </div>
+
+    <table>
+      <tr><th>Stat</th><th>Name</th><th>What it means</th></tr>
+      <tr><td>M</td><td>Movement</td><td>How far the model can move each turn in inches</td></tr>
+      <tr><td>WS</td><td>Weapon Skill</td><td>The roll needed to hit in melee — lower is better</td></tr>
+      <tr><td>BS</td><td>Ballistic Skill</td><td>The roll needed to hit with ranged weapons — lower is better</td></tr>
+      <tr><td>S</td><td>Strength</td><td>How hard the model hits — compared to target Toughness to determine wounding</td></tr>
+      <tr><td>T</td><td>Toughness</td><td>How hard the model is to wound</td></tr>
+      <tr><td>W</td><td>Wounds</td><td>How much damage the model can take before it's removed</td></tr>
+      <tr><td>A</td><td>Attacks</td><td>Number of melee attacks the model makes in the Fight phase</td></tr>
+      <tr><td>Ld</td><td>Leadership</td><td>Used for Morale tests — higher is better</td></tr>
+      <tr><td>Sv</td><td>Save</td><td>The roll needed to ignore a wound — lower is better (3+ saves on 3, 4, 5 or 6)</td></tr>
+    </table>
+
+    <p>Some models also have an <strong>Invulnerable Save</strong> listed separately (e.g. 4++). This save can never be modified by Armour Penetration — it always works on the listed roll regardless of what hit it.</p>
+  </div>
+</div>
+
+<!-- 02 BATTLE ROUND -->
+<div class="section" id="turn">
+  <div class="section-header">
+    <span class="section-number">02</span>
+    <span class="section-title">The Battle Round</span>
+  </div>
+  <div class="section-body">
+    <p>A game of Warhammer 40,000 is played over a series of Battle Rounds. Each Battle Round consists of two player turns — one for each player. At the start of each battle round both players roll a die; the player who rolls highest chooses who goes first.</p>
+
+    <div class="phase-grid">
+      <div class="phase">
+        <div class="phase-name">1 — Movement</div>
+        <p>Move your units up to their Movement value. Units can Advance (add D6") but cannot then shoot most weapons. Units in melee cannot move unless they Fall Back.</p>
+      </div>
+      <div class="phase">
+        <div class="phase-name">2 — Psychic</div>
+        <p>Psyker models attempt to manifest psychic powers. The opponent may attempt to Deny the Witch. Some powers can deal mortal wounds directly.</p>
+      </div>
+      <div class="phase">
+        <div class="phase-name">3 — Shooting</div>
+        <p>Units that have not Fallen Back or Advanced (with most weapons) may shoot at enemy units. Units locked in melee cannot shoot.</p>
+      </div>
+      <div class="phase">
+        <div class="phase-name">4 — Charge</div>
+        <p>Units may attempt to charge an enemy unit within 12". Roll 2D6 — the result must meet or exceed the distance to the target. The defending unit may fire Overwatch on 6s.</p>
+      </div>
+      <div class="phase">
+        <div class="phase-name">5 — Fight</div>
+        <p>All units in melee fight. Units that charged this turn fight first, then all other units. Each model makes its number of Attacks. Units that have been wiped out do not fight back.</p>
+      </div>
+      <div class="phase">
+        <div class="phase-name">6 — Morale</div>
+        <p>Units that lost models this turn must take a Morale test. Roll a D6 and add the number of models lost — if the result exceeds the unit's Leadership, additional models flee.</p>
+      </div>
+    </div>
+
+    <div class="callout">
+      <strong>Key Rule</strong> — Players alternate activating units in the Fight phase, not the rest of the turn. In all other phases, the active player completes their entire phase before the opponent acts.
+    </div>
+  </div>
+</div>
+
+<!-- 03 MOVEMENT -->
+<div class="section" id="movement">
+  <div class="section-header">
+    <span class="section-number">03</span>
+    <span class="section-title">Movement Phase</span>
+  </div>
+  <div class="section-body">
+    <p>During your Movement phase you may move any or all of your units. Each model in a unit can move up to its Movement (M) characteristic in inches. Models cannot move through other models or impassable terrain, but they can move over terrain that is lower than 1" tall without penalty.</p>
+
+    <table>
+      <tr><th>Action</th><th>Effect</th><th>Restriction</th></tr>
+      <tr><td>Normal Move</td><td>Move up to M"</td><td>Cannot end within 1" of an enemy unit</td></tr>
+      <tr><td>Advance</td><td>Move up to M + D6"</td><td>Cannot shoot most weapons or charge this turn</td></tr>
+      <tr><td>Fall Back</td><td>Move up to M" away from combat</td><td>Cannot shoot or charge this turn</td></tr>
+      <tr><td>Remain Stationary</td><td>Do not move</td><td>Some weapons get bonuses for not moving</td></tr>
+    </table>
+
+    <p><strong>Unit Coherency:</strong> All models in a unit must remain within 2" horizontally and 6" vertically of at least one other model in the same unit at the end of every move. If a unit cannot maintain coherency, models are removed until it can.</p>
+
+    <p><strong>Reinforcements:</strong> Units held in reserve arrive at the end of your Movement phase. Unless their rules specify otherwise, they are set up anywhere on the battlefield more than 9" from any enemy model.</p>
+
+    <div class="callout">
+      <strong>Fly Keyword</strong> — Units with the Fly keyword can move over other models and terrain freely. They still cannot end their move on top of another model.
+    </div>
+  </div>
+</div>
+
+<!-- 04 PSYCHIC -->
+<div class="section" id="psychic">
+  <div class="section-header">
+    <span class="section-number">04</span>
+    <span class="section-title">Psychic Phase</span>
+  </div>
+  <div class="section-body">
+    <p>Psyker models can attempt to manifest psychic powers listed on their datasheet. Each Psyker knows the power <em>Smite</em> unless stated otherwise, plus any additional powers listed on their datasheet or chosen from their faction's psychic discipline.</p>
+
+    <p><strong>Manifesting a Power:</strong> Declare which power you are using, then roll 2D6. If the result equals or exceeds the power's Warp Charge value, the power takes effect. If you roll a double 1 or double 6, the Psyker suffers Perils of the Warp — roll a D6: on a 1 or 6 they suffer D3 mortal wounds, and on a 1 they are removed if this kills them.</p>
+
+    <p><strong>Deny the Witch:</strong> The opposing player may attempt to negate a successfully manifested power. Roll 2D6 — if the result exceeds the manifesting player's roll, the power is cancelled. Only one attempt to Deny each power may be made, and only by a Psyker within 24" of the manifesting Psyker.</p>
+
+    <div class="callout">
+      <strong>Smite</strong> — Warp Charge 5. The closest visible enemy unit within 18" suffers D3 mortal wounds. If the Psychic test result was 11 or more, it suffers D6 mortal wounds instead. In matched play each non-Smite power can only be attempted once per turn across the whole army.
+    </div>
+
+    <p><strong>Mortal Wounds</strong> bypass armour and invulnerable saves entirely — each mortal wound deals 1 wound directly. Excess mortal wounds carry over to other models in the same unit.</p>
+  </div>
+</div>
+
+<!-- 05 SHOOTING -->
+<div class="section" id="shooting">
+  <div class="section-header">
+    <span class="section-number">05</span>
+    <span class="section-title">Shooting Phase</span>
+  </div>
+  <div class="section-body">
+    <p>Each unit that is eligible to shoot may do so once in your Shooting phase. A unit cannot shoot if it Advanced (with most weapons), Fell Back, or is within 1" of an enemy unit. Each model in the unit can fire all of its ranged weapons.</p>
+
+    <p>Resolving a shooting attack follows a sequence of dice rolls:</p>
+
+    <div class="roll-sequence">
+      <div class="roll-step"><span>Step 1</span>Roll To Hit</div>
+      <div class="roll-arrow">→</div>
+      <div class="roll-step"><span>Step 2</span>Roll To Wound</div>
+      <div class="roll-arrow">→</div>
+      <div class="roll-step"><span>Step 3</span>Saving Throw</div>
+      <div class="roll-arrow">→</div>
+      <div class="roll-step"><span>Step 4</span>Allocate Damage</div>
+    </div>
+
+    <p><strong>Step 1 — Roll To Hit:</strong> Roll a number of D6 equal to the weapon's Attacks characteristic. Each die that equals or exceeds the model's BS characteristic is a hit. A roll of 1 always fails regardless of modifiers.</p>
+
+    <p><strong>Step 2 — Roll To Wound:</strong> For each hit, roll a D6 comparing the weapon's Strength to the target's Toughness:</p>
+
+    <table>
+      <tr><th>Strength vs Toughness</th><th>Roll Required</th></tr>
+      <tr><td>Strength is twice Toughness or more (S ≥ 2×T)</td><td>2+</td></tr>
+      <tr><td>Strength is greater than Toughness (S > T)</td><td>3+</td></tr>
+      <tr><td>Strength equals Toughness (S = T)</td><td>4+</td></tr>
+      <tr><td>Strength is lower than Toughness (S &lt; T)</td><td>5+</td></tr>
+      <tr><td>Strength is half Toughness or less (S ≤ T/2)</td><td>6+</td></tr>
+    </table>
+
+    <p><strong>Step 3 — Saving Throw:</strong> The target player rolls a D6 for each wound. The die must equal or exceed the model's Save characteristic. Subtract the weapon's Armour Penetration (AP) value from the die roll — AP-1 means subtract 1, AP-2 means subtract 2, and so on. A roll of 1 always fails. If the model has an Invulnerable Save, use that instead (AP does not apply).</p>
+
+    <p><strong>Step 4 — Allocate Damage:</strong> Each failed save causes wounds equal to the weapon's Damage characteristic. Apply this to one model at a time — you must finish killing a model before moving damage to the next. Excess damage does not carry over between models.</p>
+
+    <div class="callout">
+      <strong>Line of Sight</strong> — A model can shoot at a target if any part of that target unit is visible to any model in the shooting unit. Use true line of sight from the model's perspective. Intervening terrain or models can block line of sight.
+    </div>
+  </div>
+</div>
+
+<!-- 06 CHARGE -->
+<div class="section" id="charge">
+  <div class="section-header">
+    <span class="section-number">06</span>
+    <span class="section-title">Charge Phase</span>
+  </div>
+  <div class="section-body">
+    <p>During your Charge phase, any eligible unit may attempt to charge an enemy unit that is within 12". A unit that has Fallen Back or Advanced cannot charge that turn (unless a special rule permits it).</p>
+
+    <p><strong>Declaring a Charge:</strong> Choose the charging unit and one or more target units, all of which must be within 12". Roll 2D6 — this is your charge distance. The result must be sufficient to move any model in the charging unit to within 1" of any model in every target unit it declared a charge against. If the roll is insufficient, the charge fails and the unit does not move.</p>
+
+    <p><strong>Overwatch:</strong> Before rolling the charge, each target unit may fire Overwatch. Overwatch works exactly like shooting, except all hit rolls of 1, 2, 3, 4 and 5 automatically miss — only a 6 hits. A unit can only fire Overwatch once per phase. Some special rules allow Overwatch on 5+ or even 4+.</p>
+
+    <p><strong>Heroic Intervention:</strong> After charges are resolved, any enemy Character models within 3" of the charging unit may perform a Heroic Intervention — moving up to 3" to get within 1" of the charging unit. They may not end their move further from the charging unit than they started.</p>
+  </div>
+</div>
+
+<!-- 07 FIGHT -->
+<div class="section" id="fight">
+  <div class="section-header">
+    <span class="section-number">07</span>
+    <span class="section-title">Fight Phase</span>
+  </div>
+  <div class="section-body">
+    <p>In the Fight phase, all units within 1" of an enemy unit fight. The two players alternate choosing units to fight with — but units that charged this turn always fight before any others.</p>
+
+    <p><strong>Pile In:</strong> Before attacking, each model in the fighting unit may move up to 3" toward the nearest enemy model. This free move is called a pile-in and helps models get into base contact.</p>
+
+    <p><strong>Making Attacks:</strong> Each model makes a number of attacks equal to its Attacks characteristic, using its melee weapons. The sequence is the same as shooting: roll to hit (using WS), roll to wound, opponent makes saving throws, allocate damage. A roll of 1 to hit in melee always fails.</p>
+
+    <p><strong>Consolidate:</strong> After all of a unit's attacks are resolved, each model may move up to 3" toward the nearest enemy model. This is the consolidate move — it can be used to engage additional enemy units.</p>
+
+    <div class="callout">
+      <strong>Fight Order</strong> — Units that charged fight first. Then the players alternate: the player whose turn it is picks a unit, then the opponent picks a unit, and so on until all eligible units have fought. A unit cannot be chosen to fight more than once per phase unless a special rule specifically allows it.
+    </div>
+
+    <div class="callout red">
+      <strong>Locked in Combat</strong> — Units within 1" of an enemy cannot shoot. They also cannot move in the Movement phase unless they Fall Back. A unit that Falls Back cannot charge that turn and cannot shoot most weapons.
+    </div>
+  </div>
+</div>
+
+<!-- 08 MORALE -->
+<div class="section" id="morale">
+  <div class="section-header">
+    <span class="section-number">08</span>
+    <span class="section-title">Morale Phase</span>
+  </div>
+  <div class="section-body">
+    <p>At the end of each player's turn, any unit that had models destroyed during that turn must take a Morale test. Units with only one model, or that lost no models, do not test.</p>
+
+    <p><strong>Taking the Test:</strong> Roll a D6 and add the number of models that were destroyed in that unit during this turn. If the result is greater than the unit's Leadership characteristic, the unit fails. For each point by which the total exceeds Leadership, one additional model flees and is removed from play.</p>
+
+    <div class="callout green">
+      <strong>Example</strong> — A unit of 10 Guardsmen (Leadership 6) loses 3 models to shooting. The player rolls a D6 and gets a 4. Adding 3 for the models lost gives 7. This exceeds Leadership 6 by 1, so 1 additional model flees — 4 models removed in total.
+    </div>
+
+    <p><strong>Command Points:</strong> A player may spend 1 Command Point to automatically pass a Morale test for one of their units. This is called the Our Finest Hour Stratagem and can be used at any time during the Morale phase.</p>
+  </div>
+</div>
+
+<!-- 09 WEAPON TYPES -->
+<div class="section" id="weapons">
+  <div class="section-header">
+    <span class="section-number">09</span>
+    <span class="section-title">Weapon Types</span>
+  </div>
+  <div class="section-body">
+    <p>Every ranged weapon has a type that determines when and how it can be fired. The weapon's profile lists its type followed by the number of shots (e.g. "Rapid Fire 2" or "Heavy D6").</p>
+
+    <table>
+      <tr><th>Type</th><th>Rules</th></tr>
+      <tr><td><strong>Rapid Fire</strong></td><td>Fires twice the listed number of shots if the target is within half the weapon's range. Can be fired after Advancing at -1 to hit if the weapon has the Assault keyword.</td></tr>
+      <tr><td><strong>Heavy</strong></td><td>If the bearer moved this turn, subtract 1 from all hit rolls with this weapon. No penalty if the model did not move.</td></tr>
+      <tr><td><strong>Assault</strong></td><td>Can be fired even after the unit Advances, but at -1 to hit. Can also be fired in the same turn a unit charges.</td></tr>
+      <tr><td><strong>Pistol</strong></td><td>Can be fired even when the unit is within 1" of an enemy. Must target the closest enemy unit. Can be fired even if the unit is locked in melee.</td></tr>
+      <tr><td><strong>Grenade</strong></td><td>One model per unit may throw a grenade in the Shooting phase instead of firing their other weapons.</td></tr>
+      <tr><td><strong>Melee</strong></td><td>Used only in the Fight phase. If no melee weapon is listed, the model fights with bare fists (S user, AP 0, D1).</td></tr>
+    </table>
+
+    <p>Weapon profiles also list the following stats:</p>
+
+    <table>
+      <tr><th>Stat</th><th>Meaning</th></tr>
+      <tr><td>Range</td><td>Maximum distance to a target in inches. Melee weapons have a range of 1".</td></tr>
+      <tr><td>S (Strength)</td><td>Used to determine wounding rolls. "User" means use the model's own Strength.</td></tr>
+      <tr><td>AP (Armour Penetration)</td><td>Subtracted from the target's saving throw. AP0 has no effect; AP-3 means the target saves at -3.</td></tr>
+      <tr><td>D (Damage)</td><td>Wounds caused per failed save. D3 means roll a D6 and halve the result. D6 means roll a full D6.</td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- 10 TERRAIN -->
+<div class="section" id="terrain">
+  <div class="section-header">
+    <span class="section-number">10</span>
+    <span class="section-title">Terrain &amp; Cover</span>
+  </div>
+  <div class="section-body">
+    <p>Terrain pieces provide cover and can block line of sight. Before the game begins, players should agree on how terrain features will be treated.</p>
+
+    <p><strong>Cover:</strong> A unit that is partially obscured from the attacker by a terrain feature, and is not a Vehicle or Monster, can claim a cover save. When claiming cover, add 1 to all saving throws for that unit (including invulnerable saves). Cover has no effect on Mortal Wounds.</p>
+
+    <p><strong>Dense Cover:</strong> Some terrain pieces are dense enough to fully block line of sight. If all models in a target unit are on the other side of dense terrain, the unit cannot be targeted at all.</p>
+
+    <p><strong>Difficult Ground:</strong> Moving through certain terrain (such as ruins, woods or water features) may be treated as difficult ground — models moving through it treat the terrain as costing 2" of movement per 1" moved through it. Agree before the game which pieces count as difficult ground.</p>
+
+    <p><strong>Buildings:</strong> Models can garrison buildings if they have sufficient capacity. Models inside a building can shoot from windows and fire points, and count as being in cover. They cannot be directly targeted unless the attacker also has models inside the same building.</p>
+  </div>
+</div>
+
+<!-- 11 DETACHMENTS -->
+<div class="section" id="detachments">
+  <div class="section-header">
+    <span class="section-number">11</span>
+    <span class="section-title">Detachments &amp; Command Points</span>
+  </div>
+  <div class="section-body">
+    <p>In Matched Play armies are organised into one or more Detachments, each of which has required slots (minimum numbers of certain unit types) and optional slots (maximum numbers). Meeting the requirements of a Detachment earns Command Points (CP).</p>
+
+    <table>
+      <tr><th>Detachment</th><th>HQ</th><th>Troops</th><th>Elites</th><th>Fast</th><th>Heavy</th><th>CP</th></tr>
+      <tr><td>Battalion</td><td>2</td><td>3–6</td><td>0–6</td><td>0–3</td><td>0–3</td><td>+5</td></tr>
+      <tr><td>Brigade</td><td>3–5</td><td>6–12</td><td>3–8</td><td>3–8</td><td>3–8</td><td>+9</td></tr>
+      <tr><td>Patrol</td><td>1–2</td><td>1–3</td><td>0–2</td><td>0–2</td><td>0–2</td><td>+0</td></tr>
+      <tr><td>Spearhead</td><td>1–2</td><td>0–3</td><td>0–3</td><td>0–3</td><td>3+</td><td>+1</td></tr>
+      <tr><td>Outrider</td><td>1–2</td><td>0–3</td><td>0–3</td><td>3+</td><td>0–3</td><td>+1</td></tr>
+      <tr><td>Vanguard</td><td>1–2</td><td>0–3</td><td>3+</td><td>0–3</td><td>0–3</td><td>+1</td></tr>
+      <tr><td>Supreme Command</td><td>3–5</td><td>—</td><td>—</td><td>—</td><td>—</td><td>+1</td></tr>
+      <tr><td>Auxiliary Support</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>−1</td></tr>
+    </table>
+
+    <p><strong>Command Points</strong> are spent to use Stratagems — powerful one-off abilities that can tip the balance of a key moment. Each army starts with 3 CP plus whatever is earned from Detachments. Common uses include:</p>
+
+    <table>
+      <tr><th>Stratagem</th><th>CP Cost</th><th>Effect</th></tr>
+      <tr><td>Counter-offensive</td><td>2</td><td>After an enemy unit fights, pick one of your units within 1" — it fights immediately before any other units</td></tr>
+      <tr><td>Insane Bravery</td><td>2</td><td>Automatically pass one Morale test</td></tr>
+      <tr><td>Rapid Fire</td><td>1</td><td>One Infantry unit may shoot twice in the Shooting phase</td></tr>
+      <tr><td>Smokescreen</td><td>1</td><td>One Vehicle gains a 4+ invulnerable save against shooting until your next turn</td></tr>
+    </table>
+
+    <div class="callout">
+      <strong>Faction Keyword Rule</strong> — All units in a Detachment must share a Faction keyword (e.g. IMPERIUM, CHAOS, AELDARI). Units from different sub-factions can share a detachment as long as they share a common Faction keyword, though many faction-specific abilities only trigger within the same sub-faction.
+    </div>
+  </div>
+</div>
+
+<!-- 12 KEYWORDS -->
+<div class="section" id="keywords">
+  <div class="section-header">
+    <span class="section-number">12</span>
+    <span class="section-title">Keywords</span>
+  </div>
+  <div class="section-body">
+    <p>Every unit has a list of Keywords on its datasheet. Keywords have no inherent rules effect on their own — they exist to be referenced by other rules. If a rule says it affects "INFANTRY" units, it affects any unit with the INFANTRY keyword.</p>
+
+    <p>Some keywords appear in angled brackets, such as &lt;CHAPTER&gt; or &lt;REGIMENT&gt;. These are placeholder keywords — when you build your army, you replace the placeholder with your chosen sub-faction. A Space Marine Captain's &lt;CHAPTER&gt; keyword becomes ULTRAMARINES, RAVEN GUARD, or whichever chapter you have chosen, and his abilities then apply to units of that same chapter.</p>
+
+    <p>Common keywords worth knowing:</p>
+
+    <table>
+      <tr><th>Keyword</th><th>What it means in practice</th></tr>
+      <tr><td>CHARACTER</td><td>Cannot be targeted by ranged attacks if a non-CHARACTER unit with more models is closer to the attacker, unless the Character has 10+ Wounds</td></tr>
+      <tr><td>VEHICLE</td><td>Does not take Morale tests. Has a degrading profile — reduces stats as it loses wounds</td></tr>
+      <tr><td>TITANIC</td><td>Never takes Morale tests. Can fire all weapons even if it moved. Can be targeted regardless of proximity rules</td></tr>
+      <tr><td>INFANTRY</td><td>Can claim cover from terrain. Can garrison certain buildings. Affected by many movement-restricting abilities</td></tr>
+      <tr><td>FLY</td><td>Can move over other models and terrain. Can Fall Back and still shoot or charge</td></tr>
+      <tr><td>PSYKER</td><td>Can manifest psychic powers and attempt to Deny the Witch</td></tr>
+      <tr><td>DAEMON</td><td>Affected by special rules on many Imperial units. Has innate resistance to certain psychic powers</td></tr>
+    </table>
+
+    <div class="callout">
+      <strong>Note on Re-rolls</strong> — Re-rolls always happen before modifiers are applied. If a rule gives you a re-roll and a separate rule gives you +1 to the roll, you re-roll first, then add 1 to the final result. A die can only ever be re-rolled once regardless of how many sources of re-rolls apply.
+    </div>
+  </div>
+</div>
+
+<div style="text-align:center; margin-top:40px; padding:24px; border-top:1px solid var(--border);">
+  <p style="font-family:'Barlow Condensed',sans-serif; font-size:12px; letter-spacing:0.1em; color:var(--muted);">
+    RENEGADE BRIGADE ARMY BUILDER · COMMUNITY RULES REFERENCE<br>
+    This document summarises the core rules of Warhammer 40,000 8th Edition for reference purposes only.<br>
+    Warhammer 40,000 is a property of Games Workshop Ltd.
+  </p>
+</div>
+
+</body>
+</html>
