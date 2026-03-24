@@ -1,4 +1,8 @@
+// FACTION_BLACK_TEMPLARS — chapter-specific units + shared SM pool
+// Must be loaded AFTER sm_shared.js
 const FACTION_BLACK_TEMPLARS = [
+  ...SM_SHARED_UNITS,
+
   // ── HQ ──────────────────────────────────────────────────────────────
   { id:'bt_helbrecht', name:'High Marshal Helbrecht',
     stats:['6"','2+','2+','4','4','6','5','9','2+'], role:'HQ', pts:175, min:1, max:1, ppm:0, isNew:true,

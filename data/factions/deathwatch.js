@@ -1,4 +1,8 @@
+// FACTION_DEATHWATCH — chapter-specific units + shared SM pool
+// Must be loaded AFTER sm_shared.js
 const FACTION_DEATHWATCH = [
+  ...SM_SHARED_UNITS,
+
   { id:'dw_watch_master', name:'Watch Master',
     stats:['6"','2+','2+','4','4','5','4','9','3+'], role:'HQ', pts:130, min:1, max:1, ppm:0,
     wargear:["Guardian Spear",'Tome of the Rites'],

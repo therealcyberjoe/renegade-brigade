@@ -1,4 +1,8 @@
+// FACTION_DARK_ANGELS — chapter-specific units + shared SM pool
+// Must be loaded AFTER sm_shared.js
 const FACTION_DARK_ANGELS = [
+  ...SM_SHARED_UNITS,
+
   { id:'da_azrael', name:'Supreme Grand Master Azrael',
     stats:['6"','2+','2+','4','4','6','5','10','2+'], role:'HQ', pts:180, min:1, max:1, ppm:0,
     wargear:['Lion Helm','Sword of Secrets'],

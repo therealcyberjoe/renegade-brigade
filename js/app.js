@@ -157,10 +157,24 @@ function renderUnitBrowser() {
     return;
   }
 
-  list.innerHTML = filtered.map(u => {
+  // Sort by role order, then name
+  const roleOrder = ['HQ','Troops','Elites','Fast Attack','Heavy Support','Flyer','Lord of War','Dedicated Transport','Fortification'];
+  const sorted = [...filtered].sort((a, b) => {
+    const ai = roleOrder.indexOf(a.role); const bi = roleOrder.indexOf(b.role);
+    if (ai !== bi) return (ai === -1 ? 99 : ai) - (bi === -1 ? 99 : bi);
+    return a.name.localeCompare(b.name);
+  });
+
+  let html = '';
+  let lastRole = null;
+  sorted.forEach(u => {
     const sizeLabel = u.min ? (u.min === u.max ? `${u.min} models` : `${u.min}–${u.max} models`) : '';
     const ptsLabel = u.ppm && u.min > 1 ? `${u.pts}pts (${u.min} min) +${u.ppm}ea` : u.ppm ? `${u.pts}pts +${u.ppm}pts/model` : u.min > 1 ? `${u.pts}pts (${u.min} models)` : `${u.pts}pts`;
-    return `
+    if (state.activeRoleFilter === 'All' && u.role !== lastRole) {
+      lastRole = u.role;
+      html += `<div class="unit-role-header">${u.role}</div>`;
+    }
+    html += `
     <div class="unit-row">
       <div style="flex:1;min-width:0;">
         <div class="unit-row-name">${u.name}${u.isNew ? '<span class="new-badge">NEW</span>' : ''}</div>
@@ -170,7 +184,8 @@ function renderUnitBrowser() {
       <div class="unit-row-pts">${ptsLabel}</div>
       <button class="add-btn" onclick="addUnit('${u.id}')" title="Add to roster">+</button>
     </div>`;
-  }).join('');
+  });
+  list.innerHTML = html;
 }
 
 // ============================================================
@@ -185,12 +200,7 @@ function addUnit(unitId) {
   const hasOptions = unit.options && unit.options.length > 0;
   const hasPpm = !!(unit.ppm && unit.ppm > 0);
 
-  // Units without options or per-model cost: just stack qty (multiple unit copies)
-  if (!hasOptions && !hasPpm) {
-    const existing = state.roster.find(r => r.unitId === unitId);
-    if (existing) { existing.qty++; renderRoster(); updateTotalPoints(); renderForceOrg(); return; }
-  }
-
+  // Always create a new entry — allows same unit multiple times with different loadouts
   // Build default selections
   const selections = {};
   let optionPts = 0;
@@ -202,7 +212,7 @@ function addUnit(unitId) {
     });
   }
 
-  const instanceId = (hasOptions || hasPpm) ? unitId + '_' + Date.now() : unitId;
+  const instanceId = unitId + '_' + Date.now();
   const minModels = unit.min || 1;
 
   state.roster.push({
@@ -389,11 +399,6 @@ function renderRoster() {
           <div class="roster-unit-top">
             <div class="roster-unit-name">${u.name}</div>
             <div class="roster-unit-controls">
-              <div class="qty-control">
-                <button class="qty-btn" onclick="changeQty('${u.unitId}', -1)">−</button>
-                <span class="qty-value">${u.qty}</span>
-                <button class="qty-btn" onclick="changeQty('${u.unitId}', 1)">+</button>
-              </div>
               <div class="roster-unit-pts" id="upts_${safeId}">${totalPts} pts</div>
               <button class="remove-btn" onclick="removeUnit('${u.unitId}')" title="Remove">✕</button>
             </div>

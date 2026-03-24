@@ -1,4 +1,8 @@
+// FACTION_BLOOD_ANGELS — chapter-specific units + shared SM pool
+// Must be loaded AFTER sm_shared.js
 const FACTION_BLOOD_ANGELS = [
+  ...SM_SHARED_UNITS,
+
   { id:'ba_dante', name:'Commander Dante',
     stats:['12"','2+','2+','4','4','6','5','10','2+'], role:'HQ', pts:195, min:1, max:1, ppm:0,
     wargear:['Axe Mortalis','Perdition Pistol','Inferno Pistol'],

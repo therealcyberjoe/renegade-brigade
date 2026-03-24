@@ -360,6 +360,22 @@
 
   .unit-list { display: flex; flex-direction: column; gap: 4px; }
 
+  .unit-role-header {
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    padding: 8px 10px 4px;
+    margin-top: 4px;
+    border-top: 1px solid var(--border);
+  }
+
+  .unit-role-header:first-child {
+    border-top: none;
+    margin-top: 0;
+  }
+
   .unit-row {
     display: flex;
     align-items: center;

@@ -1,4 +1,8 @@
+// FACTION_SPACE_WOLVES — chapter-specific units + shared SM pool
+// Must be loaded AFTER sm_shared.js
 const FACTION_SPACE_WOLVES = [
+  ...SM_SHARED_UNITS,
+
   { id:'sw_ragnar', name:'Ragnar Blackmane',
     stats:['6"','2+','2+','4','4','5','5','9','3+'], role:'HQ', pts:130, min:1, max:1, ppm:0,
     wargear:['Frostfang','Bolt Pistol'],
