@@ -1,6 +1,6 @@
 const FACTION_DEATH_GUARD = [
   { id:'dg_mortarion', name:'Mortarion',
-    stats:['9"','2+','2+','8','8','18','7','10','3+'], role:'Lord of War', pts:475, min:1, max:1, ppm:0,
+    stats:['9"','2+','2+','8','8','18','7','10','3+'], role:'Lord of War', pts:475, min:1, max:1, ppm:0, unique:true,
     wargear:['Silence','Phosphex Bombs','The Lantern'],
     abilities:['Daemonic Resilience: Reduce all damage by 1 (minimum 1)',
                'Disgustingly Resilient: 5+ Feel No Pain','Psyker: Mastery Level 2',
@@ -8,7 +8,7 @@ const FACTION_DEATH_GUARD = [
                '4+ invulnerable save'] },
 
   { id:'dg_typhus', name:'Typhus — Herald of Nurgle',
-    stats:['5"','3+','3+','5','5','7','4','9','3+'], role:'HQ', pts:175, min:1, max:1, ppm:0, isNew:true,
+    stats:['5"','3+','3+','5','5','7','4','9','3+'], role:'HQ', pts:175, min:1, max:1, ppm:0, unique:true, isNew:true,
     wargear:['Manreaper','Plague Sprayer'],
     abilities:['Psyker: Mastery Level 2',
                'Host of the Destroyer Hive: Friendly Poxwalkers within 7" add 1 to Attacks',

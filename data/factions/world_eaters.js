@@ -1,6 +1,6 @@
 const FACTION_WORLD_EATERS = [
   { id:'we_angron', name:'Angron, Daemon Primarch of Khorne',
-    stats:['16"','2+','5+','8','8','18','8','10','4+'], role:'Lord of War', pts:450, min:1, max:1, ppm:0, isNew:true,
+    stats:['16"','2+','5+','8','8','18','8','10','4+'], role:'Lord of War', pts:450, min:1, max:1, ppm:0, unique:true, isNew:true,
     wargear:["Samni'arius and Spinegrinder",'The Butcher\'s Nails'],
     abilities:["Blood for the Blood God: Add 1 to Attacks in Fight phase for all World Eaters",
                'Warp-fuelled Rage: May Advance and charge in same turn',
@@ -18,7 +18,7 @@ const FACTION_WORLD_EATERS = [
                "World Eaters only"] },
 
   { id:'we_invocatus', name:'Invocatus',
-    stats:['10"','2+','3+','5','5','6','5','9','3+'], role:'HQ', pts:140, min:1, max:1, ppm:0, isNew:true,
+    stats:['10"','2+','3+','5','5','6','5','9','3+'], role:'HQ', pts:140, min:1, max:1, ppm:0, unique:true, isNew:true,
     wargear:['Flamespout','Hellforged Axe','Juggernaut Bladed Horn'],
     abilities:['Daemonic: 4+ invulnerable save',
                'Swift Slaughter: May Advance and still charge',

@@ -7,14 +7,14 @@ const FACTION_SISTERS_OF_BATTLE = [
                'Rosarius: 4+ invulnerable save'] },
 
   { id:'sob_celestine', name:'Saint Celestine',
-    stats:['12"','2+','2+','3','3','5','4','9','3+'], role:'HQ', pts:200, min:1, max:1, ppm:0,
+    stats:['12"','2+','2+','3','3','5','4','9','3+'], role:'HQ', pts:200, min:1, max:1, ppm:0, unique:true,
     wargear:['The Ardent Blade','Plasma Pistol'],
     abilities:['Living Saint: 4+ invulnerable save — when first slain resurrected with D6 wounds on 2+',
                'Divine Intervention: Friendly Adepta Sororitas within 6" re-roll hit rolls of 1',
                'Acts of Faith','Geminae Superia: Two bodyguard models absorb wounds before Celestine'] },
 
   { id:'sob_morvenn_vahl', name:'Morvenn Vahl',
-    stats:['6"','2+','2+','5','6','8','6','10','2+'], role:'HQ', pts:180, min:1, max:1, ppm:0, isNew:true, isNew:true,
+    stats:['6"','2+','2+','5','6','8','6','10','2+'], role:'HQ', pts:180, min:1, max:1, ppm:0, unique:true, isNew:true, isNew:true,
     wargear:['Lance of Illumination','Purgator Missile Launcher','Paragon Fist'],
     abilities:['Armour of the Righteous: 2+ save — 4+ invulnerable save',
                'Abbess Sanctorum: Friendly Adepta Sororitas within 6" re-roll all failed hit rolls',
@@ -36,7 +36,7 @@ const FACTION_SISTERS_OF_BATTLE = [
                'Penances and Prayers: Once per battle restore D3 wounds to one friendly Character within 3"'] },
 
   { id:'sob_ephrael', name:'Ephrael Stern',
-    stats:['7"','2+','2+','3','3','5','5','9','3+'], role:'HQ', pts:95, min:1, max:1, ppm:0, isNew:true, isNew:true,
+    stats:['7"','2+','2+','3','3','5','5','9','3+'], role:'HQ', pts:95, min:1, max:1, ppm:0, unique:true, isNew:true, isNew:true,
     wargear:['The Ardent Blade','Plasma Pistol'],
     abilities:['Psyker: Mastery Level 1',
                "The Heretic's Bane: Wound rolls of 6 against enemy Characters deal D3 mortal wounds",
@@ -97,7 +97,7 @@ const FACTION_SISTERS_OF_BATTLE = [
 
   // ── NAMED CHARACTERS ────────────────────────────────────────────────
   { id:'sob_junith', name:'Canoness Junith Eruita',
-    stats:['6"','2+','2+','3','3','5','4','9','3+'], role:'HQ', pts:95, min:1, max:1, ppm:0, isNew:true, isNew:true,
+    stats:['6"','2+','2+','3','3','5','4','9','3+'], role:'HQ', pts:95, min:1, max:1, ppm:0, unique:true, isNew:true, isNew:true,
     wargear:['The Sceptre of the Matriarch','Brazier of Holy Fire'],
     abilities:['Shield of Faith','Acts of Faith',
                'Pulpit of Saint Holline: This model never needs line of sight to issue orders — friendly Adepta Sororitas within 6" re-roll hit rolls of 1',
@@ -174,7 +174,7 @@ const FACTION_SISTERS_OF_BATTLE = [
 
   // ── LORD OF WAR ──────────────────────────────────────────────────────
   { id:'sob_triumph', name:'Triumph of Saint Katherine',
-    stats:['6"','3+','3+','3','3','18','14','9','3+'], role:'Lord of War', pts:185, min:1, max:1, ppm:0, isNew:true, isNew:true,
+    stats:['6"','3+','3+','3','3','18','14','9','3+'], role:'Lord of War', pts:185, min:1, max:1, ppm:0, unique:true, isNew:true, isNew:true,
     wargear:["Martyr's Sword","Praesidium Protectiva",'6x Bolt Pistols','Relic Weapons'],
     abilities:['Shield of Faith: 6+ invulnerable save — and 4+ invulnerable save from Praesidium Protectiva',
                'Acts of Faith',

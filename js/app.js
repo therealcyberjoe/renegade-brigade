@@ -182,7 +182,9 @@ function renderUnitBrowser() {
       </div>
       <div class="unit-row-role">${ROLE_SHORT[u.role] || u.role}</div>
       <div class="unit-row-pts">${ptsLabel}</div>
-      <button class="add-btn" onclick="addUnit('${u.id}')" title="Add to roster">+</button>
+      ${(u.unique && state.roster.some(r => r.baseUnitId === u.id))
+        ? '<button class="add-btn" disabled title="Unique — already in roster" style="opacity:0.3;cursor:not-allowed;">+</button>'
+        : `<button class="add-btn" onclick="addUnit('${u.id}')" title="Add to roster">+</button>`}
     </div>`;
   });
   list.innerHTML = html;
@@ -196,6 +198,7 @@ function addUnit(unitId) {
   const factionUnits = UNITS[state.factionId] || [];
   const unit = factionUnits.find(u => u.id === unitId);
   if (!unit) return;
+  if (unit.unique && state.roster.some(r => r.baseUnitId === unitId)) return;
 
   const hasOptions = unit.options && unit.options.length > 0;
   const hasPpm = !!(unit.ppm && unit.ppm > 0);

@@ -4,7 +4,7 @@ const FACTION_DARK_ANGELS = [
   ...SM_SHARED_UNITS,
 
   { id:'da_azrael', name:'Supreme Grand Master Azrael',
-    stats:['6"','2+','2+','4','4','6','5','10','2+'], role:'HQ', pts:180, min:1, max:1, ppm:0,
+    stats:['6"','2+','2+','4','4','6','5','10','2+'], role:'HQ', pts:180, min:1, max:1, ppm:0, unique:true,
     wargear:['Lion Helm','Sword of Secrets'],
     abilities:['Chapter Master: Re-roll all failed hit rolls for Dark Angels within 6"',
                '4+ invulnerable save',
@@ -21,7 +21,7 @@ const FACTION_DARK_ANGELS = [
                "Heroic Intervention up to 6\" rather than 3\""] },
 
   { id:'da_ezekiel', name:'Ezekiel',
-    stats:['6"','3+','3+','4','4','5','3','9','3+'], role:'HQ', pts:115, min:1, max:1, ppm:0,
+    stats:['6"','3+','3+','4','4','5','3','9','3+'], role:'HQ', pts:115, min:1, max:1, ppm:0, unique:true,
     wargear:['Sword of Secrets','Bolt Pistol'],
     abilities:['Psyker: Mastery Level 3','Dark Angels only',
                'Veil of Time: WC6 — friendly unit within 18" fights first this Fight phase',
@@ -59,7 +59,7 @@ const FACTION_DARK_ANGELS = [
     abilities:['And They Shall Know No Fear','Combat Squads'] },
 
   { id:'da_belial', name:'Belial — Master of the Deathwing',
-    stats:['5"','2+','2+','4','4','5','5','9','2+'], role:'HQ', pts:135, min:1, max:1, ppm:0, isNew:true,
+    stats:['5"','2+','2+','4','4','5','5','9','2+'], role:'HQ', pts:135, min:1, max:1, ppm:0, unique:true, isNew:true,
     wargear:['Sword of Silence','Storm Bolter'],
     abilities:['Master of the Deathwing: Friendly Deathwing Terminators within 6" re-roll all failed hit rolls',
                '3+ invulnerable save',
@@ -67,7 +67,7 @@ const FACTION_DARK_ANGELS = [
                'Dark Angels only'] },
 
   { id:'da_sammael', name:'Sammael — Master of the Ravenwing',
-    stats:['16"','2+','2+','4','4','5','5','9','3+'], role:'HQ', pts:185, min:1, max:1, ppm:0, isNew:true,
+    stats:['16"','2+','2+','4','4','5','5','9','3+'], role:'HQ', pts:185, min:1, max:1, ppm:0, unique:true, isNew:true,
     wargear:['Raven Sword','Plasma Cannon','Corvus Hammer','Jetbike'],
     abilities:['Master of the Ravenwing: Friendly Ravenwing units within 9" re-roll hit rolls of 1',
                '4+ invulnerable save','Jink: 5+ invulnerable save if model Advances',

@@ -22,7 +22,7 @@ const FACTION_CHAOS_SPACE_MARINES = [
 
   // ── NAMED CHARACTERS ────────────────────────────────────────────────
   { id:'csm_abaddon', name:'Abaddon the Despoiler',
-    stats:['6"','2+','2+','5','5','8','5','10','2+'], role:'Lord of War', pts:285, min:1, max:1, ppm:0, isNew:true,
+    stats:['6"','2+','2+','5','5','8','5','10','2+'], role:'Lord of War', pts:285, min:1, max:1, ppm:0, unique:true, isNew:true,
     wargear:["Drach'nyen",'Talon of Horus','Black Plate'],
     abilities:['Warmaster: Friendly Chaos Space Marines within 6" re-roll all failed hit rolls',
                'Four-Armed Terror: Once per Fight phase make 2 additional attacks with the Talon of Horus',
@@ -30,7 +30,7 @@ const FACTION_CHAOS_SPACE_MARINES = [
                'Marks of All Chaos: Counts as bearing all four Marks simultaneously'] },
 
   { id:'csm_huron', name:'Huron Blackheart',
-    stats:['6"','2+','2+','4','4','5','4','9','3+'], role:'HQ', pts:115, min:1, max:1, ppm:0, isNew:true,
+    stats:['6"','2+','2+','4','4','5','4','9','3+'], role:'HQ', pts:115, min:1, max:1, ppm:0, unique:true, isNew:true,
     wargear:["The Tyrant's Claw","Blackheart's Spitespitter",'The Hamadrya'],
     abilities:['Psyker: Mastery Level 1',
                'Master of the Renegades: Friendly Chaos units within 6" re-roll hit rolls of 1',
@@ -38,7 +38,7 @@ const FACTION_CHAOS_SPACE_MARINES = [
                '4+ invulnerable save'] },
 
   { id:'csm_vashtorr', name:'Vashtorr the Arkifane',
-    stats:['12"','2+','2+','7','7','14','6','10','3+'], role:'Lord of War', pts:380, min:1, max:1, ppm:0, isNew:true,
+    stats:['12"','2+','2+','7','7','14','6','10','3+'], role:'Lord of War', pts:380, min:1, max:1, ppm:0, unique:true, isNew:true,
     wargear:['The Soul Shrive',"Arkifane's Claw",'Daemonforge Blast'],
     abilities:['4+ invulnerable save',
                'Dark Artificer: End of each Movement phase — one friendly Chaos Vehicle within 3" regains D3 wounds',

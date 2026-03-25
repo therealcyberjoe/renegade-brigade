@@ -1,6 +1,6 @@
 const FACTION_THOUSAND_SONS = [
   { id:'ts_magnus', name:'Magnus the Red',
-    stats:['16"','2+','2+','8','8','18','7','10','4+'], role:'Lord of War', pts:415, min:1, max:1, ppm:0,
+    stats:['16"','2+','2+','8','8','18','7','10','4+'], role:'Lord of War', pts:415, min:1, max:1, ppm:0, unique:true,
     wargear:['Blade of Magnus','Gaze of Magnus'],
     abilities:['Daemonic: 4+ invulnerable save','Psyker: Mastery Level 5',
                'Towering Sorcerer: Friendly Thousand Sons within 9" re-roll hit rolls of 1',
@@ -8,14 +8,14 @@ const FACTION_THOUSAND_SONS = [
                'Thousand Sons only'] },
 
   { id:'ts_ahriman', name:'Ahriman on Disc of Tzeentch',
-    stats:['16"','3+','3+','4','4','5','3','9','3+'], role:'HQ', pts:175, min:1, max:1, ppm:0,
+    stats:['16"','3+','3+','4','4','5','3','9','3+'], role:'HQ', pts:175, min:1, max:1, ppm:0, unique:true,
     wargear:['Black Staff of Ahriman','Inferno Bolt Pistol'],
     abilities:['Psyker: Mastery Level 3','4+ invulnerable save',
                'Vessel of Chaos: Re-roll all Psychic tests',
                'Ether Walk: Once per turn teleport up to 18" instead of moving normally'] },
 
   { id:'ts_ahriman_foot', name:'Ahriman on Foot',
-    stats:['6"','3+','3+','4','4','5','3','9','3+'], role:'HQ', pts:165, min:1, max:1, ppm:0, isNew:true,
+    stats:['6"','3+','3+','4','4','5','3','9','3+'], role:'HQ', pts:165, min:1, max:1, ppm:0, unique:true, isNew:true,
     wargear:['Black Staff of Ahriman','Inferno Bolt Pistol'],
     abilities:['Psyker: Mastery Level 3','4+ invulnerable save',
                'Vessel of Chaos: Re-roll all Psychic tests',

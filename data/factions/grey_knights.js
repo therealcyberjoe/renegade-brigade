@@ -15,7 +15,7 @@ const FACTION_GREY_KNIGHTS = [
                '4+ invulnerable save','Teleport Strike: Deep strike — arrive 9"+ from enemy'] },
 
   { id:'gk_draigo', name:'Lord Kaldor Draigo',
-    stats:['5"','2+','2+','5','5','8','5','9','2+'], role:'HQ', pts:225, min:1, max:1, ppm:0, isNew:true,
+    stats:['5"','2+','2+','5','5','8','5','9','2+'], role:'HQ', pts:225, min:1, max:1, ppm:0, unique:true, isNew:true,
     wargear:['The Titansword','Sanctum Sigilum','Master-crafted Storm Bolter'],
     abilities:['And They Shall Know No Fear','Psyker: Mastery Level 3',
                'Supreme Grand Master: Re-roll all failed hit and wound rolls for Grey Knights within 6"',
@@ -25,7 +25,7 @@ const FACTION_GREY_KNIGHTS = [
                'The Titansword: S8 AP-4 D3 — on charge 7 attacks instead of 5'] },
 
   { id:'gk_voldus', name:'Grand Master Voldus',
-    stats:['5"','2+','2+','4','4','6','5','9','2+'], role:'HQ', pts:165, min:1, max:1, ppm:0, isNew:true,
+    stats:['5"','2+','2+','4','4','6','5','9','2+'], role:'HQ', pts:165, min:1, max:1, ppm:0, unique:true, isNew:true,
     wargear:['Malleus Argyrum','Master-crafted Storm Bolter'],
     abilities:['And They Shall Know No Fear','Psyker: Mastery Level 3',
                'Supreme Grandmaster: Friendly Grey Knights within 6" re-roll all failed hit rolls',
@@ -34,7 +34,7 @@ const FACTION_GREY_KNIGHTS = [
                'Warden of the Librarius: Friendly Grey Knights Psykers within 9" re-roll Psychic tests of 1'] },
 
   { id:'gk_stern', name:'Brother-Captain Stern',
-    stats:['5"','2+','2+','4','4','6','5','9','2+'], role:'HQ', pts:145, min:1, max:1, ppm:0, isNew:true,
+    stats:['5"','2+','2+','4','4','6','5','9','2+'], role:'HQ', pts:145, min:1, max:1, ppm:0, unique:true, isNew:true,
     wargear:['Nemesis Force Sword','Storm Bolter'],
     abilities:['And They Shall Know No Fear','Psyker: Mastery Level 2',
                '4+ invulnerable save','Teleport Strike: Deep strike — arrive 9"+ from enemy',
@@ -43,7 +43,7 @@ const FACTION_GREY_KNIGHTS = [
                'Warp Banishment: WC6 — one Daemon unit within 24" suffers D3 mortal wounds and subtracts 1 from Psychic tests for the rest of the battle'] },
 
   { id:'gk_crowe', name:'Castellan Crowe',
-    stats:['6"','2+','2+','4','4','5','7','9','3+'], role:'HQ', pts:100, min:1, max:1, ppm:0, isNew:true,
+    stats:['6"','2+','2+','4','4','5','7','9','3+'], role:'HQ', pts:100, min:1, max:1, ppm:0, unique:true, isNew:true,
     wargear:['Black Blade of Antwyr','Purifying Flame','Storm Bolter'],
     abilities:['And They Shall Know No Fear','Psyker: Mastery Level 1',
                '4+ invulnerable save',

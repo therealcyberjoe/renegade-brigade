@@ -4,14 +4,14 @@ const FACTION_BLOOD_ANGELS = [
   ...SM_SHARED_UNITS,
 
   { id:'ba_dante', name:'Commander Dante',
-    stats:['12"','2+','2+','4','4','6','5','10','2+'], role:'HQ', pts:195, min:1, max:1, ppm:0,
+    stats:['12"','2+','2+','4','4','6','5','10','2+'], role:'HQ', pts:195, min:1, max:1, ppm:0, unique:true,
     wargear:['Axe Mortalis','Perdition Pistol','Inferno Pistol'],
     abilities:['Chapter Master: Re-roll all failed hit rolls for Blood Angels within 6"',
                '4+ invulnerable save','Tactical Genius: Add 1 to all hit rolls for Blood Angels within 6"',
                'Blood Angels only'] },
 
   { id:'ba_mephiston', name:'Mephiston, Lord of Death',
-    stats:['6"','2+','2+','5','4','6','5','10','2+'], role:'HQ', pts:165, min:1, max:1, ppm:0,
+    stats:['6"','2+','2+','5','4','6','5','10','2+'], role:'HQ', pts:165, min:1, max:1, ppm:0, unique:true,
     wargear:['Force Sword','Plasma Pistol'],
     abilities:['Psyker: Mastery Level 3','4+ invulnerable save',
                'Transfixing Gaze: Once per Fight phase pick enemy Character within 3" — it fights last',
@@ -25,7 +25,7 @@ const FACTION_BLOOD_ANGELS = [
                'Rites of Battle: Re-roll hit rolls of 1 for friendly Blood Angels within 6"'] },
 
   { id:'ba_tycho', name:'Brother-Captain Tycho',
-    stats:['6"','2+','2+','4','4','5','5','9','2+'], role:'HQ', pts:95, min:1, max:1, ppm:0, isNew:true,
+    stats:['6"','2+','2+','4','4','5','5','9','2+'], role:'HQ', pts:95, min:1, max:1, ppm:0, unique:true, isNew:true,
     wargear:['Master-crafted Bolter','Combi-melta','The Blood Song'],
     abilities:['Death Mask of Sanguinius: Enemy units within 3" subtract 1 from Leadership',
                'Honour of the Chapter: Friendly Blood Angels within 6" re-roll hit rolls of 1',

@@ -1,6 +1,6 @@
 const FACTION_EMPERORS_CHILDREN = [
   { id:'ec_fulgrim', name:'Fulgrim, Daemon Primarch of Slaanesh',
-    stats:['14"','2+','2+','7','7','18','8','10','4+'], role:'Lord of War', pts:455, min:1, max:1, ppm:0, isNew:true,
+    stats:['14"','2+','2+','7','7','18','8','10','4+'], role:'Lord of War', pts:455, min:1, max:1, ppm:0, unique:true, isNew:true,
     wargear:['Blade of the Laer',"Serpent's Scales"],
     abilities:['Daemonic: 4+ invulnerable save',
                "Quicksilver Duelist: May make one additional attack with each melee weapon in Fight phase",

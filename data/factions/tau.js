@@ -28,7 +28,7 @@ const FACTION_TAU = [
                "Failure is Not an Option: Friendly T'au within 6\" auto-pass Morale"] },
 
   { id:'tau_shadowsun', name:'Commander Shadowsun',
-    stats:['8"','5+','2+','3','3','5','3','9','3+'], role:'HQ', pts:145, min:1, max:1, ppm:0, isNew:true,
+    stats:['8"','5+','2+','3','3','5','3','9','3+'], role:'HQ', pts:145, min:1, max:1, ppm:0, unique:true, isNew:true,
     wargear:['2x High-energy Fusion Blasters','Flechette Launcher','Light Missile Pod','Pulse Pistol','Advanced Guardian Drone','Command-link Drone'],
     abilities:['Supreme Commander: Must be your Warlord if included',
                "Kauyon: Once per battle declare Kauyon — friendly T'au within 6\" re-roll failed hit rolls but cannot move",
@@ -38,7 +38,7 @@ const FACTION_TAU = [
                "Command-link Drone: One friendly T'au unit within 12\" re-rolls hit rolls of 1"] },
 
   { id:'tau_farsight', name:'Commander Farsight',
-    stats:['10"','2+','2+','5','5','7','5','9','3+'], role:'HQ', pts:130, min:1, max:1, ppm:0, isNew:true,
+    stats:['10"','2+','2+','5','5','7','5','9','3+'], role:'HQ', pts:130, min:1, max:1, ppm:0, unique:true, isNew:true,
     wargear:['Dawn Blade','High-intensity Plasma Rifle'],
     abilities:["Farsight Enclaves only: Cannot include Ethereals in same detachment",
                "Mont'ka: Once per battle declare Mont'ka — friendly Farsight Enclaves units within 6\" re-roll failed hit rolls",
@@ -57,7 +57,7 @@ const FACTION_TAU = [
                "Must be your Warlord if included"] },
 
   { id:'tau_darkstrider', name:'Darkstrider',
-    stats:['7"','4+','2+','3','3','4','3','8','4+'], role:'HQ', pts:55, min:1, max:1, ppm:0, isNew:true,
+    stats:['7"','4+','2+','3','3','4','3','8','4+'], role:'HQ', pts:55, min:1, max:1, ppm:0, unique:true, isNew:true,
     wargear:['Shade (Markerlight Sniper Rifle)','Pulse Pistol'],
     abilities:['For the Greater Good',
                'Scouts: Move up to 9" before first battle round',
@@ -72,7 +72,7 @@ const FACTION_TAU = [
                'Crack Shot: On a Critical Wound improve AP by 2'] },
 
   { id:'tau_twin_lance', name:'The Twin Lance (Sunsear & Scatterflare)',
-    stats:['10"','5+','2+','5','5','6','3','9','3+'], role:'HQ', pts:170, min:2, max:2, ppm:0, isNew:true,
+    stats:['10"','5+','2+','5','5','6','3','9','3+'], role:'HQ', pts:170, min:2, max:2, ppm:0, unique:true, isNew:true,
     wargear:["Sunsear's Fusion Eliminator","Scatterflare's Ion Scattercannon",'Neocapacitor Shields','Battlesuit Fists'],
     abilities:['For the Greater Good',
                "Mont'ka Embodied: Both models must deploy and activate together — treat as single unit",
@@ -155,7 +155,7 @@ const FACTION_TAU = [
                "Prey Markers: Each turn mark one enemy unit — friendly T'au add 1 to wound rolls against it"] },
 
   { id:'tau_krootox_riders', name:'Krootox Riders',
-    stats:['8"','4+','3+','5','5','4','3','7','4+'], role:'Elites', pts:40, min:3, max:6, ppm:40, isNew:true,
+    stats:['8"','4+','3+','5','5','4','3','7','4+'], role:'Elites', pts:120, min:3, max:6, ppm:40, isNew:true,
     wargear:['Krootox Repeater Cannon','Kroot Blade','Krootox Claws'],
     abilities:['Scouts: Move up to 6" before first battle round',
                'Fieldcraft: Count as in cover if did not move',
@@ -182,7 +182,7 @@ const FACTION_TAU = [
                'Seeker Missiles: One use — S8 AP-2 D3'] },
 
   { id:'tau_krootox_rampagers', name:'Krootox Rampagers',
-    stats:['10"','3+','5+','6','5','4','5','7','4+'], role:'Fast Attack', pts:45, min:3, max:6, ppm:45, isNew:true,
+    stats:['10"','3+','5+','6','5','4','5','7','4+'], role:'Fast Attack', pts:135, min:3, max:6, ppm:45, isNew:true,
     wargear:["Rider's Kroot Rifle",'Krootox Talons'],
     abilities:['Scouts: Move up to 6" before first battle round',
                'Savage Charge: On turn it charges deal D3 mortal wounds to each enemy within 1"',

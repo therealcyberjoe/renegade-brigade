@@ -5,7 +5,7 @@ const FACTION_BLACK_TEMPLARS = [
 
   // ── HQ ──────────────────────────────────────────────────────────────
   { id:'bt_helbrecht', name:'High Marshal Helbrecht',
-    stats:['6"','2+','2+','4','4','6','5','9','2+'], role:'HQ', pts:175, min:1, max:1, ppm:0, isNew:true,
+    stats:['6"','2+','2+','4','4','6','5','9','2+'], role:'HQ', pts:175, min:1, max:1, ppm:0, unique:true, isNew:true,
     wargear:['The Sword of the High Marshals','Ferocity (Master-crafted Bolter)'],
     abilities:['And They Shall Know No Fear',
                'High Marshal: Friendly Black Templars within 6" re-roll all failed hit rolls',
@@ -24,7 +24,7 @@ const FACTION_BLACK_TEMPLARS = [
                'Oaths of Honour: Must always charge if able — must always consolidate toward enemy'] },
 
   { id:'bt_grimaldus', name:'Chaplain Grimaldus',
-    stats:['6"','3+','3+','4','4','4','3','9','3+'], role:'HQ', pts:105, min:1, max:1, ppm:0, isNew:true,
+    stats:['6"','3+','3+','4','4','4','3','9','3+'], role:'HQ', pts:105, min:1, max:1, ppm:0, unique:true, isNew:true,
     wargear:['Crozius Arcanum','Plasma Pistol','The Remnants of Remembrance'],
     abilities:['And They Shall Know No Fear',
                'Rosarius: 4+ invulnerable save',

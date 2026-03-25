@@ -24,7 +24,7 @@ const FACTION_ORKS = [
 
   // ── NAMED CHARACTERS ────────────────────────────────────────────────
   { id:'ork_ghazghkull', name:'Ghazghkull Thraka',
-    stats:['10"','2+','3+','8','9','12','6','9','2+'], role:'Lord of War', pts:300, min:1, max:1, ppm:0, isNew:true,
+    stats:['10"','2+','3+','8','9','12','6','9','2+'], role:'Lord of War', pts:300, min:1, max:1, ppm:0, unique:true, isNew:true,
     wargear:["Gork's Klaw","Mork's Roar",'Da Iron Skin'],
     abilities:["Prophet of the Waaagh!: Once per battle — all friendly Orks may Advance and charge this turn",
                "Blessed by the Gods: 4+ invulnerable save — on 6 restore 1 wound instead of taking it",
@@ -40,7 +40,7 @@ const FACTION_ORKS = [
                'Surprisingly Killy: +1 Attack if charged'] },
 
   { id:'ork_gazrot', name:'Gazrot Goresnappa',
-    stats:['5"','2+','4+','6','6','7','5','9','2+'], role:'HQ', pts:135, min:1, max:1, ppm:0, isNew:true,
+    stats:['5"','2+','4+','6','6','7','5','9','2+'], role:'HQ', pts:135, min:1, max:1, ppm:0, unique:true, isNew:true,
     wargear:['Da Biggest Klaw','Shoota'],
     abilities:["'Ere We Go",
                "Waaagh Leader: Friendly Orks within 8\" re-roll hit rolls of 1",
@@ -48,7 +48,7 @@ const FACTION_ORKS = [
                '4+ invulnerable save'] },
 
   { id:'ork_zagstruk', name:'Zagstruk',
-    stats:['12"','2+','3+','5','5','5','5','9','4+'], role:'HQ', pts:90, min:1, max:1, ppm:0, isNew:true,
+    stats:['12"','2+','3+','5','5','5','5','9','4+'], role:'HQ', pts:90, min:1, max:1, ppm:0, unique:true, isNew:true,
     wargear:["Da Vulcha's Klaws",'Slugga','Jump Pack'],
     abilities:["'Ere We Go",
                'Vulcha Squad Leader: May be deployed with a unit of Stormboyz — acts as their boss',
@@ -56,7 +56,7 @@ const FACTION_ORKS = [
                '4+ invulnerable save'] },
 
   { id:'ork_mozrog', name:'Mozrog Skragbad',
-    stats:['10"','2+','5+','7','8','10','5','8','4+'], role:'HQ', pts:185, min:1, max:1, ppm:0, isNew:true,
+    stats:['10"','2+','5+','7','8','10','5','8','4+'], role:'HQ', pts:185, min:1, max:1, ppm:0, unique:true, isNew:true,
     wargear:["Skragbad's Klaw","Big Chompa's Jaws",'Slugga'],
     abilities:["'Ere We Go",
                'Unstoppable Beast: Re-roll failed saving throws of 1',
