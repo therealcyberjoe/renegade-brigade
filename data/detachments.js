@@ -9,7 +9,7 @@ const ROLE_TO_SLOT = {
 };
 
 const DETACHMENT_RULES = {
-  battalion: { cp: 5, hq: [2,2], troops: [3,6], elites: [0,6], fast: [0,3], heavy: [0,3], flyer: [0,2], dedicated: [0,'∞'], lord: [0,0], fortification: [0,0] },
+  battalion: { cp: 5, hq: [2,3], troops: [3,6], elites: [0,6], fast: [0,3], heavy: [0,3], flyer: [0,2], dedicated: [0,'∞'], lord: [0,0], fortification: [0,0] },
   brigade: { cp: 9, hq: [3,5], troops: [6,12], elites: [3,8], fast: [3,8], heavy: [3,8], flyer: [0,2], dedicated: [0,'∞'], lord: [0,0], fortification: [0,0] },
   patrol: { cp: 0, hq: [1,2], troops: [1,3], elites: [0,2], fast: [0,2], heavy: [0,2], flyer: [0,1], dedicated: [0,'∞'], lord: [0,0], fortification: [0,0] },
   outrider: { cp: 1, hq: [1,2], troops: [0,3], elites: [0,3], fast: [3,'∞'], heavy: [0,3], flyer: [0,2], dedicated: [0,'∞'], lord: [0,0], fortification: [0,0] },
