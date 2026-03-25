@@ -7,7 +7,7 @@ const FACTION_ADEPTUS_MECHANICUS = [
                '5+ invulnerable save'] },
 
   { id:'am_cawl', name:'Belisarius Cawl',
-    stats:['7"','3+','3+','5','5','8','4','9','2+'], role:'HQ', pts:200, min:1, max:1, ppm:0, unique:true, isNew:true,
+    stats:['7"','3+','3+','5','5','8','4','9','2+'], role:'HQ', pts:200, min:1, max:1, ppm:0, unique:true,
     wargear:['Mechadendrites','Omnissian Axe',"Cawl's Wrath"],
     abilities:['Lord of the Forge: Friendly AdMech Vehicles within 6" re-roll hit rolls of 1 and restore 1 wound per turn',
                'Canticles of the Omnissiah: Knows all Canticles — may pick freely',

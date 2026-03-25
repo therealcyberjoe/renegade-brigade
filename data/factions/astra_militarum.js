@@ -22,7 +22,7 @@ const FACTION_ASTRA_MILITARUM = [
 
   // ── NAMED CHARACTERS ────────────────────────────────────────────────
   { id:'ag_yarrick', name:'Commissar Yarrick',
-    stats:['6"','3+','3+','4','3','5','3','10','4+'], role:'HQ', pts:100, min:1, max:1, ppm:0, isNew:true,
+    stats:['6"','3+','3+','4','3','5','3','10','4+'], role:'HQ', pts:100, min:1, max:1, ppm:0,
     wargear:['Bale Eye','Power Klaw','Storm Bolter'],
     abilities:['Voice of Command: Issue 2 orders per turn',
                'Inspiring Presence: Friendly Astra Militarum units within 6" auto-pass Morale',
@@ -30,7 +30,7 @@ const FACTION_ASTRA_MILITARUM = [
                'Iron Will: The first time Yarrick is slain roll D6 — on 2+ he survives with 1 wound remaining'] },
 
   { id:'ag_creed', name:'Ursarkar E. Creed',
-    stats:['6"','3+','3+','3','3','4','3','10','5+'], role:'HQ', pts:95, min:1, max:1, ppm:0, isNew:true,
+    stats:['6"','3+','3+','3','3','4','3','10','5+'], role:'HQ', pts:95, min:1, max:1, ppm:0,
     wargear:['Bolt Pistol','Power Sword'],
     abilities:['Voice of Command: Issue 2 orders per turn to units within 12"',
                'Warlord of Cadia: Once per battle — one friendly unit within 18" may shoot or fight as a bonus action',
@@ -38,7 +38,7 @@ const FACTION_ASTRA_MILITARUM = [
                'Cadian only'] },
 
   { id:'ag_pask', name:'Tank Commander Pask',
-    stats:['10"','5+','2+','6','8','12','3','9','3+'], role:'HQ', pts:183, min:1, max:1, ppm:0, isNew:true,
+    stats:['10"','5+','2+','6','8','12','3','9','3+'], role:'HQ', pts:183, min:1, max:1, ppm:0,
     wargear:['Leman Russ Battle Cannon','Heavy Bolter','Lascannon Sponsons'],
     abilities:['Master of Armour: Friendly Astra Militarum Vehicles within 6" re-roll hit rolls of 1',
                'Grinding Advance: Does not suffer penalty for moving and firing Heavy weapons',
@@ -46,7 +46,7 @@ const FACTION_ASTRA_MILITARUM = [
                'Knight Commander: Counts as issuing one order to himself each turn automatically'] },
 
   { id:'ag_straken', name:'Colonel "Iron Hand" Straken',
-    stats:['6"','2+','3+','4','4','5','4','9','3+'], role:'HQ', pts:95, min:1, max:1, ppm:0, isNew:true,
+    stats:['6"','2+','3+','4','4','5','4','9','3+'], role:'HQ', pts:95, min:1, max:1, ppm:0,
     wargear:['Bionic Arm (counts as Power Fist)','Shotgun','Hunting Knife'],
     abilities:['Voice of Command: Issue 1 order per turn',
                'Cold Steel and Courage: Friendly Astra Militarum Infantry within 6" add 1 to their Attacks in the Fight phase',
@@ -55,7 +55,7 @@ const FACTION_ASTRA_MILITARUM = [
                'Cadian/Catachan or any Astra Militarum army'] },
 
   { id:'ag_harker', name:'Sergeant "Ripper" Harker',
-    stats:['6"','3+','3+','4','4','3','3','8','5+'], role:'Elites', pts:50, min:1, max:1, ppm:0, isNew:true,
+    stats:['6"','3+','3+','4','4','3','3','8','5+'], role:'Elites', pts:50, min:1, max:1, ppm:0,
     wargear:['Payback (Heavy Bolter — fired as Assault 3)','Frag Grenades'],
     abilities:['Move Through Cover: This model and friendly Catachan units within 6" ignore movement penalties for terrain',
                'Guerrilla Fighter: This model and friendly Catachan Infantry within 6" always count as being in cover',
@@ -63,7 +63,7 @@ const FACTION_ASTRA_MILITARUM = [
                'Independent Operator: May be attached to any Infantry Squad as a special character'] },
 
   { id:'ag_marbo', name:'Sly Marbo',
-    stats:['7"','2+','3+','4','3','4','5','8','5+'], role:'Elites', pts:65, min:1, max:1, ppm:0, isNew:true,
+    stats:['7"','2+','3+','4','3','4','5','8','5+'], role:'Elites', pts:65, min:1, max:1, ppm:0,
     wargear:['Ripper Pistol','Melta Bomb','Envenomed Blade','Demolition Charge (once per game)'],
     abilities:['Lone Operative: Cannot be targeted by ranged attacks unless he is the closest enemy model or within 12"',
                'He Is The Jungle: Always counts as being in cover',

@@ -83,7 +83,7 @@ const SM_SHARED_UNITS = [
                'Combat Squads: May split into two units of 5'] },
 
   { id:'sm_intercessors', name:'Intercessor Squad',
-    stats:['6"','3+','3+','4','4','2','2','7','3+'], role:'Troops', pts:85, min:5, max:10, ppm:17, isNew:true,
+    stats:['6"','3+','3+','4','4','2','2','7','3+'], role:'Troops', pts:85, min:5, max:10, ppm:17,
     wargear:['Bolt Rifles','Bolt Pistols','Grenades'],
     abilities:['And They Shall Know No Fear','Combat Squads: May split into two units of 5'] },
 
@@ -101,7 +101,7 @@ const SM_SHARED_UNITS = [
                'Explodes: On 6 when destroyed — D6 mortal wounds within 3"'] },
 
   { id:'sm_redemptor', name:'Redemptor Dreadnought',
-    stats:['8"','3+','3+','7','7','13','5','8','3+'], role:'Elites', pts:156, min:1, max:1, ppm:0, isNew:true,
+    stats:['8"','3+','3+','7','7','13','5','8','3+'], role:'Elites', pts:156, min:1, max:1, ppm:0,
     wargear:['Macro Plasma Incinerator','Onslaught Gatling Cannon'],
     abilities:['And They Shall Know No Fear','Smokescreen',
                'Explodes: On 6 when destroyed — D6 mortal wounds within 6"'] },
@@ -113,14 +113,14 @@ const SM_SHARED_UNITS = [
                'Explodes: On 6 when destroyed — D6 mortal wounds within 3"'] },
 
   { id:'sm_hellblasters', name:'Hellblaster Squad',
-    stats:['6"','3+','3+','4','4','2','2','7','3+'], role:'Elites', pts:165, min:5, max:10, ppm:33, isNew:true,
+    stats:['6"','3+','3+','4','4','2','2','7','3+'], role:'Elites', pts:165, min:5, max:10, ppm:33,
     wargear:['Plasma Incinerator','Plasma Pistol'],
     abilities:['And They Shall Know No Fear',
                'Plasma Incinerator Overcharge: S8 AP-4 D2 — on 1 model slain',
                'Combat Squads'] },
 
   { id:'sm_aggressors', name:'Aggressor Squad',
-    stats:['5"','3+','3+','4','5','3','3','7','3+'], role:'Elites', pts:117, min:3, max:6, ppm:39, isNew:true,
+    stats:['5"','3+','3+','4','5','3','3','7','3+'], role:'Elites', pts:117, min:3, max:6, ppm:39,
     wargear:['Auto Boltstorm Gauntlet','Fragstorm Grenade Launcher'],
     abilities:['And They Shall Know No Fear',
                'Firebase: If did not move fire Auto Boltstorm Gauntlets twice'] },
@@ -201,7 +201,7 @@ const SM_SHARED_UNITS = [
                'Combat Squads'] },
 
   { id:'sm_inceptors', name:'Inceptor Squad',
-    stats:['10"','3+','3+','4','4','2','2','7','3+'], role:'Fast Attack', pts:115, min:3, max:6, ppm:38, isNew:true,
+    stats:['10"','3+','3+','4','4','2','2','7','3+'], role:'Fast Attack', pts:115, min:3, max:6, ppm:38,
     wargear:['Assault Bolters','Jump Pack'],
     abilities:['And They Shall Know No Fear',
                'Meteoric Descent: When arriving from deep strike may fire weapons immediately'] },

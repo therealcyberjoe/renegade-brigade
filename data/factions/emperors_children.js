@@ -9,7 +9,7 @@ const FACTION_EMPERORS_CHILDREN = [
                "Overwhelming Sensation: Enemy units that lose models to Fulgrim cannot fire Overwatch for rest of battle round"] },
 
   { id:'ec_noise_marines', name:'Noise Marines',
-    stats:['6"','3+','3+','4','4','1','1','8','3+'], role:'Troops', pts:90, min:5, max:20, ppm:18, isNew:true,
+    stats:['6"','3+','3+','4','4','1','1','8','3+'], role:'Troops', pts:90, min:5, max:20, ppm:18,
     wargear:['Sonic Blaster','Blastmaster'],
     abilities:['Assault Cacophony: May fire Assault weapons without penalty after Advancing',
                'Sonic Blaster: Assault 3 — Cacophony: if unit does not move becomes Rapid Fire 3',

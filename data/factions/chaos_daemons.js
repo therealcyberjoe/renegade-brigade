@@ -41,7 +41,7 @@ const FACTION_CHAOS_DAEMONS = [
                "Living Shadow (Warlord): Enemy units cannot use abilities that trigger at start of phases within 12\" unless they pass Leadership test"] },
 
   { id:'cd_skarbrand', name:'Skarbrand the Exiled',
-    stats:['8"','2+','5+','8','8','14','8','10','4+'], role:'Lord of War', pts:300, min:1, max:1, ppm:0, unique:true, isNew:true,
+    stats:['8"','2+','5+','8','8','14','8','10','4+'], role:'Lord of War', pts:300, min:1, max:1, ppm:0, unique:true,
     wargear:['Slaughter','Carnage'],
     abilities:['Roar of Total Rage: All enemy units within 8" subtract 2 from Leadership',
                'Daemonic: 4+ invulnerable save',
@@ -49,7 +49,7 @@ const FACTION_CHAOS_DAEMONS = [
                'Hatred Incarnate: Cannot use psychic powers or Leadership abilities — only charges and fights'] },
 
   { id:'cd_epidemius', name:'Epidemius — Tallyman of Nurgle',
-    stats:['5"','4+','4+','3','4','4','2','9','5+'], role:'HQ', pts:95, min:1, max:1, ppm:0, unique:true, isNew:true,
+    stats:['5"','4+','4+','3','4','4','2','9','5+'], role:'HQ', pts:95, min:1, max:1, ppm:0, unique:true,
     wargear:['Balesword','Nurgling Bodyguard'],
     abilities:['Disgustingly Resilient','5+ invulnerable save',
                'Tally of Pestilence: Track kills from Nurgle units — at milestones gain army-wide buffs',

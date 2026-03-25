@@ -26,14 +26,14 @@ const FACTION_WORLD_EATERS = [
                'Frenzied Charge: Add 2 to Attacks on turn it charges'] },
 
   { id:'we_lord_jugger', name:'Chaos Lord on Juggernaut',
-    stats:['10"','2+','3+','5','5','6','5','9','3+'], role:'HQ', pts:115, min:1, max:1, ppm:0, isNew:true,
+    stats:['10"','2+','3+','5','5','6','5','9','3+'], role:'HQ', pts:115, min:1, max:1, ppm:0,
     wargear:['Combi-bolter','Chainsword','Juggernaut Horn'],
     abilities:['Daemonic: 4+ invulnerable save',
                "Lord of Chaos: Friendly World Eaters Core within 6\" re-roll hit rolls of 1",
                'Frenzied Charge: Add 2 to Attacks on turn it charges'] },
 
   { id:'we_berzerkers', name:'Khorne Berzerkers',
-    stats:['6"','3+','4+','4','4','1','2','8','3+'], role:'Troops', pts:136, min:8, max:12, ppm:17, isNew:true,
+    stats:['6"','3+','4+','4','4','1','2','8','3+'], role:'Troops', pts:136, min:8, max:12, ppm:17,
     wargear:['Chainaxe','Bolt Pistol'],
     abilities:["Blood for the Blood God: +1 Attack in Fight phase",
                'Icon of Wrath: Re-roll failed charge rolls if unit has Icon Bearer',

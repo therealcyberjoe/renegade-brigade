@@ -25,7 +25,7 @@ const FACTION_BLOOD_ANGELS = [
                'Rites of Battle: Re-roll hit rolls of 1 for friendly Blood Angels within 6"'] },
 
   { id:'ba_tycho', name:'Brother-Captain Tycho',
-    stats:['6"','2+','2+','4','4','5','5','9','2+'], role:'HQ', pts:95, min:1, max:1, ppm:0, unique:true, isNew:true,
+    stats:['6"','2+','2+','4','4','5','5','9','2+'], role:'HQ', pts:95, min:1, max:1, ppm:0, unique:true,
     wargear:['Master-crafted Bolter','Combi-melta','The Blood Song'],
     abilities:['Death Mask of Sanguinius: Enemy units within 3" subtract 1 from Leadership',
                'Honour of the Chapter: Friendly Blood Angels within 6" re-roll hit rolls of 1',

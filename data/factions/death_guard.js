@@ -8,7 +8,7 @@ const FACTION_DEATH_GUARD = [
                '4+ invulnerable save'] },
 
   { id:'dg_typhus', name:'Typhus — Herald of Nurgle',
-    stats:['5"','3+','3+','5','5','7','4','9','3+'], role:'HQ', pts:175, min:1, max:1, ppm:0, unique:true, isNew:true,
+    stats:['5"','3+','3+','5','5','7','4','9','3+'], role:'HQ', pts:175, min:1, max:1, ppm:0, unique:true,
     wargear:['Manreaper','Plague Sprayer'],
     abilities:['Psyker: Mastery Level 2',
                'Host of the Destroyer Hive: Friendly Poxwalkers within 7" add 1 to Attacks',

@@ -9,7 +9,7 @@ const FACTION_TYRANIDS = [
                'Wings optional: Gains Fly and Move 16"','5+ invulnerable save'] },
 
   { id:'ty_swarmlord', name:'The Swarmlord',
-    stats:['10"','2+','3+','8','8','12','5','10','3+'], role:'HQ', pts:250, min:1, max:1, ppm:0, unique:true, isNew:true,
+    stats:['10"','2+','3+','8','8','12','5','10','3+'], role:'HQ', pts:250, min:1, max:1, ppm:0, unique:true,
     wargear:['Bone Sabres x4','Psychic Scream'],
     abilities:['Hive Commander: Two friendly Tyranid units within 6" re-roll failed charge rolls',
                'Synaptic Lynchpin: Synapse range extended to 24"',
@@ -48,7 +48,7 @@ const FACTION_TYRANIDS = [
                '5+ invulnerable save'] },
 
   { id:'ty_deathleaper', name:'Deathleaper',
-    stats:['10"','2+','3+','5','4','6','6','10','3+'], role:'HQ', pts:85, min:1, max:1, ppm:0, unique:true, isNew:true,
+    stats:['10"','2+','3+','5','4','6','6','10','3+'], role:'HQ', pts:85, min:1, max:1, ppm:0, unique:true,
     wargear:['Rending Claws','Flesh Hooks'],
     abilities:["Lone Operative: Cannot be targeted by ranged attacks unless within 12\" of attacker",
                "It's Behind You!: Enemy Characters within 6\" subtract 1 from hit rolls, wound rolls and Leadership",
@@ -211,7 +211,7 @@ const FACTION_TYRANIDS = [
                'Synaptic Relay: Friendly Tyranid Infantry within 12" may use this model\'s Leadership for Morale'] },
 
   { id:'ty_old_one_eye', name:'Old One Eye',
-    stats:['7"','3+','4+','9','8','10','5','7','3+'], role:'Heavy Support', pts:170, min:1, max:1, ppm:0, unique:true, isNew:true,
+    stats:['7"','3+','4+','9','8','10','5','7','3+'], role:'Heavy Support', pts:170, min:1, max:1, ppm:0, unique:true,
     wargear:['Massive Scything Talons','Crushing Claws','Bio-plasma'],
     abilities:['Regeneration: Roll D6 at start of each turn — on 4+ restore D3 lost wounds',
                'Living Battering Ram: Add D3 to Attacks on turn it charges',

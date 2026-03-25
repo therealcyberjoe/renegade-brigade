@@ -28,7 +28,7 @@ const FACTION_TAU = [
                "Failure is Not an Option: Friendly T'au within 6\" auto-pass Morale"] },
 
   { id:'tau_shadowsun', name:'Commander Shadowsun',
-    stats:['8"','5+','2+','3','3','5','3','9','3+'], role:'HQ', pts:145, min:1, max:1, ppm:0, unique:true, isNew:true,
+    stats:['8"','5+','2+','3','3','5','3','9','3+'], role:'HQ', pts:145, min:1, max:1, ppm:0, unique:true,
     wargear:['2x High-energy Fusion Blasters','Flechette Launcher','Light Missile Pod','Pulse Pistol','Advanced Guardian Drone','Command-link Drone'],
     abilities:['Supreme Commander: Must be your Warlord if included',
                "Kauyon: Once per battle declare Kauyon — friendly T'au within 6\" re-roll failed hit rolls but cannot move",
@@ -38,7 +38,7 @@ const FACTION_TAU = [
                "Command-link Drone: One friendly T'au unit within 12\" re-rolls hit rolls of 1"] },
 
   { id:'tau_farsight', name:'Commander Farsight',
-    stats:['10"','2+','2+','5','5','7','5','9','3+'], role:'HQ', pts:130, min:1, max:1, ppm:0, unique:true, isNew:true,
+    stats:['10"','2+','2+','5','5','7','5','9','3+'], role:'HQ', pts:130, min:1, max:1, ppm:0, unique:true,
     wargear:['Dawn Blade','High-intensity Plasma Rifle'],
     abilities:["Farsight Enclaves only: Cannot include Ethereals in same detachment",
                "Mont'ka: Once per battle declare Mont'ka — friendly Farsight Enclaves units within 6\" re-roll failed hit rolls",
@@ -57,7 +57,7 @@ const FACTION_TAU = [
                "Must be your Warlord if included"] },
 
   { id:'tau_darkstrider', name:'Darkstrider',
-    stats:['7"','4+','2+','3','3','4','3','8','4+'], role:'HQ', pts:55, min:1, max:1, ppm:0, unique:true, isNew:true,
+    stats:['7"','4+','2+','3','3','4','3','8','4+'], role:'HQ', pts:55, min:1, max:1, ppm:0, unique:true,
     wargear:['Shade (Markerlight Sniper Rifle)','Pulse Pistol'],
     abilities:['For the Greater Good',
                'Scouts: Move up to 9" before first battle round',
@@ -65,7 +65,7 @@ const FACTION_TAU = [
                'Fade Out: At end of any Shooting phase this model may move up to 9"'] },
 
   { id:'tau_cadre_fireblade', name:'Cadre Fireblade',
-    stats:['6"','4+','2+','3','3','4','3','8','4+'], role:'HQ', pts:45, min:1, max:1, ppm:0, isNew:true,
+    stats:['6"','4+','2+','3','3','4','3','8','4+'], role:'HQ', pts:45, min:1, max:1, ppm:0,
     wargear:['Fireblade Pulse Rifle','Markerlight','Pulse Pistol'],
     abilities:['For the Greater Good',
                'Volley Fire: Friendly Fire Warriors within 6" add 1 to the number of shots their Pulse Rifles make',
@@ -127,7 +127,7 @@ const FACTION_TAU = [
                'Pulse Blaster: Range 5" S6 AP-3 / Range 10" S5 AP-2 / Range 15" S4 AP-1'] },
 
   { id:'tau_kroot_carnivores', name:'Kroot Carnivores',
-    stats:['7"','3+','3+','4','3','1','2','7','5+'], role:'Troops', pts:50, min:10, max:20, ppm:5, isNew:true,
+    stats:['7"','3+','3+','4','3','1','2','7','5+'], role:'Troops', pts:50, min:10, max:20, ppm:5,
     wargear:['Kroot Rifle','Kroot Blade'],
     abilities:['Fieldcraft: Count as in cover if did not move this turn',
                'Scouts: Move up to 6" before first battle round',
@@ -211,7 +211,7 @@ const FACTION_TAU = [
                '5+ invulnerable save'] },
 
   { id:'tau_ghostkeel', name:'XV95 Ghostkeel Battlesuit',
-    stats:['12"','5+','2+','6','7','12','3','8','3+'], role:'Heavy Support', pts:140, min:1, max:1, ppm:0, isNew:true,
+    stats:['12"','5+','2+','6','7','12','3','8','3+'], role:'Heavy Support', pts:140, min:1, max:1, ppm:0,
     wargear:['Cyclic Ion Raker','Fusion Collider','2x Stealth Drones'],
     abilities:['For the Greater Good',
                'Ghost Walk Matrix: -2 to hit rolls targeting this model in Shooting phase',
@@ -219,7 +219,7 @@ const FACTION_TAU = [
                'Explodes: On 6 when destroyed — D3 mortal wounds within 3"'] },
 
   { id:'tau_sky_ray', name:'Sky Ray Gunship',
-    stats:['12"','5+','3+','6','7','12','3','8','3+'], role:'Heavy Support', pts:130, min:1, max:1, ppm:0, isNew:true,
+    stats:['12"','5+','3+','6','7','12','3','8','3+'], role:'Heavy Support', pts:130, min:1, max:1, ppm:0,
     wargear:['6x Seeker Missiles','Markerlight','Twin Smart Missile System'],
     abilities:['For the Greater Good',
                'Seeker Missiles: One use each — S8 AP-2 D3 — auto-hit against Markerlighted targets',
@@ -236,7 +236,7 @@ const FACTION_TAU = [
 
   // ── FLYER ────────────────────────────────────────────────────────────
   { id:'tau_sunshark', name:'AX39 Sun Shark Bomber',
-    stats:['20-60"','6+','3+','6','7','10','3','8','3+'], role:'Flyer', pts:155, min:1, max:1, ppm:0, isNew:true,
+    stats:['20-60"','6+','3+','6','7','10','3','8','3+'], role:'Flyer', pts:155, min:1, max:1, ppm:0,
     wargear:['Missile Pod','Pulse Bomb','Ion Rifle','2x Interceptor Drones'],
     abilities:['For the Greater Good','Supersonic: Minimum 20" move',
                'Hard to Hit: -1 to hit rolls against this model',
@@ -245,7 +245,7 @@ const FACTION_TAU = [
                'Explodes: On 6 when destroyed — D3 mortal wounds within 6"'] },
 
   { id:'tau_razorshark', name:'AX3 Razorshark Strike Fighter',
-    stats:['20-60"','6+','3+','6','7','10','3','8','3+'], role:'Flyer', pts:130, min:1, max:1, ppm:0, isNew:true,
+    stats:['20-60"','6+','3+','6','7','10','3','8','3+'], role:'Flyer', pts:130, min:1, max:1, ppm:0,
     wargear:['Quad Ion Turret','Missile Pods'],
     abilities:['For the Greater Good','Supersonic: Minimum 20" move',
                'Hard to Hit: -1 to hit rolls against this model',

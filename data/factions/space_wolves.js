@@ -20,7 +20,7 @@ const FACTION_SPACE_WOLVES = [
                'Space Wolves only'] },
 
   { id:'sw_bjorn', name:'Bjorn the Fell-Handed',
-    stats:['6"','2+','3+','7','7','12','5','9','2+'], role:'Elites', pts:200, min:1, max:1, ppm:0, unique:true, isNew:true,
+    stats:['6"','2+','3+','7','7','12','5','9','2+'], role:'Elites', pts:200, min:1, max:1, ppm:0, unique:true,
     wargear:['Trueclaw','Helfrost Cannon or Twin Lascannon'],
     abilities:['The Oldest and the Deadliest: Friendly Space Wolves within 6" re-roll hit rolls of 1',
                'Ancient: Once per game use any Stratagem for 0 CP',
@@ -28,7 +28,7 @@ const FACTION_SPACE_WOLVES = [
                'Space Wolves only'] },
 
   { id:'sw_canis', name:'Canis Wolfborn',
-    stats:['12"','3+','3+','5','5','5','5','8','3+'], role:'HQ', pts:95, min:1, max:1, ppm:0, unique:true, isNew:true,
+    stats:['12"','3+','3+','5','5','5','5','8','3+'], role:'HQ', pts:95, min:1, max:1, ppm:0, unique:true,
     wargear:['Fangsword','Fang of Morkai'],
     abilities:['Bestial Nature: +1 Attack for each Fenrisian Wolf within 6"',
                'Ride the Wolves: Always counts as having made a charge move if within 1" of enemy at start of Fight phase',

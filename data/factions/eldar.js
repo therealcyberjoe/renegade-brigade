@@ -56,7 +56,7 @@ const FACTION_ELDAR = [
 
   // ── NAMED CHARACTERS ────────────────────────────────────────────────
   { id:'el_eldrad', name:'Eldrad Ulthran',
-    stats:['7"','3+','2+','3','3','5','2','9','6+'], role:'HQ', pts:130, min:1, max:1, ppm:0, unique:true, isNew:true,
+    stats:['7"','3+','2+','3','3','5','2','9','6+'], role:'HQ', pts:130, min:1, max:1, ppm:0, unique:true,
     wargear:['Staff of Ulthamar','Shuriken Pistol'],
     abilities:['Psyker: Mastery Level 4 — knows Smite + 4 powers from Runes of Battle and Runes of Fate',
                "Fate's Messenger: After manifesting a power — restore 1 wound OR revert one failed die roll",
@@ -64,14 +64,14 @@ const FACTION_ELDAR = [
                'Ancient Doom'] },
 
   { id:'el_asurmen', name:'Asurmen — Hand of Asuryan',
-    stats:['7"','2+','2+','3','3','6','5','9','2+'], role:'HQ', pts:180, min:1, max:1, ppm:0, unique:true, isNew:true,
+    stats:['7"','2+','2+','3','3','6','5','9','2+'], role:'HQ', pts:180, min:1, max:1, ppm:0, unique:true,
     wargear:['Sword of Asur (x2)','Shuriken Pistol'],
     abilities:['Phoenix Lord: 4+ invulnerable save',
                'Lord of All Dire Avenger Shrines: Friendly Dire Avengers within 6" re-roll all failed hit rolls',
                'Hand of Asuryan: Enemies that charged this unit must re-roll successful hit rolls in subsequent Fight phase'] },
 
   { id:'el_jain_zar', name:'Jain Zar — Storm of Silence',
-    stats:['8"','2+','2+','3','3','5','6','9','4+'], role:'HQ', pts:140, min:1, max:1, ppm:0, unique:true, isNew:true,
+    stats:['8"','2+','2+','3','3','5','6','9','4+'], role:'HQ', pts:140, min:1, max:1, ppm:0, unique:true,
     wargear:['Zhai Morenn','Silent Death','Banshee Mask'],
     abilities:['Phoenix Lord: 4+ invulnerable save',
                'Lord of All Howling Banshee Shrines: Friendly Howling Banshees within 6" always fight first',
@@ -79,7 +79,7 @@ const FACTION_ELDAR = [
                'Swift Strikes: Always fights first regardless of any other rule'] },
 
   { id:'el_karandras', name:'Karandras — The Shadow Hunter',
-    stats:['7"','2+','2+','4','3','5','5','9','3+'], role:'HQ', pts:165, min:1, max:1, ppm:0, unique:true, isNew:true,
+    stats:['7"','2+','2+','4','3','5','5','9','3+'], role:'HQ', pts:165, min:1, max:1, ppm:0, unique:true,
     wargear:["Scorpion's Claw",'Mandiblasters','Scorpion Chainsword'],
     abilities:['Phoenix Lord: 4+ invulnerable save',
                'Lord of All Striking Scorpion Shrines: Friendly Striking Scorpions within 6" re-roll hit rolls of 1 and count as in cover',
@@ -87,7 +87,7 @@ const FACTION_ELDAR = [
                'Crack Shot: Re-roll failed wound rolls'] },
 
   { id:'el_fuegan', name:'Fuegan, The Burning Lance',
-    stats:['7"','2+','2+','4','4','6','5','9','3+'], role:'HQ', pts:165, min:1, max:1, ppm:0, unique:true, isNew:true,
+    stats:['7"','2+','2+','4','4','6','5','9','3+'], role:'HQ', pts:165, min:1, max:1, ppm:0, unique:true,
     wargear:['The Fire Axe','Firepike'],
     abilities:['Phoenix Lord: 4+ invulnerable save',
                'The Burning: Each wound lost adds 1 to Attacks for rest of battle (max +5)',
@@ -95,7 +95,7 @@ const FACTION_ELDAR = [
                'Lord of the Dragon Shrines: Fire Dragons within 6" re-roll failed wound rolls'] },
 
   { id:'el_baharroth', name:'Baharroth, Cry of the Wind',
-    stats:['14"','2+','2+','3','3','5','5','9','4+'], role:'HQ', pts:120, min:1, max:1, ppm:0, unique:true, isNew:true,
+    stats:['14"','2+','2+','3','3','5','5','9','4+'], role:'HQ', pts:120, min:1, max:1, ppm:0, unique:true,
     wargear:['Swiftstrike','Lasblaster','Grenade Pack'],
     abilities:['Phoenix Lord: 4+ invulnerable save',
                'Skyleap: At end of any phase remove and redeploy at start of next Movement phase 9"+ from enemy',
@@ -103,7 +103,7 @@ const FACTION_ELDAR = [
                'Lord of the Hawk Shrines: Swooping Hawks within 6" re-roll hit rolls of 1'] },
 
   { id:'el_yriel', name:'Prince Yriel',
-    stats:['7"','2+','2+','4','3','5','6','9','3+'], role:'HQ', pts:100, min:1, max:1, ppm:0, unique:true, isNew:true,
+    stats:['7"','2+','2+','4','3','5','6','9','3+'], role:'HQ', pts:100, min:1, max:1, ppm:0, unique:true,
     wargear:['Spear of Twilight','Eye of Wrath'],
     abilities:['Fleet of Foot: May Advance and still charge',
                'Spear of Twilight: Wound rolls of 6 deal D3 mortal wounds in addition',
@@ -111,7 +111,7 @@ const FACTION_ELDAR = [
                'Doomed: At end of each battle round roll D6 — on 1 Yriel loses 1 wound'] },
 
   { id:'el_irillyth', name:'Irillyth, Shade of Twilight',
-    stats:['12"','2+','2+','3','3','6','4','9','4+'], role:'HQ', pts:140, min:1, max:1, ppm:0, unique:true, isNew:true,
+    stats:['12"','2+','2+','3','3','6','4','9','4+'], role:'HQ', pts:140, min:1, max:1, ppm:0, unique:true,
     wargear:['Spear of Starlight','Twilight Wraith'],
     abilities:['Phoenix Lord: 4+ invulnerable save',
                'Lord of the Shadow Spectre Shrines: Shadow Spectres within 6" re-roll hit and wound rolls of 1',
@@ -409,7 +409,7 @@ const FACTION_ELDAR = [
 
   // ── FLYER ───────────────────────────────────────────────────────────
   { id:'el_hemlock', name:'Hemlock Wraithfighter',
-    stats:['20-60"','6+','3+','6','6','8','1','9','3+'], role:'Flyer', pts:190, min:1, max:1, ppm:0, isNew:true,
+    stats:['20-60"','6+','3+','6','6','8','1','9','3+'], role:'Flyer', pts:190, min:1, max:1, ppm:0,
     wargear:['Twin Heavy D-scythes','Spirit Stones'],
     abilities:['Hard to Hit: -1 to hit rolls against this model',
                'Mindshock: Units that lose models subtract 1 from Leadership until next turn',

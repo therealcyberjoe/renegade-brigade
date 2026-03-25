@@ -46,14 +46,14 @@ const FACTION_NECRONS = [
                "Mechanica's Aura: Friendly Necrons Vehicle within 6\" regains 1 wound at start of turn on 5+"] },
 
   { id:'nec_trazyn', name:'Trazyn the Infinite',
-    stats:['5"','3+','3+','5','5','5','3','10','3+'], role:'HQ', pts:130, min:1, max:1, ppm:0, isNew:true,
+    stats:['5"','3+','3+','5','5','5','3','10','3+'], role:'HQ', pts:130, min:1, max:1, ppm:0,
     wargear:['Empathic Obliterator'],
     abilities:['Prismatic Gallery: Once per battle — choose one of several powerful one-off abilities',
                'Surrogate Hosts: When slain roll D6 — on 2+ replace with a friendly Lychguard or Immortal within 3"',
                'Reanimation Protocols','Living Metal'] },
 
   { id:'nec_anrakyr', name:'Anrakyr the Traveller',
-    stats:['5"','3+','3+','5','5','5','3','10','3+'], role:'HQ', pts:130, min:1, max:1, ppm:0, isNew:true,
+    stats:['5"','3+','3+','5','5','5','3','10','3+'], role:'HQ', pts:130, min:1, max:1, ppm:0,
     wargear:['Tachyon Arrow','Warscythe'],
     abilities:['Pyrrhian Eternals: Once per battle — one friendly Necrons unit within 6" may be activated twice this phase',
                'Lord of the Pyrrhian Legions: Friendly Necrons within 6" re-roll hit rolls of 1',
