@@ -1,7 +1,7 @@
 const FACTION_GENESTEALER_CULTS = [
   // ── HQ ──────────────────────────────────────────────────────────────
   { id:'gc_patriarch', name:'Patriarch',
-    stats:['8"','2+','4+','6','6','5','5','10','5+'], role:'HQ', pts:140, min:1, max:1, ppm:0,
+    stats:['8"','2+','4+','6','6','5','5','10','5+'], role:'HQ', pts:140, min:1, max:1, ppm:0, unique:true,
     wargear:['Monstrous Rending Claws','Mind Control'],
     abilities:['Cult Ambush: Standard GSC deployment rule',
                'Hypnotic Gaze: At start of Fight phase pick enemy Character within 1" — it fights last',
