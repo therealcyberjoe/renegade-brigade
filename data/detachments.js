@@ -16,6 +16,10 @@ const DETACHMENT_RULES = {
   spearhead: { cp: 1, hq: [1,2], troops: [0,3], elites: [0,3], fast: [0,3], heavy: [3,'∞'], flyer: [0,2], dedicated: [0,'∞'], lord: [0,0], fortification: [0,0] },
   vanguard: { cp: 1, hq: [1,2], troops: [0,3], elites: [3,'∞'], fast: [0,3], heavy: [0,3], flyer: [0,2], dedicated: [0,'∞'], lord: [0,0], fortification: [0,0] },
   supreme: { cp: 1, hq: [3,5], troops: [0,0], elites: [0,0], fast: [0,0], heavy: [0,0], flyer: [0,0], dedicated: [0,0], lord: [0,3], fortification: [0,0] },
+  superheavy: { cp: 1, hq: [0,0], troops: [0,0], elites: [0,0], fast: [0,0], heavy: [0,0], flyer: [0,0], dedicated: [0,0], lord: [3,5], fortification: [0,0] },
+  airwing: { cp: 1, hq: [0,0], troops: [0,0], elites: [0,0], fast: [0,0], heavy: [0,0], flyer: [3,5], dedicated: [0,0], lord: [0,3], fortification: [0,0] },
+  superheavyauxiliary: { cp: 1, hq: [0,0], troops: [0,0], elites: [0,0], fast: [0,0], heavy: [0,0], flyer: [0,0], dedicated: [0,0], lord: [1,1], fortification: [0,0] },
+  fortificationnetwork: { cp: 1, hq: [0,0], troops: [0,0], elites: [0,0], fast: [0,0], heavy: [0,0], flyer: [0,0], dedicated: [0,0], lord: [0,0], fortification: [1,3] },
   auxiliary: { cp: -1, hq: [0,0], troops: [0,0], elites: [0,0], fast: [0,0], heavy: [0,0], flyer: [0,0], dedicated: [0,0], lord: [0,0], fortification: [0,0] },
 };
 
