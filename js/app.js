@@ -3,7 +3,7 @@
 // WEAPON PROFILE LOOKUP
 // ============================================================
 function lookupWeapon(name) {
-  if (!window.WEAPON_PROFILES) return null;
+  if (typeof WEAPON_PROFILES === "undefined") return null;
   // Exact match first
   if (WEAPON_PROFILES[name]) return WEAPON_PROFILES[name];
   // Case-insensitive match
@@ -243,11 +243,17 @@ function addUnit(unitId) {
   // Build default selections
   const selections = {};
   let optionPts = 0;
+  // Start from base wargear, then apply default option weapons
+  let wargear = [...unit.wargear];
   if (unit.options) {
     unit.options.forEach(opt => {
       const def = opt.choices.find(c => c.default) || opt.choices[0];
       selections[opt.group] = def.label;
       optionPts += def.pts;
+      // Apply weapon swap for default choice
+      if (def.weapons) {
+        wargear = applyWeaponChoice(wargear, null, def);
+      }
     });
   }
 
@@ -267,7 +273,8 @@ function addUnit(unitId) {
     minModels: unit.min || 1,
     maxModels: unit.max || 1,
     ppm: unit.ppm || 0,
-    wargear: [...unit.wargear],
+    wargear,
+    baseWargear: [...unit.wargear],
     hasOptions: !!unit.options,
     options: unit.options || [],
     abilities: unit.abilities || [],
@@ -279,26 +286,87 @@ function addUnit(unitId) {
   renderForceOrg();
 }
 
+// ============================================================
+// WEAPON LOADOUT HELPER
+// ============================================================
+
+// Applies a weapon choice swap to a wargear array.
+// choice.weapons  — list of weapons this choice provides
+// choice.replaces — list of weapons this choice removes (optional)
+// If neither is set, wargear is unchanged (pts-only option).
+// If choice.replaces is omitted but choice.weapons is set,
+// the OLD choice's weapons are removed and new ones are added.
+function applyWeaponChoice(wargear, oldChoice, newChoice) {
+  let gear = [...wargear];
+
+  // Determine what to remove
+  const toRemove = [];
+  if (newChoice.replaces) {
+    // Explicit list of what to strip
+    toRemove.push(...newChoice.replaces);
+  } else if (oldChoice && oldChoice.weapons) {
+    // Remove whatever the previous choice granted
+    toRemove.push(...oldChoice.weapons);
+  }
+
+  // Remove (first occurrence only, to handle duplicates cleanly)
+  toRemove.forEach(w => {
+    const idx = gear.findIndex(g => g.toLowerCase() === w.toLowerCase());
+    if (idx !== -1) gear.splice(idx, 1);
+  });
+
+  // Add new weapons
+  if (newChoice.weapons) {
+    gear.push(...newChoice.weapons);
+  }
+
+  return gear;
+}
+
 function changeLoadout(instanceId, group, label, pts) {
   const entry = state.roster.find(r => r.unitId === instanceId);
   if (!entry) return;
-  // Find old pts for this group
   const opt = entry.options.find(o => o.group === group);
   if (!opt) return;
   const oldChoice = opt.choices.find(c => c.label === entry.selections[group]);
+  const newChoice = opt.choices.find(c => c.label === label);
   const oldPts = oldChoice ? oldChoice.pts : 0;
+
+  // Swap weapons in wargear if this option has weapon data
+  if (newChoice && (newChoice.weapons || newChoice.replaces || (oldChoice && oldChoice.weapons))) {
+    entry.wargear = applyWeaponChoice(entry.wargear, oldChoice || null, newChoice);
+  }
+
   entry.selections[group] = label;
   entry.optionPts = (entry.optionPts - oldPts) + pts;
   updateTotalPoints();
-  // Re-render just the pts display without full re-render to avoid losing focus
-  const ptsEl = document.getElementById('upts_' + instanceId);
+
+  // Update pts display
+  const safeId = instanceId.replace(/[^a-zA-Z0-9_]/g, '_');
+  const ptsEl = document.getElementById('upts_' + safeId);
   if (ptsEl) ptsEl.textContent = (((entry.basePoints + entry.optionPts) + (entry.ppm||0) * Math.max(0,(entry.models||entry.minModels)-entry.minModels)) * entry.qty) + ' pts';
-  const secPtsEl = document.getElementById('secpts_' + instanceId);
-  if (secPtsEl) {
-    const role = entry.role;
-    // recalc section pts
-    const rolePts = state.roster.filter(u => u.role === role).reduce((s,u) => s + ((u.basePoints + (u.optionPts||0)) + (u.ppm||0) * Math.max(0,(u.models||u.minModels||1)-( u.minModels||1))) * u.qty, 0);
-    document.querySelectorAll('[data-role-pts="' + role + '"]').forEach(el => el.textContent = rolePts + ' pts');
+
+  // Update section pts
+  const role = entry.role;
+  const rolePts = state.roster.filter(u => u.role === role).reduce((s,u) => s + ((u.basePoints + (u.optionPts||0)) + (u.ppm||0) * Math.max(0,(u.models||u.minModels||1)-(u.minModels||1))) * u.qty, 0);
+  document.querySelectorAll('[data-role-pts="' + role + '"]').forEach(el => el.textContent = rolePts + ' pts');
+
+  // Re-render wargear display for this unit only
+  const wargearEl = document.getElementById('wg_' + safeId);
+  if (wargearEl) {
+    wargearEl.innerHTML = entry.wargear.map(wg => {
+      const p = lookupWeapon(wg);
+      if (p) return `<div class="weapon-profile-inline">
+        <span class="wp-name">${wg}</span>
+        <span class="wp-stat">${p.range}</span>
+        <span class="wp-stat">${p.type}</span>
+        <span class="wp-stat">S${p.s}</span>
+        <span class="wp-stat">AP${p.ap}</span>
+        <span class="wp-stat">D${p.d}</span>
+        ${p.special ? `<span class="wp-special-inline" title="${p.special}">★</span>` : ''}
+      </div>`;
+      return `<span class="wargear-tag active">${wg}</span>`;
+    }).join('');
   }
 }
 
@@ -386,7 +454,7 @@ function renderRoster() {
             const ptsLabel = choice.pts > 0 ? ` +${choice.pts}` : choice.pts < 0 ? ` ${choice.pts}` : '';
             const noteLabel = choice.note ? `<span class="loadout-note">${choice.note}</span>` : '';
             optionsHtml += `<button class="loadout-btn ${isSelected ? 'selected' : ''}"
-              onclick="changeLoadout('${u.unitId}','${opt.group}','${choice.label}',${choice.pts}); renderRoster(); updateTotalPoints();">
+              onclick="changeLoadout('${u.unitId}','${opt.group}','${choice.label}',${choice.pts}); this.closest('.loadout-choices').querySelectorAll('.loadout-btn').forEach(b=>b.classList.remove('selected')); this.classList.add('selected');">
               ${choice.label}${ptsLabel ? `<span class="loadout-pts">${ptsLabel}</span>` : ''}${noteLabel}
             </button>`;
           });
@@ -445,7 +513,7 @@ function renderRoster() {
           ${modelHtml}
           ${optionsHtml}
           ${notesHtml}
-          <div class="wargear-list">
+          <div class="wargear-list" id="wg_${safeId}">
             ${u.wargear.map(wg => {
               const p = lookupWeapon(wg);
               if (p) return `<div class="weapon-profile-inline">
