@@ -1,0 +1,262 @@
+// Weapon Profiles — 8th Edition Index stats
+// Format: name -> { range, type, s, ap, d, special }
+// 'User' for S means use bearer's Strength
+// Melee weapons have range: 'Melee'
+
+const WEAPON_PROFILES = {
+
+  // ── UNIVERSAL / COMMON ───────────────────────────────────────────────
+
+  // Basic ranged
+  'Boltgun':                   { range:'24"',  type:'Rapid Fire 1', s:4,      ap:0,  d:1,    special:'' },
+  'Bolter':                    { range:'24"',  type:'Rapid Fire 1', s:4,      ap:0,  d:1,    special:'' },
+  'Bolt Rifle':                { range:'30"',  type:'Rapid Fire 1', s:4,      ap:-1, d:1,    special:'' },
+  'Auto Bolt Rifle':           { range:'24"',  type:'Assault 2',   s:4,      ap:0,  d:1,    special:'' },
+  'Stalker Bolt Rifle':        { range:'36"',  type:'Heavy 1',     s:4,      ap:-2, d:2,    special:'' },
+  'Bolt Pistol':               { range:'12"',  type:'Pistol 1',    s:4,      ap:0,  d:1,    special:'' },
+  'Heavy Bolt Pistol':         { range:'18"',  type:'Pistol 1',    s:4,      ap:-1, d:1,    special:'' },
+  'Storm Bolter':              { range:'24"',  type:'Rapid Fire 2', s:4,     ap:0,  d:1,    special:'' },
+  'Twin Bolt Gun':             { range:'24"',  type:'Rapid Fire 2', s:4,     ap:0,  d:1,    special:'' },
+  'Twin Bolt Rifle':           { range:'30"',  type:'Rapid Fire 2', s:4,     ap:-1, d:1,    special:'' },
+  'Boltgun / Bolt Rifle':      { range:'30"',  type:'Rapid Fire 1', s:4,     ap:-1, d:1,    special:'' },
+
+  // Pistols / sidearms
+  'Plasma Pistol':             { range:'12"',  type:'Pistol 1',    s:7,      ap:-3, d:1,    special:'Overcharge: S8 AP-3 D2 — on hit roll of 1 bearer is slain' },
+  'Laspistol':                 { range:'12"',  type:'Pistol 1',    s:3,      ap:0,  d:1,    special:'' },
+  'Hand Flamer':               { range:'6"',   type:'Pistol D6',   s:3,      ap:0,  d:1,    special:'Auto-hits' },
+  'Inferno Pistol':            { range:'6"',   type:'Pistol 1',    s:8,      ap:-4, d:'D6', special:'Melta: roll 2D6 damage within half range and pick highest' },
+
+  // Special weapons
+  'Plasma Gun':                { range:'24"',  type:'Rapid Fire 1', s:7,     ap:-3, d:1,    special:'Overcharge: S8 AP-3 D2 — on hit roll of 1 bearer is slain' },
+  'Meltagun':                  { range:'12"',  type:'Assault 1',   s:8,      ap:-4, d:'D6', special:'Melta: roll 2D6 damage within half range and pick highest' },
+  'Flamer':                    { range:'8"',   type:'Assault D6',  s:4,      ap:0,  d:1,    special:'Auto-hits — does not require line of sight' },
+  'Grav-Gun':                  { range:'18"',  type:'Rapid Fire 1', s:5,     ap:-3, d:1,    special:'Against targets with a Save of 3+ or better each hit causes D3 mortal wounds instead' },
+  'Volkite Charger':           { range:'15"',  type:'Assault 2',   s:5,      ap:0,  d:2,    special:'Deflagrate: unmodified wound rolls of 6 cause 1 additional mortal wound' },
+
+  // Heavy weapons
+  'Heavy Bolter':              { range:'36"',  type:'Heavy 3',     s:5,      ap:-1, d:2,    special:'' },
+  'Lascannon':                 { range:'48"',  type:'Heavy 1',     s:9,      ap:-3, d:'D6', special:'' },
+  'Missile Launcher':          { range:'48"',  type:'Heavy 1',     s:'*',    ap:'*', d:'*', special:'Frag: S4 AP0 D1 Blast (D6 hits) | Krak: S8 AP-2 D3' },
+  'Multi-melta':               { range:'24"',  type:'Heavy 1',     s:8,      ap:-4, d:'D6', special:'Melta: roll 2D6 damage within half range and pick highest' },
+  'Autocannon':                { range:'48"',  type:'Heavy 2',     s:7,      ap:-1, d:2,    special:'' },
+  'Assault Cannon':            { range:'24"',  type:'Heavy 6',     s:6,      ap:-1, d:1,    special:'' },
+  'Twin Assault Cannon':       { range:'24"',  type:'Heavy 12',    s:6,      ap:-1, d:1,    special:'' },
+  'Twin Lascannon':            { range:'48"',  type:'Heavy 2',     s:9,      ap:-3, d:'D6', special:'' },
+  'Plasma Cannon':             { range:'36"',  type:'Heavy D3',    s:7,      ap:-3, d:1,    special:'Overcharge: S8 AP-3 D2 Blast — on hit roll of 1 bearer is slain' },
+  'Cyclone Missile Launcher':  { range:'48"',  type:'Heavy 2',     s:8,      ap:-2, d:3,    special:'Also fires Frag: S4 AP0 D1 Blast' },
+  'Typhoon Missile Launcher':  { range:'48"',  type:'Heavy 2',     s:'*',    ap:'*', d:'*', special:'Frag: S4 AP0 D1 Blast D6 hits | Krak: S8 AP-2 D3' },
+  'Twin Multi-Melta':          { range:'24"',  type:'Heavy 2',     s:8,      ap:-4, d:'D6', special:'Melta' },
+  'Vanquisher Battle Cannon':  { range:'72"',  type:'Heavy 1',     s:14,     ap:-3, d:'D6+6', special:'' },
+  'Battle Cannon':             { range:'72"',  type:'Heavy D6',    s:8,      ap:-2, d:'D3', special:'Blast' },
+  'Demolisher Cannon':         { range:'24"',  type:'Heavy D6',    s:10,     ap:-3, d:'D6', special:'Blast' },
+  'Executioner Plasma Cannon': { range:'36"',  type:'Heavy D3',    s:7,      ap:-3, d:2,    special:'Blast — Overcharge: S8 AP-3 D3' },
+  'Eradicator Nova Cannon':    { range:'36"',  type:'Heavy D6',    s:5,      ap:0,  d:1,    special:'Blast — ignores cover' },
+  'Punisher Gatling Cannon':   { range:'24"',  type:'Heavy 20',    s:5,      ap:0,  d:1,    special:'' },
+  'Exterminator Autocannon':   { range:'48"',  type:'Heavy 4',     s:7,      ap:-1, d:2,    special:'' },
+
+  // Grenades
+  'Frag Grenade':              { range:'6"',   type:'Grenade D6',  s:3,      ap:0,  d:1,    special:'Blast' },
+  'Krak Grenade':              { range:'6"',   type:'Grenade 1',   s:6,      ap:-1, d:'D3', special:'' },
+  'Frag & Krak Grenades':      { range:'6"',   type:'Grenade',     s:'*',    ap:'*', d:'*', special:'Frag: S3 AP0 D1 D6 hits | Krak: S6 AP-1 DD3' },
+  'Photon Grenade':            { range:'12"',  type:'Grenade D6',  s:0,      ap:0,  d:0,    special:'Does not deal damage — target unit cannot fire Overwatch this turn and -1 to charge rolls' },
+
+  // Melee
+  'Chainsword':                { range:'Melee', type:'Melee',      s:'User', ap:0,  d:1,    special:'+1 attack when equipped' },
+  'Astartes Chainsword':       { range:'Melee', type:'Melee',      s:'User', ap:-1, d:1,    special:'+1 attack when equipped' },
+  'Power Sword':               { range:'Melee', type:'Melee',      s:'User', ap:-3, d:1,    special:'' },
+  'Power Axe':                 { range:'Melee', type:'Melee',      s:'+1',   ap:-2, d:1,    special:'' },
+  'Power Fist':                { range:'Melee', type:'Melee',      s:'x2',   ap:-3, d:'D3', special:'-1 to hit rolls' },
+  'Power Maul':                { range:'Melee', type:'Melee',      s:'+2',   ap:-1, d:1,    special:'' },
+  'Thunder Hammer':            { range:'Melee', type:'Melee',      s:'x2',   ap:-3, d:3,    special:'-1 to hit rolls' },
+  'Lightning Claw':            { range:'Melee', type:'Melee',      s:'User', ap:-2, d:1,    special:'Re-roll all failed wound rolls — +1 attack if two claws equipped' },
+  'Force Sword':               { range:'Melee', type:'Melee',      s:'User', ap:-3, d:'D3', special:'Psychic — may deal mortal wounds instead' },
+  'Force Axe':                 { range:'Melee', type:'Melee',      s:'+1',   ap:-2, d:'D3', special:'Psychic' },
+  'Force Staff':               { range:'Melee', type:'Melee',      s:'+2',   ap:-1, d:'D3', special:'Psychic' },
+  'Crozius Arcanum':           { range:'Melee', type:'Melee',      s:'+2',   ap:-1, d:2,    special:'' },
+  'Servo-arm':                 { range:'Melee', type:'Melee',      s:'x2',   ap:-2, d:3,    special:'-1 to hit rolls' },
+
+  // Lasgun family
+  'Lasgun':                    { range:'24"',  type:'Rapid Fire 1', s:3,     ap:0,  d:1,    special:'' },
+  'Hotshot Lasgun':            { range:'18"',  type:'Rapid Fire 1', s:3,     ap:-2, d:1,    special:'' },
+  'Hotshot Volley Gun':        { range:'24"',  type:'Heavy 4',     s:3,      ap:-2, d:1,    special:'' },
+
+  // ── SPACE MARINE SPECIFIC ────────────────────────────────────────────
+  'Bolt Sniper Rifle':         { range:'36"',  type:'Heavy 1',     s:4,      ap:-2, d:2,    special:'Mortal rounds: on unmodified 6 to wound, 1 mortal wound instead of normal damage' },
+  'Instigator Bolt Carbine':   { range:'24"',  type:'Assault 1',   s:4,      ap:-1, d:2,    special:'' },
+  'Occulus Bolt Carbine':      { range:'24"',  type:'Assault 1',   s:4,      ap:0,  d:1,    special:'Ignores Look Out Sir rule' },
+  'Plasma Incinerator':        { range:'30"',  type:'Rapid Fire 1', s:7,     ap:-4, d:1,    special:'Overcharge: S8 AP-4 D2 — on hit roll of 1 bearer is slain' },
+  'Macro Plasma Incinerator':  { range:'36"',  type:'Heavy D3',    s:8,      ap:-4, d:2,    special:'Overcharge: S9 AP-5 D3 Blast — on hit roll of 1 bearer suffers D3 mortal wounds' },
+  'Onslaught Gatling Cannon':  { range:'24"',  type:'Heavy 12',    s:5,      ap:-1, d:1,    special:'' },
+  'Heavy Onslaught Gatling Cannon': { range:'24"', type:'Heavy 18', s:6,    ap:-1, d:2,    special:'' },
+  'Fragstorm Grenade Launcher':{ range:'18"',  type:'Assault D6',  s:4,      ap:0,  d:1,    special:'Blast' },
+  'Auto Boltstorm Gauntlet':   { range:'18"',  type:'Assault 3',   s:4,      ap:0,  d:1,    special:'Each model has two — fires twice if bearer did not move' },
+  'Assault Bolters':           { range:'18"',  type:'Assault 3',   s:5,      ap:-1, d:1,    special:'' },
+  'Superkrak Rocket Launcher': { range:'48"',  type:'Heavy 2',     s:10,     ap:-2, d:'D3', special:'May target units not in line of sight at -1 to hit | Superfrag: S5 AP0 D1 Blast D3+3 hits' },
+  'Melta Destroyer':           { range:'18"',  type:'Heavy D3',    s:8,      ap:-4, d:'D6', special:'Blast — Melta within half range' },
+  'Thunderstrike Laser':       { range:'48"',  type:'Heavy 1',     s:10,     ap:-4, d:'D6+1', special:'If target is a Vehicle, on a wound roll of 6 it suffers D3 additional mortal wounds' },
+  'Hailstrike Fragcannon':     { range:'24"',  type:'Heavy D6',    s:6,      ap:-1, d:2,    special:'Blast' },
+  'Ironhail Heavy Stubber':    { range:'36"',  type:'Heavy 3',     s:4,      ap:0,  d:1,    special:'' },
+  'Twin Ironhail Autocannon':  { range:'48"',  type:'Heavy 4',     s:7,      ap:-1, d:2,    special:'' },
+  'Ironhail Skytalon Array':   { range:'24"',  type:'Heavy 8',     s:5,      ap:-1, d:1,    special:'' },
+  'Multi-melta (Redemptor)':   { range:'24"',  type:'Heavy 2',     s:8,      ap:-4, d:'D6', special:'Melta' },
+  'Pyreblaster':               { range:'12"',  type:'Assault D6',  s:5,      ap:-1, d:1,    special:'Auto-hits' },
+
+  // ── CHAOS / HERETIC ASTARTES ─────────────────────────────────────────
+  'Combi-Bolter':              { range:'24"',  type:'Rapid Fire 2', s:4,     ap:0,  d:1,    special:'' },
+  'Daemon Sword':              { range:'Melee', type:'Melee',      s:'+3',   ap:-3, d:'D3', special:'Bearer may re-roll hit rolls in the Fight phase' },
+  'Accursed Weapon':           { range:'Melee', type:'Melee',      s:'User', ap:-2, d:1,    special:'Re-roll wound rolls of 1' },
+  'Plague Knife':              { range:'Melee', type:'Melee',      s:'User', ap:-1, d:1,    special:'Plague Weapon — wound rolls of 7+ (with modifiers) cause 1 additional mortal wound' },
+  'Great Plague Cleaver':      { range:'Melee', type:'Melee',      s:'+4',   ap:-3, d:'D6', special:'Plague Weapon — -1 to hit rolls' },
+  'Manreaper':                 { range:'Melee', type:'Melee',      s:'+4',   ap:-2, d:'D3', special:'Plague Weapon' },
+  'Blightlord Flail':          { range:'Melee', type:'Melee',      s:'+2',   ap:-2, d:2,    special:'Plague Weapon — unmodified wound rolls of 6 cause D3 additional mortal wounds' },
+  'Sonic Blaster':             { range:'24"',  type:'Assault 3',   s:4,      ap:-1, d:1,    special:'Cacophonic Choir: if 10+ models fire at same target each hit roll of 6 causes 1 additional mortal wound' },
+  'Blastmaster':               { range:'36"',  type:'Heavy D3',    s:8,      ap:-2, d:3,    special:'Blast' },
+  'Warpflamer':                { range:'9"',   type:'Assault D6',  s:4,      ap:-2, d:1,    special:'Auto-hits' },
+  'Inferno Bolter':            { range:'18"',  type:'Rapid Fire 1', s:4,     ap:-2, d:1,    special:'' },
+
+  // ── ELDAR / AELDARI ──────────────────────────────────────────────────
+  'Shuriken Catapult':         { range:'18"',  type:'Assault 2',   s:4,      ap:0,  d:1,    special:'Bladestorm: unmodified wound rolls of 6 change AP to -3' },
+  'Shuriken Pistol':           { range:'12"',  type:'Pistol 1',    s:4,      ap:0,  d:1,    special:'Bladestorm: unmodified wound rolls of 6 change AP to -3' },
+  'Shuriken Cannon':           { range:'24"',  type:'Assault 3',   s:6,      ap:0,  d:1,    special:'Bladestorm: unmodified wound rolls of 6 change AP to -3' },
+  'Scatter Laser':             { range:'36"',  type:'Heavy 4',     s:6,      ap:0,  d:1,    special:'' },
+  'Starcannon':                { range:'36"',  type:'Heavy 2',     s:6,      ap:-3, d:'D3', special:'' },
+  'Bright Lance':              { range:'36"',  type:'Heavy 1',     s:8,      ap:-4, d:'D6', special:'' },
+  'Wraithcannon':              { range:'12"',  type:'Assault 1',   s:10,     ap:-4, d:'D6', special:'If target has Wounds characteristic of 1, they are slain on a wound roll of 2+' },
+  'D-Scythe':                  { range:'8"',   type:'Assault D3',  s:10,     ap:-4, d:1,    special:'Auto-hits — deals D3 mortal wounds against targets with Wounds characteristic of 10+' },
+  'Eldar Missile Launcher':    { range:'48"',  type:'Heavy 1',     s:'*',    ap:'*', d:'*', special:'Sunburst: S4 AP0 D1 Blast | Starshot: S8 AP-2 D3' },
+  'Aeldari Power Sword':       { range:'Melee', type:'Melee',      s:'+1',   ap:-3, d:1,    special:'' },
+  'Singing Spear':             { range:'12"',  type:'Assault 1',   s:9,      ap:0,  d:'D3', special:'Also a Melee weapon: S9 AP0 D3' },
+  'Diresword':                 { range:'Melee', type:'Melee',      s:'User', ap:-3, d:'D3', special:'Unmodified wound rolls of 6 slay the model outright (no saves allowed)' },
+  'Witchblade':                { range:'Melee', type:'Melee',      s:'+2',   ap:-2, d:'D3', special:'Psychic' },
+  'Star Glaive':               { range:'Melee', type:'Melee',      s:'+1',   ap:-3, d:2,    special:'' },
+  'Harlequin\'s Caress':       { range:'Melee', type:'Melee',      s:'User', ap:0,  d:1,    special:'Each hit roll of 6 automatically wounds' },
+  'Harlequin\'s Kiss':         { range:'Melee', type:'Melee',      s:'User', ap:-1, d:'D3', special:'' },
+  'Harlequin\'s Embrace':      { range:'Melee', type:'Melee',      s:'+3',   ap:-2, d:2,    special:'' },
+
+  // ── DARK ELDAR / DRUKHARI ────────────────────────────────────────────
+  'Splinter Rifle':            { range:'24"',  type:'Rapid Fire 1', s:2,     ap:0,  d:1,    special:'Poisoned: wound rolls of 4+ regardless of Toughness' },
+  'Splinter Pistol':           { range:'12"',  type:'Pistol 1',    s:2,      ap:0,  d:1,    special:'Poisoned: wound rolls of 4+' },
+  'Shardcarbine':              { range:'18"',  type:'Assault 3',   s:2,      ap:0,  d:1,    special:'Poisoned: wound rolls of 4+' },
+  'Splinter Cannon':           { range:'36"',  type:'Heavy 3 / Assault 6', s:2, ap:0, d:1, special:'Poisoned: wound rolls of 4+' },
+  'Blaster':                   { range:'18"',  type:'Assault 1',   s:8,      ap:-4, d:'D6', special:'Melta within half range' },
+  'Dark Lance':                { range:'36"',  type:'Heavy 1',     s:8,      ap:-4, d:'D6', special:'' },
+  'Haywire Blaster':           { range:'24"',  type:'Assault 1',   s:4,      ap:0,  d:1,    special:'Against Vehicles: each hit causes D3 mortal wounds instead' },
+  'Venom Blade':               { range:'Melee', type:'Melee',      s:'User', ap:0,  d:1,    special:'Poisoned: wound rolls of 2+ regardless of Toughness' },
+  'Agoniser':                  { range:'Melee', type:'Melee',      s:'User', ap:-2, d:1,    special:'Poisoned: wound rolls of 4+' },
+  'Scissorhand':               { range:'Melee', type:'Melee',      s:'User', ap:-1, d:1,    special:'+2 attacks — Poisoned: wound rolls of 4+' },
+
+  // ── TAU ──────────────────────────────────────────────────────────────
+  'Pulse Rifle':               { range:'30"',  type:'Rapid Fire 1', s:5,     ap:-1, d:1,    special:'' },
+  'Pulse Carbine':             { range:'20"',  type:'Assault 2',   s:5,      ap:-1, d:1,    special:'' },
+  'Pulse Pistol':              { range:'12"',  type:'Pistol 1',    s:5,      ap:-1, d:1,    special:'' },
+  'Pulse Blaster':             { range:'*',    type:'Assault 2',   s:'*',    ap:'*', d:1,   special:'5": S6 AP-3 | 10": S5 AP-2 | 15": S4 AP-1' },
+  'Rail Rifle':                { range:'30"',  type:'Rapid Fire 1', s:6,     ap:-4, d:'D3', special:'Unmodified wound rolls of 6 deal D3 mortal wounds instead of normal damage' },
+  'Railgun':                   { range:'72"',  type:'Heavy 1',     s:10,     ap:-4, d:'D6', special:'Submunitions: may fire D6 S6 AP0 D1 Blast shots instead' },
+  'Heavy Rail Rifle':          { range:'60"',  type:'Heavy 2',     s:8,      ap:-4, d:'D3', special:'Unmodified wound rolls of 6 deal D3 mortal wounds' },
+  'Ion Rifle':                 { range:'30"',  type:'Rapid Fire 1', s:7,     ap:-1, d:1,    special:'Overcharge: S8 AP-2 D1 Blast — on hit roll of 1 bearer suffers 1 mortal wound' },
+  'Ion Accelerator':           { range:'60"',  type:'Heavy D6',    s:7,      ap:-3, d:'D3', special:'Blast — Overcharge: S8 AP-3 D4 Blast — on hit roll of 1 bearer suffers D3 mortal wounds' },
+  'Heavy Burst Cannon':        { range:'18"',  type:'Heavy 12',    s:5,      ap:-1, d:1,    special:'Nova: add D6 shots — on roll of 1 bearer suffers D3 mortal wounds' },
+  'Burst Cannon':              { range:'18"',  type:'Assault 4',   s:5,      ap:0,  d:1,    special:'' },
+  'Smart Missile System':      { range:'30"',  type:'Heavy 4',     s:5,      ap:0,  d:1,    special:'Does not require line of sight — ignores cover' },
+  'Fusion Blaster':            { range:'18"',  type:'Assault 1',   s:8,      ap:-4, d:'D6', special:'Melta within half range' },
+  'Missile Pod':               { range:'36"',  type:'Assault 2',   s:7,      ap:-1, d:'D3', special:'' },
+  'Seeker Missile':            { range:'72"',  type:'Heavy 1',     s:8,      ap:-2, d:'D3', special:'One use only' },
+  'Kroot Rifle':               { range:'24"',  type:'Rapid Fire 1', s:4,     ap:0,  d:1,    special:'Also a Melee weapon: S User AP0 D1' },
+
+  // ── TYRANIDS ─────────────────────────────────────────────────────────
+  'Devourer':                  { range:'18"',  type:'Assault 3',   s:4,      ap:0,  d:1,    special:'' },
+  'Deathspitter':              { range:'24"',  type:'Assault 3',   s:5,      ap:-1, d:1,    special:'' },
+  'Barbed Strangler':          { range:'36"',  type:'Heavy D6',    s:5,      ap:-1, d:1,    special:'Blast — wound rolls of 6 deal 1 mortal wound in addition to normal damage' },
+  'Venom Cannon':              { range:'36"',  type:'Heavy D3',    s:9,      ap:-2, d:'D3', special:'Blast' },
+  'Stranglethorn Cannon':      { range:'36"',  type:'Heavy 2D6',   s:6,      ap:-1, d:1,    special:'Blast' },
+  'Acid Spray':                { range:'9"',   type:'Heavy 2D6',   s:5,      ap:-1, d:1,    special:'Auto-hits' },
+  'Bioplasmic Stream':         { range:'18"',  type:'Heavy D6',    s:7,      ap:-3, d:2,    special:'Auto-hits — Overcharge: D3 mortal wounds on attacker on 1' },
+  'Devourer with Brainleech Worms': { range:'18"', type:'Assault 3', s:6,   ap:0,  d:2,    special:'' },
+  'Rending Claws':             { range:'Melee', type:'Melee',      s:'User', ap:-1, d:1,    special:'Unmodified wound rolls of 6 change AP to -4' },
+  'Scything Talons':           { range:'Melee', type:'Melee',      s:'User', ap:0,  d:1,    special:'Re-roll hit rolls of 1 — +1 attack if two pairs equipped' },
+  'Monstrous Rending Claws':   { range:'Melee', type:'Melee',      s:'+1',   ap:-3, d:2,    special:'Unmodified wound rolls of 6 change AP to -4' },
+  'Monstrous Scything Talons': { range:'Melee', type:'Melee',      s:'+1',   ap:-2, d:3,    special:'Re-roll hit rolls of 1' },
+  'Boneswords':                { range:'Melee', type:'Melee',      s:'User', ap:-2, d:1,    special:'Enemy models that lose a wound must take a Leadership test — if failed suffer 1 additional mortal wound' },
+  'Lash Whip and Bonesword':   { range:'Melee', type:'Melee',      s:'User', ap:-2, d:1,    special:'Lash Whip: enemy units within 3" subtract 1 from hit rolls | Bonesword: Leadership test on wound' },
+
+  // ── NECRONS ──────────────────────────────────────────────────────────
+  'Gauss Flayer':              { range:'24"',  type:'Rapid Fire 1', s:4,     ap:-1, d:1,    special:'Gauss: unmodified wound rolls of 6 deal 1 mortal wound in addition to normal damage' },
+  'Gauss Reaper':              { range:'12"',  type:'Assault 2',   s:5,      ap:-2, d:1,    special:'Gauss' },
+  'Gauss Blaster':             { range:'24"',  type:'Rapid Fire 2', s:5,     ap:-2, d:1,    special:'Gauss' },
+  'Gauss Cannon':              { range:'24"',  type:'Rapid Fire 3', s:6,     ap:-2, d:2,    special:'Gauss' },
+  'Gauss Destructor':          { range:'24"',  type:'Heavy 2',     s:8,      ap:-4, d:'D3', special:'Gauss' },
+  'Tesla Carbine':             { range:'24"',  type:'Assault 2',   s:5,      ap:0,  d:1,    special:'Tesla: unmodified hit rolls of 6 cause 2 additional hits' },
+  'Tesla Destructor':          { range:'24"',  type:'Heavy 4',     s:7,      ap:0,  d:2,    special:'Tesla' },
+  'Heavy Gauss Cannon':        { range:'36"',  type:'Heavy 1',     s:9,      ap:-4, d:'D6', special:'Gauss' },
+  'Particle Beamer':           { range:'18"',  type:'Heavy D6',    s:6,      ap:0,  d:1,    special:'Blast' },
+  'Staff of Light':            { range:'18"',  type:'Assault 3',   s:5,      ap:-2, d:1,    special:'' },
+  'Voidblade':                 { range:'Melee', type:'Melee',      s:'+1',   ap:-3, d:1,    special:'Tesla: unmodified wound rolls of 6 cause the target to suffer 1 additional mortal wound' },
+  'Warscythe':                 { range:'Melee', type:'Melee',      s:'+2',   ap:-4, d:2,    special:'' },
+  'Hyperphase Sword':          { range:'Melee', type:'Melee',      s:'+1',   ap:-3, d:1,    special:'' },
+  'Entropic Strike (Scarab claws)': { range:'Melee', type:'Melee', s:5,     ap:-2, d:1,    special:'Wound rolls of 6 deal D3 mortal wounds instead' },
+
+  // ── ORKS ─────────────────────────────────────────────────────────────
+  'Shoota':                    { range:'18"',  type:'Assault 2',   s:4,      ap:0,  d:1,    special:'' },
+  'Slugga':                    { range:'12"',  type:'Pistol 1',    s:4,      ap:0,  d:1,    special:'' },
+  'Big Shoota':                { range:'36"',  type:'Heavy 3',     s:5,      ap:0,  d:1,    special:'' },
+  'Rokkit Launcha':            { range:'24"',  type:'Assault 1',   s:8,      ap:-2, d:'D3', special:'' },
+  'Kustom Mega-Blasta':        { range:'24"',  type:'Assault 1',   s:8,      ap:-3, d:'D6',   special:'On hit roll of 1 bearer suffers 1 mortal wound' },
+  'Choppa':                    { range:'Melee', type:'Melee',      s:'User', ap:-1, d:1,    special:'' },
+  'Power Klaw':                { range:'Melee', type:'Melee',      s:'x2',   ap:-3, d:'D3', special:'-1 to hit rolls' },
+  'Big Choppa':                { range:'Melee', type:'Melee',      s:'+2',   ap:-1, d:2,    special:'' },
+
+  // ── ASTRA MILITARUM ──────────────────────────────────────────────────
+  'Lasrifle':                  { range:'24"',  type:'Rapid Fire 1', s:3,     ap:0,  d:1,    special:'' },
+  'Autogun':                   { range:'24"',  type:'Rapid Fire 1', s:3,     ap:0,  d:1,    special:'' },
+  'Sniper Rifle':              { range:'36"',  type:'Heavy 1',     s:4,      ap:0,  d:1,    special:'Sniper: unmodified wound rolls of 6 deal 1 mortal wound — may target Characters' },
+  'Grenade Launcher':          { range:'30"',  type:'Assault 1',   s:'*',    ap:'*', d:'*', special:'Frag: S3 AP0 D1 Blast | Krak: S6 AP-1 DD3' },
+  'Meltagun (Guard)':          { range:'12"',  type:'Assault 1',   s:8,      ap:-4, d:'D6', special:'Melta' },
+  'Plasma Gun (Guard)':        { range:'24"',  type:'Rapid Fire 1', s:7,     ap:-3, d:1,    special:'Overcharge: S8 AP-3 D2 — bearer slain on hit roll of 1' },
+  'Missile Launcher (Guard)':  { range:'48"',  type:'Heavy 1',     s:'*',    ap:'*', d:'*', special:'Frag: S4 AP0 D1 Blast | Krak: S8 AP-2 D3' },
+  'Heavy Flamer':              { range:'8"',   type:'Heavy D6',    s:5,      ap:-1, d:1,    special:'Auto-hits' },
+  'Mortar':                    { range:'48"',  type:'Heavy D6',    s:4,      ap:0,  d:1,    special:'Blast — ignores line of sight at -1 to hit' },
+  'Lascannon (Guard)':         { range:'48"',  type:'Heavy 1',     s:9,      ap:-3, d:'D6', special:'' },
+
+  // ── ADEPTUS MECHANICUS ────────────────────────────────────────────────
+  'Galvanic Rifle':            { range:'30"',  type:'Rapid Fire 1', s:4,     ap:-1, d:2,    special:'' },
+  'Radium Carbine':            { range:'18"',  type:'Assault 3',   s:3,      ap:0,  d:1,    special:'Irradiated: wound rolls of 6 deal 1 mortal wound in addition' },
+  'Phosphor Blaster':          { range:'24"',  type:'Rapid Fire 1', s:5,     ap:-1, d:1,    special:'Phosphor: target loses cover against subsequent attacks this phase' },
+  'Arc Rifle':                 { range:'24"',  type:'Rapid Fire 1', s:6,     ap:-1, d:'D3', special:'Arc: unmodified wound rolls of 6 deal 1 mortal wound against VEHICLES in addition' },
+  'Transuranic Arquebus':      { range:'60"',  type:'Heavy 1',     s:7,      ap:-2, d:'D6', special:'May target Characters regardless of other visible units' },
+  'Cognis Heavy Stubber':      { range:'36"',  type:'Heavy 3',     s:4,      ap:0,  d:1,    special:'May fire when vehicle advances (at -1 to hit)' },
+  'Plasma Caliver':            { range:'18"',  type:'Assault 2',   s:7,      ap:-3, d:1,    special:'Overcharge: S8 AP-3 D2 — bearer slain on hit roll of 1' },
+  'Volkite Culverin':          { range:'45"',  type:'Heavy 4',     s:6,      ap:0,  d:2,    special:'Deflagrate: unmodified wound rolls of 6 cause 1 mortal wound in addition' },
+
+  // ── ADEPTUS CUSTODES ─────────────────────────────────────────────────
+  'Guardian Spear':            { range:'24"',  type:'Rapid Fire 1', s:4,     ap:0,  d:1,    special:'Also a Melee weapon: S+1 AP-3 D2' },
+  'Sentinel Blade':            { range:'12"',  type:'Pistol 2',    s:4,      ap:0,  d:1,    special:'Also a Melee weapon: S User AP-3 D2' },
+  'Castellan Axe':             { range:'24"',  type:'Rapid Fire 1', s:4,     ap:0,  d:1,    special:'Also a Melee weapon: S+3 AP-2 D3' },
+  'Interceptor Lance':         { range:'18"',  type:'Assault 2',   s:6,      ap:-2, d:2,    special:'Also a Melee weapon: S+1 AP-3 D2' },
+  'Salvo Launcher':            { range:'30"',  type:'Assault 2',   s:5,      ap:-1, d:2,    special:'' },
+  'Balistus Grenade Launcher': { range:'18"',  type:'Assault 1',   s:4,      ap:-1, d:1,    special:'' },
+
+  // ── SISTERS OF BATTLE ─────────────────────────────────────────────────
+  'Bolter (Sororitas)':        { range:'24"',  type:'Rapid Fire 1', s:4,     ap:0,  d:1,    special:'' },
+  'Condemnor Boltgun':         { range:'24"',  type:'Rapid Fire 1', s:4,     ap:0,  d:1,    special:'Against PSYKERS: hit rolls of 6 deal D3 mortal wounds instead' },
+  'Ministorum Flamer':         { range:'8"',   type:'Assault D6',  s:4,      ap:0,  d:1,    special:'Auto-hits' },
+  'Meltagun (Sororitas)':      { range:'12"',  type:'Assault 1',   s:8,      ap:-4, d:'D6', special:'Melta' },
+  'Exorcist Missile Launcher': { range:'48"',  type:'Heavy D6',    s:8,      ap:-4, d:'D3', special:'May fire at targets not in line of sight' },
+  'Neural Whips':              { range:'Melee', type:'Melee',       s:'User', ap:-2, d:1,    special:'Wound rolls of 6 deal 1 mortal wound in addition — unarmoured units wounded on 2+' },
+
+  // ── GENESTEALER CULTS ────────────────────────────────────────────────
+  'Autopistol':                { range:'12"',  type:'Pistol 1',    s:3,      ap:0,  d:1,    special:'' },
+  'Autogun (GSC)':             { range:'24"',  type:'Rapid Fire 1', s:3,     ap:0,  d:1,    special:'' },
+  'Mining Laser':              { range:'36"',  type:'Heavy 1',     s:9,      ap:-3, d:'D6', special:'Melta within half range' },
+  'Seismic Cannon':            { range:'*',    type:'Heavy 3/6',   s:'*',    ap:'*', d:'*', special:'Long-wave: 24" S6 AP0 D1 | Short-wave: 9" S8 AP-2 D1 Autohits' },
+  'Cult Icon':                 { range:'—',   type:'—',           s:'—',    ap:'—',d:'—',  special:'Once per Morale phase friendly unit within 6" can remove one fleeing model' },
+  'Rending Claw (GSC)':        { range:'Melee', type:'Melee',      s:'User', ap:-1, d:1,    special:'Unmodified wound rolls of 6 change AP to -4' },
+  'Talon':                     { range:'Melee', type:'Melee',      s:'User', ap:-2, d:1,    special:'' },
+
+  // ── LEAGUES OF VOTANN ────────────────────────────────────────────────
+  'Autoch-Pattern Bolter':     { range:'24"',  type:'Rapid Fire 1', s:4,     ap:0,  d:1,    special:'' },
+  'EtaCarn Plasma Gun':        { range:'24"',  type:'Rapid Fire 1', s:7,     ap:-3, d:1,    special:'Overcharge: S8 AP-3 D2 — on hit roll of 1 bearer suffers D3 mortal wounds' },
+  'Kin Melee Weapon':          { range:'Melee', type:'Melee',      s:'User', ap:-1, d:1,    special:'' },
+  'Magna-Rail Rifle':          { range:'36"',  type:'Heavy 1',     s:8,      ap:-3, d:'D3', special:'Unmodified wound rolls of 6 deal D3 mortal wounds in addition' },
+  'L7 Missile Launcher':       { range:'48"',  type:'Heavy D3',    s:8,      ap:-2, d:3,    special:'Blast' },
+  'SP Conversion Beamer':      { range:'*',    type:'Heavy 1',     s:'*',    ap:'*', d:'*', special:'12": S6 AP-1 D2 | 24": S8 AP-2 D3 | 48": S10 AP-3 D6' },
+};

@@ -1,3 +1,39 @@
+
+// ============================================================
+// WEAPON PROFILE LOOKUP
+// ============================================================
+function lookupWeapon(name) {
+  if (!window.WEAPON_PROFILES) return null;
+  // Exact match first
+  if (WEAPON_PROFILES[name]) return WEAPON_PROFILES[name];
+  // Case-insensitive match
+  const lower = name.toLowerCase();
+  for (const key of Object.keys(WEAPON_PROFILES)) {
+    if (key.toLowerCase() === lower) return WEAPON_PROFILES[key];
+  }
+  // Partial match — weapon name contains key or key contains weapon name
+  for (const key of Object.keys(WEAPON_PROFILES)) {
+    if (lower.includes(key.toLowerCase()) || key.toLowerCase().includes(lower)) {
+      return WEAPON_PROFILES[key];
+    }
+  }
+  return null;
+}
+
+function weaponProfileHtml(weaponName) {
+  const p = lookupWeapon(weaponName);
+  if (!p) return `<span class="weapon-no-profile">${weaponName}</span>`;
+  return `<div class="weapon-profile-row">
+    <span class="wp-name">${weaponName}</span>
+    <span class="wp-range">${p.range}</span>
+    <span class="wp-type">${p.type}</span>
+    <span class="wp-s">S${p.s}</span>
+    <span class="wp-ap">AP${p.ap}</span>
+    <span class="wp-d">D${p.d}</span>
+    ${p.special ? `<span class="wp-special">${p.special}</span>` : ''}
+  </div>`;
+}
+
 let state = {
   factionId: null,
   armyName: '',
@@ -410,7 +446,19 @@ function renderRoster() {
           ${optionsHtml}
           ${notesHtml}
           <div class="wargear-list">
-            ${u.wargear.map(wg => `<span class="wargear-tag active">${wg}</span>`).join('')}
+            ${u.wargear.map(wg => {
+              const p = lookupWeapon(wg);
+              if (p) return `<div class="weapon-profile-inline">
+                <span class="wp-name">${wg}</span>
+                <span class="wp-stat">${p.range}</span>
+                <span class="wp-stat">${p.type}</span>
+                <span class="wp-stat">S${p.s}</span>
+                <span class="wp-stat">AP${p.ap}</span>
+                <span class="wp-stat">D${p.d}</span>
+                ${p.special ? `<span class="wp-special-inline" title="${p.special}">★</span>` : ''}
+              </div>`;
+              return `<span class="wargear-tag active">${wg}</span>`;
+            }).join('')}
           </div>
           ${abilitiesHtml}
         </div>`;
@@ -596,7 +644,16 @@ function printList() {
         });
       }
       const loadoutHtml = loadoutLines.length ? `<div class="loadout-row">${loadoutLines.join('')}</div>` : '';
-      const wargearHtml = u.wargear.length ? `<div class="wargear-row"><b>Wargear:</b> ${u.wargear.join(', ')}</div>` : '';
+      const wargearHtml = u.wargear.length ? `<div class="wargear-section">
+        <div class="wargear-header">Wargear</div>
+        <table class="weapon-table">
+          <thead><tr><th>Weapon</th><th>Range</th><th>Type</th><th>S</th><th>AP</th><th>D</th><th>Special</th></tr></thead>
+          <tbody>${u.wargear.map(wg => {
+            const p = lookupWeapon(wg);
+            if (p) return `<tr><td><b>${wg}</b></td><td>${p.range}</td><td>${p.type}</td><td>${p.s}</td><td>${p.ap}</td><td>${p.d}</td><td>${p.special || '—'}</td></tr>`;
+            return `<tr><td colspan="7">${wg}</td></tr>`;
+          }).join('')}</tbody>
+        </table></div>` : '';
       const modelsHtml = (u.models && u.models !== u.minModels) ? `<div class="wargear-row"><b>Models:</b> ${u.models}</div>` : '';
 
       let abilitiesPrintHtml = '';
@@ -647,6 +704,13 @@ function printList() {
   .stat-table td { border:1px solid #ccc; padding:2px 4px; text-align:center; font-size:11px; font-weight:600; }
   .loadout-row { padding:3px 8px; font-size:10px; color:#333; border-bottom:1px solid #eee; display:flex; flex-wrap:wrap; gap:10px; }
   .wargear-row { padding:3px 8px; font-size:10px; color:#555; }
+  .wargear-section { margin:0; }
+  .wargear-header { font-size:9px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:#888; padding:3px 8px 1px; }
+  .weapon-table { width:100%; border-collapse:collapse; font-size:9px; }
+  .weapon-table th { background:#444; color:#fff; padding:2px 5px; text-align:left; font-size:8px; letter-spacing:0.05em; }
+  .weapon-table td { padding:2px 5px; border-bottom:1px solid #eee; }
+  .weapon-table td:first-child { font-weight:700; }
+  .weapon-table tr:last-child td { border-bottom:none; }
   .abilities-print { padding:4px 8px; border-top:1px solid #eee; }
   .ability-print-item { font-size:10px; color:#333; padding:2px 0 2px 8px; border-left:2px solid #2a6e3a; margin-bottom:2px; line-height:1.4; }
   .army-rules-section { border:1px solid #aaa; margin-bottom:16px; page-break-inside:avoid; }
