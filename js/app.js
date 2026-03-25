@@ -518,6 +518,7 @@ function renderValidation() {
 function buildListText() {
   const faction = FACTIONS.find(f => f.id === state.factionId);
   const total = state.roster.reduce((s, u) => s + ((u.basePoints + (u.optionPts||0)) + (u.ppm||0) * Math.max(0,(u.models||1)-(u.minModels||1))) * u.qty, 0);
+  const armyRules = ARMY_RULES[state.factionId];
   let lines = [
     `=== ${state.armyName || 'Unnamed Army'} ===`,
     `Faction: ${faction ? faction.name : 'None'}`,
@@ -525,6 +526,18 @@ function buildListText() {
     `Points: ${total} / ${state.ptsLimit}`,
     '',
   ];
+  if (armyRules) {
+    lines.push('── ARMY RULES ─────────────────────────────');
+    lines.push(armyRules.summary);
+    lines.push('');
+    armyRules.rules.forEach(r => {
+      lines.push(`  ${r.name}`);
+      lines.push(`  ${r.desc}`);
+      lines.push('');
+    });
+    lines.push('───────────────────────────────────────────');
+    lines.push('');
+  }
 
   const grouped = {};
   ROLES.forEach(r => grouped[r] = []);
@@ -636,6 +649,12 @@ function printList() {
   .wargear-row { padding:3px 8px; font-size:10px; color:#555; }
   .abilities-print { padding:4px 8px; border-top:1px solid #eee; }
   .ability-print-item { font-size:10px; color:#333; padding:2px 0 2px 8px; border-left:2px solid #2a6e3a; margin-bottom:2px; line-height:1.4; }
+  .army-rules-section { border:1px solid #aaa; margin-bottom:16px; page-break-inside:avoid; }
+  .army-rules-header { background:#222; color:#fff; font-size:10px; font-weight:700; letter-spacing:0.1em; padding:5px 8px; text-transform:uppercase; }
+  .army-rules-body { padding:6px 8px; display:flex; flex-wrap:wrap; gap:8px; }
+  .army-rule-item { flex:1 1 280px; border-left:2px solid #c9a84c; padding-left:8px; }
+  .army-rule-name { font-size:10px; font-weight:700; color:#222; margin-bottom:2px; }
+  .army-rule-desc { font-size:9px; color:#555; line-height:1.4; }
 </style>
 </head><body>
 <div class="page-header">
@@ -648,6 +667,19 @@ function printList() {
     <div class="army-pts">${total} / ${state.ptsLimit}</div>
   </div>
 </div>
+${(() => {
+    const ar = ARMY_RULES[state.factionId];
+    if (!ar) return '';
+    const rulesHtml = ar.rules.map(r => `
+      <div class="army-rule-item">
+        <div class="army-rule-name">${r.name}</div>
+        <div class="army-rule-desc">${r.desc}</div>
+      </div>`).join('');
+    return `<div class="army-rules-section">
+      <div class="army-rules-header">Army Rules — ${ar.summary}</div>
+      <div class="army-rules-body">${rulesHtml}</div>
+    </div>`;
+  })()}
 ${sections}
 </body></html>`;
 
