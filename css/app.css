@@ -1029,3 +1029,59 @@
     margin-left: 4px;
     vertical-align: middle;
   }
+/* ── CLONE BUTTON ─────────────────────────────────────────── */
+.clone-btn {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--muted);
+  width: 24px; height: 24px;
+  cursor: pointer;
+  font-size: 14px;
+  display: inline-flex; align-items: center; justify-content: center;
+  border-radius: 2px;
+  transition: color 0.15s, border-color 0.15s;
+  margin-right: 2px;
+}
+.clone-btn:hover { color: var(--gold); border-color: var(--gold); }
+
+/* ── MODEL COMPOSITION ────────────────────────────────────── */
+.model-composition {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-top: 6px;
+}
+.comp-slot {
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  overflow: hidden;
+}
+.comp-slot-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 8px;
+  background: rgba(255,255,255,0.03);
+  border-bottom: 1px solid var(--border);
+}
+.comp-role {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+.comp-count {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 10px;
+  color: var(--muted);
+}
+.comp-options {
+  padding: 4px 6px;
+  border-bottom: 1px solid var(--border);
+  background: rgba(0,0,0,0.1);
+}
+.comp-wargear {
+  padding: 4px 6px;
+}

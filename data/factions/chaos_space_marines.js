@@ -48,7 +48,36 @@ const FACTION_CHAOS_SPACE_MARINES = [
   // ── TROOPS ──────────────────────────────────────────────────────────
   { id:'csm_squad', name:'Chaos Space Marines',
     stats:['6"','3+','3+','4','4','1','1','7','3+'], role:'Troops', pts:60, min:5, max:20, ppm:12,
-    wargear:['Bolt Pistol','Bolter','Frag & Krak Grenades'],
+    wargear:[],
+    composition:[
+      { role:'Aspiring Champion', count:1, wargear:['Bolt Pistol','Bolter','Frag & Krak Grenades'],
+        options:[
+          { group:'Melee', choices:[
+            { label:'None',          pts:0, default:true },
+            { label:'Chainsword',    pts:0, weapons:['Chainsword'],   replaces:[] },
+            { label:'Power Sword',   pts:4, weapons:['Power Sword'],  replaces:['Bolter'] },
+            { label:'Power Axe',     pts:5, weapons:['Power Axe'],    replaces:['Bolter'] },
+            { label:'Power Fist',    pts:9, weapons:['Power Fist'],   replaces:['Bolter'] },
+            { label:'Lightning Claw',pts:8, weapons:['Lightning Claw'],replaces:['Bolter'] },
+          ]},
+          { group:'Ranged', choices:[
+            { label:'Bolt Pistol',   pts:0, default:true, weapons:['Bolt Pistol'] },
+            { label:'Plasma Pistol', pts:5, weapons:['Plasma Pistol'], replaces:['Bolt Pistol'] },
+            { label:'Combi-melta',   pts:10,weapons:['Combi-Melta'],   replaces:['Bolter'] },
+          ]},
+        ]},
+      { role:'Special Weapon (up to 2)', count:2, wargear:['Bolt Pistol','Bolter','Frag & Krak Grenades'],
+        options:[
+          { group:'Special', choices:[
+            { label:'Bolter',      pts:0, default:true },
+            { label:'Plasma Gun',  pts:5, weapons:['Plasma Gun'],  replaces:['Bolter'] },
+            { label:'Meltagun',    pts:5, weapons:['Meltagun'],    replaces:['Bolter'] },
+            { label:'Flamer',      pts:3, weapons:['Flamer'],      replaces:['Bolter'] },
+            { label:'Chainaxe',    pts:0, weapons:['Chainaxe'],    replaces:['Bolter'] },
+          ]},
+        ]},
+      { role:'Traitor', count:17, wargear:['Bolt Pistol','Bolter','Frag & Krak Grenades'] },
+    ],
     abilities:['Chaos Undivided: May take a Mark of Chaos',
                'Aspiring Champion: 1 per unit — +1A and may take power weapon',
                'Icon: May take Icon of Chaos — various buffs depending on Mark'] },
@@ -127,7 +156,61 @@ const FACTION_CHAOS_SPACE_MARINES = [
   // ── HEAVY SUPPORT ───────────────────────────────────────────────────
   { id:'csm_havocs', name:'Havocs',
     stats:['6"','3+','3+','4','4','1','1','7','3+'], role:'Heavy Support', pts:60, min:5, max:5, ppm:0,
-    wargear:['Bolters','Autocannons','Missile Launchers'],
+    wargear:[],
+    composition:[
+      { role:'Aspiring Champion', count:1, wargear:['Bolter','Bolt Pistol'],
+        options:[
+          { group:'Melee', choices:[
+            { label:'None',        pts:0, default:true },
+            { label:'Power Sword', pts:4, weapons:['Power Sword'], replaces:[] },
+            { label:'Power Fist',  pts:9, weapons:['Power Fist'],  replaces:['Bolter'] },
+          ]},
+        ]},
+      { role:'Heavy Weapon 1', count:1, wargear:['Autocannon','Bolt Pistol'],
+        options:[
+          { group:'Heavy', choices:[
+            { label:'Autocannon',       pts:0, default:true, weapons:['Autocannon'] },
+            { label:'Lascannon',        pts:0, weapons:['Lascannon'],        replaces:['Autocannon'] },
+            { label:'Heavy Bolter',     pts:0, weapons:['Heavy Bolter'],     replaces:['Autocannon'] },
+            { label:'Missile Launcher', pts:0, weapons:['Missile Launcher'], replaces:['Autocannon'] },
+            { label:'Reaper Autocannon',pts:0, weapons:['Reaper Autocannon'],replaces:['Autocannon'] },
+            { label:'Plasma Cannon',    pts:0, weapons:['Plasma Cannon'],    replaces:['Autocannon'] },
+          ]},
+        ]},
+      { role:'Heavy Weapon 2', count:1, wargear:['Autocannon','Bolt Pistol'],
+        options:[
+          { group:'Heavy', choices:[
+            { label:'Autocannon',       pts:0, default:true, weapons:['Autocannon'] },
+            { label:'Lascannon',        pts:0, weapons:['Lascannon'],        replaces:['Autocannon'] },
+            { label:'Heavy Bolter',     pts:0, weapons:['Heavy Bolter'],     replaces:['Autocannon'] },
+            { label:'Missile Launcher', pts:0, weapons:['Missile Launcher'], replaces:['Autocannon'] },
+            { label:'Reaper Autocannon',pts:0, weapons:['Reaper Autocannon'],replaces:['Autocannon'] },
+            { label:'Plasma Cannon',    pts:0, weapons:['Plasma Cannon'],    replaces:['Autocannon'] },
+          ]},
+        ]},
+      { role:'Heavy Weapon 3', count:1, wargear:['Autocannon','Bolt Pistol'],
+        options:[
+          { group:'Heavy', choices:[
+            { label:'Autocannon',       pts:0, default:true, weapons:['Autocannon'] },
+            { label:'Lascannon',        pts:0, weapons:['Lascannon'],        replaces:['Autocannon'] },
+            { label:'Heavy Bolter',     pts:0, weapons:['Heavy Bolter'],     replaces:['Autocannon'] },
+            { label:'Missile Launcher', pts:0, weapons:['Missile Launcher'], replaces:['Autocannon'] },
+            { label:'Reaper Autocannon',pts:0, weapons:['Reaper Autocannon'],replaces:['Autocannon'] },
+            { label:'Plasma Cannon',    pts:0, weapons:['Plasma Cannon'],    replaces:['Autocannon'] },
+          ]},
+        ]},
+      { role:'Heavy Weapon 4', count:1, wargear:['Autocannon','Bolt Pistol'],
+        options:[
+          { group:'Heavy', choices:[
+            { label:'Autocannon',       pts:0, default:true, weapons:['Autocannon'] },
+            { label:'Lascannon',        pts:0, weapons:['Lascannon'],        replaces:['Autocannon'] },
+            { label:'Heavy Bolter',     pts:0, weapons:['Heavy Bolter'],     replaces:['Autocannon'] },
+            { label:'Missile Launcher', pts:0, weapons:['Missile Launcher'], replaces:['Autocannon'] },
+            { label:'Reaper Autocannon',pts:0, weapons:['Reaper Autocannon'],replaces:['Autocannon'] },
+            { label:'Plasma Cannon',    pts:0, weapons:['Plasma Cannon'],    replaces:['Autocannon'] },
+          ]},
+        ]},
+    ],
     abilities:['Tank Hunters: Re-roll failed wound rolls against Vehicles',
                'Aspiring Champion: 1 per unit — may take power weapon',
                'Up to 4 models may take heavy weapons'] },

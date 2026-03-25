@@ -90,7 +90,28 @@ const FACTION_ORKS = [
   // ── TROOPS ──────────────────────────────────────────────────────────
   { id:'ork_boyz', name:'Boyz',
     stats:['5"','3+','5+','4','4','1','1','6','6+'], role:'Troops', pts:60, min:10, max:30, ppm:6,
-    wargear:['Slugga','Choppa','Stikkbombs'],
+    wargear:[],
+    composition:[
+      { role:'Boss Nob', count:1, wargear:['Slugga','Choppa','Stikkbombs'],
+        options:[
+          { group:'Melee', choices:[
+            { label:'Choppa',    pts:0, default:true, weapons:['Choppa'] },
+            { label:'Power Klaw',pts:10, weapons:['Power Klaw'], replaces:['Choppa'] },
+            { label:'Big Choppa',pts:5,  weapons:['Big Choppas'], replaces:['Choppa'] },
+          ]},
+          { group:'Ranged', choices:[
+            { label:'Slugga',  pts:0, default:true, weapons:['Slugga'] },
+            { label:'Shoota',  pts:0, weapons:['Shoota'], replaces:['Slugga'] },
+          ]},
+        ]},
+      { role:'Boyz', count:29, wargear:['Slugga','Choppa','Stikkbombs'],
+        options:[
+          { group:'Weapon', choices:[
+            { label:'Slugga & Choppa', pts:0, default:true },
+            { label:'Shoota',          pts:0, weapons:['Shoota'], replaces:['Slugga'] },
+          ]},
+        ]},
+    ],
     abilities:['Mob Rule: Unit of 20+ uses number of models instead of Leadership for Morale',
                "'Ere We Go: Re-roll failed charge rolls",
                'Green Tide: Units of 20+ add 1 to their Attacks characteristic'] },

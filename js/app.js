@@ -4,19 +4,17 @@
 // ============================================================
 function lookupWeapon(name) {
   if (typeof WEAPON_PROFILES === "undefined") return null;
-  // Exact match first
+  // 1. Exact match
   if (WEAPON_PROFILES[name]) return WEAPON_PROFILES[name];
-  // Case-insensitive match
+  // 2. Case-insensitive exact match
   const lower = name.toLowerCase();
   for (const key of Object.keys(WEAPON_PROFILES)) {
     if (key.toLowerCase() === lower) return WEAPON_PROFILES[key];
   }
-  // Partial match — weapon name contains key or key contains weapon name
-  for (const key of Object.keys(WEAPON_PROFILES)) {
-    if (lower.includes(key.toLowerCase()) || key.toLowerCase().includes(lower)) {
-      return WEAPON_PROFILES[key];
-    }
-  }
+  // 3. Strip trailing parenthetical notes e.g. "Boltgun (x2)" -> "Boltgun"
+  const stripped = name.replace(/\s*\(.*?\)\s*$/, '').trim();
+  if (stripped !== name && WEAPON_PROFILES[stripped]) return WEAPON_PROFILES[stripped];
+  // 4. No fuzzy/partial match - unknown weapons render as plain text tags
   return null;
 }
 
@@ -230,6 +228,87 @@ function renderUnitBrowser() {
 // ROSTER MANAGEMENT
 // ============================================================
 
+// ============================================================
+// MODEL LOADOUT HELPERS
+// ============================================================
+
+// Build the default per-model loadout state from unit.composition.
+// composition is an array of model role descriptors, e.g.:
+// [
+//   { role:'Leader', count:1, wargear:['Bolt Pistol','Chainsword'],
+//     options:[{ group:'Melee', choices:[{label:'Chainsword',pts:0,default:true,weapons:['Chainsword']},{label:'Power Sword',pts:5,weapons:['Power Sword'],replaces:['Chainsword']}] }] },
+//   { role:'Special Weapon', count:1, wargear:['Boltgun'],
+//     options:[{ group:'Special', choices:[{label:'Boltgun',pts:0,default:true,weapons:['Boltgun']},{label:'Plasma Gun',pts:5,weapons:['Plasma Gun'],replaces:['Boltgun']}] }] },
+//   { role:'Heavy Weapon', count:1, wargear:['Heavy Bolter'],
+//     options:[{ group:'Heavy', choices:[{label:'Heavy Bolter',pts:0,default:true,weapons:['Heavy Bolter']},{label:'Lascannon',pts:10,weapons:['Lascannon'],replaces:['Heavy Bolter']}] }] },
+//   { role:'Trooper', count:7, wargear:['Boltgun','Bolt Pistol','Frag Grenade','Krak Grenade'] }
+// ]
+function buildDefaultModelLoadouts(unit) {
+  if (!unit.composition) return null;
+  return unit.composition.map(comp => {
+    const selections = {};
+    let wargear = [...(comp.wargear || [])];
+    if (comp.options) {
+      comp.options.forEach(opt => {
+        const def = opt.choices.find(c => c.default) || opt.choices[0];
+        selections[opt.group] = def.label;
+        if (def.weapons) wargear = applyWeaponChoice(wargear, null, def);
+      });
+    }
+    return {
+      role: comp.role,
+      count: comp.count,
+      wargear,
+      selections,
+      options: comp.options || [],
+    };
+  });
+}
+
+function changeModelLoadout(instanceId, modelRoleLabel, group, label, pts) {
+  const entry = state.roster.find(r => r.unitId === instanceId);
+  if (!entry || !entry.modelLoadouts) return;
+  const modelSlot = entry.modelLoadouts.find(m => m.role === modelRoleLabel);
+  if (!modelSlot) return;
+  const opt = modelSlot.options.find(o => o.group === group);
+  if (!opt) return;
+  const oldChoice = opt.choices.find(c => c.label === modelSlot.selections[group]);
+  const newChoice = opt.choices.find(c => c.label === label);
+  const oldPts = oldChoice ? oldChoice.pts : 0;
+
+  if (newChoice && (newChoice.weapons || newChoice.replaces || (oldChoice && oldChoice.weapons))) {
+    modelSlot.wargear = applyWeaponChoice(modelSlot.wargear, oldChoice || null, newChoice);
+  }
+  modelSlot.selections[group] = label;
+  entry.optionPts = (entry.optionPts - oldPts) + pts;
+  updateTotalPoints();
+
+  const safeId = instanceId.replace(/[^a-zA-Z0-9_]/g, '_');
+  const ptsEl = document.getElementById('upts_' + safeId);
+  if (ptsEl) ptsEl.textContent = (((entry.basePoints + entry.optionPts) + (entry.ppm||0) * Math.max(0,(entry.models||entry.minModels)-entry.minModels)) * entry.qty) + ' pts';
+
+  // Re-render wargear for that model slot only
+  const safeMRole = modelRoleLabel.replace(/[^a-zA-Z0-9_]/g, '_');
+  const slotWgEl = document.getElementById('mwg_' + safeId + '_' + safeMRole);
+  if (slotWgEl) slotWgEl.innerHTML = renderWargearInline(modelSlot.wargear);
+}
+
+function renderWargearInline(wargearList) {
+  return wargearList.map(wg => {
+    const p = lookupWeapon(wg);
+    if (p) return `<div class="weapon-profile-inline">
+      <span class="wp-name">${wg}</span>
+      <span class="wp-stat">${p.range}</span>
+      <span class="wp-stat">${p.type}</span>
+      <span class="wp-stat">S${p.s}</span>
+      <span class="wp-stat">AP${p.ap}</span>
+      <span class="wp-stat">D${p.d}</span>
+      ${p.special ? `<span class="wp-special-inline" title="${p.special}">★</span>` : ''}
+    </div>`;
+    return `<span class="wargear-tag active">${wg}</span>`;
+  }).join('');
+}
+
 function addUnit(unitId) {
   const factionUnits = UNITS[state.factionId] || [];
   const unit = factionUnits.find(u => u.id === unitId);
@@ -277,6 +356,8 @@ function addUnit(unitId) {
     baseWargear: [...unit.wargear],
     hasOptions: !!unit.options,
     options: unit.options || [],
+    composition: unit.composition || null,  // per-model role definitions
+    modelLoadouts: buildDefaultModelLoadouts(unit),
     abilities: unit.abilities || [],
     notes: unit.notes || null,
   });
@@ -405,10 +486,71 @@ function removeUnit(unitId) {
   renderForceOrg();
 }
 
+function cloneUnit(unitId) {
+  const entry = state.roster.find(r => r.unitId === unitId);
+  if (!entry) return;
+  const clone = JSON.parse(JSON.stringify(entry)); // deep copy
+  clone.unitId = (entry.baseUnitId || unitId) + '_' + Date.now();
+  // Insert immediately after the original
+  const idx = state.roster.findIndex(r => r.unitId === unitId);
+  state.roster.splice(idx + 1, 0, clone);
+  renderRoster();
+  updateTotalPoints();
+  renderForceOrg();
+}
+
 function toggleWargear(unitId, wg) {
   // Wargear toggle is visual/informational in this builder
   const el = event.target;
   el.classList.toggle('active');
+}
+
+function renderModelComposition(u) {
+  const safeId = u.unitId.replace(/[^a-zA-Z0-9_]/g, '_');
+  let html = `<div class="model-composition">`;
+  u.modelLoadouts.forEach(slot => {
+    const safeMRole = slot.role.replace(/[^a-zA-Z0-9_]/g, '_');
+    const countLabel = slot.count > 1 ? `×${slot.count}` : '';
+    html += `<div class="comp-slot">
+      <div class="comp-slot-header">
+        <span class="comp-role">${slot.role}</span>
+        ${countLabel ? `<span class="comp-count">${countLabel}</span>` : ''}
+      </div>`;
+
+    // Options (weapon choices for this model type)
+    if (slot.options && slot.options.length) {
+      html += `<div class="loadout-options comp-options">`;
+      slot.options.forEach(opt => {
+        html += `<div class="loadout-group">
+          <span class="loadout-label">${opt.group}:</span>
+          <div class="loadout-choices">`;
+        opt.choices.forEach(choice => {
+          const isSelected = slot.selections[opt.group] === choice.label;
+          const ptsLabel = choice.pts > 0 ? ` +${choice.pts}` : choice.pts < 0 ? ` ${choice.pts}` : '';
+          const noteLabel = choice.note ? `<span class="loadout-note">${choice.note}</span>` : '';
+          // Escape for use in onclick string — role labels may have spaces
+          const roleEsc = slot.role.replace(/'/g, "\\'");
+          const grpEsc = opt.group.replace(/'/g, "\\'");
+          const lblEsc = choice.label.replace(/'/g, "\\'");
+          html += `<button class="loadout-btn ${isSelected ? 'selected' : ''}"
+            onclick="changeModelLoadout('${u.unitId}','${roleEsc}','${grpEsc}','${lblEsc}',${choice.pts}); this.closest('.loadout-choices').querySelectorAll('.loadout-btn').forEach(b=>b.classList.remove('selected')); this.classList.add('selected');">
+            ${choice.label}${ptsLabel ? `<span class="loadout-pts">${ptsLabel}</span>` : ''}${noteLabel}
+          </button>`;
+        });
+        html += `</div></div>`;
+      });
+      html += `</div>`;
+    }
+
+    // Wargear for this model
+    html += `<div class="wargear-list comp-wargear" id="mwg_${safeId}_${safeMRole}">
+      ${renderWargearInline(slot.wargear)}
+    </div>`;
+
+    html += `</div>`;
+  });
+  html += `</div>`;
+  return html;
 }
 
 function renderRoster() {
@@ -507,27 +649,16 @@ function renderRoster() {
             <div class="roster-unit-name">${u.name}</div>
             <div class="roster-unit-controls">
               <div class="roster-unit-pts" id="upts_${safeId}">${totalPts} pts</div>
+              <button class="clone-btn" onclick="cloneUnit('${u.unitId}')" title="Clone unit">⧉</button>
               <button class="remove-btn" onclick="removeUnit('${u.unitId}')" title="Remove">✕</button>
             </div>
           </div>
           ${modelHtml}
           ${optionsHtml}
           ${notesHtml}
-          <div class="wargear-list" id="wg_${safeId}">
-            ${u.wargear.map(wg => {
-              const p = lookupWeapon(wg);
-              if (p) return `<div class="weapon-profile-inline">
-                <span class="wp-name">${wg}</span>
-                <span class="wp-stat">${p.range}</span>
-                <span class="wp-stat">${p.type}</span>
-                <span class="wp-stat">S${p.s}</span>
-                <span class="wp-stat">AP${p.ap}</span>
-                <span class="wp-stat">D${p.d}</span>
-                ${p.special ? `<span class="wp-special-inline" title="${p.special}">★</span>` : ''}
-              </div>`;
-              return `<span class="wargear-tag active">${wg}</span>`;
-            }).join('')}
-          </div>
+          ${u.modelLoadouts ? renderModelComposition(u) : `<div class="wargear-list" id="wg_${safeId}">
+            ${renderWargearInline(u.wargear)}
+          </div>`}
           ${abilitiesHtml}
         </div>`;
     });
@@ -665,7 +796,13 @@ function buildListText() {
     lines.push(`[ ${role.toUpperCase()} ]`);
     units.forEach(u => {
       lines.push(`  × ${u.qty}  ${u.name} [${u.models||1} models]  (${((u.basePoints+(u.optionPts||0))+(u.ppm||0)*Math.max(0,(u.models||1)-(u.minModels||1)))*u.qty} pts)`);
-      if (u.wargear.length) lines.push(`       Wargear: ${u.wargear.join(', ')}`);
+      if (u.modelLoadouts) {
+        u.modelLoadouts.forEach(slot => {
+          lines.push(`       ${slot.count > 1 ? `×${slot.count} ` : ''}${slot.role}: ${slot.wargear.join(', ')}`);
+        });
+      } else if (u.wargear.length) {
+        lines.push(`       Wargear: ${u.wargear.join(', ')}`);
+      }
     });
     lines.push('');
   });
@@ -712,16 +849,38 @@ function printList() {
         });
       }
       const loadoutHtml = loadoutLines.length ? `<div class="loadout-row">${loadoutLines.join('')}</div>` : '';
-      const wargearHtml = u.wargear.length ? `<div class="wargear-section">
-        <div class="wargear-header">Wargear</div>
-        <table class="weapon-table">
-          <thead><tr><th>Weapon</th><th>Range</th><th>Type</th><th>S</th><th>AP</th><th>D</th><th>Special</th></tr></thead>
-          <tbody>${u.wargear.map(wg => {
-            const p = lookupWeapon(wg);
-            if (p) return `<tr><td><b>${wg}</b></td><td>${p.range}</td><td>${p.type}</td><td>${p.s}</td><td>${p.ap}</td><td>${p.d}</td><td>${p.special || '—'}</td></tr>`;
-            return `<tr><td colspan="7">${wg}</td></tr>`;
-          }).join('')}</tbody>
-        </table></div>` : '';
+
+      // Wargear: per-model composition if available, otherwise flat list
+      let wargearHtml = '';
+      if (u.modelLoadouts) {
+        wargearHtml = `<div class="wargear-section">`;
+        u.modelLoadouts.forEach(slot => {
+          if (!slot.wargear.length) return;
+          wargearHtml += `<div class="comp-model-block">
+            <div class="comp-model-label">${slot.count > 1 ? `×${slot.count} ` : ''}${slot.role}</div>
+            <table class="weapon-table">
+              <thead><tr><th>Weapon</th><th>Range</th><th>Type</th><th>S</th><th>AP</th><th>D</th><th>Special</th></tr></thead>
+              <tbody>${slot.wargear.map(wg => {
+                const p = lookupWeapon(wg);
+                if (p) return `<tr><td><b>${wg}</b></td><td>${p.range}</td><td>${p.type}</td><td>${p.s}</td><td>${p.ap}</td><td>${p.d}</td><td>${p.special || '—'}</td></tr>`;
+                return `<tr><td colspan="7">${wg}</td></tr>`;
+              }).join('')}</tbody>
+            </table>
+          </div>`;
+        });
+        wargearHtml += `</div>`;
+      } else if (u.wargear.length) {
+        wargearHtml = `<div class="wargear-section">
+          <div class="wargear-header">Wargear</div>
+          <table class="weapon-table">
+            <thead><tr><th>Weapon</th><th>Range</th><th>Type</th><th>S</th><th>AP</th><th>D</th><th>Special</th></tr></thead>
+            <tbody>${u.wargear.map(wg => {
+              const p = lookupWeapon(wg);
+              if (p) return `<tr><td><b>${wg}</b></td><td>${p.range}</td><td>${p.type}</td><td>${p.s}</td><td>${p.ap}</td><td>${p.d}</td><td>${p.special || '—'}</td></tr>`;
+              return `<tr><td colspan="7">${wg}</td></tr>`;
+            }).join('')}</tbody>
+          </table></div>`;
+      }
       const modelsHtml = (u.models && u.models !== u.minModels) ? `<div class="wargear-row"><b>Models:</b> ${u.models}</div>` : '';
 
       let abilitiesPrintHtml = '';
@@ -787,6 +946,8 @@ function printList() {
   .army-rule-item { flex:1 1 280px; border-left:2px solid #c9a84c; padding-left:8px; }
   .army-rule-name { font-size:10px; font-weight:700; color:#222; margin-bottom:2px; }
   .army-rule-desc { font-size:9px; color:#555; line-height:1.4; }
+  .comp-model-block { margin-bottom:4px; }
+  .comp-model-label { font-size:9px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:#555; padding:3px 8px 1px; background:#f5f5f5; border-top:1px solid #ddd; }
 </style>
 </head><body>
 <div class="page-header">

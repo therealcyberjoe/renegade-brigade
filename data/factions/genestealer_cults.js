@@ -121,7 +121,49 @@ const FACTION_GENESTEALER_CULTS = [
 
   { id:'gc_neophytes', name:'Neophyte Hybrids',
     stats:['6"','4+','3+','3','3','1','1','6','5+'], role:'Troops', pts:40, min:10, max:20, ppm:4,
-    wargear:['Autogun','Autopistol','Shotgun'],
+    wargear:[],
+    composition:[
+      { role:'Neophyte Leader', count:1, wargear:['Autogun','Autopistol','Cult Knife'],
+        options:[
+          { group:'Leader Weapon', choices:[
+            { label:'Autogun',      pts:0, default:true, weapons:['Autogun'] },
+            { label:'Shotgun',      pts:0, weapons:['Shotgun'],    replaces:['Autogun'] },
+            { label:'Bolt Pistol',  pts:0, weapons:['Bolt Pistol'], replaces:['Autogun'] },
+          ]},
+          { group:'Melee', choices:[
+            { label:'Cult Knife',   pts:0, default:true },
+            { label:'Power Sword',  pts:4, weapons:['Power Sword'], replaces:['Cult Knife'] },
+            { label:'Power Fist',   pts:9, weapons:['Power Fist'],  replaces:['Cult Knife'] },
+          ]},
+        ]},
+      { role:'Special Weapon (up to 2)', count:2, wargear:['Autogun','Autopistol'],
+        options:[
+          { group:'Special', choices:[
+            { label:'Autogun',       pts:0, default:true, weapons:['Autogun'] },
+            { label:'Flamer',        pts:5, weapons:['Flamer'],        replaces:['Autogun'] },
+            { label:'Grenade Launcher', pts:5, weapons:['Grenade Launcher'], replaces:['Autogun'] },
+            { label:'Webber',        pts:5, weapons:['Webber'],        replaces:['Autogun'] },
+            { label:'Mining Laser',  pts:10, weapons:['Mining Laser'], replaces:['Autogun'] },
+            { label:'Seismic Cannon',pts:10, weapons:['Seismic Cannon'], replaces:['Autogun'] },
+          ]},
+        ]},
+      { role:'Heavy Weapon (up to 2)', count:2, wargear:['Heavy Stubber','Autopistol'],
+        options:[
+          { group:'Heavy', choices:[
+            { label:'Heavy Stubber',   pts:0, default:true, weapons:['Heavy Stubber'] },
+            { label:'Mining Laser',    pts:5, weapons:['Mining Laser'],   replaces:['Heavy Stubber'] },
+            { label:'Seismic Cannon',  pts:5, weapons:['Seismic Cannon'], replaces:['Heavy Stubber'] },
+            { label:'Heavy Bolter',    pts:5, weapons:['Heavy Bolter'],   replaces:['Heavy Stubber'] },
+          ]},
+        ]},
+      { role:'Neophyte', count:5, wargear:['Autogun','Autopistol','Cult Knife'],
+        options:[
+          { group:'Weapon', choices:[
+            { label:'Autogun', pts:0, default:true },
+            { label:'Shotgun', pts:0, weapons:['Shotgun'], replaces:['Autogun'] },
+          ]},
+        ]},
+    ],
     abilities:['Cult Ambush','Skulking Advance: May Advance and still fire Assault weapons'] },
 
   // ── ELITES ──────────────────────────────────────────────────────────

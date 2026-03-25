@@ -7,6 +7,22 @@ const SM_SHARED_UNITS = [
   { id:'sm_captain', name:'Captain',
     stats:['6"','3+','3+','4','4','5','4','9','3+'], role:'HQ', pts:74, min:1, max:1, ppm:0,
     wargear:['Power Sword','Bolt Pistol'],
+    options:[
+      { group:'Melee', choices:[
+        { label:'Power Sword',   pts:0, default:true, weapons:['Power Sword'],   replaces:['Power Sword'] },
+        { label:'Power Axe',     pts:0,               weapons:['Power Axe'],     replaces:['Power Sword'] },
+        { label:'Power Fist',    pts:5,               weapons:['Power Fist'],    replaces:['Power Sword'] },
+        { label:'Thunder Hammer',pts:8,               weapons:['Thunder Hammer'],replaces:['Power Sword'] },
+        { label:'Relic Blade',   pts:5,               weapons:['Relic Blade'],   replaces:['Power Sword'] },
+        { label:'Chainsword',    pts:0,               weapons:['Chainsword'],    replaces:['Power Sword'] },
+      ]},
+      { group:'Ranged', choices:[
+        { label:'Bolt Pistol',   pts:0, default:true, weapons:['Bolt Pistol'],   replaces:['Bolt Pistol'] },
+        { label:'Plasma Pistol', pts:5,               weapons:['Plasma Pistol'], replaces:['Bolt Pistol'] },
+        { label:'Storm Bolter',  pts:2,               weapons:['Storm Bolter'],  replaces:['Bolt Pistol'] },
+        { label:'Combi-melta',   pts:10,              weapons:['Combi-melta'],   replaces:['Bolt Pistol'] },
+      ]},
+    ],
     abilities:['And They Shall Know No Fear','Iron Halo: 4+ invulnerable save',
                'Rites of Battle: Re-roll hit rolls of 1 for friendly <Chapter> units within 6"'] },
 
@@ -19,6 +35,17 @@ const SM_SHARED_UNITS = [
   { id:'sm_librarian', name:'Librarian',
     stats:['6"','3+','3+','4','4','5','3','9','3+'], role:'HQ', pts:90, min:1, max:1, ppm:0,
     wargear:['Force Sword','Bolt Pistol'],
+    options:[
+      { group:'Force Weapon', choices:[
+        { label:'Force Sword',  pts:0, default:true, weapons:['Force Sword'],  replaces:['Force Sword'] },
+        { label:'Force Axe',   pts:0,                weapons:['Force Axe'],   replaces:['Force Sword'] },
+        { label:'Force Staff', pts:0,                weapons:['Force Staff'], replaces:['Force Sword'] },
+      ]},
+      { group:'Sidearm', choices:[
+        { label:'Bolt Pistol',   pts:0, default:true, weapons:['Bolt Pistol'],   replaces:['Bolt Pistol'] },
+        { label:'Plasma Pistol', pts:5,               weapons:['Plasma Pistol'], replaces:['Bolt Pistol'] },
+      ]},
+    ],
     abilities:['And They Shall Know No Fear','Psyker: Mastery Level 1 — Smite + 1 power',
                'Psychic Hood: Deny the Witch on 2D6+1'] },
 
@@ -72,12 +99,89 @@ const SM_SHARED_UNITS = [
   // ── TROOPS ──────────────────────────────────────────────────────────
   { id:'sm_tactical', name:'Tactical Squad',
     stats:['6"','3+','3+','4','4','1','1','7','3+'], role:'Troops', pts:65, min:5, max:10, ppm:13,
-    wargear:['Boltguns','Bolt Pistols','Frag & Krak Grenades'],
+    wargear:[],
+    composition:[
+      { role:'Sergeant', count:1, wargear:['Boltgun','Bolt Pistol','Frag & Krak Grenades'],
+        options:[
+          { group:'Melee', choices:[
+            { label:'None',          pts:0, default:true },
+            { label:'Chainsword',    pts:0, weapons:['Chainsword'],  replaces:[] },
+            { label:'Power Sword',   pts:4, weapons:['Power Sword'], replaces:['Boltgun'] },
+            { label:'Power Axe',     pts:5, weapons:['Power Axe'],   replaces:['Boltgun'] },
+            { label:'Power Fist',    pts:9, weapons:['Power Fist'],  replaces:['Boltgun'] },
+          ]},
+          { group:'Sidearm', choices:[
+            { label:'Bolt Pistol',   pts:0, default:true, weapons:['Bolt Pistol'] },
+            { label:'Plasma Pistol', pts:5, weapons:['Plasma Pistol'], replaces:['Bolt Pistol'] },
+          ]},
+        ]},
+      { role:'Special Weapon', count:1, wargear:['Boltgun','Bolt Pistol','Frag & Krak Grenades'],
+        options:[
+          { group:'Special', choices:[
+            { label:'Boltgun',    pts:0, default:true, weapons:['Boltgun'] },
+            { label:'Flamer',     pts:0, weapons:['Flamer'],     replaces:['Boltgun'] },
+            { label:'Meltagun',   pts:0, weapons:['Meltagun'],   replaces:['Boltgun'] },
+            { label:'Plasma Gun', pts:0, weapons:['Plasma Gun'], replaces:['Boltgun'] },
+            { label:'Grav-Gun',   pts:0, weapons:['Grav-Gun'],   replaces:['Boltgun'] },
+          ]},
+        ]},
+      { role:'Heavy Weapon', count:1, wargear:['Heavy Bolter','Bolt Pistol','Frag & Krak Grenades'],
+        options:[
+          { group:'Heavy', choices:[
+            { label:'Heavy Bolter',     pts:0, default:true, weapons:['Heavy Bolter'] },
+            { label:'Lascannon',        pts:0, weapons:['Lascannon'],        replaces:['Heavy Bolter'] },
+            { label:'Multi-melta',      pts:0, weapons:['Multi-melta'],      replaces:['Heavy Bolter'] },
+            { label:'Plasma Cannon',    pts:0, weapons:['Plasma Cannon'],    replaces:['Heavy Bolter'] },
+            { label:'Missile Launcher', pts:0, weapons:['Missile Launcher'], replaces:['Heavy Bolter'] },
+          ]},
+        ]},
+      { role:'Trooper', count:7, wargear:['Boltgun','Bolt Pistol','Frag & Krak Grenades'] },
+    ],
     abilities:['And They Shall Know No Fear','Combat Squads: May split into two units of 5'] },
 
   { id:'sm_scout', name:'Scout Squad',
     stats:['6"','3+','3+','4','4','1','1','7','4+'], role:'Troops', pts:55, min:5, max:10, ppm:11,
-    wargear:['Scout Bolters','Combat Knife','Bolt Pistol'],
+    wargear:[],
+    composition:[
+      { role:'Scout Sergeant', count:1, wargear:['Scout Bolters','Bolt Pistol','Combat Knife'],
+        options:[
+          { group:'Melee', choices:[
+            { label:'Combat Knife', pts:0, default:true },
+            { label:'Chainsword',   pts:0, weapons:['Chainsword'], replaces:[] },
+            { label:'Power Sword',  pts:4, weapons:['Power Sword'], replaces:['Scout Bolters'] },
+            { label:'Power Fist',   pts:9, weapons:['Power Fist'],  replaces:['Scout Bolters'] },
+          ]},
+          { group:'Ranged', choices:[
+            { label:'Scout Bolters', pts:0, default:true },
+            { label:'Bolt Pistol',   pts:0, weapons:['Bolt Pistol'], replaces:['Scout Bolters'] },
+            { label:'Combi-melta',   pts:10, weapons:['Combi-melta'], replaces:['Scout Bolters'] },
+          ]},
+        ]},
+      { role:'Heavy Weapon (1)', count:1, wargear:['Heavy Bolter','Bolt Pistol'],
+        options:[
+          { group:'Heavy', choices:[
+            { label:'Heavy Bolter',     pts:0, default:true, weapons:['Heavy Bolter'] },
+            { label:'Missile Launcher', pts:0, weapons:['Missile Launcher'], replaces:['Heavy Bolter'] },
+            { label:'Lascannon',        pts:0, weapons:['Lascannon'],        replaces:['Heavy Bolter'] },
+          ]},
+        ]},
+      { role:'Sniper (opt)', count:1, wargear:['Scout Bolters','Bolt Pistol'],
+        options:[
+          { group:'Weapon', choices:[
+            { label:'Scout Bolters',      pts:0, default:true },
+            { label:'Scout Sniper Rifle', pts:0, weapons:['Scout Sniper Rifle'], replaces:['Scout Bolters'] },
+            { label:'Shotgun',            pts:0, weapons:['Shotgun'],            replaces:['Scout Bolters'] },
+          ]},
+        ]},
+      { role:'Scout', count:2, wargear:['Scout Bolters','Bolt Pistol','Combat Knife'],
+        options:[
+          { group:'Weapon', choices:[
+            { label:'Scout Bolters',      pts:0, default:true },
+            { label:'Scout Sniper Rifle', pts:0, weapons:['Scout Sniper Rifle'], replaces:['Scout Bolters'] },
+            { label:'Shotgun',            pts:0, weapons:['Shotgun'],            replaces:['Scout Bolters'] },
+          ]},
+        ]},
+    ],
     abilities:['And They Shall Know No Fear',
                'Scouts: Move up to 6" before first battle round',
                'Combat Squads: May split into two units of 5'] },
@@ -90,13 +194,56 @@ const SM_SHARED_UNITS = [
   // ── ELITES ──────────────────────────────────────────────────────────
   { id:'sm_terminators', name:'Terminator Squad',
     stats:['5"','3+','3+','4','4','2','2','8','2+'], role:'Elites', pts:195, min:5, max:10, ppm:39,
-    wargear:['Storm Bolters','Power Fists'],
+    wargear:[],
+    composition:[
+      { role:'Terminator Sergeant', count:1, wargear:['Storm Bolter','Power Sword','Terminator Armour'],
+        options:[
+          { group:'Melee', choices:[
+            { label:'Power Sword',    pts:0, default:true, weapons:['Power Sword'],    replaces:['Power Fist'] },
+            { label:'Power Fist',     pts:0,               weapons:['Power Fist'],     replaces:['Power Sword'] },
+            { label:'Thunder Hammer', pts:5,               weapons:['Thunder Hammer'], replaces:['Power Sword'] },
+            { label:'Lightning Claw', pts:0,               weapons:['Lightning Claw'], replaces:['Power Sword'] },
+          ]},
+          { group:'Ranged', choices:[
+            { label:'Storm Bolter',  pts:0, default:true, weapons:['Storm Bolter'] },
+            { label:'Combi-melta',   pts:10, weapons:['Combi-melta'], replaces:['Storm Bolter'] },
+          ]},
+        ]},
+      { role:'Heavy Weapon (1)', count:1, wargear:['Cyclone Missile Launcher','Storm Bolter','Power Fist','Terminator Armour'],
+        options:[
+          { group:'Heavy', choices:[
+            { label:'Cyclone Missile Launcher', pts:0, default:true, weapons:['Cyclone Missile Launcher'] },
+            { label:'Assault Cannon',            pts:0, weapons:['Assault Cannon'], replaces:['Cyclone Missile Launcher'] },
+          ]},
+        ]},
+      { role:'Terminator', count:3, wargear:['Storm Bolter','Power Fist','Terminator Armour'],
+        options:[
+          { group:'Melee', choices:[
+            { label:'Power Fist',     pts:0, default:true },
+            { label:'Lightning Claw', pts:0, weapons:['Lightning Claw'], replaces:['Power Fist'] },
+            { label:'Thunder Hammer', pts:5, weapons:['Thunder Hammer'], replaces:['Power Fist'] },
+          ]},
+        ]},
+    ],
     abilities:['And They Shall Know No Fear','Teleport Strike: Deep strike 9"+ from enemy',
                'Terminator Armour: 5+ invulnerable save','Combat Squads'] },
 
   { id:'sm_dreadnought', name:'Dreadnought',
     stats:['6"','3+','3+','6','7','8','4','8','3+'], role:'Elites', pts:110, min:1, max:1, ppm:0,
-    wargear:['Dreadnought C.C. Weapon','Twin Lascannon'],
+    wargear:['Dreadnought C.C. Weapon','Storm Bolter','Twin Lascannon'],
+    options:[
+      { group:'Left Arm', choices:[
+        { label:'Twin Lascannon',   pts:0, default:true, weapons:['Twin Lascannon'],   replaces:['Twin Lascannon'] },
+        { label:'Multi-melta',      pts:0,               weapons:['Multi-melta'],       replaces:['Twin Lascannon'] },
+        { label:'Twin Autocannon',  pts:0,               weapons:['Twin Autocannon'],   replaces:['Twin Lascannon'] },
+        { label:'Assault Cannon',   pts:0,               weapons:['Assault Cannon'],    replaces:['Twin Lascannon'] },
+        { label:'Plasma Cannon',    pts:0,               weapons:['Plasma Cannon'],     replaces:['Twin Lascannon'] },
+      ]},
+      { group:'Fist Option', choices:[
+        { label:'Storm Bolter', pts:0, default:true, weapons:['Storm Bolter'], replaces:['Storm Bolter'] },
+        { label:'Heavy Flamer', pts:0,               weapons:['Heavy Flamer'], replaces:['Storm Bolter'] },
+      ]},
+    ],
     abilities:['And They Shall Know No Fear','Smoke Launchers',
                'Explodes: On 6 when destroyed — D6 mortal wounds within 3"'] },
 
@@ -134,7 +281,41 @@ const SM_SHARED_UNITS = [
 
   { id:'sm_vanguard', name:'Vanguard Veteran Squad',
     stats:['12"','3+','3+','4','4','2','3','8','3+'], role:'Elites', pts:115, min:5, max:10, ppm:23, isNew:true,
-    wargear:['Chainsword','Bolt Pistol','Jump Pack'],
+    wargear:[],
+    composition:[
+      { role:'Veteran Sergeant', count:1, wargear:['Chainsword','Bolt Pistol','Jump Pack'],
+        options:[
+          { group:'Melee', choices:[
+            { label:'Chainsword',    pts:0, default:true, weapons:['Chainsword'] },
+            { label:'Power Sword',   pts:4, weapons:['Power Sword'],   replaces:['Chainsword'] },
+            { label:'Power Axe',     pts:5, weapons:['Power Axe'],     replaces:['Chainsword'] },
+            { label:'Power Fist',    pts:9, weapons:['Power Fist'],    replaces:['Chainsword'] },
+            { label:'Thunder Hammer',pts:12,weapons:['Thunder Hammer'],replaces:['Chainsword'] },
+            { label:'Lightning Claw',pts:6, weapons:['Lightning Claw'],replaces:['Chainsword'] },
+            { label:'Relic Blade',   pts:6, weapons:['Relic Blade'],   replaces:['Chainsword'] },
+          ]},
+          { group:'Offhand', choices:[
+            { label:'Bolt Pistol',   pts:0, default:true, weapons:['Bolt Pistol'] },
+            { label:'Plasma Pistol', pts:5, weapons:['Plasma Pistol'], replaces:['Bolt Pistol'] },
+            { label:'Storm Shield',  pts:5, weapons:['Storm Shield'],  replaces:['Bolt Pistol'] },
+            { label:'Lightning Claw',pts:6, weapons:['Lightning Claw'],replaces:['Bolt Pistol'] },
+          ]},
+        ]},
+      { role:'Veteran', count:4, wargear:['Chainsword','Bolt Pistol','Jump Pack'],
+        options:[
+          { group:'Melee', choices:[
+            { label:'Chainsword',    pts:0, default:true },
+            { label:'Power Sword',   pts:4, weapons:['Power Sword'],   replaces:['Chainsword'] },
+            { label:'Power Fist',    pts:9, weapons:['Power Fist'],    replaces:['Chainsword'] },
+            { label:'Thunder Hammer',pts:12,weapons:['Thunder Hammer'],replaces:['Chainsword'] },
+            { label:'Lightning Claw',pts:6, weapons:['Lightning Claw'],replaces:['Chainsword'] },
+          ]},
+          { group:'Offhand', choices:[
+            { label:'Bolt Pistol',  pts:0, default:true },
+            { label:'Storm Shield', pts:5, weapons:['Storm Shield'], replaces:['Bolt Pistol'] },
+          ]},
+        ]},
+    ],
     abilities:['And They Shall Know No Fear','Jump Pack Assault: Advance and charge same turn',
                'Combat Squads','Heroic Intervention: May intervene up to 6" instead of 3"'] },
 
@@ -185,7 +366,34 @@ const SM_SHARED_UNITS = [
   // ── FAST ATTACK ─────────────────────────────────────────────────────
   { id:'sm_assault', name:'Assault Squad',
     stats:['12"','3+','3+','4','4','1','1','7','3+'], role:'Fast Attack', pts:65, min:5, max:10, ppm:13,
-    wargear:['Chainsword','Bolt Pistol','Jump Pack'],
+    wargear:[],
+    composition:[
+      { role:'Sergeant', count:1, wargear:['Chainsword','Bolt Pistol','Jump Pack'],
+        options:[
+          { group:'Melee', choices:[
+            { label:'Chainsword',    pts:0, default:true, weapons:['Chainsword'] },
+            { label:'Power Sword',   pts:4, weapons:['Power Sword'],   replaces:['Chainsword'] },
+            { label:'Power Axe',     pts:5, weapons:['Power Axe'],     replaces:['Chainsword'] },
+            { label:'Power Fist',    pts:9, weapons:['Power Fist'],    replaces:['Chainsword'] },
+            { label:'Thunder Hammer',pts:12,weapons:['Thunder Hammer'],replaces:['Chainsword'] },
+          ]},
+          { group:'Sidearm', choices:[
+            { label:'Bolt Pistol',   pts:0, default:true, weapons:['Bolt Pistol'] },
+            { label:'Plasma Pistol', pts:5, weapons:['Plasma Pistol'], replaces:['Bolt Pistol'] },
+            { label:'Hand Flamer',   pts:3, weapons:['Hand Flamer'],   replaces:['Bolt Pistol'] },
+          ]},
+        ]},
+      { role:'Special Weapon (up to 2)', count:2, wargear:['Chainsword','Bolt Pistol','Jump Pack'],
+        options:[
+          { group:'Special', choices:[
+            { label:'Bolt Pistol', pts:0, default:true },
+            { label:'Flamer',      pts:3, weapons:['Flamer'],      replaces:['Bolt Pistol'] },
+            { label:'Plasma Pistol',pts:5,weapons:['Plasma Pistol'],replaces:['Bolt Pistol'] },
+            { label:'Hand Flamer', pts:3, weapons:['Hand Flamer'], replaces:['Bolt Pistol'] },
+          ]},
+        ]},
+      { role:'Assault Marine', count:7, wargear:['Chainsword','Bolt Pistol','Jump Pack'] },
+    ],
     abilities:['And They Shall Know No Fear','Jump Pack Assault: Advance and charge same turn',
                'Combat Squads'] },
 
@@ -234,7 +442,61 @@ const SM_SHARED_UNITS = [
   // ── HEAVY SUPPORT ───────────────────────────────────────────────────
   { id:'sm_devastators', name:'Devastator Squad',
     stats:['6"','3+','3+','4','4','1','1','7','3+'], role:'Heavy Support', pts:95, min:5, max:10, ppm:12,
-    wargear:['Boltguns','Missile Launchers','Signum'],
+    wargear:[],
+    composition:[
+      { role:'Sergeant', count:1, wargear:['Boltgun','Bolt Pistol','Signum'],
+        options:[
+          { group:'Melee', choices:[
+            { label:'None',        pts:0, default:true },
+            { label:'Chainsword',  pts:0, weapons:['Chainsword'], replaces:[] },
+            { label:'Power Fist',  pts:9, weapons:['Power Fist'],  replaces:['Boltgun'] },
+          ]},
+        ]},
+      { role:'Heavy Weapon 1', count:1, wargear:['Missile Launcher','Bolt Pistol'],
+        options:[
+          { group:'Heavy', choices:[
+            { label:'Missile Launcher', pts:0, default:true, weapons:['Missile Launcher'] },
+            { label:'Lascannon',        pts:0, weapons:['Lascannon'],        replaces:['Missile Launcher'] },
+            { label:'Multi-melta',      pts:0, weapons:['Multi-melta'],      replaces:['Missile Launcher'] },
+            { label:'Plasma Cannon',    pts:0, weapons:['Plasma Cannon'],    replaces:['Missile Launcher'] },
+            { label:'Heavy Bolter',     pts:0, weapons:['Heavy Bolter'],     replaces:['Missile Launcher'] },
+            { label:'Grav-Cannon',      pts:0, weapons:['Grav-Cannon'],      replaces:['Missile Launcher'] },
+          ]},
+        ]},
+      { role:'Heavy Weapon 2', count:1, wargear:['Missile Launcher','Bolt Pistol'],
+        options:[
+          { group:'Heavy', choices:[
+            { label:'Missile Launcher', pts:0, default:true, weapons:['Missile Launcher'] },
+            { label:'Lascannon',        pts:0, weapons:['Lascannon'],        replaces:['Missile Launcher'] },
+            { label:'Multi-melta',      pts:0, weapons:['Multi-melta'],      replaces:['Missile Launcher'] },
+            { label:'Plasma Cannon',    pts:0, weapons:['Plasma Cannon'],    replaces:['Missile Launcher'] },
+            { label:'Heavy Bolter',     pts:0, weapons:['Heavy Bolter'],     replaces:['Missile Launcher'] },
+            { label:'Grav-Cannon',      pts:0, weapons:['Grav-Cannon'],      replaces:['Missile Launcher'] },
+          ]},
+        ]},
+      { role:'Heavy Weapon 3', count:1, wargear:['Missile Launcher','Bolt Pistol'],
+        options:[
+          { group:'Heavy', choices:[
+            { label:'Missile Launcher', pts:0, default:true, weapons:['Missile Launcher'] },
+            { label:'Lascannon',        pts:0, weapons:['Lascannon'],        replaces:['Missile Launcher'] },
+            { label:'Multi-melta',      pts:0, weapons:['Multi-melta'],      replaces:['Missile Launcher'] },
+            { label:'Plasma Cannon',    pts:0, weapons:['Plasma Cannon'],    replaces:['Missile Launcher'] },
+            { label:'Heavy Bolter',     pts:0, weapons:['Heavy Bolter'],     replaces:['Missile Launcher'] },
+            { label:'Grav-Cannon',      pts:0, weapons:['Grav-Cannon'],      replaces:['Missile Launcher'] },
+          ]},
+        ]},
+      { role:'Heavy Weapon 4', count:1, wargear:['Missile Launcher','Bolt Pistol'],
+        options:[
+          { group:'Heavy', choices:[
+            { label:'Missile Launcher', pts:0, default:true, weapons:['Missile Launcher'] },
+            { label:'Lascannon',        pts:0, weapons:['Lascannon'],        replaces:['Missile Launcher'] },
+            { label:'Multi-melta',      pts:0, weapons:['Multi-melta'],      replaces:['Missile Launcher'] },
+            { label:'Plasma Cannon',    pts:0, weapons:['Plasma Cannon'],    replaces:['Missile Launcher'] },
+            { label:'Heavy Bolter',     pts:0, weapons:['Heavy Bolter'],     replaces:['Missile Launcher'] },
+            { label:'Grav-Cannon',      pts:0, weapons:['Grav-Cannon'],      replaces:['Missile Launcher'] },
+          ]},
+        ]},
+    ],
     abilities:['And They Shall Know No Fear',
                'Signum: Once per phase one model hits on 2+ instead of 3+','Combat Squads'] },
 
@@ -263,6 +525,17 @@ const SM_SHARED_UNITS = [
   { id:'sm_predator', name:'Predator',
     stats:['10"','5+','3+','6','7','11','3','8','3+'], role:'Heavy Support', pts:110, min:1, max:1, ppm:0,
     wargear:['Predator Autocannon','Lascannon Sponsons'],
+    options:[
+      { group:'Turret', choices:[
+        { label:'Predator Autocannon', pts:0, default:true, weapons:['Predator Autocannon'], replaces:['Predator Autocannon'] },
+        { label:'Twin Lascannon',      pts:0,               weapons:['Twin Lascannon'],      replaces:['Predator Autocannon'] },
+      ]},
+      { group:'Sponsons', choices:[
+        { label:'Lascannon Sponsons',   pts:0, default:true, weapons:['Lascannon Sponsons']  },
+        { label:'Heavy Bolter Sponsons',pts:0,               weapons:['Heavy Bolter Sponsons'], replaces:['Lascannon Sponsons'] },
+        { label:'None',                 pts:0,               replaces:['Lascannon Sponsons'] },
+      ]},
+    ],
     abilities:['Smoke Launchers','Explodes: On 6 — D6 mortal wounds within 6"'] },
 
   { id:'sm_whirlwind', name:'Whirlwind',
