@@ -232,7 +232,7 @@ const ARMY_RULES = {
     summary: 'Necrons — Reanimation Protocols, Living Metal, Dynasty Codes',
     rules: [
       { name: 'Reanimation Protocols', desc: 'At the end of each phase, roll a D6 for each destroyed Necron model in a unit that is still on the battlefield. On a 5+ that model returns with 1 wound. Vehicles cannot use Reanimation Protocols.' },
-      { name: 'Living Metal', desc: 'At the start of each of your turns, each VEHICLE model with this ability regains 1 lost wound.' },
+      { name: 'Living Metal', desc: 'At the start of each of your turns, each model with this ability regains 1 lost wound.' },
       { name: 'Dynasty Codes', desc: 'Choose a Dynasty. Examples: Sautekh (re-roll 1s to hit), Nihilakh (units that did not move add 1 to hit in Shooting), Mephrit (improve AP by 1 within half range), Novokh (re-roll hit rolls of 1 in Fight).' },
     ]
   },
@@ -242,7 +242,7 @@ const ARMY_RULES = {
     rules: [
       { name: 'WAAAGH!', desc: 'Once per battle, at the start of your Charge phase, if your Warlord is on the battlefield you may call a WAAAGH!. Until the end of the turn all Ork units may charge even if they Advanced, and add 1 to all charge rolls and hit rolls in the Fight phase.' },
       { name: 'Mob Rule', desc: 'When an Ork unit takes a Morale test, they may use their unit size instead of their Leadership. However on a roll of 1, one model is slain by its companions regardless.' },
-      { name: 'Clan Kulturs', desc: 'Choose a Clan. Examples: Goffs (re-roll 1s to hit in Fight), Bad Moons (improve AP by 1 once per game), Evil Sunz (advance and charge; +2" move), Deathskulls (re-roll 1s to hit and wound), Snakebites (6+ Feel No Pain).' },
+      { name: 'Clan Kulturs', desc: 'Choose a Clan. Examples: Goffs (additional hit on 6+ on the Fight phase), Bad Moons (+6" range to Dakka/Heavy weapons and improved AP by 1 on unmodified 6s to wound), Evil Sunz (+1" Movement, +1 to Advance and Charge rolls, and no penalty for shooting Assault weapons after advancing), Deathskulls (re-roll 1s to hit and wound, 6++ save to all models), Snakebites (6+ Feel No Pain).' },
     ]
   },
 
