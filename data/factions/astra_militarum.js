@@ -90,15 +90,77 @@ const FACTION_ASTRA_MILITARUM = [
   // ── TROOPS ──────────────────────────────────────────────────────────
   { id:'ag_infantry_squad', name:'Infantry Squad',
     stats:['6"','4+','4+','3','3','1','1','6','5+'], role:'Troops', pts:40, min:10, max:10, ppm:0,
-    wargear:['Lasguns','Lasgun','Frag Grenades'],
-    abilities:['Voice of Command: Can receive orders from Officers',
-               'Special Weapon: 1 model may take special weapon',
-               'Heavy Weapon: 1 team may take heavy weapon',
-               'Sergeant: +1 Leadership — may take pistol and melee weapon upgrade'] },
+    wargear:[],
+    composition:[
+      { role:'Sergeant', count:1, wargear:['Lasgun','Laspistol','Frag Grenades'],
+        options:[
+          { group:'Ranged', choices:[
+            { label:'Lasgun',      pts:0, default:true },
+            { label:'Bolt Pistol', pts:0, weapons:['Bolt Pistol'], replaces:['Lasgun'] },
+          ]},
+          { group:'Melee', choices:[
+            { label:'None',        pts:0, default:true },
+            { label:'Chainsword',  pts:0, weapons:['Chainsword'],  replaces:[] },
+            { label:'Power Sword', pts:4, weapons:['Power Sword'], replaces:['Lasgun'] },
+            { label:'Power Fist',  pts:8, weapons:['Power Fist'],  replaces:['Lasgun'] },
+          ]},
+        ]},
+      { role:'Special Weapon (1)', count:1, wargear:['Lasgun','Frag Grenades'],
+        options:[
+          { group:'Special', choices:[
+            { label:'Lasgun',        pts:0, default:true },
+            { label:'Flamer',        pts:5, weapons:['Flamer'],        replaces:['Lasgun'] },
+            { label:'Grenade Launcher', pts:5, weapons:['Grenade Launcher'], replaces:['Lasgun'] },
+            { label:'Meltagun',      pts:8, weapons:['Meltagun'],      replaces:['Lasgun'] },
+            { label:'Plasma Gun',    pts:8, weapons:['Plasma Gun'],    replaces:['Lasgun'] },
+          ]},
+        ]},
+      { role:'Heavy Weapon Team (1)', count:1, wargear:['Heavy Bolter','Lasgun'],
+        options:[
+          { group:'Heavy', choices:[
+            { label:'Heavy Bolter',     pts:0, default:true, weapons:['Heavy Bolter'] },
+            { label:'Autocannon',       pts:0, weapons:['Autocannon'],       replaces:['Heavy Bolter'] },
+            { label:'Lascannon',        pts:0, weapons:['Lascannon'],        replaces:['Heavy Bolter'] },
+            { label:'Mortar',           pts:0, weapons:['Mortar'],           replaces:['Heavy Bolter'] },
+            { label:'Missile Launcher', pts:0, weapons:['Missile Launcher'], replaces:['Heavy Bolter'] },
+          ]},
+        ]},
+      { role:'Guardsman', count:7, wargear:['Lasgun','Frag Grenades'] },
+    ],
+    abilities:['Voice of Command: Can receive orders from Officers'] },
 
   { id:'ag_veterans', name:'Veteran Squad',
     stats:['6"','3+','3+','3','3','1','1','7','5+'], role:'Troops', pts:45, min:10, max:10, ppm:0,
-    wargear:['Lasguns','Hotshot Lasgun','Frag Grenades'],
+    wargear:[],
+    composition:[
+      { role:'Veteran Sergeant', count:1, wargear:['Lasgun','Laspistol','Frag Grenades'],
+        options:[
+          { group:'Ranged', choices:[
+            { label:'Lasgun',      pts:0, default:true },
+            { label:'Hot-shot Lasgun', pts:0, weapons:['Hot-shot Lasgun'], replaces:['Lasgun'] },
+            { label:'Bolt Gun',    pts:0, weapons:['Boltgun'],    replaces:['Lasgun'] },
+          ]},
+          { group:'Melee', choices:[
+            { label:'None',        pts:0, default:true },
+            { label:'Chainsword',  pts:0, weapons:['Chainsword'],  replaces:[] },
+            { label:'Power Sword', pts:4, weapons:['Power Sword'], replaces:['Lasgun'] },
+            { label:'Power Fist',  pts:8, weapons:['Power Fist'],  replaces:['Lasgun'] },
+          ]},
+        ]},
+      { role:'Special Weapon (up to 3)', count:3, wargear:['Lasgun','Frag Grenades'],
+        options:[
+          { group:'Special', choices:[
+            { label:'Lasgun',           pts:0, default:true },
+            { label:'Flamer',           pts:5, weapons:['Flamer'],           replaces:['Lasgun'] },
+            { label:'Grenade Launcher', pts:5, weapons:['Grenade Launcher'], replaces:['Lasgun'] },
+            { label:'Meltagun',         pts:8, weapons:['Meltagun'],         replaces:['Lasgun'] },
+            { label:'Plasma Gun',       pts:8, weapons:['Plasma Gun'],       replaces:['Lasgun'] },
+            { label:'Flamer',           pts:5, weapons:['Flamer'],           replaces:['Lasgun'] },
+            { label:'Demo Charge',      pts:5, weapons:['Demo Charge'],      replaces:['Lasgun'] },
+          ]},
+        ]},
+      { role:'Veteran', count:6, wargear:['Lasgun','Frag Grenades'] },
+    ],
     abilities:['Voice of Command: Can receive orders',
                'Veteran Weapons: Up to 3 models may take special weapons',
                'Doctrines: Choose one — Demolitions / Forward Sentries / Weapons Team'] },
@@ -113,11 +175,32 @@ const FACTION_ASTRA_MILITARUM = [
   // ── ELITES ──────────────────────────────────────────────────────────
   { id:'ag_storm_troopers', name:'Militarum Tempestus Scions',
     stats:['6"','3+','3+','3','3','1','1','7','4+'], role:'Elites', pts:55, min:5, max:10, ppm:11,
-    wargear:['Hellgun','Bolt Pistol','Frag Grenades'],
+    wargear:[],
+    composition:[
+      { role:'Tempestor', count:1, wargear:['Hellgun','Bolt Pistol','Frag Grenades'],
+        options:[
+          { group:'Ranged', choices:[
+            { label:'Bolt Pistol',   pts:0, default:true },
+            { label:'Plasma Pistol', pts:5, weapons:['Plasma Pistol'], replaces:['Bolt Pistol'] },
+            { label:'Power Sword',   pts:4, weapons:['Power Sword'],   replaces:['Bolt Pistol'] },
+          ]},
+        ]},
+      { role:'Special Weapon (up to 2)', count:2, wargear:['Hellgun','Bolt Pistol'],
+        options:[
+          { group:'Special', choices:[
+            { label:'Hellgun',          pts:0, default:true },
+            { label:'Flamer',           pts:5, weapons:['Flamer'],           replaces:['Hellgun'] },
+            { label:'Grenade Launcher', pts:5, weapons:['Grenade Launcher'], replaces:['Hellgun'] },
+            { label:'Meltagun',         pts:8, weapons:['Meltagun'],         replaces:['Hellgun'] },
+            { label:'Plasma Gun',       pts:8, weapons:['Plasma Gun'],       replaces:['Hellgun'] },
+            { label:'Hot-shot Volley Gun', pts:5, weapons:['Hot-shot Volley Gun'], replaces:['Hellgun'] },
+          ]},
+        ]},
+      { role:'Scion', count:2, wargear:['Hellgun','Bolt Pistol','Frag Grenades'] },
+    ],
     abilities:['Voice of Command: Can receive orders',
                'Grav-chute Insertion: Deep strike — arrive 9"+ from enemy',
-               'Elite Troops: Re-roll hit rolls of 1',
-               'Special Weapons: Up to 2 per 5 models'] },
+               'Elite Troops: Re-roll hit rolls of 1'] },
 
   { id:'ag_ogryns', name:'Ogryns',
     stats:['6"','3+','3+','5','5','3','3','7','4+'], role:'Elites', pts:78, min:3, max:6, ppm:26,
@@ -134,7 +217,29 @@ const FACTION_ASTRA_MILITARUM = [
 
   { id:'ag_kasrkin', name:'Kasrkin',
     stats:['6"','3+','3+','3','3','1','2','8','4+'], role:'Elites', pts:70, min:5, max:10, ppm:14, isNew:true,
-    wargear:['Hot-shot Lasgun','Hot-shot Laspistol'],
+    wargear:[],
+    composition:[
+      { role:'Kasrkin Sergeant', count:1, wargear:['Hot-shot Lasgun','Hot-shot Laspistol'],
+        options:[
+          { group:'Melee', choices:[
+            { label:'None',        pts:0, default:true },
+            { label:'Chainsword',  pts:0, weapons:['Chainsword'],  replaces:[] },
+            { label:'Power Sword', pts:4, weapons:['Power Sword'], replaces:['Hot-shot Lasgun'] },
+          ]},
+        ]},
+      { role:'Special Weapon (up to 2)', count:2, wargear:['Hot-shot Lasgun','Hot-shot Laspistol'],
+        options:[
+          { group:'Special', choices:[
+            { label:'Hot-shot Lasgun',     pts:0, default:true },
+            { label:'Flamer',              pts:5, weapons:['Flamer'],          replaces:['Hot-shot Lasgun'] },
+            { label:'Meltagun',            pts:8, weapons:['Meltagun'],        replaces:['Hot-shot Lasgun'] },
+            { label:'Plasma Gun',          pts:8, weapons:['Plasma Gun'],      replaces:['Hot-shot Lasgun'] },
+            { label:'Grenade Launcher',    pts:5, weapons:['Grenade Launcher'],replaces:['Hot-shot Lasgun'] },
+            { label:'Hot-shot Volley Gun', pts:5, weapons:['Hot-shot Volley Gun'], replaces:['Hot-shot Lasgun'] },
+          ]},
+        ]},
+      { role:'Kasrkin', count:2, wargear:['Hot-shot Lasgun','Hot-shot Laspistol'] },
+    ],
     abilities:['Voice of Command: Can receive orders from any Officer',
                'Elite Soldiers: Re-roll hit rolls of 1 — never suffer penalty for Advancing and firing Assault weapons',
                'Grav-chute Insertion: Deep strike — arrive 9"+ from enemy — cannot charge same turn'] },
@@ -155,7 +260,39 @@ const FACTION_ASTRA_MILITARUM = [
   // ── HEAVY SUPPORT ───────────────────────────────────────────────────
   { id:'ag_heavy_weapons', name:'Heavy Weapons Squad',
     stats:['6"','4+','4+','3','3','1','1','6','5+'], role:'Heavy Support', pts:24, min:3, max:3, ppm:0,
-    wargear:['Mortar','Lascannon','Autocannon'],
+    wargear:[],
+    composition:[
+      { role:'Heavy Weapon Team 1', count:1, wargear:['Mortar'],
+        options:[
+          { group:'Weapon', choices:[
+            { label:'Mortar',           pts:0, default:true, weapons:['Mortar'] },
+            { label:'Heavy Bolter',     pts:0, weapons:['Heavy Bolter'],     replaces:['Mortar'] },
+            { label:'Autocannon',       pts:0, weapons:['Autocannon'],       replaces:['Mortar'] },
+            { label:'Lascannon',        pts:0, weapons:['Lascannon'],        replaces:['Mortar'] },
+            { label:'Missile Launcher', pts:0, weapons:['Missile Launcher'], replaces:['Mortar'] },
+          ]},
+        ]},
+      { role:'Heavy Weapon Team 2', count:1, wargear:['Mortar'],
+        options:[
+          { group:'Weapon', choices:[
+            { label:'Mortar',           pts:0, default:true, weapons:['Mortar'] },
+            { label:'Heavy Bolter',     pts:0, weapons:['Heavy Bolter'],     replaces:['Mortar'] },
+            { label:'Autocannon',       pts:0, weapons:['Autocannon'],       replaces:['Mortar'] },
+            { label:'Lascannon',        pts:0, weapons:['Lascannon'],        replaces:['Mortar'] },
+            { label:'Missile Launcher', pts:0, weapons:['Missile Launcher'], replaces:['Mortar'] },
+          ]},
+        ]},
+      { role:'Heavy Weapon Team 3', count:1, wargear:['Mortar'],
+        options:[
+          { group:'Weapon', choices:[
+            { label:'Mortar',           pts:0, default:true, weapons:['Mortar'] },
+            { label:'Heavy Bolter',     pts:0, weapons:['Heavy Bolter'],     replaces:['Mortar'] },
+            { label:'Autocannon',       pts:0, weapons:['Autocannon'],       replaces:['Mortar'] },
+            { label:'Lascannon',        pts:0, weapons:['Lascannon'],        replaces:['Mortar'] },
+            { label:'Missile Launcher', pts:0, weapons:['Missile Launcher'], replaces:['Mortar'] },
+          ]},
+        ]},
+    ],
     abilities:['Voice of Command: Can receive orders',
                'Weapon Teams: Each team consists of 2 models operating one heavy weapon',
                'Fire Support: Counts as Stationary if did not move — re-roll hit rolls of 1'] },

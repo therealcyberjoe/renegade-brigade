@@ -132,7 +132,31 @@ const FACTION_ORKS = [
   // ── ELITES ──────────────────────────────────────────────────────────
   { id:'ork_nobz', name:'Nobz',
     stats:['5"','3+','4+','5','4','2','2','7','4+'], role:'Elites', pts:50, min:5, max:10, ppm:10,
-    wargear:['Big Choppas','Sluggas'],
+    wargear:[],
+    composition:[
+      { role:'Boss Nob', count:1, wargear:['Slugga','Big Choppas'],
+        options:[
+          { group:'Melee', choices:[
+            { label:'Big Choppa',  pts:0, default:true, weapons:['Big Choppas'] },
+            { label:'Power Klaw',  pts:5, weapons:['Power Klaw'],  replaces:['Big Choppas'] },
+          ]},
+          { group:'Ranged', choices:[
+            { label:'Slugga', pts:0, default:true, weapons:['Slugga'] },
+            { label:'Shoota', pts:0, weapons:['Shoota'], replaces:['Slugga'] },
+          ]},
+        ]},
+      { role:'Nob', count:4, wargear:['Slugga','Big Choppas'],
+        options:[
+          { group:'Melee', choices:[
+            { label:'Big Choppa', pts:0, default:true },
+            { label:'Power Klaw', pts:5, weapons:['Power Klaw'], replaces:['Big Choppas'] },
+          ]},
+          { group:'Ranged', choices:[
+            { label:'Slugga', pts:0, default:true },
+            { label:'Shoota', pts:0, weapons:['Shoota'], replaces:['Slugga'] },
+          ]},
+        ]},
+    ],
     abilities:["'Ere We Go",'Mob Rule',
                'Bodyguard: Roll D6 when nearby Warboss loses wound — on 4+ Nob suffers it instead',
                'Boss Nob: 1 per unit — may take power klaw or big choppa'] },
@@ -146,7 +170,29 @@ const FACTION_ORKS = [
 
   { id:'ork_kommandos', name:'Kommandos',
     stats:['6"','3+','4+','4','4','1','2','7','6+'], role:'Elites', pts:50, min:5, max:10, ppm:10,
-    wargear:['Slugga','Choppa','Bomb Squigs'],
+    wargear:[],
+    composition:[
+      { role:'Boss Nob', count:1, wargear:['Slugga','Choppa','Bomb Squigs'],
+        options:[
+          { group:'Melee', choices:[
+            { label:'Choppa',     pts:0, default:true, weapons:['Choppa'] },
+            { label:'Power Klaw', pts:5, weapons:['Power Klaw'], replaces:['Choppa'] },
+          ]},
+          { group:'Ranged', choices:[
+            { label:'Slugga', pts:0, default:true },
+            { label:'Shoota', pts:0, weapons:['Shoota'], replaces:['Slugga'] },
+          ]},
+        ]},
+      { role:'Special (up to 2)', count:2, wargear:['Slugga','Choppa'],
+        options:[
+          { group:'Special', choices:[
+            { label:'Slugga & Choppa',    pts:0, default:true },
+            { label:'Rokkit Launcha',     pts:5, weapons:['Rokkit Launcha'],  replaces:['Slugga'] },
+            { label:'Burna (Flamer)',     pts:3, weapons:['Flamer'],          replaces:['Slugga'] },
+          ]},
+        ]},
+      { role:'Kommando', count:2, wargear:['Slugga','Choppa','Bomb Squigs'] },
+    ],
     abilities:['Infiltrate: Deploy anywhere more than 9" from enemy before first battle round',
                'Sneaky Gitz: Always count as in cover if they did not move this turn',
                'Bomb Squig: Assault 1 — Range 9" — S6 AP-2 D3 — one use per unit'] },

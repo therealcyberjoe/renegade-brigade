@@ -34,11 +34,32 @@ const FACTION_WORLD_EATERS = [
 
   { id:'we_berzerkers', name:'Khorne Berzerkers',
     stats:['6"','3+','4+','4','4','1','2','8','3+'], role:'Troops', pts:136, min:8, max:12, ppm:17,
-    wargear:['Chainaxe','Bolt Pistol'],
-    abilities:["Blood for the Blood God: +1 Attack in Fight phase",
-               'Icon of Wrath: Re-roll failed charge rolls if unit has Icon Bearer',
+    wargear:[],
+    composition:[
+      { role:'Skull Champion', count:1, wargear:['Chainaxe','Bolt Pistol'],
+        options:[
+          { group:'Melee', choices:[
+            { label:'Chainaxe',    pts:0, default:true, weapons:['Chainaxe'] },
+            { label:'Power Sword', pts:4, weapons:['Power Sword'], replaces:['Chainaxe'] },
+            { label:'Power Fist',  pts:8, weapons:['Power Fist'],  replaces:['Chainaxe'] },
+          ]},
+          { group:'Sidearm', choices:[
+            { label:'Bolt Pistol',   pts:0, default:true },
+            { label:'Plasma Pistol', pts:5, weapons:['Plasma Pistol'], replaces:['Bolt Pistol'] },
+          ]},
+        ]},
+      { role:'Berzerker', count:7, wargear:['Chainaxe','Bolt Pistol'],
+        options:[
+          { group:'Weapon', choices:[
+            { label:'Chainaxe & Bolt Pistol', pts:0, default:true },
+            { label:'Chainsword & Bolt Pistol', pts:0, weapons:['Chainsword','Bolt Pistol'], replaces:['Chainaxe'] },
+            { label:'Paired Chainaxes', pts:0, weapons:['Chainaxe','Chainaxe'], replaces:['Bolt Pistol'] },
+          ]},
+        ]},
+    ],
+    abilities:['Blood for the Blood God: +1 Attack in Fight phase',
                'Frenzied Charge: Add 2 to Attacks on the turn this unit charges',
-               'Skull Champion: +1A and Ld9 — may take plasma pistol / power fist / power sword'] },
+               'Icon of Wrath: Re-roll failed charge rolls if unit has Icon Bearer'] },
 
   { id:'we_jakhals', name:'Jakhals',
     stats:['6"','4+','5+','3','3','1','2','6','6+'], role:'Troops', pts:40, min:8, max:20, ppm:5, isNew:true,

@@ -105,14 +105,73 @@ const FACTION_CHAOS_SPACE_MARINES = [
   // ── ELITES ──────────────────────────────────────────────────────────
   { id:'csm_terminators', name:'Chaos Terminators',
     stats:['5"','3+','3+','4','4','2','2','8','2+'], role:'Elites', pts:155, min:5, max:10, ppm:31,
-    wargear:['Combi-Bolters','Power Fists','Terminator Armour'],
+    wargear:[],
+    composition:[
+      { role:'Terminator Champion', count:1, wargear:['Combi-Bolter','Power Fist','Terminator Armour'],
+        options:[
+          { group:'Ranged', choices:[
+            { label:'Combi-Bolter', pts:0, default:true },
+            { label:'Combi-Melta',  pts:5, weapons:['Combi-Melta'],  replaces:['Combi-Bolter'] },
+            { label:'Reaper Autocannon', pts:5, weapons:['Reaper Autocannon'], replaces:['Combi-Bolter'] },
+          ]},
+          { group:'Melee', choices:[
+            { label:'Power Fist',     pts:0, default:true },
+            { label:'Lightning Claw', pts:0, weapons:['Lightning Claw'], replaces:['Power Fist'] },
+            { label:'Thunder Hammer', pts:5, weapons:['Thunder Hammer'], replaces:['Power Fist'] },
+            { label:'Chainfist',      pts:0, weapons:['Chainfist'],      replaces:['Power Fist'] },
+          ]},
+        ]},
+      { role:'Terminator', count:4, wargear:['Combi-Bolter','Power Fist','Terminator Armour'],
+        options:[
+          { group:'Ranged', choices:[
+            { label:'Combi-Bolter',      pts:0, default:true },
+            { label:'Combi-Melta',       pts:5, weapons:['Combi-Melta'],       replaces:['Combi-Bolter'] },
+            { label:'Reaper Autocannon', pts:5, weapons:['Reaper Autocannon'], replaces:['Combi-Bolter'] },
+          ]},
+          { group:'Melee', choices:[
+            { label:'Power Fist',     pts:0, default:true },
+            { label:'Lightning Claw', pts:0, weapons:['Lightning Claw'], replaces:['Power Fist'] },
+            { label:'Chainfist',      pts:0, weapons:['Chainfist'],      replaces:['Power Fist'] },
+          ]},
+        ]},
+    ],
     abilities:['Teleport Strike: Deep strike — arrive 9"+ from enemy',
                'Terminator Armour: 2+ save, 5+ invulnerable save',
                'Veterans of the Long War: Re-roll hit rolls of 1 within 6" of a Chaos Lord'] },
 
   { id:'csm_chosen', name:'Chosen',
     stats:['6"','3+','3+','4','4','1','2','8','3+'], role:'Elites', pts:75, min:5, max:10, ppm:15,
-    wargear:['Boltguns','Bolt Pistols'],
+    wargear:[],
+    composition:[
+      { role:'Chosen Champion', count:1, wargear:['Boltgun','Bolt Pistol'],
+        options:[
+          { group:'Melee', choices:[
+            { label:'None',            pts:0, default:true },
+            { label:'Chainsword',      pts:0, weapons:['Chainsword'],      replaces:[] },
+            { label:'Power Sword',     pts:4, weapons:['Power Sword'],     replaces:['Boltgun'] },
+            { label:'Power Fist',      pts:8, weapons:['Power Fist'],      replaces:['Boltgun'] },
+            { label:'Lightning Claws', pts:8, weapons:['Lightning Claws'], replaces:['Boltgun'] },
+            { label:'Thunder Hammer',  pts:10,weapons:['Thunder Hammer'],  replaces:['Boltgun'] },
+          ]},
+          { group:'Ranged', choices:[
+            { label:'Boltgun',    pts:0, default:true },
+            { label:'Plasma Gun', pts:5, weapons:['Plasma Gun'], replaces:['Boltgun'] },
+            { label:'Meltagun',   pts:5, weapons:['Meltagun'],   replaces:['Boltgun'] },
+          ]},
+        ]},
+      { role:'Chosen', count:4, wargear:['Boltgun','Bolt Pistol'],
+        options:[
+          { group:'Special', choices:[
+            { label:'Boltgun',         pts:0, default:true },
+            { label:'Plasma Gun',      pts:5, weapons:['Plasma Gun'],  replaces:['Boltgun'] },
+            { label:'Meltagun',        pts:5, weapons:['Meltagun'],    replaces:['Boltgun'] },
+            { label:'Flamer',          pts:3, weapons:['Flamer'],      replaces:['Boltgun'] },
+            { label:'Autocannon',      pts:5, weapons:['Autocannon'],  replaces:['Boltgun'] },
+            { label:'Lascannon',       pts:8, weapons:['Lascannon'],   replaces:['Boltgun'] },
+            { label:'Heavy Bolter',    pts:5, weapons:['Heavy Bolter'],replaces:['Boltgun'] },
+          ]},
+        ]},
+    ],
     abilities:['Veterans of the Long War',
                'Chosen Warriors: Each model may take a different special weapon',
                'Champion: 1 per unit — +1A and may take power fist or lightning claws'] },
@@ -141,7 +200,32 @@ const FACTION_CHAOS_SPACE_MARINES = [
 
   { id:'csm_raptors', name:'Raptors',
     stats:['12"','3+','3+','4','4','1','1','7','3+'], role:'Fast Attack', pts:65, min:5, max:10, ppm:13,
-    wargear:['Bolt Pistol','Chainaxe','Jump Pack'],
+    wargear:[],
+    composition:[
+      { role:'Raptor Champion', count:1, wargear:['Bolt Pistol','Chainaxe','Jump Pack'],
+        options:[
+          { group:'Melee', choices:[
+            { label:'Chainaxe',    pts:0, default:true },
+            { label:'Power Sword', pts:4, weapons:['Power Sword'],   replaces:['Chainaxe'] },
+            { label:'Power Fist',  pts:8, weapons:['Power Fist'],    replaces:['Chainaxe'] },
+            { label:'Lightning Claws', pts:8, weapons:['Lightning Claws'], replaces:['Chainaxe'] },
+          ]},
+          { group:'Sidearm', choices:[
+            { label:'Bolt Pistol',   pts:0, default:true },
+            { label:'Plasma Pistol', pts:5, weapons:['Plasma Pistol'], replaces:['Bolt Pistol'] },
+          ]},
+        ]},
+      { role:'Special Weapon (up to 2)', count:2, wargear:['Bolt Pistol','Chainaxe','Jump Pack'],
+        options:[
+          { group:'Special', choices:[
+            { label:'Bolt Pistol',   pts:0, default:true },
+            { label:'Plasma Pistol', pts:5, weapons:['Plasma Pistol'], replaces:['Bolt Pistol'] },
+            { label:'Hand Flamer',   pts:3, weapons:['Hand Flamer'],   replaces:['Bolt Pistol'] },
+            { label:'Meltagun',      pts:5, weapons:['Meltagun'],      replaces:['Bolt Pistol'] },
+          ]},
+        ]},
+      { role:'Raptor', count:2, wargear:['Bolt Pistol','Chainaxe','Jump Pack'] },
+    ],
     abilities:['Jump Pack Assault: Advance and charge same turn',
                'Veterans of the Long War',
                'Icon: May take Chaos Icon'] },

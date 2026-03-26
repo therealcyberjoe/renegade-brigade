@@ -198,7 +198,7 @@
     margin: 0 auto;
     padding: 24px;
     display: grid;
-    grid-template-columns: 320px 1fr 340px;
+    grid-template-columns: 320px 1fr 1fr;
     gap: 20px;
     min-height: calc(100vh - 64px);
   }
@@ -689,6 +689,17 @@
     margin-top: 4px;
   }
 
+  .wargear-weapons {
+    width: 100%;
+  }
+
+  .wargear-equipment {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-top: 4px;
+  }
+
   .wargear-tag {
     padding: 3px 10px;
     background: rgba(74,170,90,0.08);
@@ -954,6 +965,7 @@
   /* PRINT VIEW */
   @media print {
     header, .col-left, .col-browser, .mobile-tabs { display: none !important; }
+    .col-roster { display: block !important; }
     .app { grid-template-columns: 1fr; padding: 0; }
     .col-roster { max-height: none; }
     .panel-body { max-height: none; overflow: visible; }
@@ -1005,15 +1017,43 @@
     text-transform: uppercase;
   }
 
+  /* Swipe indicator dots */
+  .swipe-dots {
+    display: none;
+    justify-content: center;
+    gap: 6px;
+    padding: 8px 0 4px;
+    position: absolute;
+    bottom: 8px;
+    left: 0;
+    right: 0;
+  }
+
+  .swipe-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--border);
+    transition: background 0.2s;
+  }
+
+  .swipe-dot.active {
+    background: var(--gold);
+  }
+
+  @media (max-width: 899px) {
+    .swipe-dots { display: flex; }
+  }
+
   /* ── TABLET: 900px-1199px — 2 column ───────────────────── */
   @media (max-width: 1199px) and (min-width: 900px) {
     .app {
-      grid-template-columns: 300px 1fr;
-      grid-template-rows: auto auto;
+      grid-template-columns: 320px 1fr 1fr;
+      grid-template-rows: auto;
     }
-    .col-left  { grid-column: 1; grid-row: 1 / 3; }
-    .col-roster  { grid-column: 2; grid-row: 1; }
-    .col-browser { grid-column: 2; grid-row: 2; }
+    .col-left    { grid-column: 1; grid-row: 1 / 3; }
+    .col-browser { grid-column: 2; grid-row: 1 / 3; }
+    .col-roster  { grid-column: 3; grid-row: 1 / 3; }
     .panel-body { max-height: none; }
   }
 

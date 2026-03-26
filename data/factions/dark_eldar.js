@@ -26,18 +26,62 @@ const FACTION_DARK_ELDAR = [
   // ── TROOPS ──────────────────────────────────────────────────────────
   { id:'de_kabalite_warriors', name:'Kabalite Warriors',
     stats:['7"','3+','3+','3','3','1','1','7','4+'], role:'Troops', pts:45, min:5, max:20, ppm:9,
-    wargear:['Splinter Rifle','Splinter Pistol','Plasma Grenades'],
+    wargear:[],
+    composition:[
+      { role:'Dracon', count:1, wargear:['Splinter Rifle','Splinter Pistol'],
+        options:[
+          { group:'Ranged', choices:[
+            { label:'Splinter Rifle',  pts:0, default:true },
+            { label:'Blaster',         pts:5, weapons:['Blaster'],        replaces:['Splinter Rifle'] },
+            { label:'Shredder',        pts:5, weapons:['Shredder'],       replaces:['Splinter Rifle'] },
+            { label:'Splinter Cannon', pts:5, weapons:['Splinter Cannon'],replaces:['Splinter Rifle'] },
+          ]},
+          { group:'Melee', choices:[
+            { label:'None',      pts:0, default:true },
+            { label:'Agoniser', pts:4, weapons:['Agoniser'], replaces:[] },
+            { label:'Venom Blade',pts:2, weapons:['Venom Blade'], replaces:[] },
+          ]},
+        ]},
+      { role:'Special Weapon (1)', count:1, wargear:['Splinter Rifle','Splinter Pistol'],
+        options:[
+          { group:'Special', choices:[
+            { label:'Splinter Rifle',  pts:0, default:true },
+            { label:'Blaster',         pts:5, weapons:['Blaster'],        replaces:['Splinter Rifle'] },
+            { label:'Shredder',        pts:5, weapons:['Shredder'],       replaces:['Splinter Rifle'] },
+            { label:'Dark Lance',      pts:10,weapons:['Dark Lance'],     replaces:['Splinter Rifle'] },
+            { label:'Splinter Cannon', pts:5, weapons:['Splinter Cannon'],replaces:['Splinter Rifle'] },
+          ]},
+        ]},
+      { role:'Kabalite Warrior', count:3, wargear:['Splinter Rifle','Splinter Pistol'] },
+    ],
     abilities:['Power from Pain',
-               'Splinter Weapons: Wound rolls of 6 always wound regardless of Toughness',
-               'Kabalist Dracon: 1 per unit — +1A and may take special weapon'] },
+               'Splinter Weapons: Wound rolls of 6 always wound regardless of Toughness'] },
 
   { id:'de_wyches', name:'Wyches',
     stats:['7"','3+','3+','3','3','1','2','7','4+'], role:'Troops', pts:50, min:5, max:20, ppm:10,
-    wargear:['Wych Weapons','Blast Pistol','Plasma Grenades'],
+    wargear:[],
+    composition:[
+      { role:'Hekatrix', count:1, wargear:['Wych Weapons','Blast Pistol'],
+        options:[
+          { group:'Melee', choices:[
+            { label:'Wych Weapons',   pts:0, default:true },
+            { label:'Agoniser',       pts:4, weapons:['Agoniser'],   replaces:['Wych Weapons'] },
+            { label:'Hydra Gauntlets',pts:0, weapons:['Hydra Gauntlets'], replaces:['Wych Weapons'] },
+          ]},
+        ]},
+      { role:'Special Weapon (up to 3)', count:3, wargear:['Wych Weapons','Splinter Pistol'],
+        options:[
+          { group:'Wych Weapon', choices:[
+            { label:'Wych Weapons',   pts:0, default:true },
+            { label:'Shardnet & Impaler', pts:0, weapons:['Shardnet'], replaces:['Wych Weapons'] },
+            { label:'Hydra Gauntlets',pts:0, weapons:['Hydra Gauntlets'], replaces:['Wych Weapons'] },
+            { label:'Razorflails',    pts:0, weapons:['Razorflails'], replaces:['Wych Weapons'] },
+          ]},
+        ]},
+      { role:'Wych', count:1, wargear:['Wych Weapons','Splinter Pistol'] },
+    ],
     abilities:['Power from Pain',
-               'Dodge: 6+ invulnerable save — becomes 4+ in melee',
-               'Wych Weapons: Choose one — shardnet / hydra gauntlets / razorflails',
-               'Hekatrix: 1 per unit — may take agoniser'] },
+               'Dodge: 6+ invulnerable save — becomes 4+ in melee'] },
 
   { id:'de_wracks', name:'Wracks',
     stats:['7"','3+','3+','3','3','1','1','7','5+'], role:'Troops', pts:45, min:5, max:15, ppm:9,
@@ -89,10 +133,30 @@ const FACTION_DARK_ELDAR = [
 
   { id:'de_scourges', name:'Scourges',
     stats:['14"','3+','3+','3','3','1','2','7','4+'], role:'Fast Attack', pts:70, min:5, max:10, ppm:14,
-    wargear:['Splinter Carbine','Various Heavy Weapons'],
+    wargear:[],
+    composition:[
+      { role:'Solarite', count:1, wargear:['Splinter Carbine','Blast Pistol'],
+        options:[
+          { group:'Melee', choices:[
+            { label:'None',      pts:0, default:true },
+            { label:'Agoniser', pts:4, weapons:['Agoniser'], replaces:[] },
+          ]},
+        ]},
+      { role:'Heavy Weapon (up to 4)', count:4, wargear:['Splinter Carbine'],
+        options:[
+          { group:'Heavy', choices:[
+            { label:'Splinter Carbine',pts:0, default:true },
+            { label:'Dark Lance',      pts:8, weapons:['Dark Lance'],      replaces:['Splinter Carbine'] },
+            { label:'Blaster',         pts:5, weapons:['Blaster'],         replaces:['Splinter Carbine'] },
+            { label:'Haywire Blaster', pts:5, weapons:['Haywire Blaster'], replaces:['Splinter Carbine'] },
+            { label:'Heat Lance',      pts:5, weapons:['Heat Lance'],      replaces:['Splinter Carbine'] },
+            { label:'Shredder',        pts:3, weapons:['Shredder'],        replaces:['Splinter Carbine'] },
+            { label:'Splinter Cannon', pts:3, weapons:['Splinter Cannon'], replaces:['Splinter Carbine'] },
+          ]},
+        ]},
+    ],
     abilities:['Power from Pain',
-               'Scouts: Move up to 6" before first battle round — from anywhere on the board',
-               'Up to 4 models may replace carbines with heavy weapons'] },
+               'Scouts: Move up to 6" before first battle round — from anywhere on the board'] },
 
   // ── HEAVY SUPPORT ───────────────────────────────────────────────────
   { id:'de_ravager', name:'Ravager',

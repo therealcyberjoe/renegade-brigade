@@ -36,7 +36,25 @@ const FACTION_THOUSAND_SONS = [
 
   { id:'ts_rubric_marines', name:'Rubric Marines',
     stats:['5"','3+','3+','4','4','1','1','9','3+'], role:'Troops', pts:75, min:5, max:20, ppm:15,
-    wargear:['Inferno Boltguns','Soul Reaper Cannon'],
+    wargear:[],
+    composition:[
+      { role:'Aspiring Sorcerer', count:1, wargear:['Inferno Bolt Pistol','Force Sword'],
+        options:[
+          { group:'Melee', choices:[
+            { label:'Force Sword',   pts:0, default:true, weapons:['Force Sword'] },
+            { label:'Force Axe',     pts:0, weapons:['Force Axe'],   replaces:['Force Sword'] },
+            { label:'Force Staff',   pts:0, weapons:['Force Staff'], replaces:['Force Sword'] },
+          ]},
+        ]},
+      { role:'Special Weapon (up to 4)', count:4, wargear:['Inferno Boltgun'],
+        options:[
+          { group:'Weapon', choices:[
+            { label:'Inferno Boltgun',  pts:0, default:true, weapons:['Inferno Boltgun'] },
+            { label:'Warpflame Pistol + Sword', pts:0, weapons:['Warpflame','Inferno Bolt Pistol'], replaces:['Inferno Boltgun'] },
+            { label:'Soulreaper Cannon',pts:5, weapons:['Soul Reaper Cannon'], replaces:['Inferno Boltgun'] },
+          ]},
+        ]},
+    ],
     abilities:['Sanctic Fortitude: Auto-pass Morale',
                'Daemonic: 5+ invulnerable save',
                'All is Dust: +1 to save against damage 1 weapons'] },
@@ -49,7 +67,28 @@ const FACTION_THOUSAND_SONS = [
 
   { id:'ts_scarab_occult', name:'Scarab Occult Terminators',
     stats:['5"','3+','3+','4','4','2','2','9','2+'], role:'Elites', pts:165, min:5, max:10, ppm:33,
-    wargear:['Inferno Combi-Bolter','Khopesh'],
+    wargear:[],
+    composition:[
+      { role:'Scarab Occult Sorcerer', count:1, wargear:['Inferno Combi-Bolter','Force Sword'],
+        options:[
+          { group:'Melee', choices:[
+            { label:'Force Sword', pts:0, default:true, weapons:['Force Sword'] },
+            { label:'Khopesh',     pts:0, weapons:['Khopesh'],   replaces:['Force Sword'] },
+            { label:'Force Axe',   pts:0, weapons:['Force Axe'], replaces:['Force Sword'] },
+          ]},
+          { group:'Ranged', choices:[
+            { label:'Inferno Combi-Bolter', pts:0, default:true },
+            { label:'Soulreaper Cannon',    pts:5, weapons:['Soul Reaper Cannon'], replaces:['Inferno Combi-Bolter'] },
+          ]},
+        ]},
+      { role:'Terminator', count:4, wargear:['Inferno Combi-Bolter','Khopesh'],
+        options:[
+          { group:'Ranged', choices:[
+            { label:'Inferno Combi-Bolter', pts:0, default:true },
+            { label:'Soulreaper Cannon',    pts:5, weapons:['Soul Reaper Cannon'], replaces:['Inferno Combi-Bolter'] },
+          ]},
+        ]},
+    ],
     abilities:['Sanctic Fortitude: Auto-pass Morale','Terminator Armour: 5+ invulnerable save',
                'All is Dust: +1 to save against damage 1 weapons',
                'Teleport Strike: Deep strike — arrive 9"+ from enemy'] },

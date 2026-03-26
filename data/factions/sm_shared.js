@@ -188,7 +188,45 @@ const SM_SHARED_UNITS = [
 
   { id:'sm_intercessors', name:'Intercessor Squad',
     stats:['6"','3+','3+','4','4','2','2','7','3+'], role:'Troops', pts:85, min:5, max:10, ppm:17,
-    wargear:['Bolt Rifles','Bolt Pistols','Grenades'],
+    wargear:[],
+    composition:[
+      { role:'Sergeant', count:1, wargear:['Bolt Rifle','Bolt Pistol','Frag & Krak Grenades'],
+        options:[
+          { group:'Bolt Rifle', choices:[
+            { label:'Bolt Rifle',        pts:0, default:true, weapons:['Bolt Rifle'] },
+            { label:'Auto Bolt Rifle',   pts:0, weapons:['Auto Bolt Rifle'],  replaces:['Bolt Rifle'] },
+            { label:'Stalker Bolt Rifle',pts:0, weapons:['Stalker Bolt Rifle'],replaces:['Bolt Rifle'] },
+          ]},
+          { group:'Melee', choices:[
+            { label:'None',          pts:0, default:true },
+            { label:'Chainsword',    pts:0, weapons:['Chainsword'],   replaces:[] },
+            { label:'Power Sword',   pts:4, weapons:['Power Sword'],  replaces:['Bolt Pistol'] },
+            { label:'Power Fist',    pts:9, weapons:['Power Fist'],   replaces:['Bolt Pistol'] },
+            { label:'Thunder Hammer',pts:12,weapons:['Thunder Hammer'],replaces:['Bolt Pistol'] },
+          ]},
+          { group:'Sidearm', choices:[
+            { label:'Bolt Pistol',   pts:0, default:true, weapons:['Bolt Pistol'] },
+            { label:'Plasma Pistol', pts:5, weapons:['Plasma Pistol'], replaces:['Bolt Pistol'] },
+            { label:'Hand Flamer',   pts:3, weapons:['Hand Flamer'],   replaces:['Bolt Pistol'] },
+          ]},
+        ]},
+      { role:'Aux Grenade Launcher (1)', count:1, wargear:['Bolt Rifle','Bolt Pistol','Frag & Krak Grenades','Auxiliary Grenade Launcher'],
+        options:[
+          { group:'Bolt Rifle', choices:[
+            { label:'Bolt Rifle',         pts:0, default:true, weapons:['Bolt Rifle'] },
+            { label:'Auto Bolt Rifle',    pts:0, weapons:['Auto Bolt Rifle'],   replaces:['Bolt Rifle'] },
+            { label:'Stalker Bolt Rifle', pts:0, weapons:['Stalker Bolt Rifle'],replaces:['Bolt Rifle'] },
+          ]},
+        ]},
+      { role:'Intercessor', count:3, wargear:['Bolt Rifle','Bolt Pistol','Frag & Krak Grenades'],
+        options:[
+          { group:'Bolt Rifle', choices:[
+            { label:'Bolt Rifle',         pts:0, default:true, weapons:['Bolt Rifle'] },
+            { label:'Auto Bolt Rifle',    pts:0, weapons:['Auto Bolt Rifle'],   replaces:['Bolt Rifle'] },
+            { label:'Stalker Bolt Rifle', pts:0, weapons:['Stalker Bolt Rifle'],replaces:['Bolt Rifle'] },
+          ]},
+        ]},
+    ],
     abilities:['And They Shall Know No Fear','Combat Squads: May split into two units of 5'] },
 
   // ── ELITES ──────────────────────────────────────────────────────────
@@ -261,20 +299,75 @@ const SM_SHARED_UNITS = [
 
   { id:'sm_hellblasters', name:'Hellblaster Squad',
     stats:['6"','3+','3+','4','4','2','2','7','3+'], role:'Elites', pts:165, min:5, max:10, ppm:33,
-    wargear:['Plasma Incinerator','Plasma Pistol'],
+    wargear:[],
+    composition:[
+      { role:'Sergeant', count:1, wargear:['Plasma Incinerator','Plasma Pistol'],
+        options:[
+          { group:'Sidearm', choices:[
+            { label:'Plasma Pistol', pts:0, default:true, weapons:['Plasma Pistol'] },
+            { label:'Bolt Pistol',   pts:0, weapons:['Bolt Pistol'], replaces:['Plasma Pistol'] },
+          ]},
+        ]},
+      { role:'Hellblaster', count:4, wargear:['Plasma Incinerator','Plasma Pistol'] },
+    ],
     abilities:['And They Shall Know No Fear',
                'Plasma Incinerator Overcharge: S8 AP-4 D2 — on 1 model slain',
                'Combat Squads'] },
 
   { id:'sm_aggressors', name:'Aggressor Squad',
     stats:['5"','3+','3+','4','5','3','3','7','3+'], role:'Elites', pts:117, min:3, max:6, ppm:39,
-    wargear:['Auto Boltstorm Gauntlet','Fragstorm Grenade Launcher'],
+    wargear:[],
+    composition:[
+      { role:'Aggressor Sergeant', count:1, wargear:['Auto Boltstorm Gauntlet','Fragstorm Grenade Launcher'],
+        options:[
+          { group:'Loadout', choices:[
+            { label:'Auto Boltstorm Gauntlets', pts:0, default:true, weapons:['Auto Boltstorm Gauntlet','Fragstorm Grenade Launcher'] },
+            { label:'Flamestorm Gauntlets',     pts:0, weapons:['Flamestorm Gauntlets','Fragstorm Grenade Launcher'], replaces:['Auto Boltstorm Gauntlet'] },
+          ]},
+        ]},
+      { role:'Aggressor', count:2, wargear:['Auto Boltstorm Gauntlet','Fragstorm Grenade Launcher'],
+        options:[
+          { group:'Loadout', choices:[
+            { label:'Auto Boltstorm Gauntlets', pts:0, default:true },
+            { label:'Flamestorm Gauntlets',     pts:0, weapons:['Flamestorm Gauntlets','Fragstorm Grenade Launcher'], replaces:['Auto Boltstorm Gauntlet'] },
+          ]},
+        ]},
+    ],
     abilities:['And They Shall Know No Fear',
                'Firebase: If did not move fire Auto Boltstorm Gauntlets twice'] },
 
   { id:'sm_sternguard', name:'Sternguard Veteran Squad',
     stats:['6"','3+','3+','4','4','2','2','8','3+'], role:'Elites', pts:130, min:5, max:10, ppm:26, isNew:true,
-    wargear:['Special Issue Bolter','Bolt Pistol'],
+    wargear:[],
+    composition:[
+      { role:'Veteran Sergeant', count:1, wargear:['Special Issue Bolter','Bolt Pistol'],
+        options:[
+          { group:'Melee', choices:[
+            { label:'None',        pts:0, default:true },
+            { label:'Chainsword',  pts:0, weapons:['Chainsword'],  replaces:[] },
+            { label:'Power Sword', pts:4, weapons:['Power Sword'], replaces:['Special Issue Bolter'] },
+            { label:'Power Fist',  pts:9, weapons:['Power Fist'],  replaces:['Special Issue Bolter'] },
+          ]},
+          { group:'Sidearm', choices:[
+            { label:'Bolt Pistol',   pts:0, default:true },
+            { label:'Plasma Pistol', pts:5, weapons:['Plasma Pistol'], replaces:['Bolt Pistol'] },
+          ]},
+        ]},
+      { role:'Veteran (up to 2 special)', count:2, wargear:['Special Issue Bolter','Bolt Pistol'],
+        options:[
+          { group:'Special', choices:[
+            { label:'Special Issue Bolter', pts:0, default:true },
+            { label:'Plasma Gun',           pts:5, weapons:['Plasma Gun'],    replaces:['Special Issue Bolter'] },
+            { label:'Meltagun',             pts:5, weapons:['Meltagun'],      replaces:['Special Issue Bolter'] },
+            { label:'Flamer',               pts:3, weapons:['Flamer'],        replaces:['Special Issue Bolter'] },
+            { label:'Grav-Gun',             pts:3, weapons:['Grav-Gun'],      replaces:['Special Issue Bolter'] },
+            { label:'Heavy Bolter',         pts:5, weapons:['Heavy Bolter'],  replaces:['Special Issue Bolter'] },
+            { label:'Lascannon',            pts:10,weapons:['Lascannon'],     replaces:['Special Issue Bolter'] },
+            { label:'Multi-melta',          pts:10,weapons:['Multi-melta'],   replaces:['Special Issue Bolter'] },
+          ]},
+        ]},
+      { role:'Veteran', count:2, wargear:['Special Issue Bolter','Bolt Pistol'] },
+    ],
     abilities:['And They Shall Know No Fear',
                'Special Issue Ammunition: Once per battle Bolters become AP-2 re-roll wound rolls of 1',
                'Combat Squads','Veteran Warriors: Re-roll hit rolls of 1'] },
@@ -321,13 +414,39 @@ const SM_SHARED_UNITS = [
 
   { id:'sm_bladeguard', name:'Bladeguard Veterans',
     stats:['6"','3+','3+','4','4','3','3','8','3+'], role:'Elites', pts:135, min:3, max:6, ppm:45, isNew:true,
-    wargear:['Master-crafted Power Sword','Storm Shield','Heavy Bolt Pistol'],
+    wargear:[],
+    composition:[
+      { role:'Bladeguard Veteran Sergeant', count:1, wargear:['Master-crafted Power Sword','Storm Shield','Heavy Bolt Pistol'],
+        options:[
+          { group:'Sidearm', choices:[
+            { label:'Heavy Bolt Pistol', pts:0, default:true, weapons:['Heavy Bolt Pistol'] },
+            { label:'Plasma Pistol',     pts:5, weapons:['Plasma Pistol'], replaces:['Heavy Bolt Pistol'] },
+          ]},
+        ]},
+      { role:'Bladeguard Veteran', count:2, wargear:['Master-crafted Power Sword','Storm Shield','Heavy Bolt Pistol'] },
+    ],
     abilities:['And They Shall Know No Fear','Storm Shield: 4+ invulnerable save',
                'Skilled Swordsmen: Re-roll all failed hit rolls in Fight phase'] },
 
   { id:'sm_eradicators', name:'Eradicators',
     stats:['5"','3+','3+','4','4','2','2','8','3+'], role:'Elites', pts:105, min:3, max:6, ppm:35, isNew:true,
-    wargear:['Multi-melta','Bolt Pistol'],
+    wargear:[],
+    composition:[
+      { role:'Eradicator Sergeant', count:1, wargear:['Multi-melta','Bolt Pistol'],
+        options:[
+          { group:'Weapon', choices:[
+            { label:'Multi-melta',     pts:0, default:true, weapons:['Multi-melta'] },
+            { label:'Melta Rifle',     pts:0, weapons:['Melta Rifle'],     replaces:['Multi-melta'] },
+          ]},
+        ]},
+      { role:'Eradicator', count:2, wargear:['Multi-melta','Bolt Pistol'],
+        options:[
+          { group:'Weapon', choices:[
+            { label:'Multi-melta', pts:0, default:true },
+            { label:'Melta Rifle', pts:0, weapons:['Melta Rifle'], replaces:['Multi-melta'] },
+          ]},
+        ]},
+    ],
     abilities:['And They Shall Know No Fear',
                'Total Obliteration: May fire Multi-melta twice if did not move'] },
 
@@ -346,13 +465,47 @@ const SM_SHARED_UNITS = [
 
   { id:'sm_company_heroes', name:'Company Heroes',
     stats:['6"','3+','3+','4','4','2','2','9','3+'], role:'Elites', pts:75, min:4, max:4, ppm:0, isNew:true,
-    wargear:['Relic Blade','Company Banner','Bolt Rifles'],
+    wargear:[],
+    composition:[
+      { role:'Company Champion', count:1, wargear:['Relic Blade','Bolt Pistol'],
+        options:[
+          { group:'Sidearm', choices:[
+            { label:'Bolt Pistol',   pts:0, default:true, weapons:['Bolt Pistol'] },
+            { label:'Plasma Pistol', pts:5, weapons:['Plasma Pistol'], replaces:['Bolt Pistol'] },
+          ]},
+        ]},
+      { role:'Company Ancient', count:1, wargear:['Bolt Rifle','Bolt Pistol','Company Banner'] },
+      { role:'Company Veteran', count:2, wargear:['Bolt Rifle','Bolt Pistol'],
+        options:[
+          { group:'Melee', choices:[
+            { label:'None',        pts:0, default:true },
+            { label:'Chainsword',  pts:0, weapons:['Chainsword'],  replaces:[] },
+            { label:'Power Sword', pts:4, weapons:['Power Sword'], replaces:['Bolt Rifle'] },
+            { label:'Power Fist',  pts:9, weapons:['Power Fist'],  replaces:['Bolt Rifle'] },
+          ]},
+        ]},
+    ],
     abilities:['And They Shall Know No Fear',
                'Honour of the Chapter: Friendly <Chapter> Characters within 6" gain +1 Attack'] },
 
   { id:'sm_infernus', name:'Infernus Marines',
     stats:['6"','3+','3+','4','4','2','2','8','3+'], role:'Elites', pts:110, min:5, max:10, ppm:22, isNew:true,
-    wargear:['Pyreblaster','Bolt Pistol'],
+    wargear:[],
+    composition:[
+      { role:'Infernus Sergeant', count:1, wargear:['Pyreblaster','Bolt Pistol'],
+        options:[
+          { group:'Melee', choices:[
+            { label:'None',       pts:0, default:true },
+            { label:'Chainsword', pts:0, weapons:['Chainsword'], replaces:[] },
+            { label:'Power Sword',pts:4, weapons:['Power Sword'],replaces:['Pyreblaster'] },
+          ]},
+          { group:'Sidearm', choices:[
+            { label:'Bolt Pistol',   pts:0, default:true },
+            { label:'Plasma Pistol', pts:5, weapons:['Plasma Pistol'], replaces:['Bolt Pistol'] },
+          ]},
+        ]},
+      { role:'Infernus Marine', count:4, wargear:['Pyreblaster','Bolt Pistol'] },
+    ],
     abilities:['And They Shall Know No Fear',
                'Wall of Flame: If did not move each Pyreblaster makes D6+2 hits instead of D6'] },
 
@@ -399,24 +552,88 @@ const SM_SHARED_UNITS = [
 
   { id:'sm_assault_intercessors', name:'Assault Intercessors',
     stats:['6"','3+','3+','4','4','2','2','7','3+'], role:'Fast Attack', pts:85, min:5, max:10, ppm:17, isNew:true,
-    wargear:['Heavy Bolt Pistol','Astartes Chainsword'],
+    wargear:[],
+    composition:[
+      { role:'Sergeant', count:1, wargear:['Heavy Bolt Pistol','Astartes Chainsword'],
+        options:[
+          { group:'Melee', choices:[
+            { label:'Astartes Chainsword', pts:0, default:true },
+            { label:'Power Sword',         pts:4, weapons:['Power Sword'],   replaces:['Astartes Chainsword'] },
+            { label:'Power Fist',          pts:9, weapons:['Power Fist'],    replaces:['Astartes Chainsword'] },
+            { label:'Thunder Hammer',      pts:12,weapons:['Thunder Hammer'],replaces:['Astartes Chainsword'] },
+          ]},
+          { group:'Sidearm', choices:[
+            { label:'Heavy Bolt Pistol', pts:0, default:true },
+            { label:'Plasma Pistol',     pts:5, weapons:['Plasma Pistol'], replaces:['Heavy Bolt Pistol'] },
+            { label:'Hand Flamer',       pts:3, weapons:['Hand Flamer'],   replaces:['Heavy Bolt Pistol'] },
+          ]},
+        ]},
+      { role:'Assault Intercessor', count:4, wargear:['Heavy Bolt Pistol','Astartes Chainsword'] },
+    ],
     abilities:['And They Shall Know No Fear','Combat Squads'] },
 
   { id:'sm_jump_intercessors', name:'Jump Pack Intercessors',
     stats:['12"','3+','3+','4','4','2','2','7','3+'], role:'Fast Attack', pts:100, min:5, max:10, ppm:20, isNew:true,
-    wargear:['Heavy Bolt Pistol','Astartes Chainsword','Jump Pack'],
+    wargear:[],
+    composition:[
+      { role:'Sergeant', count:1, wargear:['Heavy Bolt Pistol','Astartes Chainsword','Jump Pack'],
+        options:[
+          { group:'Melee', choices:[
+            { label:'Astartes Chainsword', pts:0, default:true },
+            { label:'Power Sword',         pts:4, weapons:['Power Sword'],   replaces:['Astartes Chainsword'] },
+            { label:'Power Fist',          pts:9, weapons:['Power Fist'],    replaces:['Astartes Chainsword'] },
+            { label:'Thunder Hammer',      pts:12,weapons:['Thunder Hammer'],replaces:['Astartes Chainsword'] },
+          ]},
+          { group:'Sidearm', choices:[
+            { label:'Heavy Bolt Pistol', pts:0, default:true },
+            { label:'Plasma Pistol',     pts:5, weapons:['Plasma Pistol'], replaces:['Heavy Bolt Pistol'] },
+            { label:'Hand Flamer',       pts:3, weapons:['Hand Flamer'],   replaces:['Heavy Bolt Pistol'] },
+          ]},
+        ]},
+      { role:'Jump Pack Intercessor', count:4, wargear:['Heavy Bolt Pistol','Astartes Chainsword','Jump Pack'] },
+    ],
     abilities:['And They Shall Know No Fear','Jump Pack Assault: Advance and charge same turn',
                'Combat Squads'] },
 
   { id:'sm_inceptors', name:'Inceptor Squad',
     stats:['10"','3+','3+','4','4','2','2','7','3+'], role:'Fast Attack', pts:115, min:3, max:6, ppm:38,
-    wargear:['Assault Bolters','Jump Pack'],
+    wargear:[],
+    composition:[
+      { role:'Inceptor Sergeant', count:1, wargear:['Assault Bolters','Jump Pack'],
+        options:[
+          { group:'Weapon', choices:[
+            { label:'Assault Bolters', pts:0, default:true, weapons:['Assault Bolters'] },
+            { label:'Plasma Exterminators', pts:0, weapons:['Plasma Exterminators'], replaces:['Assault Bolters'] },
+          ]},
+        ]},
+      { role:'Inceptor', count:2, wargear:['Assault Bolters','Jump Pack'],
+        options:[
+          { group:'Weapon', choices:[
+            { label:'Assault Bolters',      pts:0, default:true },
+            { label:'Plasma Exterminators', pts:0, weapons:['Plasma Exterminators'], replaces:['Assault Bolters'] },
+          ]},
+        ]},
+    ],
     abilities:['And They Shall Know No Fear',
                'Meteoric Descent: When arriving from deep strike may fire weapons immediately'] },
 
   { id:'sm_outriders', name:'Outrider Squad',
     stats:['14"','3+','3+','4','5','3','3','7','3+'], role:'Fast Attack', pts:135, min:3, max:6, ppm:45, isNew:true,
-    wargear:['Twin Bolt Rifle','Astartes Chainsword'],
+    wargear:[],
+    composition:[
+      { role:'Outrider Sergeant', count:1, wargear:['Twin Bolt Rifle','Astartes Chainsword','Bolt Pistol'],
+        options:[
+          { group:'Melee', choices:[
+            { label:'Astartes Chainsword', pts:0, default:true },
+            { label:'Power Sword',         pts:4, weapons:['Power Sword'],   replaces:['Astartes Chainsword'] },
+          ]},
+          { group:'Sidearm', choices:[
+            { label:'Bolt Pistol',   pts:0, default:true },
+            { label:'Plasma Pistol', pts:5, weapons:['Plasma Pistol'], replaces:['Bolt Pistol'] },
+          ]},
+        ]},
+      { role:'Outrider', count:2, wargear:['Twin Bolt Rifle','Astartes Chainsword'] },
+    ],
     abilities:['And They Shall Know No Fear',
                'Turbo-boost: Advance and charge same turn',
                'Jink: 4+ invulnerable save if unit Advanced'] },
@@ -502,14 +719,51 @@ const SM_SHARED_UNITS = [
 
   { id:'sm_heavy_intercessors', name:'Heavy Intercessor Squad',
     stats:['5"','3+','3+','4','5','3','2','7','3+'], role:'Heavy Support', pts:120, min:5, max:10, ppm:24, isNew:true,
-    wargear:['Heavy Bolt Rifle','Bolt Pistol'],
+    wargear:[],
+    composition:[
+      { role:'Sergeant', count:1, wargear:['Heavy Bolt Rifle','Bolt Pistol'],
+        options:[
+          { group:'Heavy Rifle', choices:[
+            { label:'Heavy Bolt Rifle',          pts:0, default:true, weapons:['Heavy Bolt Rifle'] },
+            { label:'Executor Bolt Rifle',        pts:0, weapons:['Executor Bolt Rifle'],        replaces:['Heavy Bolt Rifle'] },
+            { label:'Hellstorm Bolt Rifle',       pts:0, weapons:['Hellstorm Bolt Rifle'],       replaces:['Heavy Bolt Rifle'] },
+          ]},
+          { group:'Melee', choices:[
+            { label:'None',       pts:0, default:true },
+            { label:'Chainsword', pts:0, weapons:['Chainsword'], replaces:[] },
+            { label:'Power Fist', pts:9, weapons:['Power Fist'],  replaces:['Bolt Pistol'] },
+          ]},
+        ]},
+      { role:'Heavy Intercessor', count:4, wargear:['Heavy Bolt Rifle','Bolt Pistol'],
+        options:[
+          { group:'Heavy Rifle', choices:[
+            { label:'Heavy Bolt Rifle',    pts:0, default:true },
+            { label:'Executor Bolt Rifle', pts:0, weapons:['Executor Bolt Rifle'],  replaces:['Heavy Bolt Rifle'] },
+            { label:'Hellstorm Bolt Rifle',pts:0, weapons:['Hellstorm Bolt Rifle'], replaces:['Heavy Bolt Rifle'] },
+          ]},
+        ]},
+    ],
     abilities:['And They Shall Know No Fear',
                'Transhuman Physiology: Ignore wound rolls of 1-3 against this unit once per phase',
                'Combat Squads'] },
 
   { id:'sm_desolation', name:'Desolation Squad',
     stats:['6"','3+','3+','4','4','2','2','7','3+'], role:'Heavy Support', pts:160, min:5, max:10, ppm:32, isNew:true,
-    wargear:['Superkrak Rocket Launcher','Bolt Pistol'],
+    wargear:[],
+    composition:[
+      { role:'Sergeant', count:1, wargear:['Superkrak Rocket Launcher','Bolt Pistol'],
+        options:[
+          { group:'Sidearm', choices:[
+            { label:'Bolt Pistol',   pts:0, default:true },
+            { label:'Plasma Pistol', pts:5, weapons:['Plasma Pistol'], replaces:['Bolt Pistol'] },
+          ]},
+          { group:'Special', choices:[
+            { label:'None',           pts:0, default:true },
+            { label:'Flakk Missiles', pts:0, note:'+1 to hit Flyers', weapons:[] },
+          ]},
+        ]},
+      { role:'Desolator', count:4, wargear:['Superkrak Rocket Launcher','Bolt Pistol'] },
+    ],
     abilities:['And They Shall Know No Fear',
                'Superkrak: Heavy 2 S10 AP-2 DD3 — may fire at units not in line of sight at -1 to hit',
                'Superfrag: Blast mode — D3+3 hits S5 AP0 D1',

@@ -136,13 +136,45 @@ const FACTION_ELDAR = [
   // ── TROOPS ──────────────────────────────────────────────────────────
   { id:'el_dire_avengers', name:'Dire Avengers',
     stats:['7"','3+','3+','3','3','1','1','8','4+'], role:'Troops', pts:56, min:5, max:10, ppm:11,
-    wargear:['Avenger Shuriken Catapult','Diresword'],
+    wargear:[],
+    composition:[
+      { role:'Dire Avenger Exarch', count:1, wargear:['Avenger Shuriken Catapult','Diresword'],
+        options:[
+          { group:'Weapon', choices:[
+            { label:'Avenger Shuriken Catapult', pts:0, default:true },
+            { label:'Twin Avenger Catapult',     pts:0, weapons:['Twin Shuriken Catapult'], replaces:['Avenger Shuriken Catapult'] },
+            { label:'Shuriken Cannon',           pts:0, weapons:['Shuriken Cannon'],        replaces:['Avenger Shuriken Catapult'] },
+            { label:'Diresword & Shuriken Pistol',pts:0, weapons:['Diresword','Shuriken Pistols'], replaces:['Avenger Shuriken Catapult'] },
+          ]},
+        ]},
+      { role:'Dire Avenger', count:4, wargear:['Avenger Shuriken Catapult','Diresword'] },
+    ],
     abilities:['Battle Focus: Advance and still fire Assault weapons without penalty',
                'Defend: Exarch power — subtract 1 from hit rolls targeting this unit in Shooting phase'] },
 
   { id:'el_guardians', name:'Guardian Defenders',
     stats:['7"','4+','3+','3','3','1','1','7','5+'], role:'Troops', pts:55, min:10, max:20, ppm:5,
-    wargear:['Shuriken Catapult','Heavy Weapon Platform'],
+    wargear:[],
+    composition:[
+      { role:'Warlock (1 per 10)', count:1, wargear:['Witchblades','Shuriken Pistols'],
+        options:[
+          { group:'Weapon', choices:[
+            { label:'Witchblade', pts:0, default:true },
+            { label:'Singing Spear', pts:0, weapons:['Singing Spear'], replaces:['Witchblades'] },
+          ]},
+        ]},
+      { role:'Heavy Weapon Platform', count:1, wargear:['Bright Lance','Shuriken Catapult'],
+        options:[
+          { group:'Platform Weapon', choices:[
+            { label:'Bright Lance',   pts:0, default:true, weapons:['Bright Lance'] },
+            { label:'Scatter Laser',  pts:0, weapons:['Scatter Laser'],  replaces:['Bright Lance'] },
+            { label:'Shuriken Cannon',pts:0, weapons:['Shuriken Cannon'],replaces:['Bright Lance'] },
+            { label:'Starcannon',     pts:0, weapons:['Starcannon'],     replaces:['Bright Lance'] },
+            { label:'Eldritch Lance', pts:0, weapons:['Eldritch Lance'], replaces:['Bright Lance'] },
+          ]},
+        ]},
+      { role:'Guardian', count:8, wargear:['Shuriken Catapult'] },
+    ],
     abilities:['Battle Focus',
                'Heavy Weapon Platform: Each unit of 10 includes one platform with a heavy weapon'] },
 
@@ -182,15 +214,38 @@ const FACTION_ELDAR = [
   // ── ELITES ──────────────────────────────────────────────────────────
   { id:'el_striking_scorpions', name:'Striking Scorpions',
     stats:['7"','3+','3+','4','3','1','2','8','3+'], role:'Elites', pts:90, min:5, max:10, ppm:18,
-    wargear:['Scorpion Chainsword','Scorpion Claw','Mandiblasters'],
+    wargear:[],
+    composition:[
+      { role:'Exarch', count:1, wargear:['Scorpion Chainsword','Biting Blade','Mandiblasters'],
+        options:[
+          { group:'Weapon', choices:[
+            { label:'Biting Blade',       pts:0, default:true, weapons:['Biting Blade'] },
+            { label:'Scorpion Claw',      pts:0, weapons:['Scorpion Claw'],   replaces:['Biting Blade'] },
+            { label:'Twin Chainswords',   pts:0, replaces:['Biting Blade'] },
+          ]},
+        ]},
+      { role:'Striking Scorpion', count:4, wargear:['Scorpion Chainsword','Shuriken Pistols','Mandiblasters'] },
+    ],
     abilities:['Battle Focus',
                'Mandiblasters: At start of Fight phase deal 1 mortal wound to one enemy in base contact',
                'Infiltrate: Deploy anywhere more than 9" from enemy',
-               "Sustained Assault: Exarch power — re-roll failed hit rolls"] },
+               'Sustained Assault: Exarch power — re-roll failed hit rolls'] },
 
   { id:'el_howling_banshees', name:'Howling Banshees',
     stats:['8"','2+','3+','3','3','1','4','8','4+'], role:'Elites', pts:80, min:5, max:10, ppm:16,
-    wargear:['Power Sword','Shuriken Pistol','Banshee Mask'],
+    wargear:[],
+    composition:[
+      { role:'Exarch', count:1, wargear:['Power Sword','Shuriken Pistol','Banshee Mask'],
+        options:[
+          { group:'Weapon', choices:[
+            { label:'Power Sword & Shuriken Pistol', pts:0, default:true },
+            { label:'Mirrorswords',   pts:0, weapons:['Mirrorswords'],   replaces:['Power Sword'] },
+            { label:'Triskele',       pts:0, weapons:['Triskele'],       replaces:['Power Sword'] },
+            { label:'Executioner',    pts:0, weapons:['Executioner'],    replaces:['Power Sword'] },
+          ]},
+        ]},
+      { role:'Howling Banshee', count:4, wargear:['Power Sword','Shuriken Pistol','Banshee Mask'] },
+    ],
     abilities:['Battle Focus',
                'Banshee Mask: Enemy units charged by this unit cannot fire Overwatch',
                'Swift Strikes: Always fights first in Fight phase',
@@ -198,7 +253,18 @@ const FACTION_ELDAR = [
 
   { id:'el_fire_dragons', name:'Fire Dragons',
     stats:['7"','3+','3+','3','3','1','1','8','4+'], role:'Elites', pts:92, min:5, max:10, ppm:18,
-    wargear:['Fusion Gun','Melta Bomb'],
+    wargear:[],
+    composition:[
+      { role:'Exarch', count:1, wargear:['Fusion Gun','Melta Bomb'],
+        options:[
+          { group:'Weapon', choices:[
+            { label:'Fusion Gun',      pts:0, default:true, weapons:['Fusion Gun'] },
+            { label:'Dragon Fusion Gun',pts:0, weapons:['Dragon Fusion Gun'], replaces:['Fusion Gun'] },
+            { label:'Fire Pike',        pts:0, weapons:['Fire Pike'],         replaces:['Fusion Gun'] },
+          ]},
+        ]},
+      { role:'Fire Dragon', count:4, wargear:['Fusion Gun','Melta Bomb'] },
+    ],
     abilities:['Battle Focus',
                'Tank Hunters: Re-roll failed wound rolls against Vehicles',
                "Dragon's Breath: Exarch power — fire fusion gun twice per phase"] },
@@ -241,7 +307,18 @@ const FACTION_ELDAR = [
   // ── FAST ATTACK ─────────────────────────────────────────────────────
   { id:'el_swooping_hawks', name:'Swooping Hawks',
     stats:['14"','3+','3+','3','3','1','1','8','4+'], role:'Fast Attack', pts:90, min:5, max:10, ppm:18,
-    wargear:['Lasblaster','Haywire Grenades','Jump Pack'],
+    wargear:[],
+    composition:[
+      { role:'Exarch', count:1, wargear:['Lasblaster','Haywire Grenades','Jump Pack'],
+        options:[
+          { group:'Weapon', choices:[
+            { label:'Lasblaster',       pts:0, default:true, weapons:['Lasblaster'] },
+            { label:'Hawk Talon',       pts:0, weapons:['Hawk Talon'],       replaces:['Lasblaster'] },
+            { label:'Sunrifle',         pts:0, weapons:['Sunrifle'],         replaces:['Lasblaster'] },
+          ]},
+        ]},
+      { role:'Swooping Hawk', count:4, wargear:['Lasblaster','Haywire Grenades','Jump Pack'] },
+    ],
     abilities:['Battle Focus',
                'Skyleap: At end of any phase remove — redeploy start of next Movement phase 9"+ from enemy',
                'Grenade Pack: When arriving deal D3 mortal wounds to one unit moved over',
@@ -249,7 +326,17 @@ const FACTION_ELDAR = [
 
   { id:'el_warp_spiders', name:'Warp Spiders',
     stats:['7"','3+','3+','3','3','1','2','8','3+'], role:'Fast Attack', pts:103, min:5, max:10, ppm:21,
-    wargear:['Death Spinner','Warp Jump Generator'],
+    wargear:[],
+    composition:[
+      { role:'Exarch', count:1, wargear:['Death Spinner','Warp Jump Generator'],
+        options:[
+          { group:'Weapon', choices:[
+            { label:'Death Spinner (x1)', pts:0, default:true, weapons:['Death Spinner'] },
+            { label:'Twin Death Spinners', pts:0, weapons:['Twin Death Spinner'], replaces:['Death Spinner'] },
+          ]},
+        ]},
+      { role:'Warp Spider', count:4, wargear:['Death Spinner','Warp Jump Generator'] },
+    ],
     abilities:['Battle Focus',
                'Warp Jump Generator: At end of any phase teleport D6+6" — on 1 suffer 1 mortal wound',
                'Flickerjump: When targeted by shooting roll D6 — on 2+ subtract 1 from all hit rolls'] },
@@ -292,7 +379,18 @@ const FACTION_ELDAR = [
   // ── HEAVY SUPPORT ───────────────────────────────────────────────────
   { id:'el_dark_reapers', name:'Dark Reapers',
     stats:['7"','3+','3+','3','3','1','1','8','3+'], role:'Heavy Support', pts:100, min:3, max:6, ppm:33,
-    wargear:['Reaper Launcher','Reaper Rangefinder'],
+    wargear:[],
+    composition:[
+      { role:'Exarch', count:1, wargear:['Reaper Launcher','Reaper Rangefinder'],
+        options:[
+          { group:'Weapon', choices:[
+            { label:'Reaper Launcher',   pts:0, default:true, weapons:['Reaper Launcher'] },
+            { label:'Aeldari Missile Launcher', pts:0, weapons:['Aeldari Missile Launcher'], replaces:['Reaper Launcher'] },
+            { label:'Tempest Launcher',  pts:0, weapons:['Tempest Launcher'],  replaces:['Reaper Launcher'] },
+          ]},
+        ]},
+      { role:'Dark Reaper', count:2, wargear:['Reaper Launcher','Reaper Rangefinder'] },
+    ],
     abilities:['Crack Shot: Re-roll failed hit rolls or re-roll damage',
                'Reaper Rangefinder: Ignore cover saves',
                'Implacable: May fire heavy weapons without penalty after moving'] },

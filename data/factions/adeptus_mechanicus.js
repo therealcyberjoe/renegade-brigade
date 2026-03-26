@@ -17,14 +17,64 @@ const FACTION_ADEPTUS_MECHANICUS = [
 
   { id:'am_skitarii_rangers', name:'Skitarii Rangers',
     stats:['6"','4+','3+','3','3','1','1','6','4+'], role:'Troops', pts:40, min:5, max:10, ppm:8,
-    wargear:['Galvanic Rifle','Omnispex'],
+    wargear:[],
+    composition:[
+      { role:'Alpha', count:1, wargear:['Galvanic Rifle','Omnispex'],
+        options:[
+          { group:'Ranged', choices:[
+            { label:'Galvanic Rifle',    pts:0, default:true, weapons:['Galvanic Rifle'] },
+            { label:'Arc Rifle',         pts:0, weapons:['Arc Rifle'],         replaces:['Galvanic Rifle'] },
+            { label:'Plasma Caliver',    pts:5, weapons:['Plasma Caliver'],    replaces:['Galvanic Rifle'] },
+            { label:'Transuranic Arquebus',pts:5,weapons:['Transuranic Arquebus'],replaces:['Galvanic Rifle'] },
+          ]},
+          { group:'Melee', choices:[
+            { label:'None',          pts:0, default:true },
+            { label:'Power Sword',   pts:4, weapons:['Power Sword'],   replaces:[] },
+            { label:'Taser Goad',    pts:2, weapons:['Taser Goad'],    replaces:[] },
+          ]},
+        ]},
+      { role:'Special Weapon (up to 3)', count:3, wargear:['Galvanic Rifle'],
+        options:[
+          { group:'Ranged', choices:[
+            { label:'Galvanic Rifle',      pts:0, default:true },
+            { label:'Arc Rifle',           pts:0, weapons:['Arc Rifle'],           replaces:['Galvanic Rifle'] },
+            { label:'Plasma Caliver',      pts:5, weapons:['Plasma Caliver'],      replaces:['Galvanic Rifle'] },
+            { label:'Transuranic Arquebus',pts:5, weapons:['Transuranic Arquebus'],replaces:['Galvanic Rifle'] },
+          ]},
+        ]},
+      { role:'Skitarii Ranger', count:1, wargear:['Galvanic Rifle'] },
+    ],
     abilities:['Canticles of the Omnissiah',
                'Omnispex: Enemies within 1" of a model with Omnispex lose cover saves',
                'Ranger Long Rifles: Sniper hits on wound rolls of 6 deal mortal wound in addition'] },
 
   { id:'am_skitarii_vanguard', name:'Skitarii Vanguard',
     stats:['6"','4+','3+','3','3','1','1','6','4+'], role:'Troops', pts:40, min:5, max:10, ppm:8,
-    wargear:['Radium Carbine','Omnispex'],
+    wargear:[],
+    composition:[
+      { role:'Alpha', count:1, wargear:['Radium Carbine','Omnispex'],
+        options:[
+          { group:'Ranged', choices:[
+            { label:'Radium Carbine',  pts:0, default:true, weapons:['Radium Carbine'] },
+            { label:'Arc Rifle',       pts:0, weapons:['Arc Rifle'],      replaces:['Radium Carbine'] },
+            { label:'Plasma Caliver',  pts:5, weapons:['Plasma Caliver'], replaces:['Radium Carbine'] },
+          ]},
+          { group:'Melee', choices:[
+            { label:'None',          pts:0, default:true },
+            { label:'Power Sword',   pts:4, weapons:['Power Sword'],   replaces:[] },
+            { label:'Arc Maul',      pts:2, weapons:['Arc Maul'],      replaces:[] },
+          ]},
+        ]},
+      { role:'Special Weapon (up to 3)', count:3, wargear:['Radium Carbine'],
+        options:[
+          { group:'Ranged', choices:[
+            { label:'Radium Carbine', pts:0, default:true },
+            { label:'Arc Rifle',      pts:0, weapons:['Arc Rifle'],      replaces:['Radium Carbine'] },
+            { label:'Plasma Caliver', pts:5, weapons:['Plasma Caliver'], replaces:['Radium Carbine'] },
+          ]},
+        ]},
+      { role:'Skitarii Vanguard', count:1, wargear:['Radium Carbine'] },
+    ],
     abilities:['Canticles of the Omnissiah',
                'Omnispex','Rad-saturation: Enemy units within 1" subtract 1 from Toughness tests'] },
 

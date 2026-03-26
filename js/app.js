@@ -252,18 +252,36 @@ function buildDefaultModelLoadouts(unit) {
   if (!unit.composition) return null;
   return unit.composition.map(comp => {
     const selections = {};
-    let wargear = [...(comp.wargear || [])];
+
+    // Separate base wargear (items not controlled by any option group) from option-controlled weapons.
+    // Collect all weapons that any choice in any option group could provide.
+    const allOptionWeapons = new Set();
+    if (comp.options) {
+      comp.options.forEach(opt => {
+        opt.choices.forEach(c => {
+          if (c.weapons) c.weapons.forEach(w => allOptionWeapons.add(w));
+          if (c.replaces) c.replaces.forEach(w => allOptionWeapons.add(w));
+        });
+      });
+    }
+
+    // Base wargear = items from comp.wargear that are NOT controlled by any option
+    const baseWargear = (comp.wargear || []).filter(w => !allOptionWeapons.has(w));
+
+    // Then add only the default choice's weapons for each option group
+    const choiceWeapons = [];
     if (comp.options) {
       comp.options.forEach(opt => {
         const def = opt.choices.find(c => c.default) || opt.choices[0];
         selections[opt.group] = def.label;
-        if (def.weapons) wargear = applyWeaponChoice(wargear, null, def);
+        if (def.weapons) choiceWeapons.push(...def.weapons);
       });
     }
+
     return {
       role: comp.role,
       count: comp.count,
-      wargear,
+      wargear: [...baseWargear, ...choiceWeapons],
       selections,
       options: comp.options || [],
     };
@@ -281,9 +299,34 @@ function changeModelLoadout(instanceId, modelRoleLabel, group, label, pts) {
   const newChoice = opt.choices.find(c => c.label === label);
   const oldPts = oldChoice ? oldChoice.pts : 0;
 
-  if (newChoice && (newChoice.weapons || newChoice.replaces || (oldChoice && oldChoice.weapons))) {
-    modelSlot.wargear = applyWeaponChoice(modelSlot.wargear, oldChoice || null, newChoice);
-  }
+  // Always rebuild wargear from scratch for this slot to avoid accumulation
+  // Start from base wargear (items not controlled by any option)
+  const allOptionWeapons = new Set();
+  modelSlot.options.forEach(o => {
+    o.choices.forEach(c => {
+      if (c.weapons) c.weapons.forEach(w => allOptionWeapons.add(w));
+      if (c.replaces) c.replaces.forEach(w => allOptionWeapons.add(w));
+    });
+  });
+
+  // Find the comp definition for this role to get original base wargear
+  const compDef = (UNITS[state.factionId] || [])
+    .flatMap(u => u.composition || [])
+    .find(c => c.role === modelSlot.role);
+  const baseWargear = compDef
+    ? (compDef.wargear || []).filter(w => !allOptionWeapons.has(w))
+    : modelSlot.wargear.filter(w => !allOptionWeapons.has(w));
+
+  // Apply current selections + the new choice for this group
+  const newSelections = { ...modelSlot.selections, [group]: label };
+  const choiceWeapons = [];
+  modelSlot.options.forEach(o => {
+    const selectedLabel = newSelections[o.group];
+    const selected = o.choices.find(c => c.label === selectedLabel);
+    if (selected && selected.weapons) choiceWeapons.push(...selected.weapons);
+  });
+
+  modelSlot.wargear = [...baseWargear, ...choiceWeapons];
   modelSlot.selections[group] = label;
   entry.optionPts = (entry.optionPts - oldPts) + pts;
   updateTotalPoints();
@@ -299,9 +342,13 @@ function changeModelLoadout(instanceId, modelRoleLabel, group, label, pts) {
 }
 
 function renderWargearInline(wargearList) {
-  return wargearList.map(wg => {
+  const weapons = [];
+  const equipment = [];
+
+  wargearList.forEach(wg => {
     const p = lookupWeapon(wg);
-    if (p) return `<div class="weapon-profile-inline">
+    if (p && p.range !== '—') {
+      weapons.push(`<div class="weapon-profile-inline">
       <span class="wp-name">${wg}</span>
       <span class="wp-stat">${p.range}</span>
       <span class="wp-stat">${p.type}</span>
@@ -309,9 +356,18 @@ function renderWargearInline(wargearList) {
       <span class="wp-stat">AP${p.ap}</span>
       <span class="wp-stat">D${p.d}</span>
       ${p.special ? `<span class="wp-special-inline" title="${p.special}">★</span>` : ''}
-    </div>`;
-    return `<span class="wargear-tag active">${wg}</span>`;
-  }).join('');
+    </div>`);
+    } else {
+      // Equipment/buffs or unknown — show as a compact tag with tooltip
+      const title = p ? p.special : '';
+      equipment.push(`<span class="wargear-tag active" ${title ? `title="${title}"` : ''}>${wg}</span>`);
+    }
+  });
+
+  let html = '';
+  if (weapons.length) html += `<div class="wargear-weapons">${weapons.join('')}</div>`;
+  if (equipment.length) html += `<div class="wargear-equipment">${equipment.join('')}</div>`;
+  return html;
 }
 
 function addUnit(unitId) {
@@ -388,23 +444,23 @@ function addUnit(unitId) {
 function applyWeaponChoice(wargear, oldChoice, newChoice) {
   let gear = [...wargear];
 
-  // Determine what to remove
-  const toRemove = [];
-  if (newChoice.replaces) {
-    // Explicit list of what to strip
-    toRemove.push(...newChoice.replaces);
-  } else if (oldChoice && oldChoice.weapons) {
-    // Remove whatever the previous choice granted
-    toRemove.push(...oldChoice.weapons);
+  // Remove the old choice's weapons (whatever they granted)
+  if (oldChoice && oldChoice.weapons) {
+    oldChoice.weapons.forEach(w => {
+      const idx = gear.findIndex(g => g.toLowerCase() === w.toLowerCase());
+      if (idx !== -1) gear.splice(idx, 1);
+    });
   }
 
-  // Remove (first occurrence only, to handle duplicates cleanly)
-  toRemove.forEach(w => {
-    const idx = gear.findIndex(g => g.toLowerCase() === w.toLowerCase());
-    if (idx !== -1) gear.splice(idx, 1);
-  });
+  // Also remove anything the new choice explicitly declares it replaces
+  if (newChoice.replaces) {
+    newChoice.replaces.forEach(w => {
+      const idx = gear.findIndex(g => g.toLowerCase() === w.toLowerCase());
+      if (idx !== -1) gear.splice(idx, 1);
+    });
+  }
 
-  // Add new weapons
+  // Add the new choice's weapons
   if (newChoice.weapons) {
     gear.push(...newChoice.weapons);
   }
@@ -442,21 +498,7 @@ function changeLoadout(instanceId, group, label, pts) {
 
   // Re-render wargear display for this unit only
   const wargearEl = document.getElementById('wg_' + safeId);
-  if (wargearEl) {
-    wargearEl.innerHTML = entry.wargear.map(wg => {
-      const p = lookupWeapon(wg);
-      if (p) return `<div class="weapon-profile-inline">
-        <span class="wp-name">${wg}</span>
-        <span class="wp-stat">${p.range}</span>
-        <span class="wp-stat">${p.type}</span>
-        <span class="wp-stat">S${p.s}</span>
-        <span class="wp-stat">AP${p.ap}</span>
-        <span class="wp-stat">D${p.d}</span>
-        ${p.special ? `<span class="wp-special-inline" title="${p.special}">★</span>` : ''}
-      </div>`;
-      return `<span class="wargear-tag active">${wg}</span>`;
-    }).join('');
-  }
+  if (wargearEl) wargearEl.innerHTML = renderWargearInline(entry.wargear);
 }
 
 function changeQty(unitId, delta) {
@@ -850,44 +892,48 @@ function printList() {
           <tbody><tr>${stats.map(s => `<td>${s}</td>`).join('')}</tr></tbody>
         </table>` : '';
 
-      let loadoutLines = [];
-      if (u.selections && Object.keys(u.selections).length) {
-        Object.entries(u.selections).forEach(([grp, choice]) => {
-          loadoutLines.push(`<span class="loadout-item"><b>${grp}:</b> ${choice}</span>`);
-        });
-      }
-      const loadoutHtml = loadoutLines.length ? `<div class="loadout-row">${loadoutLines.join('')}</div>` : '';
+      const loadoutHtml = '';
 
       // Wargear: per-model composition if available, otherwise flat list
       let wargearHtml = '';
+      const renderPrintWargear = (wgList) => {
+        const weapons = wgList.filter(wg => { const p = lookupWeapon(wg); return p && p.range !== '—'; });
+        const equip   = wgList.filter(wg => { const p = lookupWeapon(wg); return !p || p.range === '—'; });
+        let out = '';
+        if (weapons.length) {
+          out += `<table class="weapon-table">
+            <thead><tr><th>Weapon</th><th>Range</th><th>Type</th><th>S</th><th>AP</th><th>D</th><th>Special</th></tr></thead>
+            <tbody>${weapons.map(wg => {
+              const p = lookupWeapon(wg);
+              if (p) return `<tr><td><b>${wg}</b></td><td>${p.range}</td><td>${p.type}</td><td>${p.s}</td><td>${p.ap}</td><td>${p.d}</td><td>${p.special || '—'}</td></tr>`;
+              return `<tr><td colspan="7">${wg}</td></tr>`;
+            }).join('')}</tbody>
+          </table>`;
+        }
+        if (equip.length) {
+          out += `<div class="equip-row">${equip.map(wg => {
+            const p = lookupWeapon(wg);
+            return `<span class="equip-tag" title="${p ? p.special : ''}">${wg}</span>`;
+          }).join('')}</div>`;
+        }
+        return out;
+      };
+
       if (u.modelLoadouts) {
         wargearHtml = `<div class="wargear-section">`;
         u.modelLoadouts.forEach(slot => {
           if (!slot.wargear.length) return;
           wargearHtml += `<div class="comp-model-block">
             <div class="comp-model-label">${slot.count > 1 ? `×${slot.count} ` : ''}${slot.role}</div>
-            <table class="weapon-table">
-              <thead><tr><th>Weapon</th><th>Range</th><th>Type</th><th>S</th><th>AP</th><th>D</th><th>Special</th></tr></thead>
-              <tbody>${slot.wargear.map(wg => {
-                const p = lookupWeapon(wg);
-                if (p) return `<tr><td><b>${wg}</b></td><td>${p.range}</td><td>${p.type}</td><td>${p.s}</td><td>${p.ap}</td><td>${p.d}</td><td>${p.special || '—'}</td></tr>`;
-                return `<tr><td colspan="7">${wg}</td></tr>`;
-              }).join('')}</tbody>
-            </table>
+            ${renderPrintWargear(slot.wargear)}
           </div>`;
         });
         wargearHtml += `</div>`;
       } else if (u.wargear.length) {
         wargearHtml = `<div class="wargear-section">
           <div class="wargear-header">Wargear</div>
-          <table class="weapon-table">
-            <thead><tr><th>Weapon</th><th>Range</th><th>Type</th><th>S</th><th>AP</th><th>D</th><th>Special</th></tr></thead>
-            <tbody>${u.wargear.map(wg => {
-              const p = lookupWeapon(wg);
-              if (p) return `<tr><td><b>${wg}</b></td><td>${p.range}</td><td>${p.type}</td><td>${p.s}</td><td>${p.ap}</td><td>${p.d}</td><td>${p.special || '—'}</td></tr>`;
-              return `<tr><td colspan="7">${wg}</td></tr>`;
-            }).join('')}</tbody>
-          </table></div>`;
+          ${renderPrintWargear(u.wargear)}
+        </div>`;
       }
       const modelsHtml = (u.models && u.models !== u.minModels) ? `<div class="wargear-row"><b>Models:</b> ${u.models}</div>` : '';
 
@@ -956,6 +1002,8 @@ function printList() {
   .army-rule-desc { font-size:9px; color:#555; line-height:1.4; }
   .comp-model-block { margin-bottom:4px; }
   .comp-model-label { font-size:9px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:#555; padding:3px 8px 1px; background:#f5f5f5; border-top:1px solid #ddd; }
+  .equip-row { padding:3px 8px; display:flex; flex-wrap:wrap; gap:6px; border-top:1px solid #eee; }
+  .equip-tag { font-size:9px; color:#666; background:#f0f0f0; border:1px solid #ddd; padding:1px 6px; }
 </style>
 </head><body>
 <div class="page-header">
@@ -1042,6 +1090,9 @@ function clearRoster() {
 // MOBILE TAB NAVIGATION
 // ============================================================
 
+// Tab order for swipe navigation (left = index 0)
+const TAB_ORDER = ['config', 'browse', 'roster'];
+
 function switchTab(tab) {
   const isMobile = window.innerWidth < 900;
   if (!isMobile) return;
@@ -1050,6 +1101,12 @@ function switchTab(tab) {
   document.querySelectorAll('.mobile-tab').forEach(btn => btn.classList.remove('active'));
   const activeBtn = document.getElementById('tab-' + tab);
   if (activeBtn) activeBtn.classList.add('active');
+
+  // Update swipe dots
+  const idx = TAB_ORDER.indexOf(tab);
+  document.querySelectorAll('.swipe-dot').forEach((dot, i) => {
+    dot.classList.toggle('active', i === idx);
+  });
 
   // Show/hide columns — scroll each back to top on switch
   document.querySelectorAll('[data-tab]').forEach(col => {
@@ -1062,6 +1119,48 @@ function switchTab(tab) {
     }
   });
 }
+
+function currentTabIndex() {
+  const activeBtn = document.querySelector('.mobile-tab.active');
+  if (!activeBtn) return 0;
+  const tab = activeBtn.id.replace('tab-', '');
+  return TAB_ORDER.indexOf(tab);
+}
+
+// Swipe gesture handling
+(function initSwipe() {
+  let touchStartX = 0;
+  let touchStartY = 0;
+  let touchStartTime = 0;
+
+  document.addEventListener('touchstart', e => {
+    touchStartX = e.touches[0].clientX;
+    touchStartY = e.touches[0].clientY;
+    touchStartTime = Date.now();
+  }, { passive: true });
+
+  document.addEventListener('touchend', e => {
+    if (window.innerWidth >= 900) return;
+
+    const dx = e.changedTouches[0].clientX - touchStartX;
+    const dy = e.changedTouches[0].clientY - touchStartY;
+    const dt = Date.now() - touchStartTime;
+
+    // Must be: fast enough, horizontal enough, long enough distance
+    if (dt > 400) return;                    // too slow
+    if (Math.abs(dx) < 50) return;           // too short
+    if (Math.abs(dy) > Math.abs(dx) * 0.6) return; // too vertical
+
+    const idx = currentTabIndex();
+    if (dx < 0 && idx < TAB_ORDER.length - 1) {
+      // Swipe left → next tab
+      switchTab(TAB_ORDER[idx + 1]);
+    } else if (dx > 0 && idx > 0) {
+      // Swipe right → previous tab
+      switchTab(TAB_ORDER[idx - 1]);
+    }
+  }, { passive: true });
+})();
 
 // On resize, reset to desktop layout if needed
 window.addEventListener('resize', () => {

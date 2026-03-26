@@ -35,7 +35,27 @@ const FACTION_DARK_ANGELS = [
 
   { id:'da_deathwing', name:'Deathwing Terminators',
     stats:['5"','3+','3+','4','4','2','2','8','2+'], role:'Elites', pts:215, min:5, max:10, ppm:43,
-    wargear:['Storm Bolters','Power Fists'],
+    wargear:[],
+    composition:[
+      { role:'Deathwing Sergeant', count:1, wargear:['Storm Bolter','Power Fist'],
+        options:[
+          { group:'Melee', choices:[
+            { label:'Power Fist',     pts:0, default:true },
+            { label:'Thunder Hammer', pts:5, weapons:['Thunder Hammer'], replaces:['Power Fist'] },
+            { label:'Sword of Silence',pts:5,weapons:['Sword of Silence'],replaces:['Power Fist'] },
+            { label:'Lightning Claw', pts:0, weapons:['Lightning Claw'],  replaces:['Power Fist'] },
+          ]},
+        ]},
+      { role:'Heavy Weapon (1)', count:1, wargear:['Cyclone Missile Launcher','Storm Bolter','Power Fist'] },
+      { role:'Deathwing Terminator', count:3, wargear:['Storm Bolter','Power Fist'],
+        options:[
+          { group:'Melee', choices:[
+            { label:'Power Fist',     pts:0, default:true },
+            { label:'Thunder Hammer', pts:5, weapons:['Thunder Hammer'], replaces:['Power Fist'] },
+            { label:'Lightning Claw', pts:0, weapons:['Lightning Claw'],  replaces:['Power Fist'] },
+          ]},
+        ]},
+    ],
     abilities:['And They Shall Know No Fear',
                'Inner Circle: Ignore Morale while any Dark Angels Character is on the battlefield',
                'Teleport Strike: Deep strike — arrive 9"+ from enemy',
@@ -50,7 +70,42 @@ const FACTION_DARK_ANGELS = [
 
   { id:'da_tactical', name:'Tactical Squad',
     stats:['6"','3+','3+','4','4','1','1','7','3+'], role:'Troops', pts:65, min:5, max:10, ppm:13,
-    wargear:['Boltguns','Bolt Pistols'],
+    wargear:[],
+    composition:[
+      { role:'Sergeant', count:1, wargear:['Boltgun','Bolt Pistol','Frag & Krak Grenades'],
+        options:[
+          { group:'Melee', choices:[
+            { label:'None',          pts:0, default:true },
+            { label:'Chainsword',    pts:0, weapons:['Chainsword'],  replaces:[] },
+            { label:'Power Sword',   pts:4, weapons:['Power Sword'], replaces:['Boltgun'] },
+            { label:'Power Fist',    pts:9, weapons:['Power Fist'],  replaces:['Boltgun'] },
+          ]},
+          { group:'Sidearm', choices:[
+            { label:'Bolt Pistol',   pts:0, default:true },
+            { label:'Plasma Pistol', pts:5, weapons:['Plasma Pistol'], replaces:['Bolt Pistol'] },
+          ]},
+        ]},
+      { role:'Special Weapon', count:1, wargear:['Boltgun','Bolt Pistol'],
+        options:[
+          { group:'Special', choices:[
+            { label:'Boltgun',    pts:0, default:true },
+            { label:'Flamer',     pts:0, weapons:['Flamer'],     replaces:['Boltgun'] },
+            { label:'Meltagun',   pts:0, weapons:['Meltagun'],   replaces:['Boltgun'] },
+            { label:'Plasma Gun', pts:0, weapons:['Plasma Gun'], replaces:['Boltgun'] },
+          ]},
+        ]},
+      { role:'Heavy Weapon', count:1, wargear:['Heavy Bolter','Bolt Pistol'],
+        options:[
+          { group:'Heavy', choices:[
+            { label:'Heavy Bolter',     pts:0, default:true, weapons:['Heavy Bolter'] },
+            { label:'Lascannon',        pts:0, weapons:['Lascannon'],        replaces:['Heavy Bolter'] },
+            { label:'Missile Launcher', pts:0, weapons:['Missile Launcher'], replaces:['Heavy Bolter'] },
+            { label:'Plasma Cannon',    pts:0, weapons:['Plasma Cannon'],    replaces:['Heavy Bolter'] },
+            { label:'Multi-melta',      pts:0, weapons:['Multi-melta'],      replaces:['Heavy Bolter'] },
+          ]},
+        ]},
+      { role:'Trooper', count:2, wargear:['Boltgun','Bolt Pistol','Frag & Krak Grenades'] },
+    ],
     abilities:['And They Shall Know No Fear','Combat Squads','Grim Resolve: Never take Morale if did not move'] },
 
   { id:'da_intercessors', name:'Intercessor Squad',

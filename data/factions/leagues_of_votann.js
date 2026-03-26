@@ -38,15 +38,47 @@ const FACTION_LEAGUES_OF_VOTANN = [
 
   { id:'lov_hearthkyn', name:'Hearthkyn Warriors',
     stats:['5"','3+','3+','4','4','1','2','8','4+'], role:'Troops', pts:65, min:5, max:10, ppm:13, isNew:true,
-    wargear:['Autoch-pattern Bolter','Ion Blaster'],
+    wargear:[],
+    composition:[
+      { role:'Theyn', count:1, wargear:['Autoch-pattern Bolter','Ion Blaster'],
+        options:[
+          { group:'Ranged', choices:[
+            { label:'Autoch-pattern Bolter', pts:0, default:true, weapons:['Autoch-pattern Bolter'] },
+            { label:'EtaCarn Plasma Gun',    pts:5, weapons:['EtaCarn Plasma Gun'],    replaces:['Autoch-pattern Bolter'] },
+            { label:'Magna-Rail Rifle',      pts:5, weapons:['Magna-Rail Rifle'],      replaces:['Autoch-pattern Bolter'] },
+            { label:'L7 Missile Launcher',   pts:8, weapons:['L7 Missile Launcher'],   replaces:['Autoch-pattern Bolter'] },
+          ]},
+          { group:'Melee', choices:[
+            { label:'None',           pts:0, default:true },
+            { label:'Kin Melee Weapon',pts:0, weapons:['Kin Melee Weapon'], replaces:[] },
+          ]},
+        ]},
+      { role:'Hearthkyn Warrior', count:4, wargear:['Autoch-pattern Bolter'],
+        options:[
+          { group:'Ranged', choices:[
+            { label:'Autoch-pattern Bolter', pts:0, default:true },
+            { label:'EtaCarn Plasma Gun',    pts:5, weapons:['EtaCarn Plasma Gun'],  replaces:['Autoch-pattern Bolter'] },
+            { label:'Ion Blaster',           pts:0, weapons:['Ion Blaster'],         replaces:['Autoch-pattern Bolter'] },
+            { label:'Magna-Rail Rifle',      pts:5, weapons:['Magna-Rail Rifle'],    replaces:['Autoch-pattern Bolter'] },
+          ]},
+        ]},
+    ],
     abilities:['Grim Endurance',
                'Grim Efficiency: May fire Rapid Fire at full rate after Advancing but -1 to hit rolls',
-               'Theyn: 1 per unit — +1W +1A',
-               'Ironkin: Up to 2 may be Ironkin — W2 and 4+ invulnerable (+5pts each)'] },
+               'Theyn: 1 per unit — +1W +1A'] },
 
   { id:'lov_einhyr_guard', name:'Einhyr Hearthguard',
     stats:['4"','3+','3+','5','5','2','3','8','2+'], role:'Elites', pts:114, min:3, max:5, ppm:38, isNew:true,
-    wargear:['Concussion Gauntlet','Volkanite Disintegrator'],
+    wargear:[],
+    composition:[
+      { role:'Hearthguard', count:3, wargear:['Concussion Gauntlet','Volkanite Disintegrator'],
+        options:[
+          { group:'Ranged', choices:[
+            { label:'Volkanite Disintegrator', pts:0, default:true, weapons:['Volkanite Disintegrator'] },
+            { label:'Magna-Coil Autocannon',   pts:0, weapons:['Magna-Coil Autocannon'], replaces:['Volkanite Disintegrator'] },
+          ]},
+        ]},
+    ],
     abilities:['Grim Endurance','4+ invulnerable save',
                'Exo-armour: Ignores penalty for moving and firing Heavy weapons',
                'Kindred Shields: While 3+ models remain subtract 1 from wound rolls targeting this unit',

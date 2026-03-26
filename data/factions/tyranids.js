@@ -65,7 +65,18 @@ const FACTION_TYRANIDS = [
   // ── TROOPS ──────────────────────────────────────────────────────────
   { id:'ty_termagants', name:'Termagant Brood',
     stats:['6"','4+','4+','3','3','1','1','5','6+'], role:'Troops', pts:40, min:10, max:30, ppm:4,
-    wargear:['Fleshborer','Claws and Teeth'],
+    wargear:[],
+    composition:[
+      { role:'Termagant', count:10, wargear:['Fleshborer','Claws and Teeth'],
+        options:[
+          { group:'Gun', choices:[
+            { label:'Fleshborer',  pts:0, default:true, weapons:['Fleshborer'] },
+            { label:'Devourer',    pts:1, weapons:['Devourer'],    replaces:['Fleshborer'] },
+            { label:'Spinefists',  pts:0, weapons:['Spinefists'],  replaces:['Fleshborer'] },
+            { label:'Spike Rifle', pts:0, weapons:['Spike Rifle'], replaces:['Fleshborer'] },
+          ]},
+        ]},
+    ],
     abilities:['Instinctive Behaviour: If not within 24" of Synapse — must move toward nearest enemy and cannot shoot at targets 12"+ away',
                'Swarms: Unit of 20+ never takes Morale tests',
                'Tervigon Resupply: If within 3" of a Tervigon restore D6 slain models'] },
@@ -93,7 +104,23 @@ const FACTION_TYRANIDS = [
   // ── ELITES ──────────────────────────────────────────────────────────
   { id:'ty_warriors', name:'Tyranid Warriors',
     stats:['6"','3+','3+','4','4','3','3','9','4+'], role:'Elites', pts:90, min:3, max:9, ppm:30,
-    wargear:['Deathspitter','Scything Talons'],
+    wargear:[],
+    composition:[
+      { role:'Warrior', count:3, wargear:['Deathspitter','Scything Talons'],
+        options:[
+          { group:'Ranged', choices:[
+            { label:'Deathspitter',  pts:0, default:true, weapons:['Deathspitter'] },
+            { label:'Devourer',      pts:0, weapons:['Devourer'],   replaces:['Deathspitter'] },
+            { label:'Barbed Strangler', pts:0, weapons:['Barbed Strangler'], replaces:['Deathspitter'] },
+            { label:'Venom Cannon',  pts:0, weapons:['Venom Cannon'],replaces:['Deathspitter'] },
+          ]},
+          { group:'Melee', choices:[
+            { label:'Scything Talons', pts:0, default:true },
+            { label:'Rending Claws',   pts:0, weapons:['Rending Claws'], replaces:['Scything Talons'] },
+            { label:'Lash Whip & Bonesword', pts:0, weapons:['Bonesword','Lash Whip'], replaces:['Scything Talons'] },
+          ]},
+        ]},
+    ],
     abilities:['Synapse','Shadow in the Warp',
                'Adrenal Glands optional: +1 to Advance and charge rolls (+1pt/model)',
                'Toxin Sacs optional: Wound rolls of 6 deal +1 damage (+1pt/model)'] },

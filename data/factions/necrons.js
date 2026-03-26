@@ -85,19 +85,46 @@ const FACTION_NECRONS = [
   // ── TROOPS ──────────────────────────────────────────────────────────
   { id:'nec_warriors', name:'Necron Warriors',
     stats:['5"','3+','3+','4','4','1','1','10','4+'], role:'Troops', pts:78, min:10, max:20, ppm:8,
-    wargear:['Gauss Flayer','Living Metal'],
+    wargear:[],
+    composition:[
+      { role:'Necron Warrior', count:10, wargear:['Gauss Flayer'],
+        options:[
+          { group:'Weapon', choices:[
+            { label:'Gauss Flayer',  pts:0, default:true, weapons:['Gauss Flayer'] },
+            { label:'Gauss Reaper', pts:0, weapons:['Gauss Reaper'], replaces:['Gauss Flayer'] },
+          ]},
+        ]},
+    ],
     abilities:['Reanimation Protocols: At end of phase — slain models may roll D6 on 5+ return with 1 wound',
                'Their Number is Legion: Unit of 20 never takes Morale tests'] },
 
   { id:'nec_immortals', name:'Immortals',
     stats:['5"','3+','3+','4','4','1','1','10','3+'], role:'Troops', pts:85, min:5, max:10, ppm:17,
-    wargear:['Gauss Blaster','Living Metal'],
+    wargear:[],
+    composition:[
+      { role:'Immortal', count:5, wargear:['Gauss Blaster'],
+        options:[
+          { group:'Weapon', choices:[
+            { label:'Gauss Blaster', pts:0, default:true, weapons:['Gauss Blaster'] },
+            { label:'Tesla Carbine', pts:0, weapons:['Tesla Carbine'], replaces:['Gauss Blaster'] },
+          ]},
+        ]},
+    ],
     abilities:['Reanimation Protocols','Fearless: Auto-pass Morale tests'] },
 
   // ── ELITES ──────────────────────────────────────────────────────────
   { id:'nec_lychguard', name:'Lychguard',
     stats:['5"','3+','3+','5','5','2','2','10','3+'], role:'Elites', pts:130, min:5, max:10, ppm:26,
-    wargear:['Hyperphase Sword','Dispersion Shield'],
+    wargear:[],
+    composition:[
+      { role:'Lychguard', count:5, wargear:['Hyperphase Sword','Dispersion Shield'],
+        options:[
+          { group:'Weapon', choices:[
+            { label:'Hyperphase Sword & Dispersion Shield', pts:0, default:true },
+            { label:'Warscythe', pts:0, weapons:['Warscythe'], replaces:['Hyperphase Sword','Dispersion Shield'] },
+          ]},
+        ]},
+    ],
     abilities:['Reanimation Protocols',
                'Dispersion Shield: 4+ invulnerable save — on 6 redirect attack back at attacker',
                'Bodyguard: May intercept wounds for a nearby Overlord'] },
@@ -118,7 +145,16 @@ const FACTION_NECRONS = [
 
   { id:'nec_triarch_praetorians', name:'Triarch Praetorians',
     stats:['8"','3+','3+','5','5','2','2','10','3+'], role:'Elites', pts:80, min:5, max:10, ppm:16,
-    wargear:['Rod of Covenant','Voidblade'],
+    wargear:[],
+    composition:[
+      { role:'Praetorian', count:5, wargear:['Rod of Covenant','Voidblade'],
+        options:[
+          { group:'Weapon', choices:[
+            { label:'Rod of Covenant & Voidblade', pts:0, default:true },
+            { label:'Particle Caster & Voidblade', pts:0, weapons:['Particle Caster','Voidblade'], replaces:['Rod of Covenant'] },
+          ]},
+        ]},
+    ],
     abilities:['Reanimation Protocols',
                'Eternal Custodians: May not be affected by Morale',
                'Deep Strike: Arrive 9"+ from enemy'] },
@@ -140,14 +176,33 @@ const FACTION_NECRONS = [
   // ── FAST ATTACK ─────────────────────────────────────────────────────
   { id:'nec_destroyers', name:'Destroyers',
     stats:['10"','3+','3+','4','4','2','2','10','3+'], role:'Fast Attack', pts:140, min:3, max:6, ppm:47,
-    wargear:['Gauss Cannon','Living Metal'],
+    wargear:[],
+    composition:[
+      { role:'Destroyer', count:3, wargear:['Gauss Cannon'],
+        options:[
+          { group:'Weapon', choices:[
+            { label:'Gauss Cannon',      pts:0, default:true, weapons:['Gauss Cannon'] },
+            { label:'Enmitic Annihilator',pts:0, weapons:['Enmitic Annihilator'], replaces:['Gauss Cannon'] },
+          ]},
+        ]},
+    ],
     abilities:['Reanimation Protocols',
                'Destroyer Cult: Re-roll hit rolls of 1 within 6" of Destroyer Character',
                'Relentless: Move and fire Heavy weapons without penalty'] },
 
   { id:'nec_tomb_blades', name:'Tomb Blades',
     stats:['14"','3+','3+','4','4','2','1','10','3+'], role:'Fast Attack', pts:57, min:3, max:9, ppm:19,
-    wargear:['Twin Gauss Blaster','Nebuloscope'],
+    wargear:[],
+    composition:[
+      { role:'Tomb Blade', count:3, wargear:['Twin Gauss Blaster'],
+        options:[
+          { group:'Weapon', choices:[
+            { label:'Twin Gauss Blaster', pts:0, default:true, weapons:['Twin Gauss Blaster'] },
+            { label:'Twin Tesla Carbine', pts:0, weapons:['Twin Tesla Carbine'], replaces:['Twin Gauss Blaster'] },
+            { label:'Particle Beamer',    pts:0, weapons:['Particle Beamer'],    replaces:['Twin Gauss Blaster'] },
+          ]},
+        ]},
+    ],
     abilities:['Reanimation Protocols',
                'Hard to Hit: -1 to hit rolls targeting this unit if it moved',
                'Shadowloom: Unit may take Shadowloom for cover saves'] },

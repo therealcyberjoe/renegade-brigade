@@ -36,23 +36,82 @@ const FACTION_SPACE_WOLVES = [
 
   { id:'sw_wolf_guard', name:'Wolf Guard',
     stats:['6"','3+','3+','4','4','1','2','8','3+'], role:'Elites', pts:90, min:5, max:10, ppm:18,
-    wargear:['Bolt Pistol','Chainsword'],
+    wargear:[],
+    composition:[
+      { role:'Wolf Guard', count:5, wargear:['Bolt Pistol','Chainsword'],
+        options:[
+          { group:'Melee', choices:[
+            { label:'Chainsword',    pts:0, default:true },
+            { label:'Power Sword',   pts:4, weapons:['Power Sword'],   replaces:['Chainsword'] },
+            { label:'Power Axe',     pts:5, weapons:['Power Axe'],     replaces:['Chainsword'] },
+            { label:'Power Fist',    pts:9, weapons:['Power Fist'],    replaces:['Chainsword'] },
+            { label:'Thunder Hammer',pts:12,weapons:['Thunder Hammer'],replaces:['Chainsword'] },
+            { label:'Lightning Claw',pts:6, weapons:['Lightning Claw'],replaces:['Chainsword'] },
+          ]},
+          { group:'Ranged', choices:[
+            { label:'Bolt Pistol',   pts:0, default:true },
+            { label:'Plasma Pistol', pts:5, weapons:['Plasma Pistol'], replaces:['Bolt Pistol'] },
+            { label:'Storm Bolter',  pts:2, weapons:['Storm Bolter'],  replaces:['Bolt Pistol'] },
+            { label:'Combi-melta',   pts:10,weapons:['Combi-melta'],   replaces:['Bolt Pistol'] },
+          ]},
+        ]},
+    ],
     abilities:['And They Shall Know No Fear',
                'Wolf Guard Pack Leader: May be attached to other units as a Sergeant upgrade'] },
 
   { id:'sw_blood_claws', name:'Blood Claws',
     stats:['6"','3+','3+','4','4','1','1','7','3+'], role:'Troops', pts:65, min:5, max:15, ppm:13,
-    wargear:['Bolt Pistol','Chainsword'],
+    wargear:[],
+    composition:[
+      { role:'Wolf Guard Pack Leader', count:1, wargear:['Bolt Pistol','Chainsword'],
+        options:[
+          { group:'Melee', choices:[
+            { label:'Chainsword',    pts:0, default:true },
+            { label:'Power Sword',   pts:4, weapons:['Power Sword'],  replaces:['Chainsword'] },
+            { label:'Power Fist',    pts:9, weapons:['Power Fist'],   replaces:['Chainsword'] },
+          ]},
+          { group:'Sidearm', choices:[
+            { label:'Bolt Pistol',   pts:0, default:true },
+            { label:'Plasma Pistol', pts:5, weapons:['Plasma Pistol'],replaces:['Bolt Pistol'] },
+          ]},
+        ]},
+      { role:'Blood Claw', count:4, wargear:['Bolt Pistol','Chainsword'] },
+    ],
     abilities:['And They Shall Know No Fear',
                'Headstrong: Re-roll failed charge rolls',
                'Blood Frenzy: Add 1 to Attacks on turn they charge — subtract 1 from hit rolls'] },
 
   { id:'sw_grey_hunters', name:'Grey Hunters',
     stats:['6"','3+','3+','4','4','1','1','7','3+'], role:'Troops', pts:65, min:5, max:10, ppm:13,
-    wargear:['Boltgun','Bolt Pistol'],
+    wargear:[],
+    composition:[
+      { role:'Wolf Guard Pack Leader', count:1, wargear:['Boltgun','Bolt Pistol'],
+        options:[
+          { group:'Melee', choices:[
+            { label:'None',          pts:0, default:true },
+            { label:'Chainsword',    pts:0, weapons:['Chainsword'],   replaces:[] },
+            { label:'Power Sword',   pts:4, weapons:['Power Sword'],  replaces:['Boltgun'] },
+            { label:'Power Fist',    pts:9, weapons:['Power Fist'],   replaces:['Boltgun'] },
+          ]},
+          { group:'Ranged', choices:[
+            { label:'Boltgun',       pts:0, default:true },
+            { label:'Combi-melta',   pts:10,weapons:['Combi-melta'],  replaces:['Boltgun'] },
+            { label:'Plasma Pistol', pts:5, weapons:['Plasma Pistol'],replaces:['Bolt Pistol'] },
+          ]},
+        ]},
+      { role:'Special Weapon (1)', count:1, wargear:['Boltgun','Bolt Pistol'],
+        options:[
+          { group:'Special', choices:[
+            { label:'Boltgun',    pts:0, default:true },
+            { label:'Plasma Gun', pts:5, weapons:['Plasma Gun'], replaces:['Boltgun'] },
+            { label:'Meltagun',   pts:5, weapons:['Meltagun'],   replaces:['Boltgun'] },
+            { label:'Flamer',     pts:3, weapons:['Flamer'],     replaces:['Boltgun'] },
+          ]},
+        ]},
+      { role:'Grey Hunter', count:3, wargear:['Boltgun','Bolt Pistol'] },
+    ],
     abilities:['And They Shall Know No Fear',
-               'Counter-charge: When charged re-roll hit rolls of 1',
-               'Special Weapon: 1 per 5 models'] },
+               'Counter-charge: When charged re-roll hit rolls of 1'] },
 
   { id:'sw_fenrisian_wolves', name:'Fenrisian Wolves',
     stats:['10"','3+','5+','4','4','1','2','5','6+'], role:'Fast Attack', pts:40, min:5, max:15, ppm:8,

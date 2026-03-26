@@ -111,7 +111,26 @@ const FACTION_BLACK_TEMPLARS = [
 
   { id:'bt_terminators', name:'Terminator Squad',
     stats:['5"','3+','3+','4','4','2','2','8','2+'], role:'Elites', pts:195, min:5, max:10, ppm:39,
-    wargear:['Storm Bolters','Power Fists'],
+    wargear:[],
+    composition:[
+      { role:'Terminator Sergeant', count:1, wargear:['Storm Bolter','Power Fist'],
+        options:[
+          { group:'Melee', choices:[
+            { label:'Power Fist',     pts:0, default:true },
+            { label:'Thunder Hammer', pts:5, weapons:['Thunder Hammer'], replaces:['Power Fist'] },
+            { label:'Lightning Claw', pts:0, weapons:['Lightning Claw'],  replaces:['Power Fist'] },
+          ]},
+        ]},
+      { role:'Heavy Weapon (1)', count:1, wargear:['Cyclone Missile Launcher','Storm Bolter','Power Fist'] },
+      { role:'Terminator', count:3, wargear:['Storm Bolter','Power Fist'],
+        options:[
+          { group:'Melee', choices:[
+            { label:'Power Fist',     pts:0, default:true },
+            { label:'Thunder Hammer', pts:5, weapons:['Thunder Hammer'], replaces:['Power Fist'] },
+            { label:'Lightning Claw', pts:0, weapons:['Lightning Claw'],  replaces:['Power Fist'] },
+          ]},
+        ]},
+    ],
     abilities:['And They Shall Know No Fear',
                'Teleport Strike: Deep strike — arrive 9"+ from enemy',
                'Terminator Armour: 5+ invulnerable save',
@@ -143,7 +162,23 @@ const FACTION_BLACK_TEMPLARS = [
   // ── FAST ATTACK ─────────────────────────────────────────────────────
   { id:'bt_assault_intercessors', name:'Assault Intercessors',
     stats:['6"','3+','3+','4','4','2','2','7','3+'], role:'Fast Attack', pts:85, min:5, max:10, ppm:17,
-    wargear:['Heavy Bolt Pistol','Astartes Chainsword'],
+    wargear:[],
+    composition:[
+      { role:'Sergeant', count:1, wargear:['Heavy Bolt Pistol','Astartes Chainsword'],
+        options:[
+          { group:'Melee', choices:[
+            { label:'Astartes Chainsword', pts:0, default:true },
+            { label:'Power Sword',         pts:4, weapons:['Power Sword'],   replaces:['Astartes Chainsword'] },
+            { label:'Power Fist',          pts:9, weapons:['Power Fist'],    replaces:['Astartes Chainsword'] },
+            { label:'Thunder Hammer',      pts:12,weapons:['Thunder Hammer'],replaces:['Astartes Chainsword'] },
+          ]},
+          { group:'Sidearm', choices:[
+            { label:'Heavy Bolt Pistol', pts:0, default:true },
+            { label:'Plasma Pistol',     pts:5, weapons:['Plasma Pistol'], replaces:['Heavy Bolt Pistol'] },
+          ]},
+        ]},
+      { role:'Assault Intercessor', count:4, wargear:['Heavy Bolt Pistol','Astartes Chainsword'] },
+    ],
     abilities:['And They Shall Know No Fear',
                'Combat Squads: May split into two units of 5',
                'Vow of Crusade: Re-roll failed charge rolls'] },
@@ -173,7 +208,17 @@ const FACTION_BLACK_TEMPLARS = [
   // ── HEAVY SUPPORT ───────────────────────────────────────────────────
   { id:'bt_hellblasters', name:'Hellblaster Squad',
     stats:['6"','3+','3+','4','4','2','2','7','3+'], role:'Heavy Support', pts:165, min:5, max:10, ppm:33,
-    wargear:['Plasma Incinerator','Plasma Pistol'],
+    wargear:[],
+    composition:[
+      { role:'Sergeant', count:1, wargear:['Plasma Incinerator','Plasma Pistol'],
+        options:[
+          { group:'Sidearm', choices:[
+            { label:'Plasma Pistol', pts:0, default:true },
+            { label:'Bolt Pistol',   pts:0, weapons:['Bolt Pistol'], replaces:['Plasma Pistol'] },
+          ]},
+        ]},
+      { role:'Hellblaster', count:4, wargear:['Plasma Incinerator','Plasma Pistol'] },
+    ],
     abilities:['And They Shall Know No Fear',
                'Plasma Incinerator Overcharge: S8 AP-4 D2 — hit roll of 1 slays model',
                'Vow of Crusade: Re-roll failed charge rolls'] },

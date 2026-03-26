@@ -19,9 +19,38 @@ const FACTION_DEATHWATCH = [
 
   { id:'dw_veterans', name:'Deathwatch Veterans',
     stats:['6"','3+','3+','4','4','1','2','8','3+'], role:'Elites', pts:85, min:5, max:10, ppm:17,
-    wargear:['Boltgun','Bolt Pistol','Special Issue Ammunition'],
-    abilities:['And They Shall Know No Fear','Special Issue Ammunition',
-               'Xenophase Blade optional: Re-roll failed wound rolls against non-IMPERIUM units'] },
+    wargear:[],
+    composition:[
+      { role:'Watch Sergeant', count:1, wargear:['Boltgun','Bolt Pistol','Special Issue Ammunition'],
+        options:[
+          { group:'Melee', choices:[
+            { label:'None',            pts:0, default:true },
+            { label:'Chainsword',      pts:0, weapons:['Chainsword'],      replaces:[] },
+            { label:'Power Sword',     pts:4, weapons:['Power Sword'],     replaces:['Boltgun'] },
+            { label:'Power Fist',      pts:9, weapons:['Power Fist'],      replaces:['Boltgun'] },
+            { label:'Thunder Hammer',  pts:12,weapons:['Thunder Hammer'],  replaces:['Boltgun'] },
+            { label:'Xenophase Blade', pts:5, weapons:['Xenophase Blade'], replaces:['Boltgun'] },
+          ]},
+          { group:'Ranged', choices:[
+            { label:'Boltgun',         pts:0, default:true },
+            { label:'Storm Bolter',    pts:2, weapons:['Storm Bolter'],    replaces:['Boltgun'] },
+            { label:'Combi-melta',     pts:10,weapons:['Combi-melta'],     replaces:['Boltgun'] },
+            { label:'Plasma Pistol',   pts:5, weapons:['Plasma Pistol'],   replaces:['Bolt Pistol'] },
+          ]},
+        ]},
+      { role:'Veteran', count:4, wargear:['Boltgun','Bolt Pistol','Special Issue Ammunition'],
+        options:[
+          { group:'Special', choices:[
+            { label:'Boltgun',         pts:0, default:true },
+            { label:'Storm Bolter',    pts:2, weapons:['Storm Bolter'],    replaces:['Boltgun'] },
+            { label:'Heavy Bolter',    pts:5, weapons:['Heavy Bolter'],    replaces:['Boltgun'] },
+            { label:'Plasma Gun',      pts:5, weapons:['Plasma Gun'],      replaces:['Boltgun'] },
+            { label:'Meltagun',        pts:5, weapons:['Meltagun'],        replaces:['Boltgun'] },
+            { label:'Deathwatch Frag Cannon', pts:5, weapons:['Deathwatch Frag Cannon'], replaces:['Boltgun'] },
+          ]},
+        ]},
+    ],
+    abilities:['And They Shall Know No Fear','Special Issue Ammunition'] },
 
   { id:'dw_bikers', name:'Deathwatch Bikers',
     stats:['14"','3+','3+','4','5','2','2','8','3+'], role:'Fast Attack', pts:80, min:3, max:9, ppm:27,
@@ -38,6 +67,22 @@ const FACTION_DEATHWATCH = [
 
   { id:'dw_intercessors', name:'Intercessor Squad',
     stats:['6"','3+','3+','4','4','2','2','7','3+'], role:'Troops', pts:85, min:5, max:10, ppm:17,
-    wargear:['Bolt Rifles'],
+    wargear:[],
+    composition:[
+      { role:'Sergeant', count:1, wargear:['Bolt Rifle','Bolt Pistol'],
+        options:[
+          { group:'Melee', choices:[
+            { label:'None',        pts:0, default:true },
+            { label:'Chainsword',  pts:0, weapons:['Chainsword'],  replaces:[] },
+            { label:'Power Sword', pts:4, weapons:['Power Sword'], replaces:['Bolt Rifle'] },
+          ]},
+          { group:'Bolt Rifle', choices:[
+            { label:'Bolt Rifle',         pts:0, default:true, weapons:['Bolt Rifle'] },
+            { label:'Auto Bolt Rifle',    pts:0, weapons:['Auto Bolt Rifle'],    replaces:['Bolt Rifle'] },
+            { label:'Stalker Bolt Rifle', pts:0, weapons:['Stalker Bolt Rifle'], replaces:['Bolt Rifle'] },
+          ]},
+        ]},
+      { role:'Intercessor', count:4, wargear:['Bolt Rifle','Bolt Pistol'] },
+    ],
     abilities:['And They Shall Know No Fear','Special Issue Ammunition'] },
 ];

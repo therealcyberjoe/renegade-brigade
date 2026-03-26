@@ -33,14 +33,45 @@ const FACTION_BLOOD_ANGELS = [
 
   { id:'ba_death_company', name:'Death Company Marines',
     stats:['12"','3+','3+','4','4','1','2','8','3+'], role:'Elites', pts:95, min:5, max:30, ppm:19,
-    wargear:['Chainsword','Bolt Pistol','Jump Pack'],
+    wargear:[],
+    composition:[
+      { role:'Death Company Marine', count:5, wargear:['Chainsword','Bolt Pistol','Jump Pack'],
+        options:[
+          { group:'Melee', choices:[
+            { label:'Chainsword',    pts:0, default:true },
+            { label:'Power Sword',   pts:4, weapons:['Power Sword'],   replaces:['Chainsword'] },
+            { label:'Power Axe',     pts:5, weapons:['Power Axe'],     replaces:['Chainsword'] },
+            { label:'Power Fist',    pts:9, weapons:['Power Fist'],    replaces:['Chainsword'] },
+            { label:'Thunder Hammer',pts:12,weapons:['Thunder Hammer'],replaces:['Chainsword'] },
+          ]},
+          { group:'Ranged', choices:[
+            { label:'Bolt Pistol',   pts:0, default:true },
+            { label:'Plasma Pistol', pts:5, weapons:['Plasma Pistol'], replaces:['Bolt Pistol'] },
+            { label:'Inferno Pistol',pts:5, weapons:['Inferno Pistol'],replaces:['Bolt Pistol'] },
+          ]},
+        ]},
+    ],
     abilities:['And They Shall Know No Fear',
                'Black Rage: Add 1 to Attacks and subtract 1 from Leadership — must move toward nearest enemy',
                'Relentless: Always Advance toward nearest enemy'] },
 
   { id:'ba_sanguinary_guard', name:'Sanguinary Guard',
     stats:['12"','3+','3+','4','4','2','2','8','2+'], role:'Elites', pts:160, min:5, max:10, ppm:32,
-    wargear:['Encarmine Sword','Angelus Boltgun'],
+    wargear:[],
+    composition:[
+      { role:'Sanguinary Guard', count:5, wargear:['Encarmine Sword','Angelus Boltgun'],
+        options:[
+          { group:'Melee', choices:[
+            { label:'Encarmine Sword', pts:0, default:true, weapons:['Encarmine Sword'] },
+            { label:'Encarmine Axe',   pts:0, weapons:['Encarmine Axe'], replaces:['Encarmine Sword'] },
+          ]},
+          { group:'Ranged', choices:[
+            { label:'Angelus Boltgun', pts:0, default:true, weapons:['Angelus Boltgun'] },
+            { label:'Plasma Pistol',   pts:5, weapons:['Plasma Pistol'],  replaces:['Angelus Boltgun'] },
+            { label:'Inferno Pistol',  pts:5, weapons:['Inferno Pistol'], replaces:['Angelus Boltgun'] },
+          ]},
+        ]},
+    ],
     abilities:['And They Shall Know No Fear',
                'Aegis Armour: 4+ invulnerable save',
                'Death Masks: Enemy units within 3" subtract 1 from Leadership'] },
@@ -53,7 +84,42 @@ const FACTION_BLOOD_ANGELS = [
 
   { id:'ba_tactical', name:'Tactical Squad',
     stats:['6"','3+','3+','4','4','1','1','7','3+'], role:'Troops', pts:65, min:5, max:10, ppm:13,
-    wargear:['Boltguns','Bolt Pistols'],
+    wargear:[],
+    composition:[
+      { role:'Sergeant', count:1, wargear:['Boltgun','Bolt Pistol','Frag & Krak Grenades'],
+        options:[
+          { group:'Melee', choices:[
+            { label:'None',          pts:0, default:true },
+            { label:'Chainsword',    pts:0, weapons:['Chainsword'],  replaces:[] },
+            { label:'Power Sword',   pts:4, weapons:['Power Sword'], replaces:['Boltgun'] },
+            { label:'Power Fist',    pts:9, weapons:['Power Fist'],  replaces:['Boltgun'] },
+          ]},
+          { group:'Sidearm', choices:[
+            { label:'Bolt Pistol',   pts:0, default:true },
+            { label:'Plasma Pistol', pts:5, weapons:['Plasma Pistol'], replaces:['Bolt Pistol'] },
+          ]},
+        ]},
+      { role:'Special Weapon', count:1, wargear:['Boltgun','Bolt Pistol'],
+        options:[
+          { group:'Special', choices:[
+            { label:'Boltgun',    pts:0, default:true },
+            { label:'Flamer',     pts:0, weapons:['Flamer'],     replaces:['Boltgun'] },
+            { label:'Meltagun',   pts:0, weapons:['Meltagun'],   replaces:['Boltgun'] },
+            { label:'Plasma Gun', pts:0, weapons:['Plasma Gun'], replaces:['Boltgun'] },
+          ]},
+        ]},
+      { role:'Heavy Weapon', count:1, wargear:['Heavy Bolter','Bolt Pistol'],
+        options:[
+          { group:'Heavy', choices:[
+            { label:'Heavy Bolter',     pts:0, default:true, weapons:['Heavy Bolter'] },
+            { label:'Lascannon',        pts:0, weapons:['Lascannon'],        replaces:['Heavy Bolter'] },
+            { label:'Missile Launcher', pts:0, weapons:['Missile Launcher'], replaces:['Heavy Bolter'] },
+            { label:'Plasma Cannon',    pts:0, weapons:['Plasma Cannon'],    replaces:['Heavy Bolter'] },
+            { label:'Multi-melta',      pts:0, weapons:['Multi-melta'],      replaces:['Heavy Bolter'] },
+          ]},
+        ]},
+      { role:'Trooper', count:2, wargear:['Boltgun','Bolt Pistol','Frag & Krak Grenades'] },
+    ],
     abilities:['And They Shall Know No Fear','Combat Squads','Red Thirst'] },
 
   { id:'ba_intercessors', name:'Intercessor Squad',

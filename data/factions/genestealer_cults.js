@@ -110,7 +110,27 @@ const FACTION_GENESTEALER_CULTS = [
   // ── TROOPS ──────────────────────────────────────────────────────────
   { id:'gc_acolytes_pistol', name:'Acolyte Hybrids with Autopistols',
     stats:['6"','3+','3+','4','3','1','2','6','5+'], role:'Troops', pts:50, min:5, max:20, ppm:10,
-    wargear:['Autopistol','Mining Tools'],
+    wargear:[],
+    composition:[
+      { role:'Acolyte Leader', count:1, wargear:['Autopistol','Mining Tools'],
+        options:[
+          { group:'Melee', choices:[
+            { label:'Mining Tools',   pts:0, default:true },
+            { label:'Power Sword',    pts:4, weapons:['Power Sword'],   replaces:['Mining Tools'] },
+            { label:'Power Pick',     pts:4, weapons:['Power Pick'],    replaces:['Mining Tools'] },
+            { label:'Heavy Rock Cutter',pts:5,weapons:['Heavy Rock Cutter'],replaces:['Mining Tools'] },
+          ]},
+        ]},
+      { role:'Special (up to 4)', count:4, wargear:['Autopistol','Mining Tools'],
+        options:[
+          { group:'Special', choices:[
+            { label:'Mining Tools',       pts:0, default:true },
+            { label:'Heavy Rock Cutter',  pts:5, weapons:['Heavy Rock Cutter'],  replaces:['Mining Tools'] },
+            { label:'Heavy Rock Drill',   pts:5, weapons:['Heavy Rock Drill'],   replaces:['Mining Tools'] },
+            { label:'Heavy Rock Saw',     pts:5, weapons:['Heavy Rock Saw'],     replaces:['Mining Tools'] },
+          ]},
+        ]},
+    ],
     abilities:['Cult Ambush','Inhuman Resilience: 6+ invulnerable save'] },
 
   { id:'gc_acolytes_flamer', name:'Acolyte Hybrids with Hand Flamers',
@@ -176,13 +196,33 @@ const FACTION_GENESTEALER_CULTS = [
 
   { id:'gc_metamorphs', name:'Hybrid Metamorphs',
     stats:['6"','3+','4+','4','3','1','2','6','5+'], role:'Elites', pts:55, min:5, max:20, ppm:11,
-    wargear:['Metamorph Mutations','Autopistol'],
+    wargear:[],
+    composition:[
+      { role:'Metamorph Leader', count:1, wargear:['Metamorph Mutations','Autopistol'],
+        options:[
+          { group:'Melee', choices:[
+            { label:'Metamorph Mutations', pts:0, default:true },
+            { label:'Hypermorph Talon',    pts:5, weapons:['Hypermorph Talon'], replaces:['Metamorph Mutations'] },
+          ]},
+        ]},
+      { role:'Metamorph', count:4, wargear:['Metamorph Mutations','Autopistol'] },
+    ],
     abilities:['Cult Ambush',
                'Murderous Mutations: Wound rolls of 6 in Fight phase deal 1 mortal wound in addition'] },
 
   { id:'gc_abberrants', name:'Aberrants',
     stats:['6"','3+','5+','5','4','3','3','6','5+'], role:'Elites', pts:65, min:5, max:10, ppm:13,
-    wargear:['Heavy Mining Pick','Hypermorph Talon'],
+    wargear:[],
+    composition:[
+      { role:'Aberrant', count:5, wargear:['Heavy Mining Pick','Hypermorph Talon'],
+        options:[
+          { group:'Weapon', choices:[
+            { label:'Heavy Mining Pick', pts:0, default:true, weapons:['Heavy Mining Pick'] },
+            { label:'Power Hammer',      pts:0, weapons:['Power Hammer'],    replaces:['Heavy Mining Pick'] },
+            { label:'Wrecking Maul',     pts:0, weapons:['Wrecking Maul'],   replaces:['Heavy Mining Pick'] },
+          ]},
+        ]},
+    ],
     abilities:['Cult Ambush','Berserk Lurkers: Add 1 to Attacks on turn they charge'] },
 
   { id:'gc_pureblood', name:'Pureblood Genestealer',

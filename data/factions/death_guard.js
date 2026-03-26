@@ -31,7 +31,37 @@ const FACTION_DEATH_GUARD = [
 
   { id:'dg_plague_marines', name:'Plague Marines',
     stats:['5"','3+','3+','4','5','1','1','8','3+'], role:'Troops', pts:90, min:5, max:20, ppm:18,
-    wargear:['Boltgun','Plague Knives','Plague Champion'],
+    wargear:[],
+    composition:[
+      { role:'Plague Champion', count:1, wargear:['Boltgun','Plaguesword'],
+        options:[
+          { group:'Ranged', choices:[
+            { label:'Boltgun',     pts:0, default:true },
+            { label:'Plasma Gun',  pts:5, weapons:['Plasma Gun'],  replaces:['Boltgun'] },
+            { label:'Meltagun',    pts:5, weapons:['Meltagun'],    replaces:['Boltgun'] },
+            { label:'Plasma Pistol', pts:5, weapons:['Plasma Pistol'], replaces:['Boltgun'] },
+            { label:'Blight Launcher', pts:5, weapons:['Blight Launcher'], replaces:['Boltgun'] },
+          ]},
+          { group:'Melee', choices:[
+            { label:'Plaguesword',    pts:0, default:true, weapons:['Plaguesword'] },
+            { label:'Power Fist',     pts:8, weapons:['Power Fist'],    replaces:['Plaguesword'] },
+            { label:'Plague Cleaver', pts:8, weapons:['Plague Cleaver'],replaces:['Plaguesword'] },
+            { label:'Flail of Corruption', pts:8, weapons:['Flail of Corruption'], replaces:['Plaguesword'] },
+          ]},
+        ]},
+      { role:'Special Weapon (up to 2)', count:2, wargear:['Boltgun','Plague Knives'],
+        options:[
+          { group:'Special', choices:[
+            { label:'Boltgun',         pts:0, default:true },
+            { label:'Plasma Gun',      pts:5, weapons:['Plasma Gun'],      replaces:['Boltgun'] },
+            { label:'Meltagun',        pts:5, weapons:['Meltagun'],        replaces:['Boltgun'] },
+            { label:'Flamer',          pts:3, weapons:['Flamer'],          replaces:['Boltgun'] },
+            { label:'Blight Launcher', pts:5, weapons:['Blight Launcher'], replaces:['Boltgun'] },
+            { label:'Plague Spewer',   pts:5, weapons:['Plague Spewer'],   replaces:['Boltgun'] },
+          ]},
+        ]},
+      { role:'Plague Marine', count:2, wargear:['Boltgun','Plague Knives'] },
+    ],
     abilities:['Disgustingly Resilient: 5+ Feel No Pain',
                'Plague Weapons: Wound rolls of 6 deal 1 mortal wound in addition',
                'Vectors of Death and Disease: At end of Fight phase — D3 mortal wounds to one enemy within 1"'] },
@@ -45,7 +75,38 @@ const FACTION_DEATH_GUARD = [
 
   { id:'dg_blightlord', name:'Blightlord Terminators',
     stats:['4"','3+','3+','4','5','2','2','8','2+'], role:'Elites', pts:175, min:5, max:10, ppm:35,
-    wargear:['Combi-Bolter','Flail of Corruption'],
+    wargear:[],
+    composition:[
+      { role:'Blightlord Champion', count:1, wargear:['Combi-Bolter','Flail of Corruption'],
+        options:[
+          { group:'Ranged', choices:[
+            { label:'Combi-Bolter', pts:0, default:true },
+            { label:'Combi-Melta',  pts:5, weapons:['Combi-Melta'],  replaces:['Combi-Bolter'] },
+            { label:'Blight Launcher', pts:5, weapons:['Blight Launcher'], replaces:['Combi-Bolter'] },
+          ]},
+          { group:'Melee', choices:[
+            { label:'Flail of Corruption', pts:0, default:true },
+            { label:'Plague Cleaver',      pts:5, weapons:['Plague Cleaver'],   replaces:['Flail of Corruption'] },
+            { label:'Power Fist',          pts:5, weapons:['Power Fist'],       replaces:['Flail of Corruption'] },
+            { label:'Bubotic Axe',         pts:0, weapons:['Bubotic Axe'],      replaces:['Flail of Corruption'] },
+          ]},
+        ]},
+      { role:'Blightlord Terminator', count:4, wargear:['Combi-Bolter','Bubotic Axe'],
+        options:[
+          { group:'Ranged', choices:[
+            { label:'Combi-Bolter',    pts:0, default:true },
+            { label:'Combi-Melta',     pts:5, weapons:['Combi-Melta'],     replaces:['Combi-Bolter'] },
+            { label:'Blight Launcher', pts:5, weapons:['Blight Launcher'], replaces:['Combi-Bolter'] },
+            { label:'Reaper Autocannon', pts:5, weapons:['Reaper Autocannon'], replaces:['Combi-Bolter'] },
+          ]},
+          { group:'Melee', choices:[
+            { label:'Bubotic Axe',         pts:0, default:true, weapons:['Bubotic Axe'] },
+            { label:'Flail of Corruption', pts:5, weapons:['Flail of Corruption'], replaces:['Bubotic Axe'] },
+            { label:'Plague Cleaver',      pts:5, weapons:['Plague Cleaver'],      replaces:['Bubotic Axe'] },
+            { label:'Power Fist',          pts:5, weapons:['Power Fist'],          replaces:['Bubotic Axe'] },
+          ]},
+        ]},
+    ],
     abilities:['Disgustingly Resilient: 5+ Feel No Pain',
                'Terminator Armour: 5+ invulnerable save',
                'Teleport Strike: Deep strike — arrive 9"+ from enemy'] },

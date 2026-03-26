@@ -8,13 +8,28 @@ const FACTION_EMPERORS_CHILDREN = [
                "Flawless Perfection: Fulgrim and friendly Emperor's Children Core within 6\" re-roll hit rolls of 1",
                "Overwhelming Sensation: Enemy units that lose models to Fulgrim cannot fire Overwatch for rest of battle round"] },
 
-  { id:'ec_noise_marines', name:'Noise Marines',
+{ id:'ec_noise_marines', name:'Noise Marines',
     stats:['6"','3+','3+','4','4','1','1','8','3+'], role:'Troops', pts:90, min:5, max:20, ppm:18,
-    wargear:['Sonic Blaster','Blastmaster'],
-    abilities:['Assault Cacophony: May fire Assault weapons without penalty after Advancing',
-               'Sonic Blaster: Assault 3 — Cacophony: if unit does not move becomes Rapid Fire 3',
-               'Blastmaster: Heavy 1 — Sustained Fire: if unit does not move becomes Heavy 2',
-               'Doom Siren (Champion only): Assault D6 Range 8" S5 AP-2 D1'] },
+    wargear:[],
+    composition:[
+      { role:'Noise Champion', count:1, wargear:['Sonic Blaster','Bolt Pistol'],
+        options:[
+          { group:'Ranged', choices:[
+            { label:'Sonic Blaster',   pts:0, default:true, weapons:['Sonic Blaster'] },
+            { label:'Blastmaster',     pts:8, weapons:['Blastmaster'],   replaces:['Sonic Blaster'] },
+            { label:'Plasma Gun',      pts:5, weapons:['Plasma Gun'],    replaces:['Sonic Blaster'] },
+          ]},
+          { group:'Melee', choices:[
+            { label:'None',            pts:0, default:true },
+            { label:'Power Sword',     pts:4, weapons:['Power Sword'],   replaces:[] },
+            { label:'Power Fist',      pts:9, weapons:['Power Fist'],    replaces:['Sonic Blaster'] },
+          ]},
+        ]},
+      { role:'Blastmaster (1)', count:1, wargear:['Blastmaster','Bolt Pistol'] },
+      { role:'Noise Marine', count:3, wargear:['Sonic Blaster','Bolt Pistol'] },
+    ],
+    abilities:['Cacophony: +1 Attack in Fight phase for each time this unit was hit by ranged attacks this turn',
+               'Sonic Weapons: Wound rolls of 6 deal 1 mortal wound in addition'] },
 
   { id:'ec_lord', name:'Chaos Lord',
     stats:['6"','3+','3+','4','4','5','4','9','3+'], role:'HQ', pts:76, min:1, max:1, ppm:0,

@@ -47,19 +47,19 @@
     <span class="mobile-tab-icon">⚙</span>
     <span class="mobile-tab-label">Config</span>
   </button>
-  <button class="mobile-tab" onclick="switchTab('roster')" id="tab-roster">
-    <span class="mobile-tab-icon">⚔</span>
-    <span class="mobile-tab-label">Roster</span>
-  </button>
   <button class="mobile-tab" onclick="switchTab('browse')" id="tab-browse">
     <span class="mobile-tab-icon">+</span>
     <span class="mobile-tab-label">Add Units</span>
+  </button>
+  <button class="mobile-tab" onclick="switchTab('roster')" id="tab-roster">
+    <span class="mobile-tab-icon">⚔</span>
+    <span class="mobile-tab-label">Roster</span>
   </button>
 </nav>
 
 <div class="app">
 
-  <!-- LEFT COLUMN: Setup -->
+  <!-- LEFT COLUMN: Config -->
   <div class="col-left" data-tab="config" style="display:flex;flex-direction:column;gap:16px;">
 
     <!-- Army Config -->
@@ -126,24 +126,7 @@
 
   </div>
 
-  <!-- MIDDLE COLUMN: Roster -->
-  <div class="col-roster" data-tab="roster">
-    <div class="panel" style="height:100%;">
-      <div class="panel-header">
-        <span class="panel-title">Army Roster</span>
-        <span id="factionBadge" class="faction-badge">No Faction</span>
-      </div>
-      <div class="panel-body" id="rosterBody">
-        <div class="empty-state">
-          <div class="empty-state-icon">⚔</div>
-          <div class="empty-state-text">No Units Selected</div>
-          <div style="margin-top:8px;font-size:12px;color:var(--muted);">Choose a faction and add units from the browser →</div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- RIGHT COLUMN: Unit Browser + Export -->
+  <!-- CENTRE COLUMN: Unit Browser + Export -->
   <div class="col-browser" data-tab="browse" style="display:flex;flex-direction:column;gap:16px;">
 
     <div class="panel" style="flex:1;">
@@ -177,6 +160,24 @@
     </div>
 
   </div>
+
+  <!-- RIGHT COLUMN: Roster -->
+  <div class="col-roster" data-tab="roster">
+    <div class="panel" style="height:100%;">
+      <div class="panel-header">
+        <span class="panel-title">Army Roster</span>
+        <span id="factionBadge" class="faction-badge">No Faction</span>
+      </div>
+      <div class="panel-body" id="rosterBody">
+        <div class="empty-state">
+          <div class="empty-state-icon">⚔</div>
+          <div class="empty-state-text">No Units Selected</div>
+          <div style="margin-top:8px;font-size:12px;color:var(--muted);">Choose a faction and add units from the browser ←</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </div>
 
 <!-- FACTION CHANGE MODAL -->

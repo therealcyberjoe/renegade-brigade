@@ -116,7 +116,27 @@ const FACTION_TAU = [
   // ── TROOPS ──────────────────────────────────────────────────────────
   { id:'tau_fire_warriors', name:'Fire Warrior Strike Team',
     stats:['6"','4+','4+','3','3','1','1','7','4+'], role:'Troops', pts:70, min:5, max:10, ppm:14,
-    wargear:['Pulse Rifle','Pulse Pistol','Bonding Knife'],
+    wargear:[],
+    composition:[
+      { role:'Fire Warrior Sergeant', count:1, wargear:['Pulse Rifle','Pulse Pistol','Bonding Knife'],
+        options:[
+          { group:'Ranged', choices:[
+            { label:'Pulse Rifle',    pts:0, default:true },
+            { label:'Pulse Carbine',  pts:0, weapons:['Pulse Carbine'], replaces:['Pulse Rifle'] },
+          ]},
+          { group:'Support', choices:[
+            { label:'None',       pts:0, default:true },
+            { label:'Markerlight',pts:0, weapons:['Markerlight'], replaces:[] },
+          ]},
+        ]},
+      { role:'Fire Warrior', count:4, wargear:['Pulse Rifle','Pulse Pistol'],
+        options:[
+          { group:'Ranged', choices:[
+            { label:'Pulse Rifle',   pts:0, default:true },
+            { label:'Pulse Carbine', pts:0, weapons:['Pulse Carbine'], replaces:['Pulse Rifle'] },
+          ]},
+        ]},
+    ],
     abilities:['For the Greater Good','Bonding Knife Ritual: Re-roll Morale tests of 1',
                'Photon Grenades: Enemy units charging suffer -1 to charge roll'] },
 
@@ -136,7 +156,50 @@ const FACTION_TAU = [
   // ── ELITES ──────────────────────────────────────────────────────────
   { id:'tau_crisis_suits', name:'Crisis Battlesuits',
     stats:['8"','5+','3+','5','5','3','3','8','3+'], role:'Elites', pts:110, min:3, max:9, ppm:37,
-    wargear:['Burst Cannon','Flamer','Shield Generator'],
+    wargear:[],
+    composition:[
+      { role:'Crisis Suit Champion', count:1, wargear:['Burst Cannon','Burst Cannon','Burst Cannon'],
+        options:[
+          { group:'Weapon 1', choices:[
+            { label:'Burst Cannon',    pts:0, default:true, weapons:['Burst Cannon'] },
+            { label:'Plasma Rifle',    pts:0, weapons:['Plasma Rifle (Tau)'], replaces:['Burst Cannon'] },
+            { label:'Fusion Blaster',  pts:0, weapons:['Fusion Blaster'],     replaces:['Burst Cannon'] },
+            { label:'Missile Pod',     pts:0, weapons:['Missile Pod'],        replaces:['Burst Cannon'] },
+            { label:'Flamer',          pts:0, weapons:['Flamer'],             replaces:['Burst Cannon'] },
+            { label:'Cyclic Ion Blaster', pts:0, weapons:['Cyclic Ion Blaster'], replaces:['Burst Cannon'] },
+          ]},
+          { group:'Weapon 2', choices:[
+            { label:'Burst Cannon',    pts:0, default:true },
+            { label:'Plasma Rifle',    pts:0, weapons:['Plasma Rifle (Tau)'], replaces:['Burst Cannon'] },
+            { label:'Fusion Blaster',  pts:0, weapons:['Fusion Blaster'],     replaces:['Burst Cannon'] },
+            { label:'Missile Pod',     pts:0, weapons:['Missile Pod'],        replaces:['Burst Cannon'] },
+            { label:'Flamer',          pts:0, weapons:['Flamer'],             replaces:['Burst Cannon'] },
+          ]},
+          { group:'Support System', choices:[
+            { label:'None',              pts:0, default:true },
+            { label:'Shield Generator',  pts:0, weapons:['Shield Generator'],  replaces:[] },
+            { label:'Target Lock',       pts:0, replaces:[] },
+            { label:'Drone Controller',  pts:0, replaces:[] },
+            { label:'Command-link Drone',pts:0, weapons:['Command-link Drone'], replaces:[] },
+          ]},
+        ]},
+      { role:'Crisis Battlesuit', count:2, wargear:['Burst Cannon','Burst Cannon'],
+        options:[
+          { group:'Weapon 1', choices:[
+            { label:'Burst Cannon',       pts:0, default:true },
+            { label:'Plasma Rifle',       pts:0, weapons:['Plasma Rifle (Tau)'], replaces:['Burst Cannon'] },
+            { label:'Fusion Blaster',     pts:0, weapons:['Fusion Blaster'],     replaces:['Burst Cannon'] },
+            { label:'Missile Pod',        pts:0, weapons:['Missile Pod'],        replaces:['Burst Cannon'] },
+            { label:'Cyclic Ion Blaster', pts:0, weapons:['Cyclic Ion Blaster'], replaces:['Burst Cannon'] },
+          ]},
+          { group:'Weapon 2', choices:[
+            { label:'Burst Cannon',    pts:0, default:true },
+            { label:'Plasma Rifle',    pts:0, weapons:['Plasma Rifle (Tau)'], replaces:['Burst Cannon'] },
+            { label:'Fusion Blaster',  pts:0, weapons:['Fusion Blaster'],     replaces:['Burst Cannon'] },
+            { label:'Missile Pod',     pts:0, weapons:['Missile Pod'],        replaces:['Burst Cannon'] },
+          ]},
+        ]},
+    ],
     abilities:['For the Greater Good','Manta Strike: Deep strike — arrive 9"+ from enemy',
                '4+ invulnerable save','Support Systems: Each model may take 2 support systems'] },
 
@@ -165,7 +228,26 @@ const FACTION_TAU = [
   // ── FAST ATTACK ─────────────────────────────────────────────────────
   { id:'tau_pathfinders', name:'Pathfinder Team',
     stats:['7"','4+','4+','3','3','1','1','7','5+'], role:'Fast Attack', pts:55, min:5, max:10, ppm:11,
-    wargear:['Pulse Carbine','Markerlight'],
+    wargear:[],
+    composition:[
+      { role:'Pathfinder Sergeant', count:1, wargear:['Pulse Carbine','Markerlight'],
+        options:[
+          { group:'Upgrade', choices:[
+            { label:'Pulse Carbine + Markerlight', pts:0, default:true },
+            { label:'Ion Rifle',    pts:0, weapons:['Ion Rifle'],    replaces:['Pulse Carbine'] },
+            { label:'Rail Rifle',   pts:0, weapons:['Rail Rifle'],   replaces:['Pulse Carbine'] },
+          ]},
+        ]},
+      { role:'Special Weapon (up to 3)', count:3, wargear:['Pulse Carbine','Markerlight'],
+        options:[
+          { group:'Special', choices:[
+            { label:'Pulse Carbine + Markerlight', pts:0, default:true },
+            { label:'Ion Rifle',    pts:0, weapons:['Ion Rifle'],    replaces:['Pulse Carbine'] },
+            { label:'Rail Rifle',   pts:0, weapons:['Rail Rifle'],   replaces:['Pulse Carbine'] },
+          ]},
+        ]},
+      { role:'Pathfinder', count:1, wargear:['Pulse Carbine','Markerlight'] },
+    ],
     abilities:['For the Greater Good','Scouts: Move up to 6" before first battle round',
                'Markerlight: Hit — target gains a Markerlight counter (+1 to hit per counter)'] },
 

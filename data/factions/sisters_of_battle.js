@@ -45,20 +45,82 @@ const FACTION_SISTERS_OF_BATTLE = [
 
   { id:'sob_battle_sisters', name:'Battle Sister Squad',
     stats:['6"','3+','3+','3','3','1','1','7','3+'], role:'Troops', pts:55, min:5, max:15, ppm:11,
-    wargear:['Bolter','Bolt Pistol','Frag Grenade'],
-    abilities:['Shield of Faith','Acts of Faith',
-               'Special Weapons: Up to 2 per 5 models may take special weapons'] },
+    wargear:[],
+    composition:[
+      { role:'Sister Superior', count:1, wargear:['Bolter','Bolt Pistol'],
+        options:[
+          { group:'Ranged', choices:[
+            { label:'Bolter',          pts:0, default:true },
+            { label:'Boltgun',         pts:0, weapons:['Boltgun'],        replaces:['Bolter'] },
+            { label:'Plasma Pistol',   pts:5, weapons:['Plasma Pistol'],  replaces:['Bolter'] },
+          ]},
+          { group:'Melee', choices:[
+            { label:'None',            pts:0, default:true },
+            { label:'Chainsword',      pts:0, weapons:['Chainsword'],     replaces:[] },
+            { label:'Power Sword',     pts:4, weapons:['Power Sword'],    replaces:['Bolter'] },
+            { label:'Condemnor Boltgun',pts:5,weapons:['Condemnor Boltgun'],replaces:['Bolter'] },
+          ]},
+        ]},
+      { role:'Special Weapon (up to 2)', count:2, wargear:['Bolter','Bolt Pistol'],
+        options:[
+          { group:'Special', choices:[
+            { label:'Bolter',           pts:0, default:true },
+            { label:'Flamer',           pts:5, weapons:['Flamer'],            replaces:['Bolter'] },
+            { label:'Meltagun',         pts:8, weapons:['Meltagun'],          replaces:['Bolter'] },
+            { label:'Storm Bolter',     pts:3, weapons:['Storm Bolter'],      replaces:['Bolter'] },
+            { label:'Multi-melta',      pts:10,weapons:['Multi-melta'],       replaces:['Bolter'] },
+            { label:'Heavy Bolter',     pts:5, weapons:['Heavy Bolter'],      replaces:['Bolter'] },
+            { label:'Ministorum Flamer',pts:5, weapons:['Ministorum Flamer'], replaces:['Bolter'] },
+          ]},
+        ]},
+      { role:'Battle Sister', count:2, wargear:['Bolter','Bolt Pistol'] },
+    ],
+    abilities:['Shield of Faith','Acts of Faith'] },
 
   { id:'sob_seraphim', name:'Seraphim Squad',
     stats:['12"','3+','3+','3','3','1','2','7','3+'], role:'Fast Attack', pts:65, min:5, max:10, ppm:13,
-    wargear:['Bolt Pistols (x2)','Jump Pack'],
+    wargear:[],
+    composition:[
+      { role:'Seraphim Superior', count:1, wargear:['Bolt Pistol','Bolt Pistol','Jump Pack'],
+        options:[
+          { group:'Weapons', choices:[
+            { label:'Twin Bolt Pistols', pts:0, default:true },
+            { label:'Plasma Pistols (x2)', pts:10, weapons:['Plasma Pistol','Plasma Pistol'], replaces:['Bolt Pistol'] },
+            { label:'Hand Flamers (x2)', pts:6, weapons:['Hand Flamer','Hand Flamer'], replaces:['Bolt Pistol'] },
+          ]},
+        ]},
+      { role:'Seraphim', count:4, wargear:['Bolt Pistol','Bolt Pistol','Jump Pack'] },
+    ],
     abilities:['Shield of Faith','Acts of Faith',
                'Jump Pack Assault: Advance and charge same turn',
                'Angelic Descent: Arrive from deep strike 9"+ from enemy'] },
 
   { id:'sob_celestians', name:'Celestian Squad',
     stats:['6"','3+','3+','3','3','1','1','8','3+'], role:'Elites', pts:65, min:5, max:10, ppm:13,
-    wargear:['Bolter','Bolt Pistol'],
+    wargear:[],
+    composition:[
+      { role:'Celestian Superior', count:1, wargear:['Bolter','Bolt Pistol'],
+        options:[
+          { group:'Ranged', choices:[
+            { label:'Bolter',        pts:0, default:true },
+            { label:'Plasma Pistol', pts:5, weapons:['Plasma Pistol'], replaces:['Bolter'] },
+          ]},
+          { group:'Melee', choices:[
+            { label:'None',          pts:0, default:true },
+            { label:'Power Sword',   pts:4, weapons:['Power Sword'],   replaces:['Bolter'] },
+          ]},
+        ]},
+      { role:'Special Weapon (up to 2)', count:2, wargear:['Bolter','Bolt Pistol'],
+        options:[
+          { group:'Special', choices:[
+            { label:'Bolter',           pts:0, default:true },
+            { label:'Flamer',           pts:5, weapons:['Flamer'],            replaces:['Bolter'] },
+            { label:'Meltagun',         pts:8, weapons:['Meltagun'],          replaces:['Bolter'] },
+            { label:'Storm Bolter',     pts:3, weapons:['Storm Bolter'],      replaces:['Bolter'] },
+          ]},
+        ]},
+      { role:'Celestian', count:2, wargear:['Bolter','Bolt Pistol'] },
+    ],
     abilities:['Shield of Faith','Acts of Faith',
                'Bodyguard: Roll D6 when nearby Canoness loses wound — on 2+ Celestian suffers it instead'] },
 
