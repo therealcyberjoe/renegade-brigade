@@ -550,6 +550,20 @@ const WEAPON_PROFILES = {
   'Thermal Spear':              { range:'30"',  type:'Assault 2',   s:9,      ap:-4, d:'D6', special:'Melta' },
   'Hunting Lance':              { range:'Melee', type:'Melee',      s:'+6',   ap:-4, d:'D6', special:'+2 Strength / +2 Damage on the charge turn' },
 
+  // ── GREY KNIGHTS ─────────────────────────────────────────────────────
+  'Nemesis Falchions':          { range:'Melee', type:'Melee',      s:'User', ap:-2, d:'D3', special:'Psychic — +1 additional attack when wielding two falchions' },
+  'Nemesis Greatsword':         { range:'Melee', type:'Melee',      s:'+4',   ap:-3, d:'D3', special:'Psychic — two-handed' },
+  'Heavy Psycannon':            { range:'24"',  type:'Heavy 6',     s:7,      ap:-1, d:2,    special:'Psychic — wound rolls of 6 cause 1 mortal wound in addition' },
+  'Heavy Incinerator':          { range:'12"',  type:'Heavy D6',    s:6,      ap:-1, d:2,    special:'Auto-hits — Psychic' },
+  'Twin Heavy Bolter':          { range:'36"',  type:'Heavy 6',     s:5,      ap:-1, d:2,    special:'' },
+  'Twin Psycannon':             { range:'24"',  type:'Heavy 8',     s:7,      ap:-1, d:1,    special:'Psychic — wound rolls of 6 cause mortal wound' },
+  'Twin Plasma Gun':            { range:'24"',  type:'Rapid Fire 2', s:7,     ap:-3, d:1,    special:'Overcharge: S8 AP-3 D2 — on 1 bearer is slain' },
+  'Stormstrike Missile Launcher': { range:'72"', type:'Heavy 2',   s:8,      ap:-3, d:'D6', special:'' },
+  'Skyhammer Missile Launcher': { range:'60"',  type:'Heavy 2D3',   s:7,      ap:-1, d:'D3', special:'Blast — +1 to hit Flyers' },
+  'Icarus Stormcannon':         { range:'48"',  type:'Heavy 4',     s:7,      ap:-1, d:2,    special:'+1 to hit rolls against Flyers' },
+  'Las-talon':                  { range:'24"',  type:'Heavy 2',     s:9,      ap:-3, d:'D6', special:'' },
+  'Flamestorm Cannons':         { range:'12"',  type:'Heavy 2D6',   s:6,      ap:-2, d:2,    special:'Auto-hits' },
+
   // ── LEAGUES OF VOTANN ────────────────────────────────────────────────
   'Autoch-Pattern Bolter':      { range:'24"',  type:'Rapid Fire 1', s:4,     ap:0,  d:1,    special:'' },
   'EtaCarn Plasma Gun':         { range:'24"',  type:'Rapid Fire 1', s:7,     ap:-3, d:1,    special:'Overcharge: S8 AP-3 D2 — on hit roll of 1 bearer suffers D3 mortal wounds' },
