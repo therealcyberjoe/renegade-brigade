@@ -41,10 +41,26 @@
   </div>
 </header>
 
+<!-- MOBILE TAB NAV (hidden on desktop) -->
+<nav class="mobile-tabs" id="mobileTabs">
+  <button class="mobile-tab active" onclick="switchTab('config')" id="tab-config">
+    <span class="mobile-tab-icon">⚙</span>
+    <span class="mobile-tab-label">Config</span>
+  </button>
+  <button class="mobile-tab" onclick="switchTab('roster')" id="tab-roster">
+    <span class="mobile-tab-icon">⚔</span>
+    <span class="mobile-tab-label">Roster</span>
+  </button>
+  <button class="mobile-tab" onclick="switchTab('browse')" id="tab-browse">
+    <span class="mobile-tab-icon">+</span>
+    <span class="mobile-tab-label">Add Units</span>
+  </button>
+</nav>
+
 <div class="app">
 
   <!-- LEFT COLUMN: Setup -->
-  <div class="col-left" style="display:flex;flex-direction:column;gap:16px;">
+  <div class="col-left" data-tab="config" style="display:flex;flex-direction:column;gap:16px;">
 
     <!-- Army Config -->
     <div class="panel">
@@ -111,7 +127,7 @@
   </div>
 
   <!-- MIDDLE COLUMN: Roster -->
-  <div class="col-roster">
+  <div class="col-roster" data-tab="roster">
     <div class="panel" style="height:100%;">
       <div class="panel-header">
         <span class="panel-title">Army Roster</span>
@@ -128,7 +144,7 @@
   </div>
 
   <!-- RIGHT COLUMN: Unit Browser + Export -->
-  <div class="col-browser" style="display:flex;flex-direction:column;gap:16px;">
+  <div class="col-browser" data-tab="browse" style="display:flex;flex-direction:column;gap:16px;">
 
     <div class="panel" style="flex:1;">
       <div class="panel-header">

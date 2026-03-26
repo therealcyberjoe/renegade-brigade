@@ -1031,6 +1031,42 @@ function clearRoster() {
 }
 
 // ============================================================
+// MOBILE TAB NAVIGATION
+// ============================================================
+
+function switchTab(tab) {
+  const isMobile = window.innerWidth < 900;
+  if (!isMobile) return;
+
+  // Update tab buttons
+  document.querySelectorAll('.mobile-tab').forEach(btn => btn.classList.remove('active'));
+  const activeBtn = document.getElementById('tab-' + tab);
+  if (activeBtn) activeBtn.classList.add('active');
+
+  // Show/hide columns
+  const cols = document.querySelectorAll('[data-tab]');
+  cols.forEach(col => {
+    col.style.display = col.dataset.tab === tab ? (col.classList.contains('col-left') || col.classList.contains('col-browser') ? 'flex' : 'block') : 'none';
+  });
+}
+
+// On resize, reset to desktop layout if needed
+window.addEventListener('resize', () => {
+  if (window.innerWidth >= 900) {
+    document.querySelectorAll('[data-tab]').forEach(col => {
+      col.style.display = '';
+    });
+  } else {
+    // Re-apply current active tab
+    const activeTab = document.querySelector('.mobile-tab.active');
+    if (activeTab) {
+      const tab = activeTab.id.replace('tab-', '');
+      switchTab(tab);
+    }
+  }
+});
+
+// ============================================================
 // START
 // ============================================================
 init();

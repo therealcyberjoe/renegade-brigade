@@ -953,12 +953,130 @@
 
   /* PRINT VIEW */
   @media print {
-    header, .col-left, .col-browser { display: none !important; }
-    .app { grid-template-columns: 1fr; }
+    header, .col-left, .col-browser, .mobile-tabs { display: none !important; }
+    .app { grid-template-columns: 1fr; padding: 0; }
     .col-roster { max-height: none; }
     .panel-body { max-height: none; overflow: visible; }
     body { background: white; color: black; }
     .panel { border: 1px solid #ccc; }
+  }
+
+  /* ── MOBILE TAB NAV ─────────────────────────────────────── */
+  .mobile-tabs {
+    display: none;
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: var(--panel);
+    border-bottom: 1px solid var(--border);
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .mobile-tab {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    padding: 10px 8px;
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid transparent;
+    color: var(--muted);
+    cursor: pointer;
+    transition: all 0.15s;
+    font-family: 'Barlow Condensed', sans-serif;
+  }
+
+  .mobile-tab.active {
+    color: var(--gold);
+    border-bottom-color: var(--gold);
+    background: rgba(74,170,90,0.06);
+  }
+
+  .mobile-tab-icon {
+    font-size: 18px;
+    line-height: 1;
+  }
+
+  .mobile-tab-label {
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  /* ── TABLET: 900px-1199px — 2 column ───────────────────── */
+  @media (max-width: 1199px) and (min-width: 900px) {
+    .app {
+      grid-template-columns: 300px 1fr;
+      grid-template-rows: auto auto;
+    }
+    .col-left  { grid-column: 1; grid-row: 1 / 3; }
+    .col-roster  { grid-column: 2; grid-row: 1; }
+    .col-browser { grid-column: 2; grid-row: 2; }
+    .panel-body { max-height: none; }
+  }
+
+  /* ── MOBILE: under 900px — single column with tabs ─────── */
+  @media (max-width: 899px) {
+    .mobile-tabs { display: grid; }
+
+    header {
+      padding: 0 16px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .header-inner { height: 56px; }
+    .logo-text { font-size: 14px; }
+    .logo-sub, .logo-tagline { display: none; }
+    .points-value { font-size: 22px; }
+    .points-bar-wrap { display: none; }
+
+    .app {
+      display: block;
+      padding: 12px;
+      min-height: auto;
+    }
+
+    .col-left,
+    .col-roster,
+    .col-browser {
+      width: 100%;
+      flex-direction: column;
+    }
+
+    .panel-body { max-height: none; overflow: visible; }
+
+    .col-roster .panel { min-height: calc(100vh - 120px); }
+
+    .force-org { grid-template-columns: repeat(3, 1fr); gap: 6px; }
+    .org-slot-count { font-size: 16px; }
+    .faction-grid { grid-template-columns: 1fr 1fr; }
+    .export-btns { grid-template-columns: 1fr 1fr; }
+
+    .weapon-profile-inline { flex-wrap: wrap; gap: 4px; }
+
+    .role-tabs {
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      padding-bottom: 4px;
+    }
+    .role-tab { flex-shrink: 0; }
+
+    .roster-unit-controls { flex-shrink: 0; }
+
+    .app-footer { display: none; }
+  }
+
+  /* ── VERY SMALL: under 400px ────────────────────────────── */
+  @media (max-width: 399px) {
+    .app { padding: 8px; }
+    .header-inner { height: 50px; }
+    .points-value { font-size: 18px; }
+    .roster-unit-name { font-size: 14px; }
   }
 
   /* EMPTY STATE */
