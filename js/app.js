@@ -64,6 +64,11 @@ function init() {
     renderValidation();
     updateCP();
   });
+
+  // Set initial mobile tab state
+  if (window.innerWidth < 900) {
+    switchTab('config');
+  }
 }
 
 function renderFactions() {
@@ -365,6 +370,9 @@ function addUnit(unitId) {
   renderRoster();
   updateTotalPoints();
   renderForceOrg();
+
+  // On mobile, jump to roster so they can see the unit they just added
+  if (window.innerWidth < 900) switchTab('roster');
 }
 
 // ============================================================
@@ -1043,10 +1051,15 @@ function switchTab(tab) {
   const activeBtn = document.getElementById('tab-' + tab);
   if (activeBtn) activeBtn.classList.add('active');
 
-  // Show/hide columns
-  const cols = document.querySelectorAll('[data-tab]');
-  cols.forEach(col => {
-    col.style.display = col.dataset.tab === tab ? (col.classList.contains('col-left') || col.classList.contains('col-browser') ? 'flex' : 'block') : 'none';
+  // Show/hide columns — scroll each back to top on switch
+  document.querySelectorAll('[data-tab]').forEach(col => {
+    if (col.dataset.tab === tab) {
+      const isFlexCol = col.classList.contains('col-left') || col.classList.contains('col-browser');
+      col.style.display = isFlexCol ? 'flex' : 'block';
+      col.scrollTop = 0;
+    } else {
+      col.style.display = 'none';
+    }
   });
 }
 

@@ -1021,11 +1021,29 @@
   @media (max-width: 899px) {
     .mobile-tabs { display: grid; }
 
+    /* Lock the whole page — no page-level scroll on mobile */
+    html, body {
+      height: 100%;
+      overflow: hidden;
+    }
+
     header {
       padding: 0 16px;
-      position: sticky;
+      position: fixed;
       top: 0;
+      left: 0;
+      right: 0;
       z-index: 100;
+      height: 56px;
+    }
+
+    /* Tab nav sits directly below the fixed header */
+    .mobile-tabs {
+      position: fixed;
+      top: 56px;
+      left: 0;
+      right: 0;
+      z-index: 99;
     }
 
     .header-inner { height: 56px; }
@@ -1034,22 +1052,39 @@
     .points-value { font-size: 22px; }
     .points-bar-wrap { display: none; }
 
+    /* App fills viewport below header + tabs (56px header + ~52px tabs = 108px) */
     .app {
       display: block;
-      padding: 12px;
+      padding: 0;
+      margin-top: 108px;
+      height: calc(100vh - 108px);
+      overflow: hidden;
       min-height: auto;
     }
 
+    /* Each column fills the full app area and scrolls internally */
     .col-left,
     .col-roster,
     .col-browser {
       width: 100%;
+      height: 100%;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
       flex-direction: column;
+      padding: 12px;
+      box-sizing: border-box;
     }
 
-    .panel-body { max-height: none; overflow: visible; }
+    /* Panel bodies flow naturally — the column itself scrolls */
+    .panel-body {
+      max-height: none;
+      overflow: visible;
+    }
 
-    .col-roster .panel { min-height: calc(100vh - 120px); }
+    /* Panels don't need their own scroll */
+    .panel {
+      overflow: visible;
+    }
 
     .force-org { grid-template-columns: repeat(3, 1fr); gap: 6px; }
     .org-slot-count { font-size: 16px; }
