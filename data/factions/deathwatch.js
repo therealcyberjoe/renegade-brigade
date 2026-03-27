@@ -12,10 +12,35 @@ const FACTION_DEATHWATCH = [
 
   { id:'dw_kill_team', name:'Deathwatch Kill Team',
     stats:['6"','3+','3+','4','4','2','2','8','3+'], role:'Elites', pts:100, min:5, max:10, ppm:20,
-    wargear:['Special Issue Ammunition','Storm Bolter'],
+    wargear:[],
+    composition:[
+      { role:'Watch Sergeant', count:1, wargear:['Boltgun','Bolt Pistol','Special Issue Ammunition'],
+        options:[
+          { group:'Melee', choices:[
+            { label:'None',            pts:0, default:true },
+            { label:'Power Sword',     pts:4, weapons:['Power Sword'],     replaces:[] },
+            { label:'Thunder Hammer',  pts:12,weapons:['Thunder Hammer'],  replaces:['Boltgun'] },
+          ]},
+          { group:'Ranged', choices:[
+            { label:'Boltgun',         pts:0, default:true },
+            { label:'Storm Bolter',    pts:2, weapons:['Storm Bolter'],    replaces:['Boltgun'] },
+            { label:'Combi-melta',     pts:10,weapons:['Combi-melta'],     replaces:['Boltgun'] },
+          ]},
+        ]},
+      { role:'Frag Cannon Bearer', count:1, wargear:['Deathwatch Frag Cannon','Bolt Pistol','Special Issue Ammunition'] },
+      { role:'Veteran', count:3, wargear:['Boltgun','Bolt Pistol','Special Issue Ammunition'],
+        options:[
+          { group:'Special', choices:[
+            { label:'Boltgun',         pts:0, default:true },
+            { label:'Storm Bolter',    pts:2, weapons:['Storm Bolter'],    replaces:['Boltgun'] },
+            { label:'Plasma Gun',      pts:5, weapons:['Plasma Gun'],      replaces:['Boltgun'] },
+            { label:'Meltagun',        pts:5, weapons:['Meltagun'],        replaces:['Boltgun'] },
+          ]},
+        ]},
+    ],
     abilities:['And They Shall Know No Fear',
                'Special Issue Ammunition: Once per battle Bolters become AP-2 and re-roll wound rolls of 1',
-               'Mixed Unit: Include models from any combination of Space Marine Chapters — each may take unique wargear'] },
+               'Mixed Unit: Include models from any combination of Space Marine Chapters'] },
 
   { id:'dw_veterans', name:'Deathwatch Veterans',
     stats:['6"','3+','3+','4','4','1','2','8','3+'], role:'Elites', pts:85, min:5, max:10, ppm:17,
@@ -54,13 +79,43 @@ const FACTION_DEATHWATCH = [
 
   { id:'dw_bikers', name:'Deathwatch Bikers',
     stats:['14"','3+','3+','4','5','2','2','8','3+'], role:'Fast Attack', pts:80, min:3, max:9, ppm:27,
-    wargear:['Twin Boltgun','Special Issue Ammunition'],
+    wargear:[],
+    composition:[
+      { role:'Biker Sergeant', count:1, wargear:['Twin Boltgun','Special Issue Ammunition'],
+        options:[
+          { group:'Melee', choices:[
+            { label:'None',            pts:0, default:true },
+            { label:'Power Sword',     pts:4, weapons:['Power Sword'],  replaces:[] },
+            { label:'Thunder Hammer',  pts:12,weapons:['Thunder Hammer'],replaces:['Twin Boltgun'] },
+          ]},
+        ]},
+      { role:'Deathwatch Biker', count:2, wargear:['Twin Boltgun','Special Issue Ammunition'] },
+    ],
     abilities:['And They Shall Know No Fear','Special Issue Ammunition',
                'Turbo-boost: May Advance and charge in same turn'] },
 
   { id:'dw_terminator', name:'Terminator Squad',
     stats:['5"','3+','3+','4','4','2','2','8','2+'], role:'Elites', pts:195, min:5, max:10, ppm:39,
-    wargear:['Storm Bolter','Power Fist'],
+    wargear:[],
+    composition:[
+      { role:'Terminator Sergeant', count:1, wargear:['Storm Bolter','Power Fist'],
+        options:[
+          { group:'Melee', choices:[
+            { label:'Power Fist',     pts:0, default:true },
+            { label:'Thunder Hammer', pts:5, weapons:['Thunder Hammer'], replaces:['Power Fist'] },
+            { label:'Lightning Claw', pts:0, weapons:['Lightning Claw'],  replaces:['Power Fist'] },
+          ]},
+        ]},
+      { role:'Terminator', count:4, wargear:['Storm Bolter','Power Fist'],
+        options:[
+          { group:'Melee', choices:[
+            { label:'Power Fist',     pts:0, default:true },
+            { label:'Thunder Hammer', pts:5, weapons:['Thunder Hammer'], replaces:['Power Fist'] },
+            { label:'Lightning Claw', pts:0, weapons:['Lightning Claw'],  replaces:['Power Fist'] },
+          ]},
+        ]},
+    ],
+    wargear_legacy:['Storm Bolter','Power Fist'],
     abilities:['And They Shall Know No Fear',
                'Teleport Strike: Deep strike 9"+ from enemy',
                'Terminator Armour: 5+ invulnerable save','Special Issue Ammunition'] },

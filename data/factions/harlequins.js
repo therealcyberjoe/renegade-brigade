@@ -40,7 +40,11 @@ const FACTION_HARLEQUINS = [
   // ── TROOPS ──────────────────────────────────────────────────────────
   { id:'har_troupe', name:'Harlequin Troupe',
     stats:['8"','3+','3+','3','3','1','3','8','6+'], role:'Troops', pts:78, min:5, max:12, ppm:13,
-    wargear:['Harlequin Caress','Shuriken Pistol'],
+    wargear:[],
+    composition:[
+      { role:'Lead Player', count:1, wargear:['Harlequin Caress','Harlequin Kiss','Shuriken Pistol'] },
+      { role:'Player', count:4, wargear:['Harlequin Caress','Harlequin Kiss','Shuriken Pistol'] },
+    ],
     options:[
       { group:'Any model', pick:1, choices:[
         { label:'Harlequin Caress', pts:0, default:true },

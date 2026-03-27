@@ -180,13 +180,28 @@ const FACTION_ELDAR = [
 
   { id:'el_storm_guardians', name:'Storm Guardians',
     stats:['7"','3+','4+','3','3','1','2','7','5+'], role:'Troops', pts:50, min:8, max:16, ppm:6,
-    wargear:['Shuriken Pistol','Chainsword'],
+    wargear:[],
+    composition:[
+      { role:'Warlock', count:1, wargear:['Witchblade','Shuriken Pistol'] },
+      { role:'Special Weapon (up to 2)', count:2, wargear:['Shuriken Pistol','Chainsword'],
+        options:[
+          { group:'Special', choices:[
+            { label:'Shuriken Pistol & Chainsword', pts:0, default:true },
+            { label:'Flamer',        pts:3, weapons:['Flamer'],        replaces:['Shuriken Pistol'] },
+            { label:'Fusion Gun',    pts:5, weapons:['Fusion Gun'],    replaces:['Shuriken Pistol'] },
+          ]},
+        ]},
+      { role:'Storm Guardian', count:5, wargear:['Shuriken Pistol','Chainsword'] },
+    ],
     abilities:['Battle Focus',
                'Plasma Grenades: -1 to hit rolls for enemy units charged by this unit'] },
 
   { id:'el_rangers', name:'Rangers',
     stats:['7"','3+','3+','3','3','1','1','7','5+'], role:'Troops', pts:60, min:5, max:10, ppm:12,
-    wargear:['Ranger Long Rifle','Shuriken Pistol','Cameleoline'],
+    wargear:[],
+    composition:[
+      { role:'Ranger', count:5, wargear:['Ranger Long Rifle','Shuriken Pistol'] },
+    ],
     abilities:['Battle Focus',
                'Cameleoline: Always count as being in cover',
                'Scouts: Move up to 6" before first battle round',
@@ -194,19 +209,30 @@ const FACTION_ELDAR = [
 
   { id:'el_wraithguard', name:'Wraithguard',
     stats:['5"','3+','3+','5','6','3','1','10','3+'], role:'Troops', pts:165, min:5, max:10, ppm:33,
-    wargear:['Wraithcannons','Spirit Stones'],
+    wargear:[],
+    composition:[
+      { role:'Wraithguard', count:5, wargear:['Wraithcannon'],
+        options:[
+          { group:'Weapon', choices:[
+            { label:'Wraithcannon', pts:0, default:true, weapons:['Wraithcannon'] },
+            { label:'D-Scythe',     pts:5, weapons:['D-Scythe'], replaces:['Wraithcannon'] },
+          ]},
+        ]},
+    ],
     abilities:['Wraithsight: If not within 6" of Spiritseer or Farseer must roll D6 — on 1 cannot move or shoot',
-               'Stoic: Auto-pass Morale tests',
-               'D-Scythes optional: Replace Wraithcannons — Assault D3 auto-hit +5pts/model'] },
+               'Stoic: Auto-pass Morale tests'] },
 
   { id:'el_wraithblades', name:'Wraithblades',
     stats:['5"','3+','3+','6','6','3','3','10','3+'], role:'Troops', pts:155, min:5, max:10, ppm:31,
-    wargear:['Ghostaxe','Forceshield'],
-    options:[
-      { group:'Weapon', pick:1, choices:[
-        { label:'Ghostaxe & Forceshield', pts:0, default:true },
-        { label:'Paired Wraithswords', pts:0 },
-      ]},
+    wargear:[],
+    composition:[
+      { role:'Wraithblade', count:5, wargear:['Ghostaxe','Forceshield'],
+        options:[
+          { group:'Weapon', choices:[
+            { label:'Ghostaxe & Forceshield', pts:0, default:true, weapons:['Ghostaxe','Forceshield'] },
+            { label:'Paired Wraithswords',    pts:0, weapons:['Wraithsword','Wraithsword'], replaces:['Ghostaxe','Forceshield'] },
+          ]},
+        ]},
     ],
     abilities:['Wraithsight','Stoic',
                'Forceshield: 4+ invulnerable save (Ghostaxe variant only)'] },
@@ -283,15 +309,26 @@ const FACTION_ELDAR = [
 
   { id:'el_seer_council_bike', name:'Seer Council on Jetbikes',
     stats:['14"','3+','3+','3','3','2','1','8','4+'], role:'Elites', pts:195, min:3, max:10, ppm:65,
-    wargear:['Jetbikes','Witchblades','Singing Spears','Shuriken Pistols'],
-    abilities:['Psyker: Each model is Mastery Level 1',
-               'Runes of Battle: Each model knows Smite + 1 power',
+    wargear:[],
+    composition:[
+      { role:'Warlock Conclave', count:3, wargear:['Witchblade','Shuriken Pistol'],
+        options:[
+          { group:'Weapon', choices:[
+            { label:'Witchblade',    pts:0, default:true, weapons:['Witchblade'] },
+            { label:'Singing Spear', pts:0, weapons:['Singing Spear'], replaces:['Witchblade'] },
+          ]},
+        ]},
+    ],
+    abilities:['Psyker: Each model is Mastery Level 1 — knows Smite + 1 Runes of Battle power',
                'Seer Council: For each Warlock add 1 to Deny the Witch rolls',
                'Jetbike: 14" Move'] },
 
   { id:'el_shadow_spectres', name:'Shadow Spectres',
     stats:['12"','3+','3+','3','3','1','2','8','4+'], role:'Elites', pts:88, min:4, max:10, ppm:22, isNew:true,
-    wargear:['Prism Rifle','Holofield'],
+    wargear:[],
+    composition:[
+      { role:'Shadow Spectre', count:4, wargear:['Prism Rifle','Holofield'] },
+    ],
     abilities:['Holofield: 5+ invulnerable save',
                'Compact Formation: Models within 6" of 2+ other models add 1 to Prism Rifle hit rolls',
                'Wraith Form: May Advance and still fire Prism Rifles at -1 to hit',
@@ -299,7 +336,11 @@ const FACTION_ELDAR = [
 
   { id:'el_harlequins_troop', name:'Harlequin Troupe',
     stats:['8"','3+','3+','3','3','1','3','8','6+'], role:'Elites', pts:78, min:5, max:12, ppm:13,
-    wargear:['Harlequin Caress','Harlequin Kiss','Shuriken Pistol'],
+    wargear:[],
+    composition:[
+      { role:'Lead Player', count:1, wargear:['Harlequin Caress','Harlequin Kiss','Shuriken Pistol'] },
+      { role:'Player', count:4, wargear:['Harlequin Caress','Harlequin Kiss','Shuriken Pistol'] },
+    ],
     abilities:["Flip Belts: Ignore penalties from terrain when moving",
                'Holo-Suits: 5+ invulnerable save',
                'Cegorach\'s Jest: If unit charged add 1 to Attacks this Fight phase'] },
@@ -356,13 +397,16 @@ const FACTION_ELDAR = [
 
   { id:'el_windriders', name:'Windriders',
     stats:['16"','3+','3+','3','4','2','2','8','4+'], role:'Fast Attack', pts:54, min:3, max:12, ppm:18,
-    wargear:['Shuriken Catapult'],
-    options:[
-      { group:'Weapon', pick:1, choices:[
-        { label:'Shuriken Catapult', pts:0, default:true },
-        { label:'Shuriken Cannon', pts:5 },
-        { label:'Scatter Laser', pts:8 },
-      ]},
+    wargear:[],
+    composition:[
+      { role:'Windrider', count:3, wargear:['Shuriken Catapult'],
+        options:[
+          { group:'Weapon', choices:[
+            { label:'Shuriken Catapult', pts:0, default:true, weapons:['Shuriken Catapult'] },
+            { label:'Shuriken Cannon',   pts:5, weapons:['Shuriken Cannon'],  replaces:['Shuriken Catapult'] },
+            { label:'Scatter Laser',     pts:8, weapons:['Scatter Laser'],    replaces:['Shuriken Catapult'] },
+          ]},
+        ]},
     ],
     abilities:['Battle Focus',
                'Jink: 4+ invulnerable save if unit Advanced this turn',
@@ -370,7 +414,10 @@ const FACTION_ELDAR = [
 
   { id:'el_shroud_runners', name:'Shroud Runners',
     stats:['16"','3+','3+','3','4','2','2','8','4+'], role:'Fast Attack', pts:105, min:3, max:9, ppm:35, isNew:true,
-    wargear:['Ranger Long Rifle','Jetbike Cannon','Shuriken Pistol'],
+    wargear:[],
+    composition:[
+      { role:'Shroud Runner', count:3, wargear:['Ranger Long Rifle','Jetbike Cannon','Shuriken Pistol'] },
+    ],
     abilities:['Scouts: Move up to 9" before first battle round',
                'Outflank: Or hold in reserve — arrive within 6" of any battlefield edge 9"+ from enemy',
                'Ranger Fieldcraft: Counts as in cover if did not move this turn',

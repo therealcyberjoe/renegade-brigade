@@ -131,14 +131,20 @@ const FACTION_NECRONS = [
 
   { id:'nec_deathmarks', name:'Deathmarks',
     stats:['5"','3+','3+','4','4','1','1','10','3+'], role:'Elites', pts:95, min:5, max:10, ppm:19,
-    wargear:['Synaptic Disintegrator'],
+    wargear:[],
+    composition:[
+      { role:'Deathmark', count:5, wargear:['Synaptic Disintegrator'] },
+    ],
     abilities:['Reanimation Protocols',
                'Hunters from Hyperspace: Deploy from deep strike — may immediately fire at one enemy unit that arrived from reserve this turn',
                'Ethereal Intercept: When enemy unit enters from reserve within 24" — these models may shoot as Interrupt action'] },
 
   { id:'nec_flayed_ones', name:'Flayed Ones',
     stats:['5"','3+','3+','4','4','1','3','10','4+'], role:'Elites', pts:57, min:5, max:20, ppm:11,
-    wargear:['Flayer Claws'],
+    wargear:[],
+    composition:[
+      { role:'Flayed One', count:5, wargear:['Flayer Claws'] },
+    ],
     abilities:['Reanimation Protocols',
                'Infiltrate: Deploy anywhere more than 9" from enemy before first battle round',
                'Fear: Enemy units within 3" subtract 1 from Leadership'] },
@@ -161,14 +167,20 @@ const FACTION_NECRONS = [
 
   { id:'nec_skorpekh_dest', name:'Skorpekh Destroyers',
     stats:['8"','3+','3+','5','5','3','3','10','3+'], role:'Elites', pts:120, min:3, max:6, ppm:40, isNew:true,
-    wargear:['Hyperphase Threshers'],
+    wargear:[],
+    composition:[
+      { role:'Skorpekh Destroyer', count:3, wargear:['Hyperphase Threshers'] },
+    ],
     abilities:['Reanimation Protocols',
                'Relentless Advance: May Advance and still charge',
                'Frenzied Charge: Add 2 to Attacks on turn it charges'] },
 
   { id:'nec_ophydian', name:'Ophydian Destroyers',
     stats:['10"','3+','3+','5','5','3','4','10','3+'], role:'Elites', pts:126, min:3, max:6, ppm:42, isNew:true,
-    wargear:['Hyperphase Reap-blades','Atomiser Beam'],
+    wargear:[],
+    composition:[
+      { role:'Ophydian Destroyer', count:3, wargear:['Hyperphase Reap-blades','Atomiser Beam'] },
+    ],
     abilities:['Burrowing Assault: Deep strike — arrive 9"+ from enemy — cannot charge same turn',
                'Reanimation Protocols',
                'Destroyer Cult: Re-roll hit rolls of 1 within 6" of a Destroyer Cult Character'] },
@@ -247,6 +259,28 @@ const FACTION_NECRONS = [
                'Unstoppable: Ignores penalty for moving and firing Heavy weapons',
                'Canoptek Construct: Does not benefit from Dynasty abilities — does not take Morale tests'] },
 
+  // ── C'TAN SHARDS (Elites — one per detachment) ──────────────────────
+  { id:'nec_shard_nightbringer', name:"C'tan Shard of the Nightbringer",
+    stats:['8"','3+','3+','7','7','8','4','10','4+'], role:'Elites', pts:215, min:1, max:1, ppm:0,
+    wargear:["Scythe of the Nightbringer (Shard)",'Gaze of Death (Shard)'],
+    abilities:["Enslaved C'tan: 4+ invulnerable save — immune to psychic powers",
+               'Cosmic Power (choose 1 per round): Gaze of Death — D3 mortal wounds to enemy within 12" | Living Lightning — D6 hits S5 AP-2 D1 within 18" | Writhing Worldscape — enemy units moving through terrain within 3" suffer D3 mortal wounds on 6+',
+               "One per Detachment: Only one C'tan Shard of any kind per detachment"] },
+
+  { id:'nec_shard_deceiver', name:"C'tan Shard of the Deceiver",
+    stats:['8"','3+','3+','7','7','8','4','10','4+'], role:'Elites', pts:200, min:1, max:1, ppm:0,
+    wargear:['Excoriating Talon','Dust Form'],
+    abilities:["Enslaved C'tan: 4+ invulnerable save — immune to psychic powers",
+               'Cosmic Power (choose 1 per round): Grand Illusion — before battle redeploy D3 friendly units | Transdimensional Displacement — move one enemy unit up to 6" | Souldread — enemy units within 6" subtract 2 from Leadership',
+               "One per Detachment: Only one C'tan Shard of any kind per detachment"] },
+
+  { id:'nec_shard_void_dragon', name:"C'tan Shard of the Void Dragon",
+    stats:['10"','3+','3+','7','7','8','4','10','4+'], role:'Elites', pts:225, min:1, max:1, ppm:0, isNew:true,
+    wargear:['Talons of the Void Dragon (Shard)','Betassic Ray'],
+    abilities:["Enslaved C'tan: 4+ invulnerable save — immune to psychic powers",
+               'Cosmic Power (choose 1 per round): Voltaic Storm — D6 hits S6 AP-2 D1 to enemy within 18" | Machine Curse — enemy Vehicle within 18" suffers D3 mortal wounds | Reassemble — friendly Necrons Vehicle within 6" regains D3 wounds',
+               "One per Detachment: Only one C'tan Shard of any kind per detachment"] },
+
   // ── LORD OF WAR ─────────────────────────────────────────────────────
   { id:'nec_monolith', name:'Monolith',
     stats:['6"','5+','3+','8','8','20','3','10','3+'], role:'Lord of War', pts:310, min:1, max:1, ppm:0,
@@ -256,18 +290,21 @@ const FACTION_NECRONS = [
                'Quantum Shielding: First wound dealing 3+ damage reduced to 0',
                'Explodes: On 6 when destroyed — D6 mortal wounds within 6"'] },
 
-  { id:'nec_void_dragon', name:'The Void Dragon',
-    stats:['10"','2+','2+','8','8','16','6','10','4+'], role:'Lord of War', pts:350, min:1, max:1, ppm:0, isNew:true,
-    wargear:['Talons of the Void Dragon','Ray of the Void'],
-    abilities:["Unshackled C'tan: 4+ invulnerable save — immune to psychic powers — ignore hit modifiers",
-               'Cosmic Power: Once per battle round choose one of three powers',
-               'Lord of the Machine Cult: Necrons Vehicles within 9" re-roll hit rolls of 1',
-               'Enslaved Star God: Start of your turn — on 1 suffer 1 mortal wound — on 5+ regain 1 wound'] },
+  { id:'nec_tesseract_vault', name:'Tesseract Vault',
+    stats:['8"','5+','3+','8','8','24','3','10','3+'], role:'Lord of War', pts:430, min:1, max:1, ppm:0,
+    wargear:['Four Gauss Flux Arcs','Imprisoned Powers x2'],
+    abilities:['Imprisoned Powers: Generates 2 Cosmic Powers per turn — choose from Antimatter Meteor / Seismic Assault / Transdimensional Thunderbolt / Vortex of Doom',
+               'Quantum Shielding: First wound dealing 3+ damage reduced to 0',
+               'Living Metal: Recover 1 wound at start of each turn',
+               'Explodes: On 6 when destroyed — D6 mortal wounds within 2D6"'] },
 
   // ── FORTIFICATION ────────────────────────────────────────────────────
   { id:'nec_convergence', name:'Convergence of Dominion',
     stats:['-','-','-','-','7','4','-','-','3+'], role:'Fortification', pts:70, min:3, max:3, ppm:0, isNew:true,
-    wargear:['Starstele Network'],
+    wargear:[],
+    composition:[
+      { role:'Starstele', count:3, wargear:['Starstele Network'] },
+    ],
     abilities:['Starstele Network: While 2+ remain friendly Necrons within 6" add 1 to Reanimation rolls',
                'Transdimensional Recall: Once per game — remove one friendly Necrons Infantry unit and set it up within 3" of any Starstele'] },
 ];

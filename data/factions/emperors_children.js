@@ -44,17 +44,35 @@ const FACTION_EMPERORS_CHILDREN = [
 
   { id:'ec_csm', name:'Chaos Space Marines',
     stats:['6"','3+','3+','4','4','1','1','7','3+'], role:'Troops', pts:60, min:5, max:20, ppm:12,
-    wargear:['Bolter','Bolt Pistol'],
+    wargear:[],
+    composition:[
+      { role:'Chaos Champion', count:1, wargear:['Boltgun','Bolt Pistol','Chainsword'],
+        options:[
+          { group:'Melee', choices:[
+            { label:'Chainsword',  pts:0, default:true },
+            { label:'Power Sword', pts:4, weapons:['Power Sword'], replaces:['Chainsword'] },
+            { label:'Power Fist',  pts:9, weapons:['Power Fist'],  replaces:['Chainsword'] },
+          ]},
+        ]},
+      { role:'Chaos Space Marine', count:4, wargear:['Boltgun','Bolt Pistol'] },
+    ],
     abilities:['Kakophoni: +1 Leadership — enemies Falling Back subtract 1 from hit rolls'] },
 
   { id:'ec_terminators', name:'Chaos Terminators',
     stats:['5"','3+','3+','4','4','2','2','8','2+'], role:'Elites', pts:155, min:5, max:10, ppm:31,
-    wargear:['Storm Bolters','Power Fists'],
+    wargear:[],
+    composition:[
+      { role:'Terminator Champion', count:1, wargear:['Combi-Bolter','Power Fist'] },
+      { role:'Terminator', count:4, wargear:['Combi-Bolter','Power Fist'] },
+    ],
     abilities:['Teleport Strike','Terminator Armour: 5+ invulnerable save'] },
 
   { id:'ec_havocs', name:'Havocs',
     stats:['6"','3+','3+','4','4','1','1','7','3+'], role:'Heavy Support', pts:60, min:5, max:5, ppm:0,
-    wargear:['Bolters','Autocannons'],
+    wargear:[],
+    composition:[
+      { role:'Havoc', count:5, wargear:['Bolters','Autocannons'] },
+    ],
     abilities:['Tank Hunters: Re-roll failed wound rolls against Vehicles',
                'Up to 4 models may take heavy weapons'] },
 

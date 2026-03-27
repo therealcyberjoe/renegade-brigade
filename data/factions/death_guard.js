@@ -68,7 +68,10 @@ const FACTION_DEATH_GUARD = [
 
   { id:'dg_poxwalkers', name:'Poxwalkers',
     stats:['5"','5+','5+','3','4','1','1','5','7+'], role:'Troops', pts:60, min:10, max:30, ppm:6,
-    wargear:['Improvised Weapon','Putrescent Vitality'],
+    wargear:[],
+    composition:[
+      { role:'Poxwalker', count:10, wargear:['Improvised Weapon'] },
+    ],
     abilities:['Disgustingly Resilient: 5+ Feel No Pain',
                'Curse of the Walking Pox: Each time a Poxwalker slays a model roll D6 — on 5+ add 1 Poxwalker to this unit',
                'Mindless: Must move toward nearest enemy and charge if able'] },
@@ -113,7 +116,10 @@ const FACTION_DEATH_GUARD = [
 
   { id:'dg_deathshroud', name:'Deathshroud Bodyguard',
     stats:['5"','3+','3+','4','5','2','2','8','3+'], role:'Elites', pts:175, min:3, max:9, ppm:58,
-    wargear:['Manreaper','Plaguespurt Gauntlet'],
+    wargear:[],
+    composition:[
+      { role:'Deathshroud', count:3, wargear:['Manreaper','Plaguespurt Gauntlet'] },
+    ],
     abilities:['Disgustingly Resilient: 5+ Feel No Pain',
                'Bodyguard: Roll D6 when nearby Death Guard Character loses wound — on 2+ Deathshroud suffers it',
                '4+ invulnerable save'] },

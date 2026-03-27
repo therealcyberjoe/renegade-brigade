@@ -63,7 +63,17 @@ const FACTION_DARK_ANGELS = [
 
   { id:'da_ravenwing', name:'Ravenwing Black Knights',
     stats:['14"','3+','3+','4','5','2','3','8','3+'], role:'Fast Attack', pts:130, min:3, max:9, ppm:43,
-    wargear:['Corvus Hammer','Plasma Talon'],
+    wargear:[],
+    composition:[
+      { role:'Black Knight Huntmaster', count:1, wargear:['Corvus Hammer','Plasma Talon'],
+        options:[
+          { group:'Ranged', choices:[
+            { label:'Plasma Talon',  pts:0, default:true, weapons:['Plasma Talon'] },
+            { label:'Corvus Hammer (Thrown)', pts:0, weapons:['Corvus Hammer'], replaces:['Plasma Talon'] },
+          ]},
+        ]},
+      { role:'Black Knight', count:2, wargear:['Corvus Hammer','Plasma Talon'] },
+    ],
     abilities:['And They Shall Know No Fear',
                'Inner Circle','Scouts: Move up to 9" before first battle round',
                'Jink: 5+ invulnerable save if unit Advanced'] },
@@ -110,8 +120,24 @@ const FACTION_DARK_ANGELS = [
 
   { id:'da_intercessors', name:'Intercessor Squad',
     stats:['6"','3+','3+','4','4','2','2','7','3+'], role:'Troops', pts:85, min:5, max:10, ppm:17,
-    wargear:['Bolt Rifles'],
-    abilities:['And They Shall Know No Fear','Combat Squads'] },
+    wargear:[],
+    composition:[
+      { role:'Sergeant', count:1, wargear:['Bolt Rifle','Bolt Pistol'],
+        options:[
+          { group:'Bolt Rifle', choices:[
+            { label:'Bolt Rifle',         pts:0, default:true, weapons:['Bolt Rifle'] },
+            { label:'Auto Bolt Rifle',    pts:0, weapons:['Auto Bolt Rifle'],    replaces:['Bolt Rifle'] },
+            { label:'Stalker Bolt Rifle', pts:0, weapons:['Stalker Bolt Rifle'], replaces:['Bolt Rifle'] },
+          ]},
+          { group:'Melee', choices:[
+            { label:'None',       pts:0, default:true },
+            { label:'Chainsword', pts:0, weapons:['Chainsword'], replaces:[] },
+            { label:'Power Sword',pts:4, weapons:['Power Sword'],replaces:['Bolt Rifle'] },
+          ]},
+        ]},
+      { role:'Intercessor', count:4, wargear:['Bolt Rifle','Bolt Pistol'] },
+    ],
+    abilities:['And They Shall Know No Fear','Combat Squads','Grim Resolve: Never take Morale if did not move'] },
 
   { id:'da_belial', name:'Belial — Master of the Deathwing',
     stats:['5"','2+','2+','4','4','5','5','9','2+'], role:'HQ', pts:135, min:1, max:1, ppm:0, unique:true,

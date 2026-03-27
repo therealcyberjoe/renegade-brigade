@@ -78,7 +78,34 @@ const FACTION_BLOOD_ANGELS = [
 
   { id:'ba_assault', name:'Assault Squad',
     stats:['12"','3+','3+','4','4','1','1','7','3+'], role:'Fast Attack', pts:65, min:5, max:10, ppm:13,
-    wargear:['Chainsword','Bolt Pistol','Jump Pack'],
+    wargear:[],
+    composition:[
+      { role:'Sergeant', count:1, wargear:['Chainsword','Bolt Pistol','Jump Pack'],
+        options:[
+          { group:'Melee', choices:[
+            { label:'Chainsword',    pts:0, default:true },
+            { label:'Power Sword',   pts:4, weapons:['Power Sword'],   replaces:['Chainsword'] },
+            { label:'Power Fist',    pts:9, weapons:['Power Fist'],    replaces:['Chainsword'] },
+            { label:'Thunder Hammer',pts:12,weapons:['Thunder Hammer'],replaces:['Chainsword'] },
+          ]},
+          { group:'Sidearm', choices:[
+            { label:'Bolt Pistol',   pts:0, default:true },
+            { label:'Plasma Pistol', pts:5, weapons:['Plasma Pistol'], replaces:['Bolt Pistol'] },
+            { label:'Inferno Pistol',pts:5, weapons:['Inferno Pistol'],replaces:['Bolt Pistol'] },
+            { label:'Hand Flamer',   pts:3, weapons:['Hand Flamer'],   replaces:['Bolt Pistol'] },
+          ]},
+        ]},
+      { role:'Special Weapon (up to 2)', count:2, wargear:['Bolt Pistol','Chainsword','Jump Pack'],
+        options:[
+          { group:'Special', choices:[
+            { label:'Bolt Pistol',   pts:0, default:true },
+            { label:'Plasma Pistol', pts:5, weapons:['Plasma Pistol'], replaces:['Bolt Pistol'] },
+            { label:'Inferno Pistol',pts:5, weapons:['Inferno Pistol'],replaces:['Bolt Pistol'] },
+            { label:'Hand Flamer',   pts:3, weapons:['Hand Flamer'],   replaces:['Bolt Pistol'] },
+          ]},
+        ]},
+      { role:'Assault Marine', count:2, wargear:['Bolt Pistol','Chainsword','Jump Pack'] },
+    ],
     abilities:['And They Shall Know No Fear','Jump Pack Assault: Advance and charge same turn',
                'Red Thirst: Add 1 to wound rolls if this unit charged'] },
 
@@ -124,7 +151,23 @@ const FACTION_BLOOD_ANGELS = [
 
   { id:'ba_intercessors', name:'Intercessor Squad',
     stats:['6"','3+','3+','4','4','2','2','7','3+'], role:'Troops', pts:85, min:5, max:10, ppm:17,
-    wargear:['Bolt Rifles'],
+    wargear:[],
+    composition:[
+      { role:'Sergeant', count:1, wargear:['Bolt Rifle','Bolt Pistol'],
+        options:[
+          { group:'Bolt Rifle', choices:[
+            { label:'Bolt Rifle',         pts:0, default:true, weapons:['Bolt Rifle'] },
+            { label:'Auto Bolt Rifle',    pts:0, weapons:['Auto Bolt Rifle'],    replaces:['Bolt Rifle'] },
+            { label:'Stalker Bolt Rifle', pts:0, weapons:['Stalker Bolt Rifle'], replaces:['Bolt Rifle'] },
+          ]},
+          { group:'Melee', choices:[
+            { label:'None',       pts:0, default:true },
+            { label:'Chainsword', pts:0, weapons:['Chainsword'], replaces:[] },
+            { label:'Power Sword',pts:4, weapons:['Power Sword'],replaces:['Bolt Rifle'] },
+          ]},
+        ]},
+      { role:'Intercessor', count:4, wargear:['Bolt Rifle','Bolt Pistol'] },
+    ],
     abilities:['And They Shall Know No Fear','Combat Squads','Red Thirst'] },
 
   { id:'ba_baal_predator', name:'Baal Predator',

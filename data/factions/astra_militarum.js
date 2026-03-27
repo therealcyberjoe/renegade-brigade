@@ -167,7 +167,10 @@ const FACTION_ASTRA_MILITARUM = [
 
   { id:'ag_conscripts', name:'Conscripts',
     stats:['6"','5+','5+','3','3','1','1','4','6+'], role:'Troops', pts:50, min:20, max:30, ppm:2,
-    wargear:['Lasgun'],
+    wargear:[],
+    composition:[
+      { role:'Conscript', count:20, wargear:['Lasgun'] },
+    ],
     abilities:['Voice of Command: Can receive orders',
                'Mob Rule: Re-roll Morale tests if 10+ models remain',
                'Send in the Next Wave: Destroyed unit may return from reserves once per game'] },
@@ -204,13 +207,27 @@ const FACTION_ASTRA_MILITARUM = [
 
   { id:'ag_ogryns', name:'Ogryns',
     stats:['6"','3+','3+','5','5','3','3','7','4+'], role:'Elites', pts:78, min:3, max:6, ppm:26,
-    wargear:['Ripper Guns','Bone \'Edd'],
+    wargear:[],
+    composition:[
+      { role:'Ogryn Bonehead', count:1, wargear:['Ripper Gun','Frag Bomb'],
+        options:[
+          { group:'Melee', choices:[
+            { label:'None',            pts:0, default:true },
+            { label:'Bullgryn Maul',   pts:5, weapons:['Bullgryn Maul'],   replaces:[] },
+            { label:'Brute Shield',    pts:5, weapons:['Brute Shield'],    replaces:[] },
+          ]},
+        ]},
+      { role:'Ogryn', count:2, wargear:['Ripper Gun','Frag Bomb'] },
+    ],
     abilities:['Unnatural Strength: Re-roll failed wound rolls in the Fight phase',
                'Loyal Protector: Friendly Characters within 3" may re-roll failed saving throws of 1'] },
 
   { id:'ag_ratlings', name:'Ratlings',
     stats:['6"','5+','3+','2','2','1','1','6','6+'], role:'Elites', pts:30, min:3, max:10, ppm:10,
-    wargear:['Sniper Rifles','Knives'],
+    wargear:[],
+    composition:[
+      { role:'Ratling', count:3, wargear:['Sniper Rifle','Knife'] },
+    ],
     abilities:['Scouts: Move up to 6" before first battle round',
                'Sniper: Wound rolls of 6 deal 1 mortal wound in addition',
                'Concealed Position: Always count as being in cover if they did not move this turn'] },
@@ -247,7 +264,17 @@ const FACTION_ASTRA_MILITARUM = [
   // ── FAST ATTACK ─────────────────────────────────────────────────────
   { id:'ag_rough_riders', name:'Rough Riders',
     stats:['14"','4+','4+','3','3','2','2','6','5+'], role:'Fast Attack', pts:50, min:5, max:10, ppm:10,
-    wargear:['Hunting Lance','Bolt Pistol','Combat Blade'],
+    wargear:[],
+    composition:[
+      { role:'Rough Rider Sergeant', count:1, wargear:['Hunting Lance','Bolt Pistol','Combat Blade'],
+        options:[
+          { group:'Ranged', choices:[
+            { label:'Bolt Pistol',   pts:0, default:true },
+            { label:'Plasma Pistol', pts:5, weapons:['Plasma Pistol'], replaces:['Bolt Pistol'] },
+          ]},
+        ]},
+      { role:'Rough Rider', count:4, wargear:['Hunting Lance','Laspistol','Combat Blade'] },
+    ],
     abilities:['Hunting Lance: On the turn this unit charges wound rolls are always 2+ regardless of Toughness',
                'Skilled Riders: May Advance and still charge in the same turn'] },
 

@@ -61,7 +61,17 @@ const FACTION_THOUSAND_SONS = [
 
   { id:'ts_tzaangors', name:'Tzaangors',
     stats:['6"','3+','4+','4','4','1','2','7','5+'], role:'Troops', pts:70, min:10, max:30, ppm:7,
-    wargear:['Tzaangor Blades','Autopistol'],
+    wargear:[],
+    composition:[
+      { role:'Twistbray', count:1, wargear:['Tzaangor Blades','Autopistol'],
+        options:[
+          { group:'Melee', choices:[
+            { label:'Tzaangor Blades', pts:0, default:true, weapons:['Tzaangor Blades'] },
+            { label:'Great Blade',     pts:2, weapons:['Great Blade'], replaces:['Tzaangor Blades'] },
+          ]},
+        ]},
+      { role:'Tzaangor', count:9, wargear:['Tzaangor Blades','Autopistol'] },
+    ],
     abilities:['Daemonic Arrogance: 6+ invulnerable save',
                'Anarchy and Mayhem: Add 1 to hit rolls if there are more models in this unit than in target enemy unit'] },
 

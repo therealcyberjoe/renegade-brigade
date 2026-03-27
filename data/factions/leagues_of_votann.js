@@ -86,14 +86,20 @@ const FACTION_LEAGUES_OF_VOTANN = [
 
   { id:'lov_beserks', name:'Cthonian Beserks',
     stats:['6"','3+','5+','5','4','2','4','7','4+'], role:'Elites', pts:140, min:5, max:10, ppm:28, isNew:true,
-    wargear:['Concussion Maul'],
+    wargear:[],
+    composition:[
+      { role:'Cthonian Beserk', count:5, wargear:['Concussion Maul'] },
+    ],
     abilities:['Grim Endurance',
                'Berserk Charge: Add 2 to Attacks on turn it charges',
                'No Retreat: Auto-pass Morale tests'] },
 
   { id:'lov_pioneers', name:'Hernkyn Pioneers',
     stats:['12"','3+','3+','4','5','3','3','8','3+'], role:'Fast Attack', pts:96, min:3, max:9, ppm:32, isNew:true,
-    wargear:['Twin Bolt Cannon'],
+    wargear:[],
+    composition:[
+      { role:'Hernkyn Pioneer', count:3, wargear:['Twin Bolt Cannon'] },
+    ],
     abilities:['Grim Endurance',
                'Scouts: Move up to 9" before first battle round',
                'Rugged Outriders: May fire Assault weapons without penalty after Advancing',
@@ -108,7 +114,10 @@ const FACTION_LEAGUES_OF_VOTANN = [
 
   { id:'lov_earthshakers', name:'Cthonian Earthshakers',
     stats:['4"','4+','3+','3','4','2','1','8','4+'], role:'Heavy Support', pts:90, min:3, max:9, ppm:30, isNew:true,
-    wargear:['Seismic Cannon','Mole Grenade Launcher'],
+    wargear:[],
+    composition:[
+      { role:'Cthonian Earthshaker', count:3, wargear:['Seismic Cannon','Mole Grenade Launcher'] },
+    ],
     abilities:['Grim Endurance',
                'Dug In: If did not move add 1 to hit rolls and re-roll number of shots for Seismic Cannon',
                'Seismic Cannon: Heavy D3 S8 AP-2 DD3 — Indirect Fire — Ground Shock: units hit subtract 2" from Move',

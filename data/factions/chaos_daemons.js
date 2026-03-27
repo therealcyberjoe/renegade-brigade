@@ -58,7 +58,10 @@ const FACTION_CHAOS_DAEMONS = [
   // ── TROOPS ──────────────────────────────────────────────────────────
   { id:'cd_bloodletters', name:'Bloodletters',
     stats:['6"','3+','4+','4','3','1','1','7','5+'], role:'Troops', pts:90, min:10, max:30, ppm:9,
-    wargear:['Hellblades'],
+    wargear:[],
+    composition:[
+      { role:'Bloodletter', count:10, wargear:['Hellblades'] },
+    ],
     abilities:['Daemonic: 5+ invulnerable save',
                'Locus of Fury: Friendly Khorne Daemons within 6" of Herald re-roll charge rolls',
                'Daemonic Instability: If more wounds lost than Leadership roll 2D6 — over Leadership remove that many models',
@@ -66,7 +69,10 @@ const FACTION_CHAOS_DAEMONS = [
 
   { id:'cd_plaguebearers', name:'Plaguebearers',
     stats:['5"','4+','4+','3','4','1','1','7','5+'], role:'Troops', pts:90, min:10, max:30, ppm:9,
-    wargear:['Plaguesword','Daemonic Plague Bell'],
+    wargear:[],
+    composition:[
+      { role:'Plaguebearer', count:10, wargear:['Plaguesword','Daemonic Plague Bell'] },
+    ],
     abilities:['Daemonic: 5+ invulnerable save',
                'Disgustingly Resilient: Roll D6 each wound — on 5+ ignore it',
                'Cloud of Flies: Subtract 1 from hit rolls targeting this unit in Shooting phase',
@@ -74,14 +80,21 @@ const FACTION_CHAOS_DAEMONS = [
 
   { id:'cd_daemonettes', name:'Daemonettes',
     stats:['7"','3+','3+','3','3','1','2','7','5+'], role:'Troops', pts:80, min:10, max:30, ppm:8,
-    wargear:['Piercing Claws'],
+    wargear:[],
+    composition:[
+      { role:'Daemonette', count:10, wargear:['Piercing Claws'] },
+    ],
     abilities:['Daemonic: 5+ invulnerable save',
                'Quicksilver Swiftness: Always fight first regardless of who charged',
                'Daemonic Instability'] },
 
   { id:'cd_horrors', name:'Pink Horrors',
     stats:['6"','4+','4+','3','3','1','1','7','6+'], role:'Troops', pts:90, min:10, max:30, ppm:9,
-    wargear:['Coruscating Flames'],
+    wargear:[],
+    composition:[
+      { role:'Iridescent Horror', count:1, wargear:['Magical Flames'] },
+      { role:'Pink Horror', count:9, wargear:['Magical Flames'] },
+    ],
     abilities:['Daemonic: 5+ invulnerable save',
                'Split: When Pink Horror is slain replace with 2 Blue Horrors (free)',
                'Daemonic Instability',
@@ -90,21 +103,30 @@ const FACTION_CHAOS_DAEMONS = [
   // ── ELITES ──────────────────────────────────────────────────────────
   { id:'cd_bloodcrushers', name:'Bloodcrushers',
     stats:['10"','3+','4+','5','5','3','3','8','3+'], role:'Elites', pts:120, min:3, max:9, ppm:40,
-    wargear:['Hellblade','Juggernaut'],
+    wargear:[],
+    composition:[
+      { role:'Bloodcrusher', count:3, wargear:['Hellblade','Juggernaut'] },
+    ],
     abilities:['Daemonic: 5+ invulnerable save',
                'Daemonic Instability',
                'Brass Stampede: On charge deal D3 mortal wounds to all units within 1"'] },
 
   { id:'cd_flamers', name:'Flamers of Tzeentch',
     stats:['9"','3+','3+','4','4','2','2','7','5+'], role:'Fast Attack', pts:92, min:3, max:9, ppm:31,
-    wargear:['Warpflame'],
+    wargear:[],
+    composition:[
+      { role:'Flamer of Tzeentch', count:3, wargear:['Warpflame'] },
+    ],
     abilities:['Daemonic: 5+ invulnerable save',
                'Warpflame: Auto-hitting flamer — units that suffer unsaved wounds must pass Toughness test or suffer D3 mortal wounds',
                'Daemonic Instability'] },
 
   { id:'cd_screamers', name:'Screamers of Tzeentch',
     stats:['16"','3+','3+','4','4','2','3','7','5+'], role:'Fast Attack', pts:90, min:3, max:9, ppm:30,
-    wargear:['Lamprey Bite','Slashing Attack'],
+    wargear:[],
+    composition:[
+      { role:'Screamer of Tzeentch', count:3, wargear:['Lamprey Bite','Slashing Attack'] },
+    ],
     abilities:['Daemonic: 5+ invulnerable save',
                'Daemonic Instability',
                'Slashing Attack: During Movement phase deal 1 mortal wound to each unit passed over on 4+'] },

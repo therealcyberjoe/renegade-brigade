@@ -659,5 +659,21 @@ const WEAPON_PROFILES = {
   'Blastmaster':                { range:'36"',  type:'Heavy 1',     s:8,      ap:-2, d:'D3', special:'Blast — Cacophony: wounds of 6 deal D3 mortal wounds' },
   'Doom Siren':                 { range:'8"',   type:'Assault D6',  s:5,      ap:-2, d:1,    special:'Auto-hits — Cacophony: wounds of 6 deal 1 mortal wound in addition' },
 
+  'Scythe of the Nightbringer':  { range:'Melee', type:'Melee',      s:'x2',   ap:-4, d:3,    special:'Wounds of 6 deal D3 mortal wounds in addition' },
+  'Scythe of the Nightbringer (Shard)': { range:'Melee', type:'Melee', s:'+2',  ap:-3, d:2,    special:'Wounds of 6 deal 1 mortal wound in addition' },
+  'Gaze of Death':              { range:'12"',  type:'Assault D3',  s:'*',    ap:'*', d:'*',  special:'Mortal wounds — see Cosmic Power' },
+  'Gaze of Death (Shard)':      { range:'12"',  type:'Assault D3',  s:'*',    ap:'*', d:'*',  special:'Mortal wounds — see Cosmic Power' },
+  'Talons of the Void Dragon':  { range:'Melee', type:'Melee',      s:'+3',   ap:-4, d:'D6', special:'Wounds of 6 deal 1 additional mortal wound' },
+  'Ray of the Void':            { range:'18"',  type:'Heavy D6',    s:8,      ap:-4, d:2,    special:'Wounds of 6 ignore invulnerable saves' },
+  'Excoriating Talon':          { range:'Melee', type:'Melee',      s:'+2',   ap:-3, d:2,    special:'' },
+  'Dust Form':                  { range:'—',    type:'—',           s:'—',    ap:'—', d:'—', special:'The Deceiver may move through models and terrain as if they were not there' },
+  'Four Gauss Flux Arcs':       { range:'24"',  type:'Heavy 4',     s:5,      ap:-1, d:1,    special:'Four arc-mounted weapons — can target different units' },
+  'Particle Whip':              { range:'24"',  type:'Heavy D6',    s:9,      ap:-3, d:3,    special:'Blast' },
+  'Starstele Network':          { range:'—',    type:'—',           s:'—',    ap:'—', d:'—', special:'Friendly Necrons within 6" of 2+ Starsteles add 1 to Reanimation rolls' },
+
+  'Talons of the Void Dragon (Shard)': { range:'Melee', type:'Melee', s:'+2', ap:-3, d:2, special:'' },
+  'Betassic Ray':               { range:'18"',  type:'Heavy D3',    s:6,      ap:-2, d:2,    special:'vs Vehicles: re-roll wound rolls' },
+
+  'Bio-electric Pulse with Neuro-shock': { range:'12"', type:'Assault 2D6', s:5, ap:-1, d:1, special:'Auto-hits — hit rolls of 6 deal 1 mortal wound instead of normal damage' },
 
 };

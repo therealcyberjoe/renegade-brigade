@@ -142,13 +142,26 @@ const FACTION_TAU = [
 
   { id:'tau_breacher_team', name:'Breacher Team',
     stats:['6"','4+','4+','3','3','1','1','7','4+'], role:'Troops', pts:70, min:5, max:10, ppm:14,
-    wargear:['Pulse Blaster','Pulse Pistol','Bonding Knife'],
+    wargear:[],
+    composition:[
+      { role:'Fire Warrior Sergeant', count:1, wargear:['Pulse Blaster','Pulse Pistol'],
+        options:[
+          { group:'Support', choices:[
+            { label:'None',        pts:0, default:true },
+            { label:'Markerlight', pts:0, weapons:['Markerlight'], replaces:[] },
+          ]},
+        ]},
+      { role:'Fire Warrior', count:4, wargear:['Pulse Blaster','Pulse Pistol'] },
+    ],
     abilities:['For the Greater Good','Bonding Knife Ritual',
                'Pulse Blaster: Range 5" S6 AP-3 / Range 10" S5 AP-2 / Range 15" S4 AP-1'] },
 
   { id:'tau_kroot_carnivores', name:'Kroot Carnivores',
     stats:['7"','3+','3+','4','3','1','2','7','5+'], role:'Troops', pts:50, min:10, max:20, ppm:5,
-    wargear:['Kroot Rifle','Kroot Blade'],
+    wargear:[],
+    composition:[
+      { role:'Kroot Carnivore', count:10, wargear:['Kroot Rifle','Kroot Blade'] },
+    ],
     abilities:['Fieldcraft: Count as in cover if did not move this turn',
                'Scouts: Move up to 6" before first battle round',
                "Kroot Packmates: When enemy shoots at friendly T'au within 3\" of this unit — this unit may intercept on 5+"] },
@@ -205,21 +218,43 @@ const FACTION_TAU = [
 
   { id:'tau_stealth_suits', name:'Stealth Battlesuits',
     stats:['8"','5+','3+','4','4','2','1','8','3+'], role:'Elites', pts:75, min:3, max:6, ppm:25,
-    wargear:['Burst Cannon','Advanced Targeting System'],
+    wargear:[],
+    composition:[
+      { role:'Stealth Suit Leader', count:1, wargear:['Burst Cannon'],
+        options:[
+          { group:'Weapon', choices:[
+            { label:'Burst Cannon',   pts:0, default:true, weapons:['Burst Cannon'] },
+            { label:'Fusion Blaster', pts:0, weapons:['Fusion Blaster'], replaces:['Burst Cannon'] },
+          ]},
+        ]},
+      { role:'Stealth Battlesuit', count:2, wargear:['Burst Cannon'],
+        options:[
+          { group:'Weapon', choices:[
+            { label:'Burst Cannon',   pts:0, default:true },
+            { label:'Fusion Blaster', pts:0, weapons:['Fusion Blaster'], replaces:['Burst Cannon'] },
+          ]},
+        ]},
+    ],
     abilities:['For the Greater Good','Shrouded: Always count as being in cover',
                'Infiltrate: Deploy anywhere more than 9" from enemy before first battle round',
                '5+ invulnerable save'] },
 
   { id:'tau_farstalkers', name:'Kroot Farstalkers',
     stats:['7"','3+','3+','4','3','1','2','7','5+'], role:'Elites', pts:65, min:5, max:10, ppm:13, isNew:true,
-    wargear:['Kroot Rifle','Jagga-blade'],
+    wargear:[],
+    composition:[
+      { role:'Kroot Farstalker', count:5, wargear:['Kroot Rifle','Jagga-blade'] },
+    ],
     abilities:['Infiltrate: Move up to 9" before first battle round',
                'Fieldcraft: Count as in cover if did not move',
                "Prey Markers: Each turn mark one enemy unit — friendly T'au add 1 to wound rolls against it"] },
 
   { id:'tau_krootox_riders', name:'Krootox Riders',
     stats:['8"','4+','3+','5','5','4','3','7','4+'], role:'Elites', pts:120, min:3, max:6, ppm:40, isNew:true,
-    wargear:['Krootox Repeater Cannon','Kroot Blade','Krootox Claws'],
+    wargear:[],
+    composition:[
+      { role:'Krootox Rider', count:3, wargear:['Krootox Repeater Cannon','Kroot Blade','Krootox Claws'] },
+    ],
     abilities:['Scouts: Move up to 6" before first battle round',
                'Fieldcraft: Count as in cover if did not move',
                "Kroot Packmates: Intercept attacks for nearby T'au units on 5+",
@@ -253,7 +288,10 @@ const FACTION_TAU = [
 
   { id:'tau_vespid', name:'Vespid Stingwings',
     stats:['14"','4+','4+','4','4','1','2','6','4+'], role:'Fast Attack', pts:56, min:5, max:15, ppm:11,
-    wargear:['Neutron Blaster'],
+    wargear:[],
+    composition:[
+      { role:'Vespid Stingwing', count:5, wargear:['Neutron Blaster'] },
+    ],
     abilities:['For the Greater Good','Hit and Run: May Advance and still fire Neutron Blasters',
                'Neutron Blaster: S5 AP-2 D1 — wounds of 6 deal 1 mortal wound'] },
 
@@ -265,7 +303,10 @@ const FACTION_TAU = [
 
   { id:'tau_krootox_rampagers', name:'Krootox Rampagers',
     stats:['10"','3+','5+','6','5','4','5','7','4+'], role:'Fast Attack', pts:135, min:3, max:6, ppm:45, isNew:true,
-    wargear:["Rider's Kroot Rifle",'Krootox Talons'],
+    wargear:[],
+    composition:[
+      { role:'Krootox Rampager', count:3, wargear:["Rider's Kroot Rifle",'Krootox Talons'] },
+    ],
     abilities:['Scouts: Move up to 6" before first battle round',
                'Savage Charge: On turn it charges deal D3 mortal wounds to each enemy within 1"',
                'Impact Hits: Wound rolls of 6 on charge deal 1 additional mortal wound',

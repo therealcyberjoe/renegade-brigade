@@ -135,7 +135,10 @@ const FACTION_GENESTEALER_CULTS = [
 
   { id:'gc_acolytes_flamer', name:'Acolyte Hybrids with Hand Flamers',
     stats:['6"','3+','3+','4','3','1','2','6','5+'], role:'Troops', pts:70, min:5, max:20, ppm:14,
-    wargear:['Hand Flamer','Mining Tools'],
+    wargear:[],
+    composition:[
+      { role:'Acolyte Hybrid', count:5, wargear:['Hand Flamer','Mining Tools'] },
+    ],
     abilities:['Cult Ambush','Inhuman Resilience: 6+ invulnerable save',
                'Hand Flamer: Assault D6 auto-hit S4 AP0 D1'] },
 
@@ -189,7 +192,10 @@ const FACTION_GENESTEALER_CULTS = [
   // ── ELITES ──────────────────────────────────────────────────────────
   { id:'gc_purestrain', name:'Purestrain Genestealers',
     stats:['8"','3+','4+','4','4','1','3','9','5+'], role:'Elites', pts:96, min:6, max:20, ppm:16,
-    wargear:['Rending Claws','Scything Talons'],
+    wargear:[],
+    composition:[
+      { role:'Purestrain Genestealer', count:6, wargear:['Rending Claws','Scything Talons'] },
+    ],
     abilities:['Hyper-reflexes: 5+ invulnerable save',
                'Pheromone Trail: If not in combat at start of turn may Advance and still charge',
                'Rending Claws: Wound rolls of 6 deal AP-6'] },
@@ -235,7 +241,11 @@ const FACTION_GENESTEALER_CULTS = [
   // ── FAST ATTACK ─────────────────────────────────────────────────────
   { id:'gc_atalan_jackals', name:'Atalan Jackals',
     stats:['12"','3+','3+','3','3','2','2','6','5+'], role:'Fast Attack', pts:55, min:5, max:15, ppm:11,
-    wargear:['Atalan Shotgun','Atalan Blade','Demo Charge'],
+    wargear:[],
+    composition:[
+      { role:'Jackal Alphus', count:1, wargear:['Hunting Rifle','Autopistol'] },
+      { role:'Atalan Jackal', count:4, wargear:['Atalan Shotgun','Atalan Blade','Demo Charge'] },
+    ],
     options:[
       { group:'Heavy Weapon (1 per 5 models)', pick:1, choices:[
         { label:'None', pts:0, default:true },

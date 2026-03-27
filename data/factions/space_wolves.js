@@ -115,7 +115,10 @@ const FACTION_SPACE_WOLVES = [
 
   { id:'sw_fenrisian_wolves', name:'Fenrisian Wolves',
     stats:['10"','3+','5+','4','4','1','2','5','6+'], role:'Fast Attack', pts:40, min:5, max:15, ppm:8,
-    wargear:['Fenrisian Bite'],
+    wargear:[],
+    composition:[
+      { role:'Fenrisian Wolf', count:5, wargear:['Fenrisian Bite'] },
+    ],
     abilities:['Hunting Pack: If 10+ models in unit add 1 to Attacks',
                "Bounding Leap: Add 3\" to Advance rolls"] },
 

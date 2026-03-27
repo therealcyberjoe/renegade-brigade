@@ -83,21 +83,30 @@ const FACTION_TYRANIDS = [
 
   { id:'ty_hormagaunts', name:'Hormagaunt Brood',
     stats:['8"','4+','4+','3','3','1','2','5','6+'], role:'Troops', pts:50, min:10, max:30, ppm:5,
-    wargear:['Scything Talons','Claws and Teeth'],
+    wargear:[],
+    composition:[
+      { role:'Hormagaunt', count:10, wargear:['Scything Talons','Claws and Teeth'] },
+    ],
     abilities:['Instinctive Behaviour',
                'Bounding Leap: Add 3" to Advance and charge rolls',
                'Swarms: 20+ models never take Morale'] },
 
   { id:'ty_ripper_swarms', name:'Ripper Swarms',
     stats:['5"','4+','4+','3','3','3','4','5','6+'], role:'Troops', pts:36, min:3, max:9, ppm:12,
-    wargear:['Claws Teeth and Bonnespurs'],
+    wargear:[],
+    composition:[
+      { role:'Ripper Swarm', count:3, wargear:['Claws Teeth and Bonnespurs'] },
+    ],
     abilities:['Instinctive Behaviour',
                'Burrowers: May deep strike — arrive 9"+ from enemy',
                'Swarm: Unit of 6+ never takes Morale tests'] },
 
   { id:'ty_barbgaunts', name:'Barbgaunts',
     stats:['5"','4+','4+','3','3','1','1','7','6+'], role:'Troops', pts:45, min:5, max:10, ppm:9, isNew:true,
-    wargear:['Barblauncher'],
+    wargear:[],
+    composition:[
+      { role:'Barbgaunt', count:5, wargear:['Barblauncher'] },
+    ],
     abilities:['Symbiotic Targeting: Friendly Synapse within 12" — Barblauncher becomes Assault D3',
                'Expendable Swarm: Does not take Morale tests within 12" of Synapse'] },
 
@@ -127,7 +136,13 @@ const FACTION_TYRANIDS = [
 
   { id:'ty_genestealers', name:'Genestealers',
     stats:['8"','3+','4+','4','4','1','3','9','5+'], role:'Elites', pts:96, min:5, max:20, ppm:16,
-    wargear:['Rending Claws','Scything Talons'],
+    wargear:[],
+    composition:[
+      { role:'Genestealer', count:5, wargear:[],
+    composition:[
+      { role:'Ravener', count:3, wargear:['Rending Claws','Scything Talons'] },
+    ] },
+    ],
     abilities:['Hyper-reflexes: 5+ invulnerable save',
                'Pheromone Trail: If not in combat at start of turn may Advance and still charge',
                'Rending Claws: Wound rolls of 6 deal AP-6 regardless of armour'] },
@@ -140,7 +155,10 @@ const FACTION_TYRANIDS = [
 
   { id:'ty_venomthropes', name:'Venomthropes',
     stats:['6"','4+','4+','4','4','2','2','9','4+'], role:'Elites', pts:45, min:3, max:9, ppm:15,
-    wargear:['Toxic Lashes','Stinger Salvo'],
+    wargear:[],
+    composition:[
+      { role:'Venomthrope', count:3, wargear:['Toxic Lashes','Stinger Salvo'] },
+    ],
     abilities:['Toxic Miasma: Friendly units wholly within 6" of this model count as in cover',
                'Toxic Lashes: Wound rolls of 6 deal 1 additional mortal wound'] },
 
@@ -155,13 +173,19 @@ const FACTION_TYRANIDS = [
   // ── FAST ATTACK ─────────────────────────────────────────────────────
   { id:'ty_raveners', name:'Raveners',
     stats:['10"','3+','3+','4','4','3','4','9','4+'], role:'Fast Attack', pts:45, min:3, max:9, ppm:15,
-    wargear:['Rending Claws','Scything Talons'],
+    wargear:[],
+    composition:[
+      { role:'Ravener', count:3, wargear:['Rending Claws','Scything Talons'] },
+    ],
     abilities:['Instinctive Behaviour',
                'Burrowers: May deep strike — arrive 9"+ from enemy'] },
 
   { id:'ty_gargoyles', name:'Gargoyles',
     stats:['12"','4+','4+','3','3','1','1','5','6+'], role:'Fast Attack', pts:60, min:10, max:30, ppm:6,
-    wargear:['Fleshborer','Blinding Venom'],
+    wargear:[],
+    composition:[
+      { role:'Gargoyle', count:10, wargear:['Fleshborer','Blinding Venom'] },
+    ],
     abilities:['Instinctive Behaviour',
                'Blinding Venom: Enemy units that lose models to Gargoyles in melee subtract 1 from hit rolls until next turn'] },
 
@@ -186,6 +210,14 @@ const FACTION_TYRANIDS = [
     abilities:['Death From Below: Deep strike — arrive end of first Movement phase 9"+ from enemy',
                'Subterranean Assault: Friendly Tyranids may deep strike within 6" of this model when it arrives',
                'Instinctive Behaviour'] },
+
+  { id:'ty_trygon_prime', name:'Trygon Prime',
+    stats:['8"','3+','3+','7','7','14','6','10','3+'], role:'Heavy Support', pts:200, min:1, max:1, ppm:0,
+    wargear:['Massive Scything Talons','Bio-electric Pulse with Neuro-shock'],
+    abilities:['Death From Below: Deep strike — arrive end of first Movement phase 9"+ from enemy',
+               'Subterranean Assault: Friendly Tyranids may deep strike within 6" of this model when it arrives',
+               'Synaptic Node: Friendly Tyranids within 12" of this model count as being in Synapse range',
+               'Synapse'] },
 
   { id:'ty_tyrannofex', name:'Tyrannofex',
     stats:['6"','4+','3+','8','8','14','4','9','3+'], role:'Heavy Support', pts:175, min:1, max:1, ppm:0,

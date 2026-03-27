@@ -85,7 +85,23 @@ const FACTION_DARK_ELDAR = [
 
   { id:'de_wracks', name:'Wracks',
     stats:['7"','3+','3+','3','3','1','1','7','5+'], role:'Troops', pts:45, min:5, max:15, ppm:9,
-    wargear:['Wrack Blades','Ossefactor'],
+    wargear:[],
+    composition:[
+      { role:'Acothyst', count:1, wargear:['Wrack Blades','Ossefactor'],
+        options:[
+          { group:'Melee', choices:[
+            { label:'Wrack Blades',  pts:0, default:true },
+            { label:'Agoniser',      pts:4, weapons:['Agoniser'],    replaces:['Wrack Blades'] },
+            { label:'Scissorhand',   pts:3, weapons:['Scissorhand'], replaces:['Wrack Blades'] },
+          ]},
+          { group:'Ranged', choices:[
+            { label:'Ossefactor',    pts:0, default:true, weapons:['Ossefactor'] },
+            { label:'Liquifier Gun', pts:5, weapons:['Liquifier Gun'], replaces:['Ossefactor'] },
+            { label:'Hexrifle',      pts:5, weapons:['Hexrifle'],      replaces:['Ossefactor'] },
+          ]},
+        ]},
+      { role:'Wrack', count:4, wargear:['Wrack Blades'] },
+    ],
     abilities:['Power from Pain',
                'Insensible to Pain: 5+ Feel No Pain save',
                'Haemovore: Wound rolls of 6 with Wrack Blades deal 1 mortal wound in addition'] },
@@ -93,14 +109,27 @@ const FACTION_DARK_ELDAR = [
   // ── ELITES ──────────────────────────────────────────────────────────
   { id:'de_incubi', name:'Incubi',
     stats:['7"','3+','3+','4','3','1','2','8','3+'], role:'Elites', pts:72, min:3, max:10, ppm:14,
-    wargear:['Klaive'],
+    wargear:[],
+    composition:[
+      { role:'Klaivex', count:1, wargear:['Demiklaives'],
+        options:[
+          { group:'Weapon', choices:[
+            { label:'Demiklaives',  pts:0, default:true, weapons:['Demiklaives'] },
+            { label:'Klaive',       pts:0, weapons:['Klaive'], replaces:['Demiklaives'] },
+          ]},
+        ]},
+      { role:'Incubus', count:2, wargear:['Klaive'] },
+    ],
     abilities:['Power from Pain',
                'Klaive: Cleave — wound rolls of 6 deal 2 mortal wounds in addition',
-               'Klaivex: 1 per unit — Demiklaives — may make 2 attacks or 1 at S+2'] },
+               'Klaivex Demiklaives: May make 2 attacks or combine for 1 at S+2 AP-4'] },
 
   { id:'de_mandrakes', name:'Mandrakes',
     stats:['7"','3+','3+','3','3','1','2','8','5+'], role:'Elites', pts:68, min:5, max:10, ppm:14,
-    wargear:['Baleblast','Glimmersteel Blade'],
+    wargear:[],
+    composition:[
+      { role:'Mandrake', count:5, wargear:['Baleblast','Glimmersteel Blade'] },
+    ],
     abilities:['Power from Pain',
                'From the Shadows: Deploy anywhere more than 9" from enemy before first battle round',
                'Shrouded: Always count as in cover',
@@ -119,14 +148,28 @@ const FACTION_DARK_ELDAR = [
   // ── FAST ATTACK ─────────────────────────────────────────────────────
   { id:'de_hellions', name:'Hellions',
     stats:['12"','3+','3+','3','3','1','2','7','4+'], role:'Fast Attack', pts:55, min:5, max:20, ppm:11,
-    wargear:['Hellglaive','Stunclaw','Splinter Pods'],
+    wargear:[],
+    composition:[
+      { role:'Hellion', count:5, wargear:['Hellglaive','Stunclaw','Splinter Pods'] },
+    ],
     abilities:['Power from Pain',
                'Hit and Run: May Advance and still charge in same turn',
                'Aerial Assault: May fire Splinter Pods without penalty after Advancing'] },
 
   { id:'de_reavers', name:'Reavers',
     stats:['16"','3+','3+','3','4','2','2','7','4+'], role:'Fast Attack', pts:55, min:3, max:12, ppm:18,
-    wargear:['Splinter Rifle','Blaster','Bladevanes'],
+    wargear:[],
+    composition:[
+      { role:'Arena Champion', count:1, wargear:['Splinter Rifle','Bladevanes'],
+        options:[
+          { group:'Weapon', choices:[
+            { label:'Splinter Rifle',   pts:0, default:true },
+            { label:'Blaster',          pts:5, weapons:['Blaster'],         replaces:['Splinter Rifle'] },
+            { label:'Heat Lance',       pts:5, weapons:['Heat Lance'],      replaces:['Splinter Rifle'] },
+          ]},
+        ]},
+      { role:'Reaver', count:2, wargear:['Splinter Rifle','Bladevanes'] },
+    ],
     abilities:['Power from Pain',
                'Bladevanes: During movement phase deal 1 mortal wound to one unit passed over on 4+',
                'Jink: 5+ invulnerable save if model Advanced this turn'] },

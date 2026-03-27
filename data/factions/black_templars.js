@@ -67,7 +67,19 @@ const FACTION_BLACK_TEMPLARS = [
   // ── TROOPS ──────────────────────────────────────────────────────────
   { id:'bt_crusader_squad', name:'Crusader Squad',
     stats:['6"','3+','3+','4','4','1','1','7','3+'], role:'Troops', pts:70, min:5, max:15, ppm:0,
-    wargear:['Boltgun','Bolt Pistol','Frag & Krak Grenades'],
+    wargear:[],
+    composition:[
+      { role:'Sword Brother', count:1, wargear:['Boltgun','Bolt Pistol'],
+        options:[
+          { group:'Melee', choices:[
+            { label:'None',          pts:0, default:true },
+            { label:'Power Sword',   pts:4, weapons:['Power Sword'],   replaces:['Boltgun'] },
+            { label:'Power Fist',    pts:9, weapons:['Power Fist'],    replaces:['Boltgun'] },
+            { label:'Thunder Hammer',pts:12,weapons:['Thunder Hammer'],replaces:['Boltgun'] },
+          ]},
+        ]},
+      { role:'Initiate', count:4, wargear:['Boltgun','Bolt Pistol'] },
+    ],
     abilities:['And They Shall Know No Fear',
                'Crusader Squad: Mix of Initiates (Marines) and Neophytes (Scouts) — min 5 Initiates — up to 10 Neophytes',
                'Neophytes: WS4+ BS4+ S3 T3 W1 A1 Ld6 Sv5+ — count toward squad size but cheaper',
@@ -77,7 +89,18 @@ const FACTION_BLACK_TEMPLARS = [
 
   { id:'bt_primaris_crusaders', name:'Primaris Crusader Squad',
     stats:['6"','3+','3+','4','4','2','2','7','3+'], role:'Troops', pts:85, min:5, max:15, ppm:17, isNew:true,
-    wargear:['Auto Bolt Rifle','Bolt Pistol'],
+    wargear:[],
+    composition:[
+      { role:'Primaris Sword Brother', count:1, wargear:['Auto Bolt Rifle','Bolt Pistol'],
+        options:[
+          { group:'Melee', choices:[
+            { label:'None',          pts:0, default:true },
+            { label:'Power Sword',   pts:4, weapons:['Power Sword'],   replaces:[] },
+            { label:'Power Fist',    pts:9, weapons:['Power Fist'],    replaces:['Auto Bolt Rifle'] },
+          ]},
+        ]},
+      { role:'Primaris Initiate', count:4, wargear:['Auto Bolt Rifle','Bolt Pistol'] },
+    ],
     abilities:['And They Shall Know No Fear',
                'Primaris Neophytes: Up to 5 Neophytes per 5 Initiates — Neophytes use Scout stats',
                'Vow of Crusade: Re-roll failed charge rolls',
@@ -95,7 +118,18 @@ const FACTION_BLACK_TEMPLARS = [
 
   { id:'bt_sword_brethren', name:'Sword Brethren',
     stats:['6"','3+','3+','4','4','2','2','8','3+'], role:'Elites', pts:110, min:5, max:10, ppm:22, isNew:true,
-    wargear:['Power Sword','Bolt Pistol'],
+    wargear:[],
+    composition:[
+      { role:'Sword Brother', count:5, wargear:['Power Sword','Bolt Pistol'],
+        options:[
+          { group:'Melee', choices:[
+            { label:'Power Sword',         pts:0, default:true, weapons:['Power Sword'] },
+            { label:'Thunder Hammer',      pts:10,weapons:['Thunder Hammer'],    replaces:['Power Sword'] },
+            { label:'Lightning Claw pair', pts:8, weapons:['Lightning Claws'],   replaces:['Power Sword'] },
+            { label:'Chainsword',          pts:0, weapons:['Chainsword'],         replaces:['Power Sword'] },
+          ]},
+        ]},
+    ],
     options:[
       { group:'Melee (any model)', pick:1, choices:[
         { label:'Power Sword', pts:0, default:true },
@@ -138,7 +172,17 @@ const FACTION_BLACK_TEMPLARS = [
 
   { id:'bt_bladeguard', name:'Bladeguard Veterans',
     stats:['6"','3+','3+','4','4','3','3','8','3+'], role:'Elites', pts:135, min:3, max:6, ppm:45, isNew:true,
-    wargear:['Master-crafted Power Sword','Storm Shield','Heavy Bolt Pistol'],
+    wargear:[],
+    composition:[
+      { role:'Bladeguard Veteran Sergeant', count:1, wargear:['Master-crafted Power Sword','Storm Shield','Heavy Bolt Pistol'],
+        options:[
+          { group:'Sidearm', choices:[
+            { label:'Heavy Bolt Pistol', pts:0, default:true },
+            { label:'Plasma Pistol',     pts:5, weapons:['Plasma Pistol'], replaces:['Heavy Bolt Pistol'] },
+          ]},
+        ]},
+      { role:'Bladeguard Veteran', count:2, wargear:['Master-crafted Power Sword','Storm Shield','Heavy Bolt Pistol'] },
+    ],
     abilities:['And They Shall Know No Fear',
                'Storm Shield: 4+ invulnerable save',
                'Skilled Swordsmen: Re-roll all failed hit rolls in Fight phase',
@@ -185,7 +229,17 @@ const FACTION_BLACK_TEMPLARS = [
 
   { id:'bt_outriders', name:'Outrider Squad',
     stats:['14"','3+','3+','4','5','3','3','7','3+'], role:'Fast Attack', pts:135, min:3, max:6, ppm:45, isNew:true,
-    wargear:['Twin Bolt Rifle','Astartes Chainsword','Bolt Pistol'],
+    wargear:[],
+    composition:[
+      { role:'Outrider Sergeant', count:1, wargear:['Twin Bolt Rifle','Astartes Chainsword','Bolt Pistol'],
+        options:[
+          { group:'Sidearm', choices:[
+            { label:'Bolt Pistol',   pts:0, default:true },
+            { label:'Plasma Pistol', pts:5, weapons:['Plasma Pistol'], replaces:['Bolt Pistol'] },
+          ]},
+        ]},
+      { role:'Outrider', count:2, wargear:['Twin Bolt Rifle','Astartes Chainsword'] },
+    ],
     abilities:['And They Shall Know No Fear',
                'Turbo-boost: May Advance and charge in same turn',
                'Vow of Crusade: Re-roll failed charge rolls',
@@ -193,14 +247,32 @@ const FACTION_BLACK_TEMPLARS = [
 
   { id:'bt_assault', name:'Assault Squad',
     stats:['12"','3+','3+','4','4','1','1','7','3+'], role:'Fast Attack', pts:65, min:5, max:10, ppm:13,
-    wargear:['Chainsword','Bolt Pistol','Jump Pack'],
+    wargear:[],
+    composition:[
+      { role:'Sergeant', count:1, wargear:['Chainsword','Bolt Pistol','Jump Pack'],
+        options:[
+          { group:'Melee', choices:[
+            { label:'Chainsword',    pts:0, default:true },
+            { label:'Power Sword',   pts:4, weapons:['Power Sword'],   replaces:['Chainsword'] },
+            { label:'Power Fist',    pts:9, weapons:['Power Fist'],    replaces:['Chainsword'] },
+          ]},
+          { group:'Sidearm', choices:[
+            { label:'Bolt Pistol',   pts:0, default:true },
+            { label:'Plasma Pistol', pts:5, weapons:['Plasma Pistol'], replaces:['Bolt Pistol'] },
+          ]},
+        ]},
+      { role:'Assault Marine', count:4, wargear:['Chainsword','Bolt Pistol','Jump Pack'] },
+    ],
     abilities:['And They Shall Know No Fear',
                'Jump Pack Assault: Advance and charge same turn',
                'Vow of Crusade: Re-roll failed charge rolls'] },
 
   { id:'bt_bikers', name:'Biker Squad',
     stats:['14"','3+','3+','4','5','2','2','7','3+'], role:'Fast Attack', pts:75, min:3, max:9, ppm:25,
-    wargear:['Twin Boltgun','Chainsword'],
+    wargear:[],
+    composition:[
+      { role:'Templar Biker', count:3, wargear:['Twin Boltgun','Chainsword'] },
+    ],
     abilities:['And They Shall Know No Fear',
                'Turbo-boost: May Advance and charge same turn',
                'Vow of Crusade: Re-roll failed charge rolls'] },

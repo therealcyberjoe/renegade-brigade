@@ -63,14 +63,27 @@ const FACTION_WORLD_EATERS = [
 
   { id:'we_jakhals', name:'Jakhals',
     stats:['6"','4+','5+','3','3','1','2','6','6+'], role:'Troops', pts:40, min:8, max:20, ppm:5, isNew:true,
-    wargear:['Mauling Blade','Autopistol'],
-    abilities:["Blood for the Blood God",
-               'Rabid Devotion: When destroyed on 4+ a friendly World Eaters Core within 6" gains +1 Attack until end of Fight phase',
-               'Dishonoured upgrade: S4 T4 W2 A3 Sv5+ at +10pts per model'] },
+    wargear:[],
+    composition:[
+      { role:'Jakhal Pack Leader', count:1, wargear:['Mauling Blade','Autopistol'],
+        options:[
+          { group:'Melee', choices:[
+            { label:'Mauling Blade',  pts:0, default:true },
+            { label:'Skullsmasher',   pts:5, weapons:['Skullsmasher'], replaces:['Mauling Blade'] },
+          ]},
+        ]},
+      { role:'Icon Bearer', count:1, wargear:['Mauling Blade','Autopistol','Chaos Icon'] },
+      { role:'Jakhal', count:6, wargear:['Mauling Blade','Autopistol'] },
+    ],
+    abilities:['Blood for the Blood God',
+               'Rabid Devotion: When destroyed on 4+ a friendly World Eaters Core within 6" gains +1 Attack until end of Fight phase'] },
 
   { id:'we_eightbound', name:'Eightbound',
     stats:['6"','2+','3+','5','5','3','4','8','3+'], role:'Elites', pts:135, min:3, max:6, ppm:45, isNew:true,
-    wargear:['Eightbound Eviscerators'],
+    wargear:[],
+    composition:[
+      { role:'Eightbound', count:3, wargear:['Eightbound Eviscerators'] },
+    ],
     abilities:['Daemonic Blessings: 4+ invulnerable save',
                "Khorne's Chosen: Re-roll hit rolls of 1 — +1 Attack if within 1\" of enemy at start of Fight phase",
                'Frenzied Charge: +2 Attacks on turn it charges',
@@ -79,13 +92,20 @@ const FACTION_WORLD_EATERS = [
 
   { id:'we_terminators', name:'Chaos Terminators',
     stats:['5"','3+','3+','4','4','2','2','8','2+'], role:'Elites', pts:155, min:5, max:10, ppm:31,
-    wargear:['Power Fists','Combi-Bolters'],
+    wargear:[],
+    composition:[
+      { role:'Terminator Champion', count:1, wargear:['Combi-Bolter','Power Fist'] },
+      { role:'Terminator', count:4, wargear:['Combi-Bolter','Power Fist'] },
+    ],
     abilities:['Teleport Strike: Deep strike 9"+ from enemy',
                'Terminator Armour: 5+ invulnerable save'] },
 
   { id:'we_flesh_hounds', name:'Flesh Hounds of Khorne',
     stats:['10"','3+','4+','4','4','1','2','6','5+'], role:'Fast Attack', pts:80, min:5, max:15, ppm:16,
-    wargear:['Gore-drenched Fangs','Collar of Khorne'],
+    wargear:[],
+    composition:[
+      { role:'Flesh Hound of Khorne', count:5, wargear:['Gore-drenched Fangs','Collar of Khorne'] },
+    ],
     abilities:['Collar of Khorne: This unit may Deny the Witch once per phase',
                'Daemonic: 5+ invulnerable save',
                'Unfettered Ferocity: Always fight first if they charged'] },

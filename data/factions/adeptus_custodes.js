@@ -66,7 +66,16 @@ const FACTION_ADEPTUS_CUSTODES = [
   // ── TROOPS ──────────────────────────────────────────────────────────
   { id:'ac_custodian_guard', name:'Custodian Guard',
     stats:['6"','2+','2+','5','5','3','4','9','2+'], role:'Troops', pts:160, min:3, max:10, ppm:53,
-    wargear:['Guardian Spear','Misericordia'],
+    wargear:[],
+    composition:[
+      { role:'Custodian Guard', count:3, wargear:['Guardian Spear','Misericordia'],
+        options:[
+          { group:'Weapon', choices:[
+            { label:'Guardian Spear', pts:0, default:true, weapons:['Guardian Spear'] },
+            { label:'Sentinel Blade & Storm Shield', pts:0, weapons:['Sentinel Blade','Storm Shield'], replaces:['Guardian Spear'] },
+          ]},
+        ]},
+    ],
     options:[
       { group:'Any model', pick:1, choices:[
         { label:'Guardian Spear', pts:0, default:true },
@@ -78,7 +87,16 @@ const FACTION_ADEPTUS_CUSTODES = [
 
   { id:'ac_wardens', name:'Custodian Wardens',
     stats:['6"','2+','2+','5','5','3','4','10','2+'], role:'Troops', pts:165, min:3, max:10, ppm:55,
-    wargear:['Castellan Axe','Balistus Grenade Launcher'],
+    wargear:[],
+    composition:[
+      { role:'Custodian Warden', count:3, wargear:['Castellan Axe','Misericordia'],
+        options:[
+          { group:'Weapon', choices:[
+            { label:'Castellan Axe',  pts:0, default:true, weapons:['Castellan Axe'] },
+            { label:'Guardian Spear', pts:0, weapons:['Guardian Spear'], replaces:['Castellan Axe'] },
+          ]},
+        ]},
+    ],
     abilities:['Auramite and Adamantine: 4+ invulnerable save',
                'Bulwark of Humanity: Friendly Adeptus Custodes within 3" gain +1 to saving throws (max 2+)'] },
 
@@ -113,7 +131,16 @@ const FACTION_ADEPTUS_CUSTODES = [
   // ── FAST ATTACK ─────────────────────────────────────────────────────
   { id:'ac_vertus_praetors', name:'Vertus Praetors',
     stats:['14"','2+','2+','5','5','3','4','9','2+'], role:'Fast Attack', pts:165, min:3, max:9, ppm:55,
-    wargear:['Interceptor Lance','Salvo Launcher'],
+    wargear:[],
+    composition:[
+      { role:'Vertus Praetor', count:3, wargear:['Interceptor Lance','Salvo Launcher','Misericordia'],
+        options:[
+          { group:'Salvo', choices:[
+            { label:'Salvo Launcher', pts:0, default:true, weapons:['Salvo Launcher'] },
+            { label:'Venatari Lance', pts:0, weapons:['Venatari Lance'], replaces:['Salvo Launcher'] },
+          ]},
+        ]},
+    ],
     options:[
       { group:'Any model', pick:1, choices:[
         { label:'Interceptor Lance', pts:0, default:true },

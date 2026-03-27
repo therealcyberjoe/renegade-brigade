@@ -84,20 +84,38 @@ const FACTION_CHAOS_SPACE_MARINES = [
 
   { id:'csm_cultists', name:'Chaos Cultists',
     stats:['6"','4+','4+','3','3','1','1','6','6+'], role:'Troops', pts:40, min:10, max:30, ppm:4,
-    wargear:['Autogun','Autopistol','Brutal Assault Weapon'],
+    wargear:[],
+    composition:[
+      { role:'Cultist Champion', count:1, wargear:['Autogun','Autopistol'],
+        options:[
+          { group:'Weapon', choices:[
+            { label:'Autogun', pts:0, default:true, weapons:['Autogun'] },
+            { label:'Shotgun', pts:0, weapons:['Shotgun'], replaces:['Autogun'] },
+            { label:'Flamer',  pts:3, weapons:['Flamer'],  replaces:['Autogun'] },
+          ]},
+        ]},
+      { role:'Cultist', count:9, wargear:['Autogun','Autopistol'] },
+    ],
     abilities:['Mob Rule: Units of 10+ models re-roll failed Morale tests',
                'Expendable: Do not count for Morale if within 6" of a Chaos Lord'] },
 
   { id:'csm_acc_cultists', name:'Accursed Cultists',
     stats:['6"','3+','5+','4','4','2','3','7','5+'], role:'Troops', pts:60, min:5, max:20, ppm:12, isNew:true,
-    wargear:['Cursed Weapons','Autopistol'],
+    wargear:[],
+    composition:[
+      { role:'Accursed Cultist', count:5, wargear:['Fleshy Appendages'] },
+    ],
     abilities:['Mutant Resilience: Re-roll Morale tests — each model that dies on 5+ does not count as a casualty for Morale',
                'Tide of Corruption: For each 5 models in this unit enemy within 1" subtract 1 from Leadership',
                'Torment upgrade available: W3 S5 T5 at +5pts per model'] },
 
   { id:'csm_dark_commune', name:'Dark Commune',
     stats:['6"','3+','3+','3','3','3','2','8','5+'], role:'HQ', pts:55, min:5, max:5, ppm:0, isNew:true,
-    wargear:["Demagogue's Staff",'Crude Weapons','Autopistols'],
+    wargear:[],
+    composition:[
+      { role:'Demagogue', count:1, wargear:['Autopistol','Brutal Assault Weapon'] },
+      { role:'Cultist', count:4, wargear:['Autopistol','Brutal Assault Weapon'] },
+    ],
     abilities:['Treated as a single CHARACTER for targeting purposes',
                "Unholy Invocations: Each turn grant one friendly Chaos Cultists unit within 12\" one of: +1 Attack / auto-pass Morale / 5+ invulnerable save",
                'Chaos Icon: Friendly Chaos Cultists within 6" re-roll failed charge rolls'] },
@@ -178,7 +196,10 @@ const FACTION_CHAOS_SPACE_MARINES = [
 
   { id:'csm_possessed', name:'Possessed',
     stats:['6"','3+','3+','5','4','2','3','8','3+'], role:'Elites', pts:100, min:5, max:20, ppm:20,
-    wargear:['Hideous Mutations'],
+    wargear:[],
+    composition:[
+      { role:'Possessed', count:5, wargear:['Hideous Mutations'] },
+    ],
     abilities:['Daemonic: 5+ invulnerable save',
                'Hideous Mutations: Roll D3 at start of Fight phase — 1: +1S / 2: +1A / 3: +1 to wound rolls',
                'Bounding Charge: Add 1 to charge rolls'] },
@@ -193,7 +214,18 @@ const FACTION_CHAOS_SPACE_MARINES = [
   // ── FAST ATTACK ─────────────────────────────────────────────────────
   { id:'csm_bikers', name:'Chaos Bikers',
     stats:['14"','3+','3+','4','5','2','2','7','3+'], role:'Fast Attack', pts:75, min:3, max:9, ppm:25,
-    wargear:['Twin Bolter','Bolt Pistol','Chainsword'],
+    wargear:[],
+    composition:[
+      { role:'Biker Champion', count:1, wargear:['Twin Boltgun','Chainsword'],
+        options:[
+          { group:'Melee', choices:[
+            { label:'Chainsword',  pts:0, default:true },
+            { label:'Power Sword', pts:4, weapons:['Power Sword'], replaces:['Chainsword'] },
+            { label:'Power Fist',  pts:9, weapons:['Power Fist'],  replaces:['Chainsword'] },
+          ]},
+        ]},
+      { role:'Chaos Biker', count:2, wargear:['Twin Boltgun','Chainsword'] },
+    ],
     abilities:['Veterans of the Long War',
                'Turbo-boost: May Advance and charge in same turn',
                'Champion: 1 per unit — may take power weapon'] },
@@ -232,7 +264,10 @@ const FACTION_CHAOS_SPACE_MARINES = [
 
   { id:'csm_warp_talons', name:'Warp Talons',
     stats:['12"','3+','3+','4','4','1','2','8','3+'], role:'Fast Attack', pts:90, min:5, max:10, ppm:18,
-    wargear:['Lightning Claws','Jump Pack'],
+    wargear:[],
+    composition:[
+      { role:'Warp Talon', count:5, wargear:['Warp Claws','Jump Pack'] },
+    ],
     abilities:['Daemonic: 5+ invulnerable save',
                'Warp Shrike: When arriving from deep strike all enemy units within 1" cannot fire Overwatch this turn',
                'Blinding Bolts: At start of Fight phase enemy units within 1" subtract 1 from hit rolls'] },

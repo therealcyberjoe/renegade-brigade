@@ -80,14 +80,20 @@ const FACTION_ADEPTUS_MECHANICUS = [
 
   { id:'am_sicarian', name:'Sicarian Ruststalkers',
     stats:['8"','3+','3+','3','3','2','3','7','4+'], role:'Elites', pts:75, min:5, max:10, ppm:15,
-    wargear:['Transonic Razor','Chordclaw'],
+    wargear:[],
+    composition:[
+      { role:'Sicarian Ruststalker', count:5, wargear:['Transonic Razor','Chordclaw'] },
+    ],
     abilities:['Canticles of the Omnissiah',
                'Transonic Weapons: Wound rolls of 6 ignore armour saves',
                'Infiltrators: Move up to 6" before first battle round'] },
 
   { id:'am_electropriests', name:'Fulgurite Electro-Priests',
     stats:['6"','3+','5+','3','3','1','2','7','6+'], role:'Elites', pts:65, min:5, max:20, ppm:13,
-    wargear:['Electroleech Stave','Electrostatic Gauntlets'],
+    wargear:[],
+    composition:[
+      { role:'Fulgurite Electro-Priest', count:5, wargear:['Electroleech Stave','Electrostatic Gauntlets'] },
+    ],
     abilities:['Canticles of the Omnissiah',
                'Fanatical Devotion: 5+ invulnerable save',
                'Siphoned Power: Each time this unit kills a model gain 1 charge counter — for each counter add 1 to hit rolls (max 3)'] },
@@ -115,27 +121,39 @@ const FACTION_ADEPTUS_MECHANICUS = [
 
   { id:'am_serberys_raiders', name:'Serberys Raiders',
     stats:['14"','3+','3+','3','4','2','3','7','4+'], role:'Fast Attack', pts:84, min:3, max:9, ppm:28, isNew:true,
-    wargear:['Cavalry Sabre','Archeo-revolver'],
+    wargear:[],
+    composition:[
+      { role:'Serberys Raider', count:3, wargear:['Cavalry Sabre','Archeo-revolver'] },
+    ],
     abilities:['Canticles of the Omnissiah',
                'Scouts: Move up to 9" before first battle round',
                'Hard to Hit: -1 to hit rolls targeting this unit if it moved'] },
 
   { id:'am_sulphurhounds', name:'Serberys Sulphurhounds',
     stats:['14"','3+','3+','3','4','2','3','7','4+'], role:'Fast Attack', pts:90, min:3, max:9, ppm:30, isNew:true,
-    wargear:['Phosphor Pistols','Clawed Limbs'],
+    wargear:[],
+    composition:[
+      { role:'Serberys Sulphurhound', count:3, wargear:['Phosphor Pistols','Clawed Limbs'] },
+    ],
     abilities:['Canticles of the Omnissiah',
                'Bounding Advance: May Advance and fire Assault and Pistol weapons without penalty'] },
 
   { id:'am_pteraxii_stery', name:'Pteraxii Sterylizors',
     stats:['12"','3+','3+','3','3','2','3','7','4+'], role:'Fast Attack', pts:130, min:5, max:10, ppm:26, isNew:true,
-    wargear:['Phosphor Torch','Taser Goad'],
+    wargear:[],
+    composition:[
+      { role:'Pteraxii Sterylizor', count:5, wargear:['Phosphor Torch','Taser Goad'] },
+    ],
     abilities:['Canticles of the Omnissiah',
                'Inferno Descent: When arriving from reserve may be placed within 6" of enemy models',
                'Aerial Drop: Deep strike — arrive 6"+ from enemy'] },
 
   { id:'am_pteraxii_sky', name:'Pteraxii Skystalkers',
     stats:['12"','3+','3+','3','3','2','2','7','4+'], role:'Fast Attack', pts:110, min:5, max:10, ppm:22, isNew:true,
-    wargear:['Pteraxii Flechette Carbine','Scintillating Blade'],
+    wargear:[],
+    composition:[
+      { role:'Pteraxii Skystalker', count:5, wargear:['Pteraxii Flechette Carbine','Scintillating Blade'] },
+    ],
     abilities:['Canticles of the Omnissiah',
                'Aerial Drop: Deep strike — arrive 6"+ from enemy',
                'Swooping Descent: On turn they arrive from reserve re-roll hit rolls of 1 in Shooting phase'] },

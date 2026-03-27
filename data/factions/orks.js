@@ -118,13 +118,20 @@ const FACTION_ORKS = [
 
   { id:'ork_gretchin', name:'Gretchin',
     stats:['5"','5+','4+','2','2','1','1','4','6+'], role:'Troops', pts:30, min:10, max:30, ppm:3,
-    wargear:['Grot Blasters'],
+    wargear:[],
+    composition:[
+      { role:'Gretchin', count:10, wargear:['Grot Blasters'] },
+    ],
     abilities:['Runtherd: 1 Runtherd keeps Gretchin in line — use his Leadership for Morale',
                'Expendable: Enemy units may not choose to shoot Gretchin if other Ork units are closer'] },
 
   { id:'ork_beast_boyz', name:'Beast Snagga Boyz',
     stats:['6"','3+','5+','4','4','2','2','7','6+'], role:'Troops', pts:110, min:10, max:20, ppm:11, isNew:true,
-    wargear:['Choppa','Slugga'],
+    wargear:[],
+    composition:[
+      { role:'Beast Snagga Nob', count:1, wargear:['Slugga','Power Snappa'] },
+      { role:'Beast Snagga Boy', count:9, wargear:['Slugga','Choppa'] },
+    ],
     abilities:["'Ere We Go: Re-roll failed charge rolls",
                'Anti-vehicle Instincts: Re-roll hit rolls of 1 against Vehicles and Monsters',
                'Unstoppable Tide: Each time this unit loses a model roll D6 — on 6 that model does not count as a casualty for Morale'] },
@@ -163,7 +170,10 @@ const FACTION_ORKS = [
 
   { id:'ork_meganobz', name:'Meganobz',
     stats:['4"','3+','4+','5','5','3','3','7','2+'], role:'Elites', pts:105, min:3, max:9, ppm:35,
-    wargear:['Kombi-Skorchas','Power Klaw'],
+    wargear:[],
+    composition:[
+      { role:'Meganob', count:3, wargear:['Kombi-Skorchas','Power Klaw'] },
+    ],
     abilities:["'Ere We Go",'Mob Rule',
                'Slow and Purposeful: May not Run',
                'Dead Ard: 2+ armour save — 4+ invulnerable save'] },
@@ -206,19 +216,28 @@ const FACTION_ORKS = [
 
   { id:'ork_warbikers', name:'Warbikers',
     stats:['14"','3+','4+','4','5','2','2','6','4+'], role:'Fast Attack', pts:60, min:3, max:12, ppm:20,
-    wargear:['Dakkaguns','Choppa'],
+    wargear:[],
+    composition:[
+      { role:'Warbiker', count:3, wargear:['Dakkaguns','Choppa'] },
+    ],
     abilities:["'Ere We Go",'Turbo-boost: May Advance and charge in same turn',
                'Jink: 4+ invulnerable save if the model Advanced this turn'] },
 
   { id:'ork_stormboyz', name:'Stormboyz',
     stats:['12"','3+','4+','4','4','1','1','6','6+'], role:'Fast Attack', pts:55, min:5, max:30, ppm:11,
-    wargear:['Slugga','Choppa','Rokkit Pack'],
+    wargear:[],
+    composition:[
+      { role:'Stormboy', count:5, wargear:['Slugga','Choppa','Rokkit Pack'] },
+    ],
     abilities:["'Ere We Go",'Jump Pack Assault: Advance and charge same turn',
                'Unstable Rokkit Pack: Each time this unit Advances roll D6 — on 1 one model suffers 1 mortal wound'] },
 
   { id:'ork_squighog', name:'Squighog Boys',
     stats:['10"','3+','5+','5','5','3','4','7','4+'], role:'Fast Attack', pts:105, min:3, max:6, ppm:35, isNew:true,
-    wargear:['Squighog Jaws','Stikka'],
+    wargear:[],
+    composition:[
+      { role:'Squighog Boy', count:3, wargear:['Stikka','Saddlegit Weapons'] },
+    ],
     abilities:["'Ere We Go",
                "Born to Scrap: May Advance and still charge in same turn",
                'Unstoppable Charge: On turn it charges add 1 to hit rolls in Fight phase'] },
@@ -226,7 +245,10 @@ const FACTION_ORKS = [
   // ── HEAVY SUPPORT ───────────────────────────────────────────────────
   { id:'ork_lootas', name:'Lootas',
     stats:['5"','4+','4+','4','4','1','1','6','6+'], role:'Heavy Support', pts:75, min:5, max:15, ppm:15,
-    wargear:['Deffgun'],
+    wargear:[],
+    composition:[
+      { role:'Loota', count:5, wargear:['Deffgun'] },
+    ],
     abilities:["'Ere We Go",
                'Deffgun: D3 shots — S7 AP-1 D2',
                'Fire Indiscriminately: May fire at units in close combat at risk of hitting friendlies'] },
