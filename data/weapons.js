@@ -683,5 +683,10 @@ const WEAPON_PROFILES = {
   'Hurricane Bolter':         { range:'24"',  type:'Rapid Fire 6', s:4,  ap:0,  d:1,    special:'' },
   'Blood Talons':             { range:'Melee',type:'Melee',        s:'+3',ap:-3, d:2,    special:'Re-roll failed hit and wound rolls — unmodified hit of 6 generates 1 additional attack' },
   'Frag Cannon':              { range:'8"',   type:'Assault 2D3', s:6,  ap:-1, d:2,    special:'Auto-hits' },
+  'Stormstrike Missile Launcher': { range:'72"',  type:'Heavy 1',    s:8,  ap:-3, d:3,    special:'' },
+  'Blackstar Rocket Launcher':    { range:'30"',  type:'Heavy D6',   s:6,  ap:-1, d:1,    special:'Corvid warhead: +1 to hit vs units that can Fly / Dracos warhead: +1 to hit vs units in cover' },
+  'Infernum Halo-launcher':       { range:'—',    type:'—',          s:'-',ap:'-', d:'-',  special:'Equipment — enemy Fly units targeting bearer subtract 1 from hit rolls' },
+  'Auspex Array':                 { range:'—',    type:'—',          s:'-',ap:'-', d:'-',  special:'Equipment — re-roll hit rolls of 1 against units that cannot Fly' },
+  'Blackstar Cluster Launcher':   { range:'—',    type:'—',          s:'-',ap:'-', d:'-',  special:'Equipment — after moving pick one unit flown over — roll D6 per model (max 10) — on 6 suffer 1 mortal wound' },
 
 };

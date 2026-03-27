@@ -152,4 +152,40 @@ const FACTION_DEATHWATCH = [
                'Teleport Strike: Deep strike 9"+ from enemy',
                'Terminator Armour: 5+ invulnerable save','Special Issue Ammunition'] },
 
+
+  // ── FLYER ─────────────────────────────────────────────────────────────
+  { id:'dw_corvus_blackstar', name:'Corvus Blackstar',
+    stats:['20-60"','3+','3+','6','7','14','3','8','3+'], role:'Flyer', pts:236, min:1, max:1, ppm:0,
+    wargear:['Twin Assault Cannon','2x Stormstrike Missile Launchers','Blackstar Cluster Launcher'],
+    options:[
+      { group:'Main Gun', choices:[
+        { label:'Twin Assault Cannon',pts:0, default:true, weapons:['Twin Assault Cannon'] },
+        { label:'Twin Lascannon',      pts:0, weapons:['Twin Lascannon'], replaces:['Twin Assault Cannon'] },
+      ]},
+      { group:'Missiles', choices:[
+        { label:'2x Stormstrike Missiles',     pts:0,  default:true, weapons:['Stormstrike Missile Launcher'] },
+        { label:'2x Blackstar Rocket Launchers',pts:16, weapons:['Blackstar Rocket Launcher'], replaces:['Stormstrike Missile Launcher'] },
+      ]},
+      { group:'Support', choices:[
+        { label:'None',               pts:0, default:true },
+        { label:'Infernum Halo-launcher',pts:10, weapons:['Infernum Halo-launcher'] },
+        { label:'Auspex Array',       pts:10, weapons:['Auspex Array'] },
+      ]},
+      { group:'Extra', choices:[
+        { label:'None',               pts:0, default:true },
+        { label:'Hurricane Bolter',   pts:10, weapons:['Hurricane Bolter'] },
+      ]},
+    ],
+    abilities:['And They Shall Know No Fear',
+               'Airborne: Cannot charge or be charged — can only be targeted by units that can Fly or with Fly keyword',
+               'Hard to Hit: -1 to hit rolls against this model',
+               'Hover Jet: Before moving declare Hover — Move becomes 20" and loses Airborne and Hard to Hit until next Movement phase',
+               'Assault Vehicle: Models disembarking may still charge this turn',
+               'Transport: Carries 12 Deathwatch Infantry — Jump Pack/Terminator = 2 slots, Biker = 3 slots',
+               'Blackstar Cluster Launcher: After this model moves pick one unit it flew over — roll D6 per model up to 10 — on 6 that unit suffers 1 mortal wound',
+               'Auspex Array: Re-roll hit rolls of 1 against units that cannot Fly',
+               'Infernum Halo-launcher: Enemy Fly units targeting this model subtract 1 from hit rolls',
+               'Special Issue Ammunition: Bolt weapons on board may use special ammo',
+               'Explodes: On 6 — D6 mortal wounds within 6"'] },
+
 ];
