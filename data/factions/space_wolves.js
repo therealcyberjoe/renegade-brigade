@@ -12,7 +12,7 @@ const FACTION_SPACE_WOLVES = [
                'Space Wolves only'] },
 
   { id:'sw_logan', name:'Logan Grimnar',
-    stats:['5"','2+','2+','4','4','6','4','10','2+'], role:'HQ', pts:215, min:1, max:1, ppm:0,
+    stats:['5"','2+','2+','4','4','6','4','10','2+'], role:'HQ', unique:true, pts:215, min:1, max:1, ppm:0,
     wargear:['Axe Morkai','Storm Bolter'],
     abilities:['Chapter Master: Re-roll all failed hit rolls for Space Wolves within 6"',
                '3+ invulnerable save',
@@ -134,4 +134,32 @@ const FACTION_SPACE_WOLVES = [
     wargear:['Twin Lascannons'],
     abilities:['Power of the Machine Spirit','Smoke Launchers',
                'Transport: Carries 10 Infantry','Explodes: On 6 — D6 mortal wounds within 6"'] },
+
+  // ── NAMED CHARACTERS (additional) ───────────────────────────────────
+  { id:'sw_njal', name:'Njal Stormcaller', unique:true,
+    stats:['6"','2+','3+','4','4','5','3','9','3+'], role:'HQ', pts:155, min:1, max:1, ppm:0,
+    wargear:['Runic Armour','Staff of the Stormcaller','Bolt Pistol'],
+    abilities:['And They Shall Know No Fear',
+               'Psyker: Mastery Level 2 — knows Smite + 2 Tempestus powers',
+               'Stormcaller: At start of each of your turns pick a weather effect — Lightning: D3 mortal wounds to nearest enemy unit within 12" — Blizzard: -1 to hit rolls for all enemies within 12" — Gale: D6+6 hurricane move on a single friendly SW unit',
+               'Lord of Tempests: +1 to psychic tests in any turn where a terrain piece has been destroyed'] },
+
+  { id:'sw_ulrik', name:'Ulrik the Slayer', unique:true,
+    stats:['6"','2+','3+','4','4','4','3','9','3+'], role:'HQ', pts:100, min:1, max:1, ppm:0,
+    wargear:['Slayer Knife','Plasma Pistol','Wolf Helm of Russ'],
+    abilities:['And They Shall Know No Fear',
+               "Wolf Helm of Russ: Friendly Space Wolves within 6\" may use Ulrik's Leadership",
+               'Master of Sanctity: Friendly Space Wolves within 6" re-roll failed hit rolls in the Fight phase',
+               'The Old Wolf: Once per game — one friendly unit within 6" may immediately consolidate even if it did not fight this turn',
+               'Slayer Knife: AP-1 D2 — wound rolls of 6 deal 1 mortal wound in addition'] },
+
+  { id:'sw_arjac', name:'Arjac Rockfist — Anvil of Fenris', unique:true,
+    stats:['5"','2+','3+','4','4','5','4','9','2+'], role:'Elites', pts:120, min:1, max:1, ppm:0,
+    wargear:['Foehammer','Anvil Shield','Storm Bolter','Terminator Armour'],
+    abilities:['And They Shall Know No Fear',
+               '4+ invulnerable save — Terminator Armour: 2+ save',
+               'Teleport Strike: Deep strike — arrive 9"+ from enemy',
+               'Bodyguard: Roll D6 when nearby Wolf Lord loses a wound — on 4+ Arjac suffers it instead',
+               'Foehammer: Can be thrown — Assault 1, Range 12", S10 AP-3 D3 — after shooting returns to Arjac'] },
+
 ];

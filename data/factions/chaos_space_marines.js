@@ -366,4 +366,23 @@ const FACTION_CHAOS_SPACE_MARINES = [
     wargear:['Combi-Bolter'],
     abilities:['Smoke Launchers','Transport: Carries 10 Infantry models',
                'Daemonic: 5+ invulnerable save'] },
+
+  { id:'csm_kharn', name:'Khârn the Betrayer', unique:true,
+    stats:['6"','2+','3+','5','4','6','5','9','3+'], role:'HQ', pts:165, min:1, max:1, ppm:0,
+    wargear:['Gorechild','Plasma Pistol'],
+    abilities:['Betrayer: Re-roll all failed hit rolls in the Fight phase — if all attacks hit, roll again for bonus attacks',
+               'Rites of Blood: Friendly World Eaters within 6" re-roll failed hit rolls in the Fight phase',
+               'Blood for the Blood God: +1 Attack in Fight phase',
+               'Skulls for the Skull Throne: Unmodified hit rolls of 6 with Gorechild deal 1 mortal wound in addition',
+               'Note: In index rules, Khârn belongs to the Heretic Astartes faction alongside World Eaters'] },
+
+  { id:'csm_lucius', name:'Lucius the Eternal — the Slaanesh Champion', unique:true,
+    stats:['6"','2+','3+','4','4','4','4','9','3+'], role:'HQ', pts:130, min:1, max:1, ppm:0,
+    wargear:['Lash of Torment','Sword of Misery','Doom Siren'],
+    abilities:['Veterans of the Long War',
+               '4+ invulnerable save',
+               "Eternal Champion: Each time Lucius is slain, the model that slew him must roll D6 — on 2+ that model's player takes control of Lucius and removes one of their own models",
+               'Armour of Shrieking Souls: Enemy units within 3" must subtract 1 from their Leadership',
+               'Lash of Torment: AP-2 D2 — unmodified hit rolls of 6 deal 1 mortal wound in addition'] },
+
 ];

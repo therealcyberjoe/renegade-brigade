@@ -232,4 +232,42 @@ const FACTION_DARK_ELDAR = [
                'Transport: Carries 5 Drukhari models',
                'Jink: 5+ invulnerable save if model Advanced',
                'Grisly Trophies: Enemy units within 6" subtract 1 from Morale tests'] },
+
+  // ── NAMED CHARACTERS ────────────────────────────────────────────────
+  { id:'de_urien', name:'Urien Rakarth — Master Haemonculus', unique:true,
+    stats:['7"','3+','3+','3','4','5','3','8','5+'], role:'HQ', pts:90, min:1, max:1, ppm:0,
+    wargear:['Ichor Gauntlet','Casket of Flensing','Haemonculus Tools'],
+    abilities:['Power from Pain',
+               'Insensible to Pain: 5+ Feel No Pain',
+               'Master of Pain: Friendly Haemonculi Covens units within 6" also have Insensible to Pain',
+               'Sculptor of Flesh: At start of your turn heal D3 wounds from one friendly Wrack or Grotesque unit within 3"',
+               'Reborn: The first time Urien is slain roll D6 — on 2+ he returns with D3 wounds at end of that phase within 1" of where he fell'] },
+
+  { id:'de_lelith', name:'Lelith Hesperax — Queen of Knives', unique:true,
+    stats:['7"','2+','3+','3','3','5','6','9','6+'], role:'HQ', pts:105, min:1, max:1, ppm:0,
+    wargear:['Lelith Hesperax Blades'],
+    abilities:['Power from Pain',
+               '4+ invulnerable save in the Fight phase',
+               'Penetrating Strike: Unmodified wound rolls of 6 deal 1 mortal wound in addition — AP of the attack becomes -4',
+               'Quicksilver Dodge: -1 to hit rolls targeting this model',
+               'Queen of the Arena: Friendly Wyches within 6" re-roll failed hit rolls in the Fight phase'] },
+
+  { id:'de_drazhar', name:'Drazhar — Master of Blades', unique:true,
+    stats:['7"','2+','3+','4','3','5','6','9','2+'], role:'Elites', pts:145, min:1, max:1, ppm:0,
+    wargear:['Executioner Demiklaives'],
+    abilities:['Power from Pain',
+               '4+ invulnerable save',
+               'Lethal Precision: Unmodified wound rolls of 6 deal D3 mortal wounds in addition',
+               'Murderous Assault: Make 2 additional attacks with this weapon in the Fight phase',
+               'Living Legend: Friendly Incubi within 6" re-roll failed hit rolls — Drazhar always fights first'] },
+
+  { id:'de_sliscus', name:'Duke Sliscus — the Serpent', unique:true,
+    stats:['7"','2+','3+','3','3','4','4','9','4+'], role:'HQ', pts:100, min:1, max:1, ppm:0,
+    wargear:['The Serpent Venom Blade','Blaster'],
+    abilities:['Power from Pain',
+               '4+ invulnerable save',
+               'Raid Commander: Friendly Kabalite Warriors within 6" re-roll hit rolls of 1',
+               'Poisonous Presence: Enemy units that lose models to melee attacks by this model in the Fight phase must subtract 1 from their Leadership until your next turn',
+               'Sky Serpent: May Advance and still fire weapons without penalty'] },
+
 ];

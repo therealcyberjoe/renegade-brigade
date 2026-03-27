@@ -381,4 +381,32 @@ const FACTION_TAU = [
     wargear:['Burst Cannon','Smart Missile System'],
     abilities:['For the Greater Good',"Transport: Carries 12 T'au Infantry",
                'Explodes: On 6 when destroyed — D3 mortal wounds within 6"'] },
+
+  { id:'tau_aunva', name:"Aun'Va — Master of the Undying Spirit", unique:true,
+    stats:['5"','5+','5+','2','2','3','2','10','6+'], role:'HQ', pts:85, min:1, max:1, ppm:0,
+    wargear:['Paradox of Duality (Staff)'],
+    abilities:['For the Greater Good',
+               "Supreme Loyalty: Friendly T'au Empire units within 9\" auto-pass Morale tests",
+               "Ethereal: Friendly T'au Empire Infantry within 6\" re-roll failed hit rolls of 1",
+               "Paradox of Duality: This model has 2 profiles — Presence: all attacks against Aun'Va must roll an additional D6 — on 4+ that attack is ignored — Undying: if Aun'Va is slain he returns on a 3+ with 1 wound remaining",
+               "Invocation of the Elements: Once per turn choose one — Fire: +1 to hit rolls — Earth: 5+ Feel No Pain — Air: +2\" to Move — Water: re-roll failed charges"] },
+
+  { id:'tau_aunshi', name:"Aun'Shi", unique:true,
+    stats:['7"','4+','4+','3','3','4','4','10','5+'], role:'HQ', pts:65, min:1, max:1, ppm:0,
+    wargear:['Honour Blade'],
+    abilities:['For the Greater Good',
+               "Ethereal: Friendly T'au Empire Infantry within 6\" re-roll failed hit rolls of 1",
+               'Way of the Short Blade: +1 Attack — re-roll all failed hit rolls in the Fight phase',
+               "Invocation of the Elements: As Aun'Va above",
+               'Deflect: -1 to hit rolls targeting this model in the Fight phase'] },
+
+  { id:'tau_longstrike', name:'Longstrike', unique:true,
+    stats:['12"','5+','2+','6','7','10','3','8','3+'], role:'Fast Attack', pts:175, min:1, max:1, ppm:0,
+    wargear:['Railgun','2x Smart Missile Systems','Twin Pulse Carbines'],
+    abilities:['For the Greater Good',
+               'Ace Pilot: Re-roll all failed hit rolls',
+               'Grinding Advance: Move and fire Heavy weapons without penalty',
+               'Smoke Launchers',
+               'Railgun: Heavy 1 S10 AP-4 D6 — wound rolls of 6 deal 6 mortal wounds in addition to normal damage'] },
+
 ];

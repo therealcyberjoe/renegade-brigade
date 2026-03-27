@@ -159,4 +159,14 @@ const FACTION_DARK_ANGELS = [
     wargear:['Flamestorm Cannon','Multi-Melta'],
     abilities:['Power of the Machine Spirit','Smoke Launchers',
                'Transport: Carries 12 Infantry','Explodes: On 6 — D6 mortal wounds within 6"'] },
+
+  { id:'da_asmodai', name:'Asmodai — Master Interrogator-Chaplain', unique:true,
+    stats:['6"','2+','3+','4','4','4','3','9','3+'], role:'HQ', pts:90, min:1, max:1, ppm:0,
+    wargear:['Blades of Reason','Crozius Arcanum','Bolt Pistol'],
+    abilities:['And They Shall Know No Fear',
+               '4+ invulnerable save',
+               'Litanies of Hate: Friendly Dark Angels within 6" re-roll failed hit rolls in the Fight phase',
+               'Blades of Reason: AP-2 D1 — enemy Characters wounded by this weapon must subtract 1 from their Leadership',
+               'Inner Circle: Ignore Morale while any Dark Angels Character is on the battlefield'] },
+
 ];

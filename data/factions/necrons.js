@@ -38,7 +38,7 @@ const FACTION_NECRONS = [
                'Lokhust Escorts: 2 bodyguard models absorb wounds before Szarekh'] },
 
   { id:'nec_illuminor', name:'Illuminor Szeras',
-    stats:['10"','3+','3+','5','5','6','3','10','3+'], role:'HQ', pts:145, min:1, max:1, ppm:0, isNew:true,
+    stats:['10"','3+','3+','5','5','6','3','10','3+'], role:'HQ', pts:145, min:1, max:1, ppm:0, 
     wargear:['Eldritch Lance','Mechatendrils'],
     abilities:['Reanimation Protocols',
                'The Great Work: One friendly Necrons Infantry unit permanently within 3" gains one enhancement: Enhanced Weapons / Augmented Reflexes / Biochemical Resilience',
@@ -307,4 +307,41 @@ const FACTION_NECRONS = [
     ],
     abilities:['Starstele Network: While 2+ remain friendly Necrons within 6" add 1 to Reanimation rolls',
                'Transdimensional Recall: Once per game — remove one friendly Necrons Infantry unit and set it up within 3" of any Starstele'] },
+
+  // ── NAMED CHARACTERS (additional) ───────────────────────────────────
+  { id:'nec_imotekh', name:'Imotekh the Stormlord — Phaeron of the Sautekh', unique:true,
+    stats:['6"','2+','2+','5','5','6','4','10','2+'], role:'HQ', pts:185, min:1, max:1, ppm:0,
+    wargear:["Gauntlet of Fire","Staff of the Destroyer"],
+    abilities:['Reanimation Protocols','Living Metal',
+               '4+ invulnerable save',
+               'Lord of the Storm: At start of each battle round roll D6 — on 4+ deal D3 mortal wounds to one enemy unit within 24"',
+               'Hyperlogical Strategist: Once per game at start of your turn gain D3 additional Command Points',
+               'Phaeron: Friendly Sautekh units within 6" auto-pass Morale — re-roll hit rolls of 1'] },
+
+  { id:'nec_zahndrekh', name:'Nemesor Zahndrekh', unique:true,
+    stats:['6"','3+','3+','4','4','5','3','10','3+'], role:'HQ', pts:155, min:1, max:1, ppm:0,
+    wargear:['Hyperphase Sword','Voidblade',"Zahndrekh's Warscythe"],
+    abilities:['Reanimation Protocols','Living Metal',
+               '4+ invulnerable save',
+               'Adaptive Tactics: At start of each of your turns grant one friendly Sautekh unit within 12" one of the following until start of next turn — Counter-offensive / Relentless / Defensive formation',
+               'Phased Reinforcements: Friendly Sautekh units arriving from reserve may arrive within 6" of Zahndrekh'] },
+
+  { id:'nec_obyron', name:'Vargard Obyron', unique:true,
+    stats:['6"','2+','3+','4','4','4','3','10','3+'], role:'HQ', pts:100, min:1, max:1, ppm:0,
+    wargear:['Ghostwalk Blade'],
+    abilities:['Reanimation Protocols','Living Metal',
+               '4+ invulnerable save',
+               'The Vargard Protects: Roll D6 when Zahndrekh loses a wound while within 3" of Obyron — on 2+ Obyron suffers it instead',
+               'Ghostwalk Mantle: At end of any phase if Zahndrekh is on the battlefield Obyron may immediately teleport to within 3" of Zahndrekh',
+               'Cleaving Counterblow: Each time an enemy model attacks Obyron in the Fight phase and misses, immediately make one attack against that model'] },
+
+  { id:'nec_orikan', name:'Orikan the Diviner', unique:true,
+    stats:['6"','3+','3+','4','4','4','2','10','4+'], role:'HQ', pts:115, min:1, max:1, ppm:0,
+    wargear:["The Stars Are Right (Staff)",'Temporal Staff'],
+    abilities:['Reanimation Protocols','Living Metal',
+               'Psyker: Mastery Level 1 — knows Smite + 1 Necron power',
+               'The Stars Are Right: At start of battle roll D6 — on 4+ Orikan is Empowered this game gaining +1 to all stats and his staff becomes S8 AP-3 D3',
+               'Temporal Snares: Enemy units within 3" subtract 1 from Advance and charge rolls',
+               'Foresight: Once per game re-roll any single dice roll before seeing the result'] },
+
 ];

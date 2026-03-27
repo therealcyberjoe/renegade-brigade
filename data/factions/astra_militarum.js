@@ -37,6 +37,14 @@ const FACTION_ASTRA_MILITARUM = [
                'Tactical Genius: Re-roll any single hit/wound/save die once per phase',
                'Cadian only'] },
 
+  { id:'ag_kell', name:'Colour Sergeant Jarran Kell', unique:true,
+    stats:['6"','3+','3+','3','3','4','3','9','4+'], role:'Elites', pts:50, min:1, max:1, ppm:0,
+    wargear:['Power Sword','Plasma Pistol','Regimental Standard'],
+    abilities:['Bodyguard: Roll D6 when Creed loses a wound while within 3" — on 2+ Kell suffers it instead',
+               'Regimental Standard: Friendly Astra Militarum Infantry within 6" auto-pass Morale tests',
+               "Voice Amplifier: Creed's order range is doubled to 24\" while Kell is alive",
+               'Cadian only'] },
+
   { id:'ag_pask', name:'Tank Commander Pask',
     stats:['10"','5+','2+','6','8','12','3','9','3+'], role:'HQ', pts:183, min:1, max:1, ppm:0,
     wargear:['Leman Russ Battle Cannon','Heavy Bolter','Lascannon Sponsons'],
@@ -221,6 +229,13 @@ const FACTION_ASTRA_MILITARUM = [
     ],
     abilities:['Unnatural Strength: Re-roll failed wound rolls in the Fight phase',
                'Loyal Protector: Friendly Characters within 3" may re-roll failed saving throws of 1'] },
+
+  { id:'ag_nork', name:'Nork Deddog', unique:true,
+    stats:['6"','3+','5+','5','5','5','3','8','4+'], role:'Elites', pts:80, min:1, max:1, ppm:0,
+    wargear:['Ripper Gun','Huge Knife','Hot-shot Laspistol'],
+    abilities:['Bodyguard: Roll D6 when a friendly Officer within 3" loses a wound — on 2+ Nork suffers it instead',
+               'Loyal Protector: Friendly Officers within 3" may re-roll failed saving throws of 1',
+               "I'll 'Ave That: When Nork slays a Character add 1 to his Attacks for the rest of the battle"] },
 
   { id:'ag_ratlings', name:'Ratlings',
     stats:['6"','5+','3+','2','2','1','1','6','6+'], role:'Elites', pts:30, min:3, max:10, ppm:10,

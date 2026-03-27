@@ -298,4 +298,23 @@ const FACTION_ORKS = [
     abilities:["Transport: Carries 12 Ork Infantry",
                'Ramshackle: When this model is destroyed roll D6 — on 6 the driver escapes unharmed',
                'Explodes: On 6 when destroyed — D3 mortal wounds within 3"'] },
+
+  { id:'ork_badrukk', name:'Kaptin Badrukk', unique:true,
+    stats:['5"','3+','2+','4','4','5','3','8','4+'], role:'HQ', pts:95, min:1, max:1, ppm:0,
+    wargear:["Da Rippa (Kustom Shoota)",'Cutlass','Stikkbombs'],
+    abilities:["'Ere We Go",
+               '4+ invulnerable save (Kustomised Mega Armour)',
+               'Flash Git: Friendly Flash Gitz within 6" re-roll hit rolls of 1 in the Shooting phase',
+               "Kaptin's Orders: Once per Shooting phase one friendly Ork unit within 12\" may re-roll all failed hit rolls",
+               'Da Rippa: Assault 3 S5 AP-2 D2 — unmodified hit rolls of 6 deal 1 mortal wound in addition'] },
+
+  { id:'ork_grotsnik', name:'Mad Dok Grotsnik', unique:true,
+    stats:['5"','3+','4+','4','4','4','3','7','4+'], role:'Elites', pts:90, min:1, max:1, ppm:0,
+    wargear:["Grotsnik's Killsaw",'Slugga'],
+    abilities:["'Ere We Go",
+               "It Won't Die: Roll D6 at start of your turn — on 5+ regain 1 lost wound",
+               "Crazed: At start of the Fight phase roll D6 — on 1 Grotsnik attacks a random friendly unit within 3\" instead",
+               "Dok's Implants: Friendly Ork units within 3\" gain Feel No Pain 6+",
+               "Furious Charge: +1 Attack on the turn this model charges"] },
+
 ];

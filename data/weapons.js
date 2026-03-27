@@ -675,5 +675,9 @@ const WEAPON_PROFILES = {
   'Betassic Ray':               { range:'18"',  type:'Heavy D3',    s:6,      ap:-2, d:2,    special:'vs Vehicles: re-roll wound rolls' },
 
   'Bio-electric Pulse with Neuro-shock': { range:'12"', type:'Assault 2D6', s:5, ap:-1, d:1, special:'Auto-hits — hit rolls of 6 deal 1 mortal wound instead of normal damage' },
+  'Hellfire Extremis':          { range:'18"',  type:'Assault 1',   s:4,      ap:0,  d:1,    special:'Wounds on 2+ except vs Vehicles — flame profile: Template S4 AP5 wounds on 2+' },
+  'Stasis Bomb':                { range:'6"',   type:'Grenade 1',   s:'D6',   ap:-3, d:'D6', special:'One use — if it misses Artemis suffers the hit instead' },
+  'Crozius Arcanum':            { range:'Melee', type:'Melee',      s:'+1',   ap:-1, d:2,    special:'' },
+  'Combi-grav':                 { range:'30"',  type:'Rapid Fire 1', s:5,     ap:-3, d:1,    special:'Grav: vs models with a Save of 3+ or better — on wound roll of 6 target is immobilised' },
 
 };

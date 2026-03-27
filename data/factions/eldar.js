@@ -560,4 +560,14 @@ const FACTION_ELDAR = [
                'Mindshock: Units that lose models subtract 1 from Leadership until next turn',
                'Supersonic: Minimum move 20"',
                'Explodes: On 1 when destroyed D3 mortal wounds within 3"'] },
+
+  { id:'el_illic', name:'Illic Nightspear', unique:true,
+    stats:['7"','3+','2+','3','3','4','3','9','5+'], role:'HQ', pts:120, min:1, max:1, ppm:0,
+    wargear:['Voidbringer (Sniper Rifle)','Shuriken Pistol'],
+    abilities:['Battle Focus',
+               'Scouts: Move up to 6" before first battle round',
+               'Cameleoline: Always count as being in cover',
+               'Voidbringer: Sniper — S5 AP-3 D3 — wound rolls of 6 cause Instant Death (target slain regardless of wounds)',
+               'Master Pathfinder: Friendly Rangers within 6" re-roll wound rolls of 1'] },
+
 ];

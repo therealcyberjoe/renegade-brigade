@@ -804,6 +804,15 @@ const SM_SHARED_UNITS = [
     abilities:['Power of the Machine Spirit','Smoke Launchers','Transport: Carries 10 Infantry',
                'Explodes: On 6 — D6 mortal wounds within 6"'] },
 
+  { id:'sm_land_raider_terminus', name:'Land Raider Terminus Ultra',
+    stats:['10"','5+','3+','8','8','16','6','9','2+'], role:'Heavy Support', pts:385, min:1, max:1, ppm:0,
+    wargear:['Terminus Ultra Lascannon (3x Twin Lascannons + Hull Lascannon)','Storm Bolter'],
+    abilities:['Power of the Machine Spirit: May fire one weapon even if it moved',
+               'Smoke Launchers',
+               'Explodes: On 6 — D6 mortal wounds within 6"',
+               'Terminus Ultra Lascannon: Can fire all three twin lascannons at one target — if all three are fired roll D6 — on 1 suffer D3 mortal wounds',
+               'No Transport Capacity: The Terminus Ultra carries no passengers — its entire hull is given over to weapons'] },
+
   // ── DEDICATED TRANSPORT ─────────────────────────────────────────────
   { id:'sm_rhino', name:'Rhino',
     stats:['12"','5+','3+','6','6','10','3','8','3+'], role:'Dedicated Transport', pts:72, min:1, max:1, ppm:0,

@@ -189,4 +189,41 @@ const FACTION_BLOOD_ANGELS = [
                'Black Rage: Add 1 to Attacks — must always move toward nearest enemy and charge if able',
                'Red Thirst: Add 1 to all wound rolls if this model charged',
                'Explodes: On 6 when destroyed — D6 mortal wounds within 3"'] },
+
+  // ── NAMED CHARACTERS (additional) ───────────────────────────────────
+  { id:'ba_sanguinor', name:'The Sanguinor, Exemplar of the Host', unique:true,
+    stats:['12"','2+','2+','4','4','5','6','9','2+'], role:'HQ', pts:170, min:1, max:1, ppm:0,
+    wargear:['Archangel Sword','Perdition Pistol'],
+    abilities:['And They Shall Know No Fear',
+               '4+ invulnerable save',
+               'Aura of Fervour: Friendly Blood Angels within 6" gain +1 Attack',
+               'Miraculous Saviour: If any friendly Blood Angels model was slain this turn roll D6 — on 3+ this model may arrive from deep strike within 1" of an enemy',
+               'Champion of Baal: Re-roll all failed hit rolls'] },
+
+  { id:'ba_lemartes', name:'Lemartes — Guardian of the Lost', unique:true,
+    stats:['12"','2+','3+','4','4','4','5','9','3+'], role:'Elites', pts:110, min:1, max:1, ppm:0,
+    wargear:['Blood Crozius','Bolt Pistol','Jump Pack'],
+    abilities:['And They Shall Know No Fear',
+               'Black Rage: +1 Attack — ignore wounds on 6+',
+               '4+ invulnerable save',
+               'Fury Unbound: Friendly Death Company within 6" re-roll failed hit rolls and failed charge rolls',
+               'Guardian of the Lost: Death Company within 6" auto-pass Morale'] },
+
+  { id:'ba_astorath', name:'Astorath the Grim — Redeemer of the Lost', unique:true,
+    stats:['12"','2+','2+','4','4','5','4','9','2+'], role:'HQ', pts:110, min:1, max:1, ppm:0,
+    wargear:["The Executioner's Axe",'Bolt Pistol','Jump Pack'],
+    abilities:['And They Shall Know No Fear',
+               '4+ invulnerable save',
+               'Litanies of Hate: Friendly Blood Angels within 6" re-roll failed hit rolls in the Fight phase',
+               'High Chaplain: Friendly Death Company within 6" re-roll all failed hit and wound rolls',
+               "Mass of Doom: Once per game — one friendly Death Company unit gains +1 Attack until end of phase"] },
+
+  { id:'ba_corbulo', name:'Brother Corbulo', unique:true,
+    stats:['6"','3+','3+','4','4','4','3','9','2+'], role:'Elites', pts:95, min:1, max:1, ppm:0,
+    wargear:["Heaven's Teeth",'Bolt Pistol','Narthecium'],
+    abilities:['And They Shall Know No Fear',
+               'Narthecium: At start of your turn restore 1 wound to one friendly Blood Angels Infantry within 3"',
+               "Red Grail: Friendly Blood Angels within 6\" add 1 to Strength — unmodified hit rolls of 6 generate 1 additional attack",
+               'Far-seeing Eye: Once per game re-roll any single dice roll'] },
+
 ];
