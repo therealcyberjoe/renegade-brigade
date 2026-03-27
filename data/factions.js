@@ -26,5 +26,4 @@ const FACTIONS = [
   { id: 'leagues_of_votann', name: 'Leagues of Votann', color: '#cc9944' },
   { id: 'emperors_children', name: "Emperor's Children", color: '#cc44bb' },
   { id: 'black_templars', name: 'Black Templars', color: '#f0c030' },
-  { id: 'kroot_hunting_pack', name: 'Kroot Hunting Pack', color: '#8B5E3C' },
 ];

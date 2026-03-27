@@ -2,7 +2,7 @@
 // Sub-factions load this file and spread it into their own array
 // Must be loaded AFTER space_marines.js
 
-const SM_SHARED_UNITS = [
+var SM_SHARED_UNITS = [
   // ── HQ ──────────────────────────────────────────────────────────────
   { id:'sm_captain', name:'Captain',
     stats:['6"','3+','3+','4','4','5','4','9','3+'], role:'HQ', pts:74, min:1, max:1, ppm:0,

@@ -1,4 +1,7 @@
+// Must be loaded AFTER csm_shared.js
 const FACTION_WORLD_EATERS = [
+  ...CSM_SHARED_UNITS,
+
   { id:'we_angron', name:'Angron, Daemon Primarch of Khorne',
     stats:['16"','2+','5+','8','8','18','8','10','4+'], role:'Lord of War', pts:450, min:1, max:1, ppm:0, unique:true, isNew:true,
     wargear:["Samni'arius and Spinegrinder",'The Butcher\'s Nails'],
@@ -89,17 +92,6 @@ const FACTION_WORLD_EATERS = [
                'Frenzied Charge: +2 Attacks on turn it charges',
                'No Retreat: Auto-pass Morale tests',
                'Exalted Eightbound upgrade: One per unit — W4 A5 +1 to all hit rolls (+15pts)'] },
-
-  { id:'we_terminators', name:'Chaos Terminators',
-    stats:['5"','3+','3+','4','4','2','2','8','2+'], role:'Elites', pts:155, min:5, max:10, ppm:31,
-    wargear:[],
-    composition:[
-      { role:'Terminator Champion', count:1, wargear:['Combi-Bolter','Power Fist'] },
-      { role:'Terminator', count:4, wargear:['Combi-Bolter','Power Fist'] },
-    ],
-    abilities:['Teleport Strike: Deep strike 9"+ from enemy',
-               'Terminator Armour: 5+ invulnerable save'] },
-
   { id:'we_flesh_hounds', name:'Flesh Hounds of Khorne',
     stats:['10"','3+','4+','4','4','1','2','6','5+'], role:'Fast Attack', pts:80, min:5, max:15, ppm:16,
     wargear:[],
@@ -115,4 +107,53 @@ const FACTION_WORLD_EATERS = [
     wargear:['Burning Skulls'],
     abilities:['Daemonic: 5+ invulnerable save',
                'Burning Skulls: Units hit subtract 1 from hit rolls until next turn'] },
+
+    { id:'we_kharn', name:'Khârn the Betrayer', unique:true,
+    stats:['6"','2+','3+','5','4','6','5','9','3+'], role:'HQ', pts:165, min:1, max:1, ppm:0,
+    wargear:['Gorechild','Plasma Pistol'],
+    abilities:['Betrayer: Re-roll all failed hit rolls in the Fight phase — if all attacks hit, roll again for bonus attacks',
+               'Rites of Blood: Friendly World Eaters within 6" re-roll failed hit rolls in the Fight phase',
+               'Blood for the Blood God: +1 Attack in Fight phase',
+               'Skulls for the Skull Throne: Unmodified hit rolls of 6 with Gorechild deal 1 mortal wound in addition',
+               'World Eaters only — Khârn leads Khorne Berzerkers into battle'] },
+
+
+  // ── ADDITIONAL WE UNITS ──────────────────────────────────────────────
+  { id:'we_daemon_prince', name:'Daemon Prince of Khorne',
+    stats:['8"','2+','2+','5','5','8','4','10','3+'], role:'HQ', pts:165, min:1, max:1, ppm:0,
+    wargear:['Daemonic Axe','Malefic Talon'],
+    options:[
+      { group:'Wings', choices:[
+        { label:'No Wings', pts:0,  default:true },
+        { label:'Wings',    pts:30, weapons:['Wings'] },
+      ]},
+    ],
+    abilities:['Daemonic: 5+ invulnerable save',
+               '4+ invulnerable save',
+               'Blood for the Blood God: +1 Attack in Fight phase',
+               'Skulls for the Skull Throne: Unmodified hit rolls of 6 deal 1 mortal wound in addition'] },
+
+  { id:'we_skullcrushers', name:'Skullcrushers of Khorne',
+    stats:['10"','3+','3+','5','5','3','3','8','3+'], role:'Elites', pts:130, min:3, max:9, ppm:43,
+    wargear:[],
+    composition:[
+      { role:'Skullcrusher', count:3, wargear:['Ensorcelled Axe','Bloodglaive','Juggernaut'],
+        options:[
+          { group:'Weapon', choices:[
+            { label:'Ensorcelled Axe', pts:0, default:true, weapons:['Ensorcelled Axe'] },
+            { label:'Bloodglaive',     pts:0, weapons:['Bloodglaive'], replaces:['Ensorcelled Axe'] },
+          ]},
+        ]},
+    ],
+    abilities:['Daemonic: 5+ invulnerable save',
+               'Blood for the Blood God: +1 Attack in Fight phase',
+               'Juggernaut: Toughness 5 while mounted'] },
+
+  { id:'we_blood_throne', name:'Blood Throne of Khorne',
+    stats:['8"','3+','4+','7','7','8','4','8','4+'], role:'Heavy Support', pts:120, min:1, max:1, ppm:0,
+    wargear:['Hellblades','Bloodcannon'],
+    abilities:['Daemonic: 4+ invulnerable save',
+               'Blood for the Blood God: +1 Attack in Fight phase',
+               'Gorefeast: Each time this model slays a model in the Fight phase roll D6 — on 4+ it restores 1 lost wound'] },
+
 ];

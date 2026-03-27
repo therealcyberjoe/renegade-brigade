@@ -1,4 +1,7 @@
+// Must be loaded AFTER csm_shared.js
 const FACTION_EMPERORS_CHILDREN = [
+  ...CSM_SHARED_UNITS,
+
   { id:'ec_fulgrim', name:'Fulgrim, Daemon Primarch of Slaanesh',
     stats:['14"','2+','2+','7','7','18','8','10','4+'], role:'Lord of War', pts:455, min:1, max:1, ppm:0, unique:true, isNew:true,
     wargear:['Blade of the Laer',"Serpent's Scales"],
@@ -31,53 +34,50 @@ const FACTION_EMPERORS_CHILDREN = [
     abilities:['Cacophony: +1 Attack in Fight phase for each time this unit was hit by ranged attacks this turn',
                'Sonic Weapons: Wound rolls of 6 deal 1 mortal wound in addition'] },
 
-  { id:'ec_lord', name:'Chaos Lord',
-    stats:['6"','3+','3+','4','4','5','4','9','3+'], role:'HQ', pts:76, min:1, max:1, ppm:0,
-    wargear:['Power Sword','Bolt Pistol'],
-    abilities:['Lord of Chaos: Friendly Slaanesh Core within 6" re-roll hit rolls of 1',
-               '4+ invulnerable save'] },
+    { id:'ec_lucius', name:'Lucius the Eternal — the Slaanesh Champion', unique:true,
+    stats:['6"','2+','3+','4','4','4','4','9','3+'], role:'HQ', pts:130, min:1, max:1, ppm:0,
+    wargear:['Lash of Torment','Sword of Misery','Doom Siren'],
+    abilities:['Veterans of the Long War',
+               '4+ invulnerable save',
+               "Eternal Champion: Each time Lucius is slain, the model that slew him must roll D6 — on 2+ that model's player takes control of Lucius and removes one of their own models",
+               'Armour of Shrieking Souls: Enemy units within 3" must subtract 1 from their Leadership',
+               'Lash of Torment: AP-2 D2 — unmodified hit rolls of 6 deal 1 mortal wound in addition'] },
 
-  { id:'ec_sorcerer', name:'Chaos Sorcerer',
-    stats:['6"','3+','3+','4','4','4','3','9','3+'], role:'HQ', pts:93, min:1, max:1, ppm:0,
-    wargear:['Force Stave','Bolt Pistol'],
-    abilities:['Psyker: Mastery Level 1','4+ invulnerable save'] },
 
-  { id:'ec_csm', name:'Chaos Space Marines',
-    stats:['6"','3+','3+','4','4','1','1','7','3+'], role:'Troops', pts:60, min:5, max:20, ppm:12,
+  // ── ADDITIONAL EC UNITS ──────────────────────────────────────────────
+  { id:'ec_daemon_prince', name:'Daemon Prince of Slaanesh',
+    stats:['8"','2+','2+','5','5','8','4','10','3+'], role:'HQ', pts:165, min:1, max:1, ppm:0,
+    wargear:['Daemonic Axe','Malefic Talon'],
+    options:[
+      { group:'Wings', choices:[
+        { label:'No Wings', pts:0,  default:true },
+        { label:'Wings',    pts:30, weapons:['Wings'] },
+      ]},
+    ],
+    abilities:['Daemonic: 5+ invulnerable save',
+               'Quicksilver Swiftness: +1 Attack and +1 to hit rolls if unit charged',
+               'Delicious Agony: Enemy units within 3" must subtract 1 from their Leadership'] },
+
+  { id:'ec_daemonettes', name:'Daemonettes of Slaanesh',
+    stats:['7"','3+','3+','3','3','1','2','10','5+'], role:'Troops', pts:80, min:10, max:30, ppm:8,
     wargear:[],
     composition:[
-      { role:'Chaos Champion', count:1, wargear:['Boltgun','Bolt Pistol','Chainsword'],
-        options:[
-          { group:'Melee', choices:[
-            { label:'Chainsword',  pts:0, default:true },
-            { label:'Power Sword', pts:4, weapons:['Power Sword'], replaces:['Chainsword'] },
-            { label:'Power Fist',  pts:9, weapons:['Power Fist'],  replaces:['Chainsword'] },
-          ]},
-        ]},
-      { role:'Chaos Space Marine', count:4, wargear:['Boltgun','Bolt Pistol'] },
+      { role:'Alluress', count:1, wargear:['Piercing Claws'] },
+      { role:'Daemonette', count:9, wargear:['Piercing Claws'] },
     ],
-    abilities:['Kakophoni: +1 Leadership — enemies Falling Back subtract 1 from hit rolls'] },
+    abilities:['Daemonic: 5+ invulnerable save',
+               'Quicksilver Swiftness: +1 Attack on the turn this unit charges',
+               'Aura of Acquiescence: Enemy units within 6" subtract 1 from their Leadership'] },
 
-  { id:'ec_terminators', name:'Chaos Terminators',
-    stats:['5"','3+','3+','4','4','2','2','8','2+'], role:'Elites', pts:155, min:5, max:10, ppm:31,
+  { id:'ec_seekers', name:'Seekers of Slaanesh',
+    stats:['14"','3+','3+','3','3','1','2','10','5+'], role:'Fast Attack', pts:105, min:5, max:20, ppm:21,
     wargear:[],
     composition:[
-      { role:'Terminator Champion', count:1, wargear:['Combi-Bolter','Power Fist'] },
-      { role:'Terminator', count:4, wargear:['Combi-Bolter','Power Fist'] },
+      { role:'Heartseeker', count:1, wargear:['Lashing Tongue','Piercing Claws'] },
+      { role:'Seeker', count:4, wargear:['Piercing Claws'] },
     ],
-    abilities:['Teleport Strike','Terminator Armour: 5+ invulnerable save'] },
+    abilities:['Daemonic: 5+ invulnerable save',
+               'Quicksilver Swiftness: +1 Attack on the turn this unit charges',
+               "Siren Song: At start of opponent's charge phase — one enemy unit within 12\" must attempt to charge this unit if it can"] },
 
-  { id:'ec_havocs', name:'Havocs',
-    stats:['6"','3+','3+','4','4','1','1','7','3+'], role:'Heavy Support', pts:60, min:5, max:5, ppm:0,
-    wargear:[],
-    composition:[
-      { role:'Havoc', count:5, wargear:['Bolters','Autocannons'] },
-    ],
-    abilities:['Tank Hunters: Re-roll failed wound rolls against Vehicles',
-               'Up to 4 models may take heavy weapons'] },
-
-  { id:'ec_rhino', name:'Chaos Rhino',
-    stats:['12"','5+','3+','6','6','10','3','8','3+'], role:'Dedicated Transport', pts:72, min:1, max:1, ppm:0,
-    wargear:['Combi-Bolter'],
-    abilities:['Smoke Launchers','Transport: Carries 10 Infantry'] },
 ];

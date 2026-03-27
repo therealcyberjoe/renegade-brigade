@@ -1,4 +1,7 @@
+// Must be loaded AFTER csm_shared.js
 const FACTION_DEATH_GUARD = [
+  ...CSM_SHARED_UNITS,
+
   { id:'dg_mortarion', name:'Mortarion',
     stats:['9"','2+','2+','8','8','18','7','10','3+'], role:'Lord of War', pts:475, min:1, max:1, ppm:0, unique:true,
     wargear:['Silence','Phosphex Bombs','The Lantern'],
@@ -143,4 +146,69 @@ const FACTION_DEATH_GUARD = [
     abilities:['Putrid Miasma: Enemy units within 7" subtract 1 from hit rolls in Shooting and Fight phases',
                'Diseased Structure: Friendly Death Guard wholly within 7" gain cover',
                'Explodes: When destroyed every unit within 6" suffers D3 mortal wounds on 2+'] },
+
+  // ── HQ (additional) ──────────────────────────────────────────────────
+  { id:'dg_plaguecaster', name:'Malignant Plaguecaster',
+    stats:['5"','3+','3+','4','5','4','3','8','3+'], role:'HQ', pts:110, min:1, max:1, ppm:0,
+    wargear:['Corrupted Staff','Plasma Pistol','Blight Grenades'],
+    abilities:['Disgustingly Resilient: 5+ Feel No Pain',
+               'Psyker: Mastery Level 2 — knows Smite + 2 Contagion powers',
+               'Plague Wind: WC7 — pick visible enemy unit within 18" — roll 7 dice — for each 6 it suffers 1 mortal wound',
+               'Miasma of Pestilence: WC6 — pick friendly Death Guard unit within 18" — enemy units subtract 1 from hit rolls against it'] },
+  // ── ELITES (additional) ───────────────────────────────────────────────
+  { id:'dg_tallyman', name:'Tallyman',
+    stats:['5"','3+','3+','4','5','4','3','8','3+'], role:'Elites', pts:60, min:1, max:1, ppm:0,
+    wargear:['Plasma Pistol','Blight Grenades','Krak Grenades'],
+    abilities:['Disgustingly Resilient: 5+ Feel No Pain',
+               'Festering Zealot: Friendly Death Guard within 7" re-roll failed hit rolls',
+               "Seven Fold Chant: Whenever you use a Stratagem roll 2D6 — on 7 you immediately regain that Command Point"] },
+
+  { id:'dg_biologus', name:'Biologus Putrifier',
+    stats:['5"','3+','3+','4','5','4','3','8','3+'], role:'Elites', pts:74, min:1, max:1, ppm:0,
+    wargear:['Injector Pistol','Plague Knife','Hyper Blight Grenades','Krak Grenades'],
+    abilities:['Disgustingly Resilient: 5+ Feel No Pain',
+               'Blades of Putrefaction: Friendly Death Guard within 7" — plague weapons gain +1 Strength and +1 Damage',
+               'Hyper Blight Grenades: Assault 1 — S5 AP-2 D2 Plague Weapon — on wound roll of 6 deal 1 mortal wound in addition',
+               'Injector Pistol: Pistol 1 — S2 AP-3 D1 — on wound roll of 6 target suffers D3 mortal wounds instead of normal damage'] },
+
+  { id:'dg_foul_blightspawn', name:'Foul Blightspawn',
+    stats:['5"','3+','3+','4','5','4','3','8','3+'], role:'Elites', pts:77, min:1, max:1, ppm:0,
+    wargear:['Plague Sprayer','Blight Grenades','Krak Grenades'],
+    abilities:['Disgustingly Resilient: 5+ Feel No Pain',
+               'Revolting Stench: Enemy units that charge a unit within 3" of this model fight last in the Fight phase that turn',
+               'Plague Sprayer: 9" D6 shots — S2D6 AP-3 D3 — Plague Weapon — auto-hits'] },
+
+  { id:'dg_blightbringer', name:'Noxious Blightbringer',
+    stats:['5"','3+','3+','4','5','4','3','8','3+'], role:'Elites', pts:55, min:1, max:1, ppm:0,
+    wargear:['Plasma Pistol','Cursed Plague Bell','Blight Grenades'],
+    abilities:['Disgustingly Resilient: 5+ Feel No Pain',
+               'Tocsin of Misery: Enemy units within 6" subtract 1 from their Leadership',
+               'Rapid Tolling: Friendly Death Guard within 6" add 1 to their Advance rolls and charge rolls'] },
+
+  { id:'dg_plague_surgeon', name:'Plague Surgeon',
+    stats:['5"','3+','3+','4','5','4','3','8','3+'], role:'Elites', pts:55, min:1, max:1, ppm:0,
+    wargear:['Bolt Pistol','Balesword','Blight Grenades'],
+    abilities:['Disgustingly Resilient: 5+ Feel No Pain',
+               'Narthecium: Friendly Death Guard within 3" re-roll Disgustingly Resilient rolls of 1',
+               'Plague Skull of Glothila: Once per game — place a Plague Skull marker — enemy units within 3" of the marker suffer -1 to hit rolls until it is removed'] },
+  // ── FAST ATTACK ───────────────────────────────────────────────────────
+  { id:'dg_myphitic', name:'Myphitic Blight-haulers',
+    stats:['10"','3+','3+','5','7','8','3','8','3+'], role:'Fast Attack', pts:55, min:1, max:3, ppm:55,
+    wargear:['Bile Spurt','Multi-melta','Missile Launcher'],
+    abilities:['Disgustingly Resilient: 5+ Feel No Pain',
+               'Shrouded: -1 to hit rolls against this unit in the Shooting phase',
+               'Daemonic Ritual: This unit ignores morale',
+               'Explodes: On 6 — D3 mortal wounds within 3"'] },
+
+  { id:'dg_plague_drones', name:'Plague Drones',
+    stats:['10"','3+','3+','4','5','4','3','7','4+'], role:'Fast Attack', pts:65, min:3, max:9, ppm:22,
+    wargear:[],
+    composition:[
+      { role:'Plague Drone', count:3, wargear:['Plaguesword','Stinger'] },
+    ],
+    abilities:['Disgustingly Resilient: 5+ Feel No Pain',
+               'Daemonic: 5+ invulnerable save',
+               'Fly: 10" Move — can move over models and terrain'] },
+  // ── HEAVY SUPPORT ─────────────────────────────────────────────────────
+  // ── DEDICATED TRANSPORT ───────────────────────────────────────────────
 ];
