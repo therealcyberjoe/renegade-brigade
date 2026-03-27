@@ -427,8 +427,7 @@ function addUnit(unitId) {
   updateTotalPoints();
   renderForceOrg();
 
-  // On mobile, jump to roster so they can see the unit they just added
-  if (window.innerWidth < 900) switchTab('roster');
+  // Auto-switch to roster on mobile removed — user stays in browse tab
 }
 
 // ============================================================

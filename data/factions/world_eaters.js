@@ -1,5 +1,5 @@
 // Must be loaded AFTER csm_shared.js
-const FACTION_WORLD_EATERS = [
+var FACTION_WORLD_EATERS = [
   ...CSM_SHARED_UNITS,
 
   { id:'we_angron', name:'Angron, Daemon Primarch of Khorne',
@@ -11,15 +11,6 @@ const FACTION_WORLD_EATERS = [
                'Death Incarnate: Enemy units within 1" subtract 2 from Leadership at Morale',
                'Unstoppable Slaughter: Slay a Character in Fight phase — regain D3 wounds',
                "Aura of Khorne: Friendly World Eaters Daemons within 8\" re-roll failed charge rolls"] },
-
-  { id:'we_kharn', name:"Khârn the Betrayer",
-    stats:['6"','2+','3+','5','4','5','5','9','3+'], role:'HQ', pts:125, min:1, max:1, ppm:0,
-    wargear:['Gorechild','Plasma Pistol'],
-    abilities:["'The Betrayer': If Khârn's hit roll is 1 the attack targets a friendly unit instead",
-               '4+ invulnerable save',
-               "Killing Blow: Wound rolls of 6 in Fight phase deal D3 additional mortal wounds",
-               "World Eaters only"] },
-
   { id:'we_invocatus', name:'Invocatus',
     stats:['10"','2+','3+','5','5','6','5','9','3+'], role:'HQ', pts:140, min:1, max:1, ppm:0, unique:true, isNew:true,
     wargear:['Flamespout','Hellforged Axe','Juggernaut Bladed Horn'],

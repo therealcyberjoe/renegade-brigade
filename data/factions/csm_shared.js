@@ -74,28 +74,6 @@ var CSM_SHARED_UNITS = [
     ],
     abilities:['Mob Rule: Units of 10+ models re-roll failed Morale tests',
                'Expendable: Do not count for Morale if within 6" of a Chaos Lord'] },
-
-  { id:'csm_acc_cultists', name:'Accursed Cultists',
-    stats:['6"','3+','5+','4','4','2','3','7','5+'], role:'Troops', pts:60, min:5, max:20, ppm:12, isNew:true,
-    wargear:[],
-    composition:[
-      { role:'Accursed Cultist', count:5, wargear:['Fleshy Appendages'] },
-    ],
-    abilities:['Mutant Resilience: Re-roll Morale tests — each model that dies on 5+ does not count as a casualty for Morale',
-               'Tide of Corruption: For each 5 models in this unit enemy within 1" subtract 1 from Leadership',
-               'Torment upgrade available: W3 S5 T5 at +5pts per model'] },
-
-  { id:'csm_dark_commune', name:'Dark Commune',
-    stats:['6"','3+','3+','3','3','3','2','8','5+'], role:'HQ', pts:55, min:5, max:5, ppm:0, isNew:true,
-    wargear:[],
-    composition:[
-      { role:'Demagogue', count:1, wargear:['Autopistol','Brutal Assault Weapon'] },
-      { role:'Cultist', count:4, wargear:['Autopistol','Brutal Assault Weapon'] },
-    ],
-    abilities:['Treated as a single CHARACTER for targeting purposes',
-               "Unholy Invocations: Each turn grant one friendly Chaos Cultists unit within 12\" one of: +1 Attack / auto-pass Morale / 5+ invulnerable save",
-               'Chaos Icon: Friendly Chaos Cultists within 6" re-roll failed charge rolls'] },
-
   { id:'csm_terminators', name:'Chaos Terminators',
     stats:['5"','3+','3+','4','4','2','2','8','2+'], role:'Elites', pts:155, min:5, max:10, ppm:31,
     wargear:[],
