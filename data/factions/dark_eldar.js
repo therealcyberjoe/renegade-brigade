@@ -1,8 +1,22 @@
-const FACTION_DARK_ELDAR = [
+var FACTION_DARK_ELDAR = [
   // ── HQ ──────────────────────────────────────────────────────────────
   { id:'de_archon', name:'Archon',
     stats:['7"','2+','2+','3','3','5','5','9','4+'], role:'HQ', pts:68, min:1, max:1, ppm:0,
     wargear:['Husk Blade','Blast Pistol','Shadow Field'],
+    options:[
+      { group:'Melee', choices:[
+        { label:'Husk Blade',      pts:0,  default:true },
+        { label:'Agoniser',        pts:5,  weapons:['Agoniser'],        replaces:['Husk Blade'] },
+        { label:'Power Sword',     pts:4,  weapons:['Power Sword'],     replaces:['Husk Blade'] },
+        { label:'Venom Blade',     pts:3,  weapons:['Venom Blade'],     replaces:['Husk Blade'] },
+        { label:'Archon Glaive',   pts:8,  weapons:['Archon Glaive'],   replaces:['Husk Blade'] },
+      ]},
+      { group:'Ranged', choices:[
+        { label:'Blast Pistol',    pts:0,  default:true },
+        { label:'Splinter Pistol', pts:0,  weapons:['Splinter Pistol'], replaces:['Blast Pistol'] },
+        { label:'Phantasm Grenade Launcher', pts:5, weapons:['Phantasm Grenade Launcher'], replaces:['Blast Pistol'] },
+      ]},
+    ],
     abilities:['Power from Pain: Accumulates over battle — gains more abilities each phase',
                'Supreme Overlord: Friendly Drukhari within 6" re-roll hit rolls of 1',
                'Shadow Field: 2+ invulnerable save — if failed permanently destroyed',
@@ -11,6 +25,17 @@ const FACTION_DARK_ELDAR = [
   { id:'de_succubus', name:'Succubus',
     stats:['7"','2+','2+','3','3','4','5','8','4+'], role:'HQ', pts:60, min:1, max:1, ppm:0,
     wargear:['Agoniser','Blast Pistol','Plasma Grenades'],
+    options:[
+      { group:'Melee', choices:[
+        { label:'Agoniser',        pts:0,  default:true },
+        { label:'Archite Glaive',  pts:10, weapons:['Archite Glaive'],  replaces:['Agoniser'] },
+        { label:'Impaler',         pts:8,  weapons:['Impaler'],         replaces:['Agoniser'] },
+      ]},
+      { group:'Ranged', choices:[
+        { label:'Blast Pistol',    pts:0,  default:true },
+        { label:'Splinter Pistol', pts:0,  weapons:['Splinter Pistol'], replaces:['Blast Pistol'] },
+      ]},
+    ],
     abilities:['Power from Pain',
                'Combat Drugs: Roll D6 before battle — +1 to a characteristic',
                'Acrobatic: 4+ invulnerable save',

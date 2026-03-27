@@ -1,4 +1,4 @@
-const FACTION_GENESTEALER_CULTS = [
+var FACTION_GENESTEALER_CULTS = [
   // ── HQ ──────────────────────────────────────────────────────────────
   { id:'gc_patriarch', name:'Patriarch',
     stats:['8"','2+','4+','6','6','5','5','10','5+'], role:'HQ', pts:140, min:1, max:1, ppm:0,
@@ -11,12 +11,28 @@ const FACTION_GENESTEALER_CULTS = [
   { id:'gc_magus', name:'Magus',
     stats:['6"','3+','3+','3','3','4','3','7','6+'], role:'HQ', pts:55, min:1, max:1, ppm:0,
     wargear:['Force Stave','Autopistol'],
+    options:[
+      { group:'Melee', choices:[
+        { label:'Force Stave',     pts:0,  default:true },
+        { label:'Force Sword',     pts:5,  weapons:['Force Sword'],     replaces:['Force Stave'] },
+      ]},
+      { group:'Ranged', choices:[
+        { label:'Autopistol',      pts:0,  default:true },
+        { label:'Laspistol',       pts:0,  weapons:['Laspistol'],       replaces:['Autopistol'] },
+      ]},
+    ],
     abilities:['Psyker: Mastery Level 1','Cult Ambush',
                'Aura of Fanaticism: Friendly GSC units within 6" add 1 to Leadership'] },
 
   { id:'gc_primus', name:'Primus',
     stats:['6"','2+','3+','3','3','4','4','7','5+'], role:'HQ', pts:60, min:1, max:1, ppm:0,
     wargear:['Needle Pistol','Bonesword','Toxin Injector'],
+    options:[
+      { group:'Melee', choices:[
+        { label:'Bonesword',       pts:0,  default:true },
+        { label:'Rending Claw',    pts:5,  weapons:['Rending Claw'],    replaces:['Bonesword'] },
+      ]},
+    ],
     abilities:['Cult Ambush',
                'Meticulous Planner: Once per battle before deployment choose one Cult Ambush bonus — apply to all units instead of rolling'] },
 

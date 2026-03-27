@@ -1,8 +1,24 @@
-const FACTION_ORKS = [
+var FACTION_ORKS = [
   // ── HQ ──────────────────────────────────────────────────────────────
   { id:'ork_warboss', name:'Warboss',
     stats:['5"','2+','4+','5','5','6','4','8','4+'], role:'HQ', pts:70, min:1, max:1, ppm:0,
     wargear:['Power Klaw','Shoota','Stikkbombs'],
+    options:[
+      { group:'Ranged', choices:[
+        { label:'Shoota',          pts:0, default:true },
+        { label:'Kombi-Skorcha',   pts:5, weapons:['Kombi-Skorcha'],   replaces:['Shoota'] },
+        { label:'Kombi-Rokkit',    pts:5, weapons:['Kombi-Rokkit'],    replaces:['Shoota'] },
+      ]},
+      { group:'Melee', choices:[
+        { label:'Power Klaw',      pts:0, default:true },
+        { label:'Big Choppa',      pts:0, weapons:['Big Choppa'],      replaces:['Power Klaw'] },
+        { label:'Kustom Shoota',   pts:3, weapons:['Kustom Shoota'],   replaces:['Power Klaw'] },
+      ]},
+      { group:'Wargear', choices:[
+        { label:'None',            pts:0, default:true },
+        { label:'Warboss in Mega Armour upgrade', pts:25, weapons:['Mega Armour'] },
+      ]},
+    ],
     abilities:["'Ere We Go: Re-roll failed charge rolls for friendly Orks within 6\"",
                "Waaagh!: Once per game — friendly Orks within 12\" may Advance and charge same turn",
                "Brutal but Kunnin': May re-roll one hit roll or wound roll per phase",
@@ -11,6 +27,19 @@ const FACTION_ORKS = [
   { id:'ork_big_mek', name:'Big Mek',
     stats:['5"','3+','4+','4','4','4','3','7','4+'], role:'HQ', pts:55, min:1, max:1, ppm:0,
     wargear:['Kustom Force Field','Slugga','Choppa'],
+    options:[
+      { group:'Ranged', choices:[
+        { label:'Slugga',          pts:0, default:true },
+        { label:'Kombi-Skorcha',   pts:5, weapons:['Kombi-Skorcha'],   replaces:['Slugga'] },
+        { label:'Kustom Mega-Blasta', pts:10,weapons:['Kustom Mega-Blasta'],replaces:['Slugga'] },
+        { label:'Shokk Attack Gun',   pts:35,weapons:['Shokk Attack Gun'],  replaces:['Slugga'] },
+      ]},
+      { group:'Melee', choices:[
+        { label:'Choppa',          pts:0, default:true },
+        { label:'Power Klaw',      pts:10,weapons:['Power Klaw'],      replaces:['Choppa'] },
+        { label:'Big Choppa',      pts:5, weapons:['Big Choppa'],      replaces:['Choppa'] },
+      ]},
+    ],
     abilities:["'Ere We Go",
                'Kustom Force Field: Friendly Orks within 9" gain 5+ invulnerable save against ranged attacks',
                "Mek's Tools: At end of each Movement phase restore D3 wounds to one friendly Ork Vehicle within 1\""] },

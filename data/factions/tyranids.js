@@ -1,8 +1,24 @@
-const FACTION_TYRANIDS = [
+var FACTION_TYRANIDS = [
   // ── HQ ──────────────────────────────────────────────────────────────
   { id:'ty_hive_tyrant', name:'Hive Tyrant',
     stats:['10"','2+','3+','7','7','12','4','10','3+'], role:'HQ', pts:170, min:1, max:1, ppm:0,
     wargear:['Monstrous Scything Talons','Heavy Venom Cannon'],
+    options:[
+      { group:'Ranged', choices:[
+        { label:'Heavy Venom Cannon', pts:0,  default:true, weapons:['Heavy Venom Cannon'] },
+        { label:'Stranglethorn Cannon',pts:10, weapons:['Stranglethorn Cannon'], replaces:['Heavy Venom Cannon'] },
+        { label:'Two Scything Talons (replace ranged)',pts:-5, replaces:['Heavy Venom Cannon'] },
+      ]},
+      { group:'Melee', choices:[
+        { label:'Monstrous Scything Talons', pts:0, default:true },
+        { label:'Monstrous Boneswords',      pts:12,weapons:['Monstrous Boneswords'],      replaces:['Monstrous Scything Talons'] },
+        { label:'Monstrous Rending Claws',   pts:5, weapons:['Monstrous Rending Claws'],   replaces:['Monstrous Scything Talons'] },
+      ]},
+      { group:'Wings', choices:[
+        { label:'No Wings',        pts:0,  default:true },
+        { label:'Wings',           pts:50, weapons:['Wings'] },
+      ]},
+    ],
     abilities:['Hive Commander: Friendly Tyranid units within 6" re-roll failed charge rolls',
                'Synapse: Friendly Tyranids within 12" auto-pass Morale',
                'Shadow in the Warp: Enemy Psykers within 12" subtract 1 from Psychic tests',
@@ -42,6 +58,18 @@ const FACTION_TYRANIDS = [
   { id:'ty_winged_prime', name:'Winged Tyranid Prime',
     stats:['12"','2+','3+','5','4','5','4','10','3+'], role:'HQ', pts:95, min:1, max:1, ppm:0, isNew:true,
     wargear:['Scything Talons','Devourer'],
+    options:[
+      { group:'Ranged', choices:[
+        { label:'Devourer',        pts:0, default:true, weapons:['Devourer'] },
+        { label:'Barbed Strangler',pts:5, weapons:['Barbed Strangler'], replaces:['Devourer'] },
+        { label:'Venom Cannon',    pts:6, weapons:['Venom Cannon'],     replaces:['Devourer'] },
+      ]},
+      { group:'Melee', choices:[
+        { label:'Scything Talons', pts:0, default:true },
+        { label:'Boneswords',      pts:8, weapons:['Boneswords'],       replaces:['Scything Talons'] },
+        { label:'Rending Claws',   pts:5, weapons:['Rending Claws'],    replaces:['Scything Talons'] },
+      ]},
+    ],
     abilities:['Synapse','Shadow in the Warp',
                'Alpha Predator: Friendly Tyranids within 6" re-roll hit rolls of 1 — friendly Warriors within 6" re-roll all failed hit rolls',
                'Death from Above: Deep strike — deploy 9"+ from enemy — cannot charge same turn',

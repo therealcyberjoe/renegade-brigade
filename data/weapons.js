@@ -715,5 +715,12 @@ const WEAPON_PROFILES = {
   'Bloodglaive':            { range:'Melee', type:'Melee',    s:'+2', ap:-3, d:2,    special:'' },
   'Bloodcannon':            { range:'16"',  type:'Assault D6',s:5,   ap:-1, d:1,    special:'' },
   'Lashing Tongue':         { range:'6"',   type:'Assault 1', s:4,   ap:-1, d:1,    special:'' },
+  'Airbursting Fragmentation Projector': { range:'18"', type:'Assault D6',s:4,  ap:-1, d:1,    special:'Does not require line of sight — Blast' },
+  'Target Lock': { range:'—',    type:'—',          s:'-',ap:'-', d:'-',  special:'Support System — ignore penalty for moving and firing Heavy weapons' },
+  'Multi-tracker': { range:'—',    type:'—',          s:'-',ap:'-', d:'-',  special:'Support System — may fire at two different units in Shooting phase' },
+  'Velocity Tracker': { range:'—',    type:'—',          s:'-',ap:'-', d:'-',  special:'Support System — +1 to hit rolls against units with Fly keyword' },
+  'Drone Controller': { range:'—',    type:'—',          s:'-',ap:'-', d:'-',  special:'Support System — friendly Drones within 6" re-roll hit rolls of 1' },
+  'Command-link Drone': { range:'—',    type:'—',          s:'-',ap:'-', d:'-',  special:'Drone — one friendly T\'au unit within 12" re-rolls hit rolls of 1' },
+  'Vanquisher Cannon': { range:'72"', type:'Heavy 1',    s:8,  ap:-3, d:'D6+1',special:'Re-roll wound rolls vs Vehicles' },
 
 };

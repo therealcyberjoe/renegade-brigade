@@ -1,7 +1,18 @@
-const FACTION_ADEPTUS_MECHANICUS = [
+var FACTION_ADEPTUS_MECHANICUS = [
   { id:'am_tech_priest', name:'Tech-Priest Dominus',
     stats:['6"','3+','3+','3','3','4','2','9','3+'], role:'HQ', pts:90, min:1, max:1, ppm:0,
     wargear:['Volkite Blaster','Macrostubber','Omnissian Axe'],
+    options:[
+      { group:'Ranged', choices:[
+        { label:'Volkite Blaster', pts:0,  default:true, weapons:['Volkite Blaster'] },
+        { label:'Eradication Ray', pts:10, weapons:['Eradication Ray'], replaces:['Volkite Blaster'] },
+        { label:'Macrostubber',    pts:0,  weapons:['Macrostubber'],    replaces:['Volkite Blaster'] },
+      ]},
+      { group:'Melee', choices:[
+        { label:'Omnissian Axe',   pts:0, default:true },
+        { label:'Servo-Arm',       pts:10,weapons:['Servo-Arm'],        replaces:['Omnissian Axe'] },
+      ]},
+    ],
     abilities:['Canticles of the Omnissiah',
                'Omnissian Blessing: At end of each Movement phase restore D3 wounds to one friendly Vehicle within 3"',
                '5+ invulnerable save'] },

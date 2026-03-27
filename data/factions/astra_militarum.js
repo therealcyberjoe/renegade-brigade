@@ -1,15 +1,41 @@
-const FACTION_ASTRA_MILITARUM = [
+var FACTION_ASTRA_MILITARUM = [
   // ── HQ ──────────────────────────────────────────────────────────────
   { id:'ag_company_commander', name:'Company Commander',
     stats:['6"','3+','3+','3','3','4','3','8','5+'], role:'HQ', pts:30, min:1, max:1, ppm:0,
     wargear:['Boltgun','Power Sword','Frag Grenades'],
+    options:[
+      { group:'Ranged', choices:[
+        { label:'Boltgun',       pts:0, default:true },
+        { label:'Lasgun',        pts:0, weapons:['Lasgun'],        replaces:['Boltgun'] },
+        { label:'Plasma Pistol', pts:5, weapons:['Plasma Pistol'], replaces:['Boltgun'] },
+        { label:'Bolt Pistol',   pts:1, weapons:['Bolt Pistol'],   replaces:['Boltgun'] },
+        { label:'Laspistol',     pts:0, weapons:['Laspistol'],     replaces:['Boltgun'] },
+      ]},
+      { group:'Melee', choices:[
+        { label:'Power Sword',   pts:0, default:true },
+        { label:'Chainsword',    pts:0, weapons:['Chainsword'],    replaces:['Power Sword'] },
+        { label:'Power Fist',    pts:8, weapons:['Power Fist'],    replaces:['Power Sword'] },
+      ]},
+    ],
     abilities:['Voice of Command: Issue 1 order per turn to friendly Astra Militarum Infantry within 12"',
                'Senior Officer: May issue 2 orders per turn instead of 1',
                'Orders: Take Aim! / First Rank Fire! / Fix Bayonets! / Move Move Move! / Forwards for the Emperor! / Get Back in the Fight!'] },
 
   { id:'ag_lord_commissar', name:'Lord Commissar',
     stats:['6"','3+','3+','3','3','4','3','9','5+'], role:'HQ', pts:40, min:1, max:1, ppm:0,
-    wargear:['Power Sword','Bolt Pistol','Plasma Pistol'],
+    wargear:['Power Sword','Bolt Pistol'],
+    options:[
+      { group:'Ranged', choices:[
+        { label:'Bolt Pistol',   pts:0, default:true },
+        { label:'Plasma Pistol', pts:5, weapons:['Plasma Pistol'], replaces:['Bolt Pistol'] },
+        { label:'Boltgun',       pts:1, weapons:['Boltgun'],       replaces:['Bolt Pistol'] },
+      ]},
+      { group:'Melee', choices:[
+        { label:'Power Sword',   pts:0, default:true },
+        { label:'Power Fist',    pts:8, weapons:['Power Fist'],    replaces:['Power Sword'] },
+        { label:'Chainsword',    pts:0, weapons:['Chainsword'],    replaces:['Power Sword'] },
+      ]},
+    ],
     abilities:['Summary Execution: Once per battle — slay one friendly model within 1" to auto-pass Morale for all nearby units',
                'Aura of Discipline: Friendly Astra Militarum within 6" use this model\'s Leadership for Morale'] },
 
@@ -47,7 +73,29 @@ const FACTION_ASTRA_MILITARUM = [
 
   { id:'ag_pask', name:'Tank Commander Pask',
     stats:['10"','5+','2+','6','8','12','3','9','3+'], role:'HQ', pts:183, min:1, max:1, ppm:0,
-    wargear:['Leman Russ Battle Cannon','Heavy Bolter','Lascannon Sponsons'],
+    wargear:['Leman Russ Battle Cannon','Heavy Bolter'],
+    options:[
+      { group:'Main Gun', choices:[
+        { label:'Battle Cannon',    pts:0,  default:true, weapons:['Leman Russ Battle Cannon'] },
+        { label:'Demolisher Cannon',pts:0,  weapons:['Demolisher Cannon'],    replaces:['Leman Russ Battle Cannon'] },
+        { label:'Vanquisher Cannon',pts:0,  weapons:['Vanquisher Cannon'],    replaces:['Leman Russ Battle Cannon'] },
+        { label:'Eradicator Nova',  pts:0,  weapons:['Eradicator Nova Cannon'],replaces:['Leman Russ Battle Cannon'] },
+        { label:'Executioner Cannon',pts:0, weapons:['Executioner Plasma Cannon'],replaces:['Leman Russ Battle Cannon'] },
+        { label:'Punisher Cannon',  pts:0,  weapons:['Punisher Gatling Cannon'],replaces:['Leman Russ Battle Cannon'] },
+      ]},
+      { group:'Hull', choices:[
+        { label:'Heavy Bolter',     pts:0,  default:true },
+        { label:'Lascannon',        pts:15, weapons:['Lascannon'],            replaces:['Heavy Bolter'] },
+        { label:'Heavy Flamer',     pts:10, weapons:['Heavy Flamer'],         replaces:['Heavy Bolter'] },
+      ]},
+      { group:'Sponsons', choices:[
+        { label:'None',             pts:0,  default:true },
+        { label:'Heavy Bolter Sponsons',  pts:10, weapons:['Heavy Bolter Sponsons'] },
+        { label:'Lascannon Sponsons',     pts:30, weapons:['Lascannon Sponsons'] },
+        { label:'Heavy Flamer Sponsons',  pts:20, weapons:['Heavy Flamer Sponsons'] },
+        { label:'Plasma Cannon Sponsons', pts:30, weapons:['Plasma Cannon Sponsons'] },
+      ]},
+    ],
     abilities:['Master of Armour: Friendly Astra Militarum Vehicles within 6" re-roll hit rolls of 1',
                'Grinding Advance: Does not suffer penalty for moving and firing Heavy weapons',
                'Smoke Launchers',
@@ -392,4 +440,23 @@ const FACTION_ASTRA_MILITARUM = [
                'Transport: Carries 12 Infantry — Grav-chute Insertion: units may disembark mid-flight',
                'Hard to Hit: -1 to hit rolls targeting this model',
                'Explodes: On 6 when destroyed — D3 mortal wounds within 6"'] },
+
+  // ── NARRATIVE RETINUE — RULES AUDIT PENDING ─────────────────────────
+  { id:'ag_gaunts_ghosts', name:"Gaunt's Ghosts — Tanith First and Only", unique:true, isNew:true,
+    stats:['6"','3+','3+','3','3','*','*','8','5+'], role:'HQ', pts:185, min:6, max:6, ppm:0,
+    wargear:[],
+    composition:[
+      { role:'Colonel-Commissar Ibram Gaunt', count:1, wargear:['Bolt Pistol',"Gaunt's Chainsword",'Straight Silver Knife'] },
+      { role:'Colonel Colm Corbec', count:1, wargear:["Corbec's Hot-shot Lascarbine",'Straight Silver Knife'] },
+      { role:'Major Elim Rawne', count:1, wargear:['Lascarbine','Straight Silver Knife'] },
+      { role:"Master Sniper 'Try Again' Bragg", count:1, wargear:['Autocannon','Straight Silver Knife'] },
+      { role:'Master Sniper Hlaine Larkin', count:1, wargear:["Larkin's Long-Las",'Straight Silver Knife'] },
+      { role:'Scout Sergeant Dan Mkoll', count:1, wargear:['Lascarbine','Straight Silver Knife'] },
+    ],
+    abilities:['Tanith Camo-cloaks: Always count as being in cover',
+               'Covert Infiltration: Deep strike — may arrive anywhere more than 9" from enemy',
+               "Only one GAUNT'S GHOSTS unit may be taken per army",
+               'Voice of Command: Gaunt may issue 2 orders per turn',
+               'NOTE: Rules audit pending — stats and points require verification against current datasheet'] },
+
 ];

@@ -1,7 +1,21 @@
-const FACTION_SISTERS_OF_BATTLE = [
+var FACTION_SISTERS_OF_BATTLE = [
   { id:'sob_canoness', name:'Canoness',
     stats:['6"','2+','2+','3','3','4','4','9','3+'], role:'HQ', pts:55, min:1, max:1, ppm:0,
     wargear:['Power Sword','Bolt Pistol','Rosarius'],
+    options:[
+      { group:'Melee', choices:[
+        { label:'Power Sword',     pts:0,  default:true },
+        { label:'Power Maul',      pts:0,  weapons:['Power Maul'],      replaces:['Power Sword'] },
+        { label:'Eviscerator',     pts:8,  weapons:['Eviscerator'],     replaces:['Power Sword'] },
+        { label:'Chainsword',      pts:0,  weapons:['Chainsword'],      replaces:['Power Sword'] },
+      ]},
+      { group:'Ranged', choices:[
+        { label:'Bolt Pistol',     pts:0,  default:true },
+        { label:'Plasma Pistol',   pts:5,  weapons:['Plasma Pistol'],   replaces:['Bolt Pistol'] },
+        { label:'Condemnor Boltgun',pts:4, weapons:['Condemnor Boltgun'],replaces:['Bolt Pistol'] },
+        { label:'Blessed Blade',   pts:10, weapons:['Blessed Blade'],   replaces:['Bolt Pistol'] },
+      ]},
+    ],
     abilities:['Shield of Faith: 6+ invulnerable save — Psyker attacks on 5+',
                'Acts of Faith: Once per phase one friendly unit within 6" may perform an Act of Faith',
                'Rosarius: 4+ invulnerable save'] },

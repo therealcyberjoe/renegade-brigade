@@ -1,7 +1,19 @@
-const FACTION_LEAGUES_OF_VOTANN = [
+var FACTION_LEAGUES_OF_VOTANN = [
   { id:'lov_kahl', name:'Kâhl',
     stats:['5"','3+','3+','4','4','5','4','9','3+'], role:'HQ', pts:90, min:1, max:1, ppm:0, isNew:true,
     wargear:['Autoch-pattern Combi-bolter','Forgewrought Plasma Axe'],
+    options:[
+      { group:'Ranged', choices:[
+        { label:'Autoch-pattern Combi-bolter', pts:0,  default:true },
+        { label:'Plasma Pistol',               pts:5,  weapons:['Plasma Pistol'],   replaces:['Autoch-pattern Combi-bolter'] },
+        { label:'Volkanite Disintegrator',     pts:8,  weapons:['Volkanite Disintegrator'], replaces:['Autoch-pattern Combi-bolter'] },
+      ]},
+      { group:'Melee', choices:[
+        { label:'Forgewrought Plasma Axe', pts:0, default:true },
+        { label:'Concussion Gauntlet',     pts:5, weapons:['Concussion Gauntlet'], replaces:['Forgewrought Plasma Axe'] },
+        { label:'ATMD',                    pts:15,weapons:['ATML'],                replaces:['Forgewrought Plasma Axe'] },
+      ]},
+    ],
     abilities:['Grim Endurance: When model loses last wound roll D6 — on 6 survive with 1 wound',
                '5+ invulnerable save',
                "Kindred Hero: Friendly Leagues of Votann within 6\" re-roll hit rolls of 1",

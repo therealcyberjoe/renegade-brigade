@@ -1,4 +1,4 @@
-const FACTION_GREY_KNIGHTS = [
+var FACTION_GREY_KNIGHTS = [
   // ── HQ ──────────────────────────────────────────────────────────────
   { id:'gk_grand_master', name:'Grand Master in Nemesis Dreadknight',
     stats:['6"','3+','3+','5','6','8','4','9','2+'], role:'HQ', pts:245, min:1, max:1, ppm:0,
@@ -10,6 +10,15 @@ const FACTION_GREY_KNIGHTS = [
   { id:'gk_grand_master_foot', name:'Grand Master',
     stats:['5"','2+','2+','4','4','6','5','9','2+'], role:'HQ', pts:130, min:1, max:1, ppm:0,
     wargear:['Master-crafted Storm Bolter','Nemesis Force Halberd'],
+    options:[
+      { group:'Weapon', choices:[
+        { label:'Nemesis Force Halberd', pts:0, default:true },
+        { label:'Nemesis Force Sword',   pts:0, weapons:['Nemesis Force Sword'],   replaces:['Nemesis Force Halberd'] },
+        { label:'Nemesis Daemon Hammer', pts:0, weapons:['Nemesis Daemon Hammer'], replaces:['Nemesis Force Halberd'] },
+        { label:'Nemesis Warding Stave', pts:0, weapons:['Nemesis Warding Stave'], replaces:['Nemesis Force Halberd'] },
+        { label:'Nemesis Force Falchions',pts:0,weapons:['Nemesis Force Falchions'],replaces:['Nemesis Force Halberd'] },
+      ]},
+    ],
     abilities:['And They Shall Know No Fear','Psyker: Mastery Level 2',
                'Supreme Grandmaster: Friendly Grey Knights within 6" re-roll all failed hit rolls',
                '4+ invulnerable save','Teleport Strike: Deep strike — arrive 9"+ from enemy'] },
@@ -36,6 +45,28 @@ const FACTION_GREY_KNIGHTS = [
   { id:'gk_stern', name:'Brother-Captain Stern',
     stats:['5"','2+','2+','4','4','6','5','9','2+'], role:'HQ', pts:145, min:1, max:1, ppm:0, unique:true,
     wargear:['Nemesis Force Sword','Storm Bolter'],
+    options:[
+      { group:'Weapon', choices:[
+        { label:'Nemesis Force Sword',   pts:0, default:true },
+        { label:'Nemesis Force Halberd', pts:0, weapons:['Nemesis Force Halberd'], replaces:['Nemesis Force Sword'] },
+        { label:'Nemesis Warding Stave', pts:0, weapons:['Nemesis Warding Stave'], replaces:['Nemesis Force Sword'] },
+      ]},
+    ],
+    options:[
+      { group:'Weapon', choices:[
+        { label:'Nemesis Force Sword',   pts:0, default:true },
+        { label:'Nemesis Force Halberd', pts:0, weapons:['Nemesis Force Halberd'], replaces:['Nemesis Force Sword'] },
+        { label:'Nemesis Daemon Hammer', pts:0, weapons:['Nemesis Daemon Hammer'], replaces:['Nemesis Force Sword'] },
+        { label:'Nemesis Warding Stave', pts:0, weapons:['Nemesis Warding Stave'], replaces:['Nemesis Force Sword'] },
+        { label:'Nemesis Force Falchions',pts:0,weapons:['Nemesis Force Falchions'],replaces:['Nemesis Force Sword'] },
+      ]},
+      { group:'Ranged', choices:[
+        { label:'Storm Bolter',          pts:0, default:true },
+        { label:'Psilencer',             pts:5, weapons:['Psilencer'],             replaces:['Storm Bolter'] },
+        { label:'Psycannon',             pts:10,weapons:['Psycannon'],             replaces:['Storm Bolter'] },
+        { label:'Incinerator',           pts:5, weapons:['Incinerator'],           replaces:['Storm Bolter'] },
+      ]},
+    ],
     abilities:['And They Shall Know No Fear','Psyker: Mastery Level 2',
                '4+ invulnerable save','Teleport Strike: Deep strike — arrive 9"+ from enemy',
                'Strands of Fate: Once per turn re-roll one hit roll / wound roll / saving throw of your choice',

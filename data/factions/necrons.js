@@ -1,8 +1,55 @@
 var FACTION_NECRONS = [
   // ── HQ ──────────────────────────────────────────────────────────────
+  { id:'nec_destroyer_lord', name:'Destroyer Lord',
+    stats:['10"','2+','3+','5','5','5','4','10','3+'], role:'HQ', pts:137, min:1, max:1, ppm:0,
+    wargear:['Staff of Light','Phase Shifter'],
+    options:[
+      { group:'Melee', choices:[
+        { label:'Staff of Light',   pts:0,  default:true },
+        { label:'Warscythe',        pts:15, weapons:['Warscythe'],       replaces:['Staff of Light'] },
+        { label:'Voidblade',        pts:10, weapons:['Voidblade'],       replaces:['Staff of Light'] },
+      ]},
+      { group:'Relic', choices:[
+        { label:'None',             pts:0,  default:true },
+        { label:'Phylactery',       pts:15, weapons:['Phylactery'] },
+        { label:'Resurrection Orb', pts:30, weapons:['Resurrection Orb'] },
+      ]},
+    ],
+    abilities:['Reanimation Protocols: 5+ Feel No Pain',
+               'Living Metal: Regain 1 lost wound at start of each turn',
+               '4+ invulnerable save (Phase Shifter)',
+               'Destroyer Cult: Friendly Destroyers and Heavy Destroyers within 6" re-roll hit rolls of 1',
+               'Fly: 10" Move — Destroyer chassis'] },
+
   { id:'nec_overlord', name:'Overlord',
     stats:['5"','3+','3+','5','5','5','3','10','3+'], role:'HQ', pts:92, min:1, max:1, ppm:0,
     wargear:['Staff of Light','Resurrection Orb'],
+    options:[
+      { group:'Melee', choices:[
+        { label:'Staff of Light',  pts:0,  default:true },
+        { label:'Warscythe',       pts:10, weapons:['Warscythe'],       replaces:['Staff of Light'] },
+        { label:'Voidblade',       pts:5,  weapons:['Voidblade'],       replaces:['Staff of Light'] },
+        { label:'Hyperphase Sword',pts:5,  weapons:['Hyperphase Sword'],replaces:['Staff of Light'] },
+      ]},
+      { group:'Relic/Support', choices:[
+        { label:'Resurrection Orb (default)', pts:0,  default:true },
+        { label:'Phase Shifter',   pts:10, weapons:['Phase Shifter'] },
+        { label:'Sempiternal Weave', pts:5, weapons:['Sempiternal Weave'] },
+      ]},
+    ],
+    options:[
+      { group:'Melee', choices:[
+        { label:'Staff of Light',  pts:0,  default:true },
+        { label:'Warscythe',       pts:10, weapons:['Warscythe'],       replaces:['Staff of Light'] },
+        { label:'Voidblade',       pts:5,  weapons:['Voidblade'],       replaces:['Staff of Light'] },
+        { label:'Hyperphase Sword',pts:5,  weapons:['Hyperphase Sword'],replaces:['Staff of Light'] },
+      ]},
+      { group:'Relic/Support', choices:[
+        { label:'Resurrection Orb (default)', pts:0,  default:true },
+        { label:'Phase Shifter',   pts:10, weapons:['Phase Shifter'] },
+        { label:'Sempiternal Weave', pts:5, weapons:['Sempiternal Weave'] },
+      ]},
+    ],
     abilities:['Reanimation Protocols: Roll D6 at start of your turn — on 5+ restore 1 lost wound',
                "My Will Be Done: One friendly Necrons Infantry within 6\" re-rolls hit rolls of 1 and adds 1 to Advance and charge rolls",
                "The Lord's Will: Re-roll hit rolls of 1 for friendly Necrons within 6\""] },
@@ -23,6 +70,17 @@ var FACTION_NECRONS = [
   { id:'nec_catacomb_cmd', name:'Catacomb Command Barge',
     stats:['12"','3+','3+','6','6','9','4','10','3+'], role:'HQ', pts:152, min:1, max:1, ppm:0,
     wargear:['Staff of Light','Gauss Cannon'],
+    options:[
+      { group:'Main Gun', choices:[
+        { label:'Gauss Cannon',          pts:0, default:true, weapons:['Gauss Cannon'] },
+        { label:'Tesla Cannon',          pts:0, weapons:['Tesla Cannon'],          replaces:['Gauss Cannon'] },
+        { label:'Annihilation Beam',     pts:0, weapons:['Annihilation Beam'],     replaces:['Gauss Cannon'] },
+      ]},
+      { group:'Melee', choices:[
+        { label:'Staff of Light',        pts:0, default:true },
+        { label:'Warscythe',             pts:10,weapons:['Warscythe'],             replaces:['Staff of Light'] },
+      ]},
+    ],
     abilities:['Reanimation Protocols','Living Metal: Recover 1 wound at start of each turn',
                'My Will Be Done','Explodes: On 6 when destroyed — D6 mortal wounds within 6"'] },
 

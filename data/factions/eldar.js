@@ -1,4 +1,4 @@
-const FACTION_ELDAR = [
+var FACTION_ELDAR = [
   // ── HQ ──────────────────────────────────────────────────────────────
   { id:'el_autarch', name:'Autarch',
     stats:['7"','2+','2+','3','3','5','4','9','3+'], role:'HQ', pts:71, min:1, max:1, ppm:0,
@@ -23,6 +23,19 @@ const FACTION_ELDAR = [
   { id:'el_autarch_bike', name:'Autarch on Jetbike',
     stats:['14"','2+','2+','3','3','5','4','9','3+'], role:'HQ', pts:86, min:1, max:1, ppm:0,
     wargear:['Jetbike','Mandiblasters','Laser Lance'],
+    options:[
+      { group:'Ranged', choices:[
+        { label:'Laser Lance',     pts:0,  default:true, weapons:['Laser Lance'] },
+        { label:'Fusion Gun',      pts:9,  weapons:['Fusion Gun'],      replaces:['Laser Lance'] },
+        { label:'Reaper Launcher', pts:19, weapons:['Reaper Launcher'], replaces:['Laser Lance'] },
+        { label:'Scatter Laser',   pts:12, weapons:['Scatter Laser'],   replaces:['Laser Lance'] },
+      ]},
+      { group:'Melee', choices:[
+        { label:'None',            pts:0, default:true },
+        { label:'Power Sword',     pts:4, weapons:['Power Sword'] },
+        { label:'Banshee Blade',   pts:6, weapons:['Banshee Blade'] },
+      ]},
+    ],
     abilities:['Path of Command','Farsight','4+ invulnerable save',
                'Swooping Dive: May Advance and still charge',
                'Laser Lance: On turn of a charge wound rolls are 2+ regardless of Toughness'] },
@@ -44,6 +57,12 @@ const FACTION_ELDAR = [
   { id:'el_farseer_bike', name:'Farseer on Jetbike',
     stats:['14"','3+','2+','3','3','5','1','9','4+'], role:'HQ', pts:135, min:1, max:1, ppm:0,
     wargear:['Jetbike','Witchblade','Shuriken Pistol','Spirit Stones'],
+    options:[
+      { group:'Melee', choices:[
+        { label:'Witchblade',      pts:0,  default:true },
+        { label:'Singing Spear',   pts:3,  weapons:['Singing Spear'],   replaces:['Witchblade'] },
+      ]},
+    ],
     abilities:['Psyker: Mastery Level 2','Runes of Witnessing','Runes of Warding',
                'Ancient Doom','Jetbike: 14" Move — ignore terrain'] },
 
