@@ -688,5 +688,10 @@ const WEAPON_PROFILES = {
   'Infernum Halo-launcher':       { range:'—',    type:'—',          s:'-',ap:'-', d:'-',  special:'Equipment — enemy Fly units targeting bearer subtract 1 from hit rolls' },
   'Auspex Array':                 { range:'—',    type:'—',          s:'-',ap:'-', d:'-',  special:'Equipment — re-roll hit rolls of 1 against units that cannot Fly' },
   'Blackstar Cluster Launcher':   { range:'—',    type:'—',          s:'-',ap:'-', d:'-',  special:'Equipment — after moving pick one unit flown over — roll D6 per model (max 10) — on 6 suffer 1 mortal wound' },
+  'Massive Scything Sickle-Talons': { range:'Melee', type:'Melee',    s:'+3',ap:-3, d:3,    special:'Re-roll failed hit rolls' },
+  'Thorax Spine-Maw':               { range:'Melee', type:'Melee',    s:'+2',ap:-2, d:2,    special:'See Spine-Maw ability' },
+  'Wrecker Claws':                  { range:'Melee', type:'Melee',    s:'x2', ap:-3, d:'D6', special:'Re-roll wound rolls vs Vehicles — pair: re-roll hits too' },
+  'Bio-Cannon':                     { range:'48"',  type:'Heavy 6',  s:8,   ap:-2, d:'D3',  special:'Two cannons = 12 shots total' },
+  'Stomping Feet':                  { range:'Melee', type:'Melee',    s:8,   ap:-2, d:'D3',  special:'Make D3+3 attacks with this weapon' },
 
 };
