@@ -1,4 +1,4 @@
-const FACTION_NECRONS = [
+var FACTION_NECRONS = [
   // ── HQ ──────────────────────────────────────────────────────────────
   { id:'nec_overlord', name:'Overlord',
     stats:['5"','3+','3+','5','5','5','3','10','3+'], role:'HQ', pts:92, min:1, max:1, ppm:0,
@@ -88,15 +88,21 @@ const FACTION_NECRONS = [
     wargear:[],
     composition:[
       { role:'Necron Warrior', count:10, wargear:['Gauss Flayer'],
-        options:[
-          { group:'Weapon', choices:[
-            { label:'Gauss Flayer',  pts:0, default:true, weapons:['Gauss Flayer'] },
-            { label:'Gauss Reaper', pts:0, weapons:['Gauss Reaper'], replaces:['Gauss Flayer'] },
-          ]},
-        ]},
+        // Index loadout — Gauss Flayer only (Gauss Reaper model didn't exist in 2017)
+        },
     ],
     abilities:['Reanimation Protocols: At end of phase — slain models may roll D6 on 5+ return with 1 wound',
                'Their Number is Legion: Unit of 20 never takes Morale tests'] },
+
+  { id:'nec_warriors_reaper', name:'Necron Warriors (Gauss Reaper)', isNew:true,
+    stats:['5"','3+','3+','4','4','1','1','10','4+'], role:'Troops', pts:78, min:10, max:20, ppm:8,
+    wargear:[],
+    composition:[
+      { role:'Necron Warrior', count:10, wargear:['Gauss Reaper'] },
+    ],
+    abilities:['Reanimation Protocols: At end of phase — slain models may roll D6 on 5+ return with 1 wound',
+               'Their Number is Legion: Unit of 20 never takes Morale tests',
+               'New model: Gauss Reaper loadout — not available in index rules — use for matched play by agreement'] },
 
   { id:'nec_immortals', name:'Immortals',
     stats:['5"','3+','3+','4','4','1','1','10','3+'], role:'Troops', pts:85, min:5, max:10, ppm:17,
