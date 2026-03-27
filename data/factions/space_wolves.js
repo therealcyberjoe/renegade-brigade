@@ -129,21 +129,6 @@ const FACTION_SPACE_WOLVES = [
                'Fire Discipline: May fire heavy weapons without penalty if they did not move',
                'Up to 5 models may take heavy weapons'] },
 
-  { id:'sw_land_raider', name:'Land Raider',
-    stats:['10"','5+','3+','8','8','16','6','9','2+'], role:'Heavy Support', pts:285, min:1, max:1, ppm:0,
-    wargear:['Twin Lascannons'],
-    abilities:['Power of the Machine Spirit','Smoke Launchers',
-               'Transport: Carries 10 Infantry','Explodes: On 6 — D6 mortal wounds within 6"'] },
-
-  // ── NAMED CHARACTERS (additional) ───────────────────────────────────
-  { id:'sw_njal', name:'Njal Stormcaller', unique:true,
-    stats:['6"','2+','3+','4','4','5','3','9','3+'], role:'HQ', pts:155, min:1, max:1, ppm:0,
-    wargear:['Runic Armour','Staff of the Stormcaller','Bolt Pistol'],
-    abilities:['And They Shall Know No Fear',
-               'Psyker: Mastery Level 2 — knows Smite + 2 Tempestus powers',
-               'Stormcaller: At start of each of your turns pick a weather effect — Lightning: D3 mortal wounds to nearest enemy unit within 12" — Blizzard: -1 to hit rolls for all enemies within 12" — Gale: D6+6 hurricane move on a single friendly SW unit',
-               'Lord of Tempests: +1 to psychic tests in any turn where a terrain piece has been destroyed'] },
-
   { id:'sw_ulrik', name:'Ulrik the Slayer', unique:true,
     stats:['6"','2+','3+','4','4','4','3','9','3+'], role:'HQ', pts:100, min:1, max:1, ppm:0,
     wargear:['Slayer Knife','Plasma Pistol','Wolf Helm of Russ'],

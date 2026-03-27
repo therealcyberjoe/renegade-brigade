@@ -679,5 +679,9 @@ const WEAPON_PROFILES = {
   'Stasis Bomb':                { range:'6"',   type:'Grenade 1',   s:'D6',   ap:-3, d:'D6', special:'One use — if it misses Artemis suffers the hit instead' },
   'Crozius Arcanum':            { range:'Melee', type:'Melee',      s:'+1',   ap:-1, d:2,    special:'' },
   'Combi-grav':                 { range:'30"',  type:'Rapid Fire 1', s:5,     ap:-3, d:1,    special:'Grav: vs models with a Save of 3+ or better — on wound roll of 6 target is immobilised' },
+  'Flamestorm Cannon':        { range:'8"',   type:'Heavy D6',    s:6,  ap:-2, d:2,    special:'Auto-hits — re-roll wound rolls of 1' },
+  'Hurricane Bolter':         { range:'24"',  type:'Rapid Fire 6', s:4,  ap:0,  d:1,    special:'' },
+  'Blood Talons':             { range:'Melee',type:'Melee',        s:'+3',ap:-3, d:2,    special:'Re-roll failed hit and wound rolls — unmodified hit of 6 generates 1 additional attack' },
+  'Frag Cannon':              { range:'8"',   type:'Assault 2D3', s:6,  ap:-1, d:2,    special:'Auto-hits' },
 
 };

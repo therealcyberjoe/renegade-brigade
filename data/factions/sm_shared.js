@@ -813,6 +813,22 @@ const SM_SHARED_UNITS = [
                'Terminus Ultra Lascannon: Can fire all three twin lascannons at one target — if all three are fired roll D6 — on 1 suffer D3 mortal wounds',
                'No Transport Capacity: The Terminus Ultra carries no passengers — its entire hull is given over to weapons'] },
 
+  { id:'sm_land_raider_crusader', name:'Land Raider Crusader',
+    stats:['10"','5+','3+','8','8','16','6','9','2+'], role:'Heavy Support', pts:285, min:1, max:1, ppm:0,
+    wargear:['Twin Assault Cannon','2x Hurricane Bolter','Multi-melta'],
+    options:[
+      { group:'Pintle', choices:[
+        { label:'None',         pts:0, default:true },
+        { label:'Storm Bolter', pts:2, weapons:['Storm Bolter'] },
+        { label:'Multi-melta',  pts:22,weapons:['Multi-melta'] },
+      ]},
+    ],
+    abilities:['Power of the Machine Spirit: May fire one weapon even if it moved',
+               'Smoke Launchers',
+               'Assault Vehicle: Models disembarking may still charge this turn',
+               'Transport: Carries 16 Infantry (2x Jump Pack models = 1 slot)',
+               'Explodes: On 6 — D6 mortal wounds within 6"'] },
+
   // ── DEDICATED TRANSPORT ─────────────────────────────────────────────
   { id:'sm_rhino', name:'Rhino',
     stats:['12"','5+','3+','6','6','10','3','8','3+'], role:'Dedicated Transport', pts:72, min:1, max:1, ppm:0,

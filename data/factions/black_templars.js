@@ -188,13 +188,6 @@ const FACTION_BLACK_TEMPLARS = [
                'Skilled Swordsmen: Re-roll all failed hit rolls in Fight phase',
                'Vow of Crusade: Re-roll failed charge rolls'] },
 
-  { id:'bt_redemptor', name:'Redemptor Dreadnought',
-    stats:['8"','3+','3+','7','7','13','5','8','3+'], role:'Elites', pts:156, min:1, max:1, ppm:0,
-    wargear:['Macro Plasma Incinerator','Dreadnought Fist'],
-    abilities:['And They Shall Know No Fear',
-               'Smokescreen: Once per game subtract 1 from hit rolls targeting this model',
-               'Explodes: On 6 when destroyed — D6 mortal wounds within 6"'] },
-
   { id:'bt_dreadnought', name:'Venerable Dreadnought',
     stats:['6"','2+','3+','6','7','10','4','8','3+'], role:'Elites', pts:135, min:1, max:1, ppm:0,
     wargear:['Twin Lascannon','Dreadnought C.C. Weapon'],
@@ -295,26 +288,4 @@ const FACTION_BLACK_TEMPLARS = [
                'Plasma Incinerator Overcharge: S8 AP-4 D2 — hit roll of 1 slays model',
                'Vow of Crusade: Re-roll failed charge rolls'] },
 
-  { id:'bt_predator', name:'Predator',
-    stats:['10"','5+','3+','6','7','11','3','8','3+'], role:'Heavy Support', pts:110, min:1, max:1, ppm:0,
-    wargear:['Predator Autocannon','Lascannon Sponsons'],
-    abilities:['Smoke Launchers',
-               'Explodes: On 6 when destroyed — D6 mortal wounds within 6"'] },
-
-  { id:'bt_land_raider', name:'Land Raider Crusader',
-    stats:['10"','5+','3+','8','8','16','6','9','2+'], role:'Heavy Support', pts:295, min:1, max:1, ppm:0,
-    wargear:['Twin Assault Cannon','Hurricane Bolters','Multi-Melta'],
-    abilities:['Power of the Machine Spirit: Fires one weapon even if moved and another fired',
-               'Smoke Launchers',
-               'Transport: Carries 16 Infantry',
-               'Frag Assault Launchers: Enemy units charging into combat with this vehicle suffer D3 mortal wounds',
-               'Explodes: On 6 when destroyed — D6 mortal wounds within 6"'] },
-
-  // ── DEDICATED TRANSPORT ─────────────────────────────────────────────
-  { id:'bt_rhino', name:'Rhino',
-    stats:['12"','5+','3+','6','6','10','3','8','3+'], role:'Dedicated Transport', pts:72, min:1, max:1, ppm:0,
-    wargear:['Storm Bolter'],
-    abilities:['Smoke Launchers',
-               'Transport: Carries 10 Infantry',
-               'Repair: Once per game restore 1 wound on a 6'] },
 ];

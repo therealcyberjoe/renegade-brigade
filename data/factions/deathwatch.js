@@ -152,24 +152,4 @@ const FACTION_DEATHWATCH = [
                'Teleport Strike: Deep strike 9"+ from enemy',
                'Terminator Armour: 5+ invulnerable save','Special Issue Ammunition'] },
 
-  { id:'dw_intercessors', name:'Intercessor Squad',
-    stats:['6"','3+','3+','4','4','2','2','7','3+'], role:'Troops', pts:85, min:5, max:10, ppm:17,
-    wargear:[],
-    composition:[
-      { role:'Sergeant', count:1, wargear:['Bolt Rifle','Bolt Pistol'],
-        options:[
-          { group:'Melee', choices:[
-            { label:'None',        pts:0, default:true },
-            { label:'Chainsword',  pts:0, weapons:['Chainsword'],  replaces:[] },
-            { label:'Power Sword', pts:4, weapons:['Power Sword'], replaces:['Bolt Rifle'] },
-          ]},
-          { group:'Bolt Rifle', choices:[
-            { label:'Bolt Rifle',         pts:0, default:true, weapons:['Bolt Rifle'] },
-            { label:'Auto Bolt Rifle',    pts:0, weapons:['Auto Bolt Rifle'],    replaces:['Bolt Rifle'] },
-            { label:'Stalker Bolt Rifle', pts:0, weapons:['Stalker Bolt Rifle'], replaces:['Bolt Rifle'] },
-          ]},
-        ]},
-      { role:'Intercessor', count:4, wargear:['Bolt Rifle','Bolt Pistol'] },
-    ],
-    abilities:['And They Shall Know No Fear','Special Issue Ammunition'] },
 ];

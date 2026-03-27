@@ -176,12 +176,6 @@ const FACTION_BLOOD_ANGELS = [
     abilities:['Smoke Launchers','Fast Tank: May Advance and fire Assault weapons without penalty',
                'Explodes: On 6 when destroyed — D6 mortal wounds within 6"'] },
 
-  { id:'ba_land_raider', name:'Land Raider',
-    stats:['10"','5+','3+','8','8','16','6','9','2+'], role:'Heavy Support', pts:285, min:1, max:1, ppm:0,
-    wargear:['Twin Lascannons','Multi-Melta'],
-    abilities:['Power of the Machine Spirit','Smoke Launchers',
-               'Transport: Carries 10 Infantry','Explodes: On 6 — D6 mortal wounds within 6"'] },
-
   { id:'ba_dc_brutalis', name:'Death Company Brutalis Dreadnought',
     stats:['8"','2+','3+','8','10','12','5','9','2+'], role:'Elites', pts:185, min:1, max:1, ppm:0, isNew:true,
     wargear:['Brutalis Fists','Twin Bolt Rifles'],
@@ -225,5 +219,64 @@ const FACTION_BLOOD_ANGELS = [
                'Narthecium: At start of your turn restore 1 wound to one friendly Blood Angels Infantry within 3"',
                "Red Grail: Friendly Blood Angels within 6\" add 1 to Strength — unmodified hit rolls of 6 generate 1 additional attack",
                'Far-seeing Eye: Once per game re-roll any single dice roll'] },
+
+
+  // ── CHAPTER-SPECIFIC VEHICLES ────────────────────────────────────────
+  { id:'ba_baal_predator', name:'Baal Predator',
+    stats:['12"','5+','3+','6','7','11','3','8','3+'], role:'Fast Attack', pts:107, min:1, max:1, ppm:0,
+    wargear:['Twin Baal Pattern Assault Cannon','Heavy Bolter Sponsons'],
+    options:[
+      { group:'Main Weapon', choices:[
+        { label:'Twin Assault Cannon', pts:0, default:true, weapons:['Twin Assault Cannon'] },
+        { label:'Flamestorm Cannon',   pts:5, weapons:['Flamestorm Cannon'], replaces:['Twin Assault Cannon'] },
+      ]},
+      { group:'Sponsons', choices:[
+        { label:'Heavy Bolter Sponsons',pts:0, default:true, weapons:['Heavy Bolter Sponsons'] },
+        { label:'Heavy Flamer Sponsons',pts:0, weapons:['Heavy Flamer Sponsons'], replaces:['Heavy Bolter Sponsons'] },
+        { label:'No Sponsons',          pts:-10, replaces:['Heavy Bolter Sponsons'] },
+      ]},
+    ],
+    abilities:['Smoke Launchers',
+               'Overcharged Engines: Once per game — Advance D6+3" instead of rolling',
+               'Explodes: On 6 — D3 mortal wounds within 6"',
+               'Red Thirst: +1 to wound rolls if this unit charged'] },
+
+  { id:'ba_furioso', name:'Furioso Dreadnought',
+    stats:['6"','3+','3+','6','7','8','4','8','3+'], role:'Elites', pts:115, min:1, max:1, ppm:0,
+    wargear:['Blood Fists (x2)','Meltagun','Storm Bolter'],
+    options:[
+      { group:'Arms', choices:[
+        { label:'Blood Fists & Storm Bolter', pts:0, default:true },
+        { label:'Blood Talons (replace both fists)', pts:20, weapons:['Blood Talons'], replaces:['Blood Fists (x2)','Storm Bolter'] },
+        { label:'Frag Cannon (replace one fist)', pts:20, weapons:['Frag Cannon'], replaces:[] },
+      ]},
+      { group:'Support Weapon', choices:[
+        { label:'Storm Bolter', pts:0, default:true },
+        { label:'Heavy Flamer', pts:14, weapons:['Heavy Flamer'], replaces:['Storm Bolter'] },
+      ]},
+    ],
+    abilities:['And They Shall Know No Fear',
+               'Blood Fists: Re-roll failed hit rolls — S+3 AP-3 D3',
+               'Blood Talons: Re-roll failed hit and wound rolls — on each unmodified hit of 6 make 1 additional attack',
+               'Explodes: On 6 — D3 mortal wounds within 6"',
+               'Red Thirst: +1 to wound rolls if this unit charged'] },
+
+  { id:'ba_dc_dreadnought', name:'Death Company Dreadnought',
+    stats:['6"','3+','3+','6','7','8','4','8','3+'], role:'Elites', pts:125, min:1, max:1, ppm:0,
+    wargear:['Blood Fists (x2)','Meltagun','Storm Bolter'],
+    options:[
+      { group:'Arms', choices:[
+        { label:'Blood Fists & Storm Bolter', pts:0, default:true },
+        { label:'Blood Talons (replace both fists)', pts:20, weapons:['Blood Talons'], replaces:['Blood Fists (x2)','Storm Bolter'] },
+      ]},
+      { group:'Support Weapon', choices:[
+        { label:'Storm Bolter', pts:0, default:true },
+        { label:'Heavy Flamer', pts:14, weapons:['Heavy Flamer'], replaces:['Storm Bolter'] },
+      ]},
+    ],
+    abilities:['And They Shall Know No Fear',
+               'Black Rage: +1 Attack — ignore wounds on unmodified save rolls of 6',
+               'Crazed: At start of each Fight phase roll D6 — on 6 make D3 additional attacks',
+               'Explodes: On 6 — D3 mortal wounds within 6"'] },
 
 ];
