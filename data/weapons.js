@@ -722,5 +722,8 @@ const WEAPON_PROFILES = {
   'Drone Controller': { range:'—',    type:'—',          s:'-',ap:'-', d:'-',  special:'Support System — friendly Drones within 6" re-roll hit rolls of 1' },
   'Command-link Drone': { range:'—',    type:'—',          s:'-',ap:'-', d:'-',  special:'Drone — one friendly T\'au unit within 12" re-rolls hit rolls of 1' },
   'Vanquisher Cannon': { range:'72"', type:'Heavy 1',    s:8,  ap:-3, d:'D6+1',special:'Re-roll wound rolls vs Vehicles' },
+  'Smart Missile System': { range:'30"',  type:'Heavy 4',    s:5,  ap:0,  d:1,    special:'Ignores line of sight and cover — targets nearest visible unit' },
+  'Plasma Rifle': { range:'30"',  type:'Rapid Fire 1',s:6, ap:-3, d:'D3', special:'' },
+  'High-output Burst Cannon': { range:'18"',  type:'Assault 6',  s:5,  ap:0,  d:1,    special:'Coldstar variant — 6 shots' },
 
 };
