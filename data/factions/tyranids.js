@@ -4,19 +4,22 @@ var FACTION_TYRANIDS = [
     stats:['10"','2+','3+','7','7','12','4','10','3+'], role:'HQ', pts:170, min:1, max:1, ppm:0,
     wargear:['Monstrous Scything Talons','Heavy Venom Cannon'],
     options:[
-      { group:'Ranged', choices:[
-        { label:'Heavy Venom Cannon', pts:0,  default:true, weapons:['Heavy Venom Cannon'] },
-        { label:'Stranglethorn Cannon',pts:10, weapons:['Stranglethorn Cannon'], replaces:['Heavy Venom Cannon'] },
-        { label:'Two Scything Talons (replace ranged)',pts:-5, replaces:['Heavy Venom Cannon'] },
+      { group:'Arm 1 (Ranged)', choices:[
+        { label:'Heavy Venom Cannon',          pts:0,  default:true, weapons:['Heavy Venom Cannon'] },
+        { label:'Stranglethorn Cannon',         pts:10, weapons:['Stranglethorn Cannon'],         replaces:['Heavy Venom Cannon'] },
+        { label:'Devourer with Brainleech Worms',pts:0, weapons:['Devourer with Brainleech Worms'],replaces:['Heavy Venom Cannon'] },
+        { label:'Deathspitter with Slimer Maggots',pts:0,weapons:['Deathspitter with Slimer Maggots'],replaces:['Heavy Venom Cannon'] },
+        { label:'Monstrous Scything Talons (replace ranged)',pts:-5, weapons:['Monstrous Scything Talons'], replaces:['Heavy Venom Cannon'] },
       ]},
-      { group:'Melee', choices:[
-        { label:'Monstrous Scything Talons', pts:0, default:true },
-        { label:'Monstrous Boneswords',      pts:12,weapons:['Monstrous Boneswords'],      replaces:['Monstrous Scything Talons'] },
-        { label:'Monstrous Rending Claws',   pts:5, weapons:['Monstrous Rending Claws'],   replaces:['Monstrous Scything Talons'] },
+      { group:'Arm 2 (Ranged or Melee)', choices:[
+        { label:'Monstrous Scything Talons',    pts:0,  default:true },
+        { label:'Devourer with Brainleech Worms',pts:0, weapons:['Devourer with Brainleech Worms'] },
+        { label:'Monstrous Boneswords',         pts:12, weapons:['Monstrous Boneswords'] },
+        { label:'Monstrous Rending Claws',      pts:5,  weapons:['Monstrous Rending Claws'] },
       ]},
       { group:'Wings', choices:[
-        { label:'No Wings',        pts:0,  default:true },
-        { label:'Wings',           pts:50, weapons:['Wings'] },
+        { label:'No Wings',                     pts:0,  default:true },
+        { label:'Wings',                        pts:50, weapons:['Wings'] },
       ]},
     ],
     abilities:['Hive Commander: Friendly Tyranid units within 6" re-roll failed charge rolls',
