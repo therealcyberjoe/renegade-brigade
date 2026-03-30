@@ -1,6 +1,6 @@
 // FACTION_BLACK_TEMPLARS — chapter-specific units + shared SM pool
 // Must be loaded AFTER sm_shared.js
-const FACTION_BLACK_TEMPLARS = [
+var FACTION_BLACK_TEMPLARS = [
   ...SM_SHARED_UNITS,
 
   // ── HQ ──────────────────────────────────────────────────────────────
@@ -47,23 +47,6 @@ const FACTION_BLACK_TEMPLARS = [
     abilities:['And They Shall Know No Fear',
                'Iron Halo: 4+ invulnerable save',
                'Tactical Precision: Friendly Black Templars within 6" re-roll wound rolls of 1'] },
-
-  { id:'bt_chaplain', name:'Chaplain',
-    stats:['6"','3+','3+','4','4','5','4','9','3+'], role:'HQ', pts:85, min:1, max:1, ppm:0,
-    wargear:['Crozius Arcanum','Bolt Pistol','Rosarius'],
-    abilities:['And They Shall Know No Fear',
-               'Rosarius: 4+ invulnerable save',
-               'Litanies of Battle',
-               'Crusader: May Advance and charge in same turn'] },
-
-  { id:'bt_chaplain_bike', name:'Chaplain on Bike',
-    stats:['14"','3+','3+','4','5','6','4','9','3+'], role:'HQ', pts:115, min:1, max:1, ppm:0, isNew:true,
-    wargear:['Crozius Arcanum','Twin Boltgun','Rosarius'],
-    abilities:['And They Shall Know No Fear',
-               'Rosarius: 4+ invulnerable save',
-               'Litanies of Battle',
-               'Turbo-boost: May Advance and charge in same turn'] },
-
   // ── TROOPS ──────────────────────────────────────────────────────────
   { id:'bt_crusader_squad', name:'Crusader Squad',
     stats:['6"','3+','3+','4','4','1','1','7','3+'], role:'Troops', pts:70, min:5, max:15, ppm:0,
@@ -142,52 +125,6 @@ const FACTION_BLACK_TEMPLARS = [
                'Vow of Crusade: Re-roll failed charge rolls',
                'Veteran Warriors: Re-roll hit rolls of 1',
                'Sigismund Chosen: 1 per unit — +1 Attack — may take any melee upgrade free'] },
-
-  { id:'bt_terminators', name:'Terminator Squad',
-    stats:['5"','3+','3+','4','4','2','2','8','2+'], role:'Elites', pts:195, min:5, max:10, ppm:39,
-    wargear:[],
-    composition:[
-      { role:'Terminator Sergeant', count:1, wargear:['Storm Bolter','Power Fist'],
-        options:[
-          { group:'Melee', choices:[
-            { label:'Power Fist',     pts:0, default:true },
-            { label:'Thunder Hammer', pts:5, weapons:['Thunder Hammer'], replaces:['Power Fist'] },
-            { label:'Lightning Claw', pts:0, weapons:['Lightning Claw'],  replaces:['Power Fist'] },
-          ]},
-        ]},
-      { role:'Heavy Weapon (1)', count:1, wargear:['Cyclone Missile Launcher','Storm Bolter','Power Fist'] },
-      { role:'Terminator', count:3, wargear:['Storm Bolter','Power Fist'],
-        options:[
-          { group:'Melee', choices:[
-            { label:'Power Fist',     pts:0, default:true },
-            { label:'Thunder Hammer', pts:5, weapons:['Thunder Hammer'], replaces:['Power Fist'] },
-            { label:'Lightning Claw', pts:0, weapons:['Lightning Claw'],  replaces:['Power Fist'] },
-          ]},
-        ]},
-    ],
-    abilities:['And They Shall Know No Fear',
-               'Teleport Strike: Deep strike — arrive 9"+ from enemy',
-               'Terminator Armour: 5+ invulnerable save',
-               'Crusading Fury: Re-roll failed charge rolls'] },
-
-  { id:'bt_bladeguard', name:'Bladeguard Veterans',
-    stats:['6"','3+','3+','4','4','3','3','8','3+'], role:'Elites', pts:135, min:3, max:6, ppm:45, isNew:true,
-    wargear:[],
-    composition:[
-      { role:'Bladeguard Veteran Sergeant', count:1, wargear:['Master-crafted Power Sword','Storm Shield','Heavy Bolt Pistol'],
-        options:[
-          { group:'Sidearm', choices:[
-            { label:'Heavy Bolt Pistol', pts:0, default:true },
-            { label:'Plasma Pistol',     pts:5, weapons:['Plasma Pistol'], replaces:['Heavy Bolt Pistol'] },
-          ]},
-        ]},
-      { role:'Bladeguard Veteran', count:2, wargear:['Master-crafted Power Sword','Storm Shield','Heavy Bolt Pistol'] },
-    ],
-    abilities:['And They Shall Know No Fear',
-               'Storm Shield: 4+ invulnerable save',
-               'Skilled Swordsmen: Re-roll all failed hit rolls in Fight phase',
-               'Vow of Crusade: Re-roll failed charge rolls'] },
-
   { id:'bt_dreadnought', name:'Venerable Dreadnought',
     stats:['6"','2+','3+','6','7','10','4','8','3+'], role:'Elites', pts:135, min:1, max:1, ppm:0,
     wargear:['Twin Lascannon','Dreadnought C.C. Weapon'],
@@ -197,69 +134,6 @@ const FACTION_BLACK_TEMPLARS = [
                'Explodes: On 6 when destroyed — D6 mortal wounds within 3"'] },
 
   // ── FAST ATTACK ─────────────────────────────────────────────────────
-  { id:'bt_assault_intercessors', name:'Assault Intercessors',
-    stats:['6"','3+','3+','4','4','2','2','7','3+'], role:'Fast Attack', pts:85, min:5, max:10, ppm:17,
-    wargear:[],
-    composition:[
-      { role:'Sergeant', count:1, wargear:['Heavy Bolt Pistol','Astartes Chainsword'],
-        options:[
-          { group:'Melee', choices:[
-            { label:'Astartes Chainsword', pts:0, default:true },
-            { label:'Power Sword',         pts:4, weapons:['Power Sword'],   replaces:['Astartes Chainsword'] },
-            { label:'Power Fist',          pts:9, weapons:['Power Fist'],    replaces:['Astartes Chainsword'] },
-            { label:'Thunder Hammer',      pts:12,weapons:['Thunder Hammer'],replaces:['Astartes Chainsword'] },
-          ]},
-          { group:'Sidearm', choices:[
-            { label:'Heavy Bolt Pistol', pts:0, default:true },
-            { label:'Plasma Pistol',     pts:5, weapons:['Plasma Pistol'], replaces:['Heavy Bolt Pistol'] },
-          ]},
-        ]},
-      { role:'Assault Intercessor', count:4, wargear:['Heavy Bolt Pistol','Astartes Chainsword'] },
-    ],
-    abilities:['And They Shall Know No Fear',
-               'Combat Squads: May split into two units of 5',
-               'Vow of Crusade: Re-roll failed charge rolls'] },
-
-  { id:'bt_outriders', name:'Outrider Squad',
-    stats:['14"','3+','3+','4','5','3','3','7','3+'], role:'Fast Attack', pts:135, min:3, max:6, ppm:45, isNew:true,
-    wargear:[],
-    composition:[
-      { role:'Outrider Sergeant', count:1, wargear:['Twin Bolt Rifle','Astartes Chainsword','Bolt Pistol'],
-        options:[
-          { group:'Sidearm', choices:[
-            { label:'Bolt Pistol',   pts:0, default:true },
-            { label:'Plasma Pistol', pts:5, weapons:['Plasma Pistol'], replaces:['Bolt Pistol'] },
-          ]},
-        ]},
-      { role:'Outrider', count:2, wargear:['Twin Bolt Rifle','Astartes Chainsword'] },
-    ],
-    abilities:['And They Shall Know No Fear',
-               'Turbo-boost: May Advance and charge in same turn',
-               'Vow of Crusade: Re-roll failed charge rolls',
-               'Jink: 4+ invulnerable save if unit Advanced'] },
-
-  { id:'bt_assault', name:'Assault Squad',
-    stats:['12"','3+','3+','4','4','1','1','7','3+'], role:'Fast Attack', pts:65, min:5, max:10, ppm:13,
-    wargear:[],
-    composition:[
-      { role:'Sergeant', count:1, wargear:['Chainsword','Bolt Pistol','Jump Pack'],
-        options:[
-          { group:'Melee', choices:[
-            { label:'Chainsword',    pts:0, default:true },
-            { label:'Power Sword',   pts:4, weapons:['Power Sword'],   replaces:['Chainsword'] },
-            { label:'Power Fist',    pts:9, weapons:['Power Fist'],    replaces:['Chainsword'] },
-          ]},
-          { group:'Sidearm', choices:[
-            { label:'Bolt Pistol',   pts:0, default:true },
-            { label:'Plasma Pistol', pts:5, weapons:['Plasma Pistol'], replaces:['Bolt Pistol'] },
-          ]},
-        ]},
-      { role:'Assault Marine', count:4, wargear:['Chainsword','Bolt Pistol','Jump Pack'] },
-    ],
-    abilities:['And They Shall Know No Fear',
-               'Jump Pack Assault: Advance and charge same turn',
-               'Vow of Crusade: Re-roll failed charge rolls'] },
-
   { id:'bt_bikers', name:'Biker Squad',
     stats:['14"','3+','3+','4','5','2','2','7','3+'], role:'Fast Attack', pts:75, min:3, max:9, ppm:25,
     wargear:[],
@@ -271,21 +145,4 @@ const FACTION_BLACK_TEMPLARS = [
                'Vow of Crusade: Re-roll failed charge rolls'] },
 
   // ── HEAVY SUPPORT ───────────────────────────────────────────────────
-  { id:'bt_hellblasters', name:'Hellblaster Squad',
-    stats:['6"','3+','3+','4','4','2','2','7','3+'], role:'Heavy Support', pts:165, min:5, max:10, ppm:33,
-    wargear:[],
-    composition:[
-      { role:'Sergeant', count:1, wargear:['Plasma Incinerator','Plasma Pistol'],
-        options:[
-          { group:'Sidearm', choices:[
-            { label:'Plasma Pistol', pts:0, default:true },
-            { label:'Bolt Pistol',   pts:0, weapons:['Bolt Pistol'], replaces:['Plasma Pistol'] },
-          ]},
-        ]},
-      { role:'Hellblaster', count:4, wargear:['Plasma Incinerator','Plasma Pistol'] },
-    ],
-    abilities:['And They Shall Know No Fear',
-               'Plasma Incinerator Overcharge: S8 AP-4 D2 — hit roll of 1 slays model',
-               'Vow of Crusade: Re-roll failed charge rolls'] },
-
 ];

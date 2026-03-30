@@ -1,6 +1,6 @@
 // FACTION_DARK_ANGELS — chapter-specific units + shared SM pool
 // Must be loaded AFTER sm_shared.js
-const FACTION_DARK_ANGELS = [
+var FACTION_DARK_ANGELS = [
   ...SM_SHARED_UNITS,
 
   { id:'da_azrael', name:'Supreme Grand Master Azrael',
@@ -26,13 +26,6 @@ const FACTION_DARK_ANGELS = [
     abilities:['Psyker: Mastery Level 3','Dark Angels only',
                'Veil of Time: WC6 — friendly unit within 18" fights first this Fight phase',
                'Mind Worm: WC5 — one enemy within 18" subtracts 1 from hit rolls until next Psychic phase'] },
-
-  { id:'da_librarian', name:'Librarian',
-    stats:['6"','3+','3+','4','4','5','3','9','3+'], role:'HQ', pts:90, min:1, max:1, ppm:0,
-    wargear:['Force Sword','Bolt Pistol'],
-    abilities:['And They Shall Know No Fear','Psyker: Mastery Level 1',
-               'Psychic Hood: Deny the Witch on 2D6+1'] },
-
   { id:'da_deathwing', name:'Deathwing Terminators',
     stats:['5"','3+','3+','4','4','2','2','8','2+'], role:'Elites', pts:215, min:5, max:10, ppm:43,
     wargear:[],
@@ -77,68 +70,6 @@ const FACTION_DARK_ANGELS = [
     abilities:['And They Shall Know No Fear',
                'Inner Circle','Scouts: Move up to 9" before first battle round',
                'Jink: 5+ invulnerable save if unit Advanced'] },
-
-  { id:'da_tactical', name:'Tactical Squad',
-    stats:['6"','3+','3+','4','4','1','1','7','3+'], role:'Troops', pts:65, min:5, max:10, ppm:13,
-    wargear:[],
-    composition:[
-      { role:'Sergeant', count:1, wargear:['Boltgun','Bolt Pistol','Frag & Krak Grenades'],
-        options:[
-          { group:'Melee', choices:[
-            { label:'None',          pts:0, default:true },
-            { label:'Chainsword',    pts:0, weapons:['Chainsword'],  replaces:[] },
-            { label:'Power Sword',   pts:4, weapons:['Power Sword'], replaces:['Boltgun'] },
-            { label:'Power Fist',    pts:9, weapons:['Power Fist'],  replaces:['Boltgun'] },
-          ]},
-          { group:'Sidearm', choices:[
-            { label:'Bolt Pistol',   pts:0, default:true },
-            { label:'Plasma Pistol', pts:5, weapons:['Plasma Pistol'], replaces:['Bolt Pistol'] },
-          ]},
-        ]},
-      { role:'Special Weapon', count:1, wargear:['Boltgun','Bolt Pistol'],
-        options:[
-          { group:'Special', choices:[
-            { label:'Boltgun',    pts:0, default:true },
-            { label:'Flamer',     pts:0, weapons:['Flamer'],     replaces:['Boltgun'] },
-            { label:'Meltagun',   pts:0, weapons:['Meltagun'],   replaces:['Boltgun'] },
-            { label:'Plasma Gun', pts:0, weapons:['Plasma Gun'], replaces:['Boltgun'] },
-          ]},
-        ]},
-      { role:'Heavy Weapon', count:1, wargear:['Heavy Bolter','Bolt Pistol'],
-        options:[
-          { group:'Heavy', choices:[
-            { label:'Heavy Bolter',     pts:0, default:true, weapons:['Heavy Bolter'] },
-            { label:'Lascannon',        pts:0, weapons:['Lascannon'],        replaces:['Heavy Bolter'] },
-            { label:'Missile Launcher', pts:0, weapons:['Missile Launcher'], replaces:['Heavy Bolter'] },
-            { label:'Plasma Cannon',    pts:0, weapons:['Plasma Cannon'],    replaces:['Heavy Bolter'] },
-            { label:'Multi-melta',      pts:0, weapons:['Multi-melta'],      replaces:['Heavy Bolter'] },
-          ]},
-        ]},
-      { role:'Trooper', count:2, wargear:['Boltgun','Bolt Pistol','Frag & Krak Grenades'] },
-    ],
-    abilities:['And They Shall Know No Fear','Combat Squads','Grim Resolve: Never take Morale if did not move'] },
-
-  { id:'da_intercessors', name:'Intercessor Squad',
-    stats:['6"','3+','3+','4','4','2','2','7','3+'], role:'Troops', pts:85, min:5, max:10, ppm:17,
-    wargear:[],
-    composition:[
-      { role:'Sergeant', count:1, wargear:['Bolt Rifle','Bolt Pistol'],
-        options:[
-          { group:'Bolt Rifle', choices:[
-            { label:'Bolt Rifle',         pts:0, default:true, weapons:['Bolt Rifle'] },
-            { label:'Auto Bolt Rifle',    pts:0, weapons:['Auto Bolt Rifle'],    replaces:['Bolt Rifle'] },
-            { label:'Stalker Bolt Rifle', pts:0, weapons:['Stalker Bolt Rifle'], replaces:['Bolt Rifle'] },
-          ]},
-          { group:'Melee', choices:[
-            { label:'None',       pts:0, default:true },
-            { label:'Chainsword', pts:0, weapons:['Chainsword'], replaces:[] },
-            { label:'Power Sword',pts:4, weapons:['Power Sword'],replaces:['Bolt Rifle'] },
-          ]},
-        ]},
-      { role:'Intercessor', count:4, wargear:['Bolt Rifle','Bolt Pistol'] },
-    ],
-    abilities:['And They Shall Know No Fear','Combat Squads','Grim Resolve: Never take Morale if did not move'] },
-
   { id:'da_belial', name:'Belial — Master of the Deathwing',
     stats:['5"','2+','2+','4','4','5','5','9','2+'], role:'HQ', pts:135, min:1, max:1, ppm:0, unique:true,
     wargear:['Sword of Silence','Storm Bolter'],
@@ -168,5 +99,4 @@ const FACTION_DARK_ANGELS = [
                'Litanies of Hate: Friendly Dark Angels within 6" re-roll failed hit rolls in the Fight phase',
                'Blades of Reason: AP-2 D1 — enemy Characters wounded by this weapon must subtract 1 from their Leadership',
                'Inner Circle: Ignore Morale while any Dark Angels Character is on the battlefield'] },
-
 ];

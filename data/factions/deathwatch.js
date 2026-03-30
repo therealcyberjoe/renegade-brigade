@@ -1,6 +1,6 @@
 // FACTION_DEATHWATCH — chapter-specific units + shared SM pool
 // Must be loaded AFTER sm_shared.js
-const FACTION_DEATHWATCH = [
+var FACTION_DEATHWATCH = [
   ...SM_SHARED_UNITS,
 
   { id:'dw_watch_master', name:'Watch Master',
@@ -125,34 +125,6 @@ const FACTION_DEATHWATCH = [
     ],
     abilities:['And They Shall Know No Fear','Special Issue Ammunition',
                'Turbo-boost: May Advance and charge in same turn'] },
-
-  { id:'dw_terminator', name:'Terminator Squad',
-    stats:['5"','3+','3+','4','4','2','2','8','2+'], role:'Elites', pts:195, min:5, max:10, ppm:39,
-    wargear:[],
-    composition:[
-      { role:'Terminator Sergeant', count:1, wargear:['Storm Bolter','Power Fist'],
-        options:[
-          { group:'Melee', choices:[
-            { label:'Power Fist',     pts:0, default:true },
-            { label:'Thunder Hammer', pts:5, weapons:['Thunder Hammer'], replaces:['Power Fist'] },
-            { label:'Lightning Claw', pts:0, weapons:['Lightning Claw'],  replaces:['Power Fist'] },
-          ]},
-        ]},
-      { role:'Terminator', count:4, wargear:['Storm Bolter','Power Fist'],
-        options:[
-          { group:'Melee', choices:[
-            { label:'Power Fist',     pts:0, default:true },
-            { label:'Thunder Hammer', pts:5, weapons:['Thunder Hammer'], replaces:['Power Fist'] },
-            { label:'Lightning Claw', pts:0, weapons:['Lightning Claw'],  replaces:['Power Fist'] },
-          ]},
-        ]},
-    ],
-    wargear_legacy:['Storm Bolter','Power Fist'],
-    abilities:['And They Shall Know No Fear',
-               'Teleport Strike: Deep strike 9"+ from enemy',
-               'Terminator Armour: 5+ invulnerable save','Special Issue Ammunition'] },
-
-
   // ── FLYER ─────────────────────────────────────────────────────────────
   { id:'dw_corvus_blackstar', name:'Corvus Blackstar',
     stats:['20-60"','3+','3+','6','7','14','3','8','3+'], role:'Flyer', pts:236, min:1, max:1, ppm:0,

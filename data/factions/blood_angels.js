@@ -1,6 +1,6 @@
 // FACTION_BLOOD_ANGELS — chapter-specific units + shared SM pool
 // Must be loaded AFTER sm_shared.js
-const FACTION_BLOOD_ANGELS = [
+var FACTION_BLOOD_ANGELS = [
   ...SM_SHARED_UNITS,
 
   { id:'ba_dante', name:'Commander Dante',
@@ -17,13 +17,6 @@ const FACTION_BLOOD_ANGELS = [
                'Transfixing Gaze: Once per Fight phase pick enemy Character within 3" — it fights last',
                'Lord of Death: At start of Fight phase if within 1" of any enemy add 1 to Attacks',
                'Blood Angels only'] },
-
-  { id:'ba_captain', name:'Captain',
-    stats:['6"','3+','3+','4','4','5','4','9','3+'], role:'HQ', pts:74, min:1, max:1, ppm:0,
-    wargear:['Power Sword','Bolt Pistol'],
-    abilities:['And They Shall Know No Fear','Iron Halo: 4+ invulnerable save',
-               'Rites of Battle: Re-roll hit rolls of 1 for friendly Blood Angels within 6"'] },
-
   { id:'ba_tycho', name:'Brother-Captain Tycho',
     stats:['6"','2+','2+','4','4','5','5','9','2+'], role:'HQ', pts:95, min:1, max:1, ppm:0, unique:true,
     wargear:['Master-crafted Bolter','Combi-melta','The Blood Song'],
@@ -75,101 +68,6 @@ const FACTION_BLOOD_ANGELS = [
     abilities:['And They Shall Know No Fear',
                'Aegis Armour: 4+ invulnerable save',
                'Death Masks: Enemy units within 3" subtract 1 from Leadership'] },
-
-  { id:'ba_assault', name:'Assault Squad',
-    stats:['12"','3+','3+','4','4','1','1','7','3+'], role:'Fast Attack', pts:65, min:5, max:10, ppm:13,
-    wargear:[],
-    composition:[
-      { role:'Sergeant', count:1, wargear:['Chainsword','Bolt Pistol','Jump Pack'],
-        options:[
-          { group:'Melee', choices:[
-            { label:'Chainsword',    pts:0, default:true },
-            { label:'Power Sword',   pts:4, weapons:['Power Sword'],   replaces:['Chainsword'] },
-            { label:'Power Fist',    pts:9, weapons:['Power Fist'],    replaces:['Chainsword'] },
-            { label:'Thunder Hammer',pts:12,weapons:['Thunder Hammer'],replaces:['Chainsword'] },
-          ]},
-          { group:'Sidearm', choices:[
-            { label:'Bolt Pistol',   pts:0, default:true },
-            { label:'Plasma Pistol', pts:5, weapons:['Plasma Pistol'], replaces:['Bolt Pistol'] },
-            { label:'Inferno Pistol',pts:5, weapons:['Inferno Pistol'],replaces:['Bolt Pistol'] },
-            { label:'Hand Flamer',   pts:3, weapons:['Hand Flamer'],   replaces:['Bolt Pistol'] },
-          ]},
-        ]},
-      { role:'Special Weapon (up to 2)', count:2, wargear:['Bolt Pistol','Chainsword','Jump Pack'],
-        options:[
-          { group:'Special', choices:[
-            { label:'Bolt Pistol',   pts:0, default:true },
-            { label:'Plasma Pistol', pts:5, weapons:['Plasma Pistol'], replaces:['Bolt Pistol'] },
-            { label:'Inferno Pistol',pts:5, weapons:['Inferno Pistol'],replaces:['Bolt Pistol'] },
-            { label:'Hand Flamer',   pts:3, weapons:['Hand Flamer'],   replaces:['Bolt Pistol'] },
-          ]},
-        ]},
-      { role:'Assault Marine', count:2, wargear:['Bolt Pistol','Chainsword','Jump Pack'] },
-    ],
-    abilities:['And They Shall Know No Fear','Jump Pack Assault: Advance and charge same turn',
-               'Red Thirst: Add 1 to wound rolls if this unit charged'] },
-
-  { id:'ba_tactical', name:'Tactical Squad',
-    stats:['6"','3+','3+','4','4','1','1','7','3+'], role:'Troops', pts:65, min:5, max:10, ppm:13,
-    wargear:[],
-    composition:[
-      { role:'Sergeant', count:1, wargear:['Boltgun','Bolt Pistol','Frag & Krak Grenades'],
-        options:[
-          { group:'Melee', choices:[
-            { label:'None',          pts:0, default:true },
-            { label:'Chainsword',    pts:0, weapons:['Chainsword'],  replaces:[] },
-            { label:'Power Sword',   pts:4, weapons:['Power Sword'], replaces:['Boltgun'] },
-            { label:'Power Fist',    pts:9, weapons:['Power Fist'],  replaces:['Boltgun'] },
-          ]},
-          { group:'Sidearm', choices:[
-            { label:'Bolt Pistol',   pts:0, default:true },
-            { label:'Plasma Pistol', pts:5, weapons:['Plasma Pistol'], replaces:['Bolt Pistol'] },
-          ]},
-        ]},
-      { role:'Special Weapon', count:1, wargear:['Boltgun','Bolt Pistol'],
-        options:[
-          { group:'Special', choices:[
-            { label:'Boltgun',    pts:0, default:true },
-            { label:'Flamer',     pts:0, weapons:['Flamer'],     replaces:['Boltgun'] },
-            { label:'Meltagun',   pts:0, weapons:['Meltagun'],   replaces:['Boltgun'] },
-            { label:'Plasma Gun', pts:0, weapons:['Plasma Gun'], replaces:['Boltgun'] },
-          ]},
-        ]},
-      { role:'Heavy Weapon', count:1, wargear:['Heavy Bolter','Bolt Pistol'],
-        options:[
-          { group:'Heavy', choices:[
-            { label:'Heavy Bolter',     pts:0, default:true, weapons:['Heavy Bolter'] },
-            { label:'Lascannon',        pts:0, weapons:['Lascannon'],        replaces:['Heavy Bolter'] },
-            { label:'Missile Launcher', pts:0, weapons:['Missile Launcher'], replaces:['Heavy Bolter'] },
-            { label:'Plasma Cannon',    pts:0, weapons:['Plasma Cannon'],    replaces:['Heavy Bolter'] },
-            { label:'Multi-melta',      pts:0, weapons:['Multi-melta'],      replaces:['Heavy Bolter'] },
-          ]},
-        ]},
-      { role:'Trooper', count:2, wargear:['Boltgun','Bolt Pistol','Frag & Krak Grenades'] },
-    ],
-    abilities:['And They Shall Know No Fear','Combat Squads','Red Thirst'] },
-
-  { id:'ba_intercessors', name:'Intercessor Squad',
-    stats:['6"','3+','3+','4','4','2','2','7','3+'], role:'Troops', pts:85, min:5, max:10, ppm:17,
-    wargear:[],
-    composition:[
-      { role:'Sergeant', count:1, wargear:['Bolt Rifle','Bolt Pistol'],
-        options:[
-          { group:'Bolt Rifle', choices:[
-            { label:'Bolt Rifle',         pts:0, default:true, weapons:['Bolt Rifle'] },
-            { label:'Auto Bolt Rifle',    pts:0, weapons:['Auto Bolt Rifle'],    replaces:['Bolt Rifle'] },
-            { label:'Stalker Bolt Rifle', pts:0, weapons:['Stalker Bolt Rifle'], replaces:['Bolt Rifle'] },
-          ]},
-          { group:'Melee', choices:[
-            { label:'None',       pts:0, default:true },
-            { label:'Chainsword', pts:0, weapons:['Chainsword'], replaces:[] },
-            { label:'Power Sword',pts:4, weapons:['Power Sword'],replaces:['Bolt Rifle'] },
-          ]},
-        ]},
-      { role:'Intercessor', count:4, wargear:['Bolt Rifle','Bolt Pistol'] },
-    ],
-    abilities:['And They Shall Know No Fear','Combat Squads','Red Thirst'] },
-
   { id:'ba_baal_predator', name:'Baal Predator',
     stats:['12"','5+','3+','6','7','11','3','8','3+'], role:'Fast Attack', pts:130, min:1, max:1, ppm:0,
     wargear:['Twin Assault Cannon','Heavy Bolter Sponsons'],
