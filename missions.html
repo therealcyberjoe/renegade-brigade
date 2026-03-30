@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Warhammer 40,000 — 8th Edition Missions</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Barlow+Condensed:wght@300;400;600;700&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0e0e10;
+    --panel: #16161a;
+    --border: #2a2a32;
+    --text: #d4d4d8;
+    --muted: #71717a;
+    --gold: #c9a84c;
+    --green: #4aaa5a;
+    --red: #8b2020;
+    --red-bright: #c53030;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Barlow', sans-serif;
+    font-size: 14px;
+    line-height: 1.7;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 40px 24px 80px;
+  }
+
+  .page-header {
+    text-align: center;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 32px;
+    margin-bottom: 40px;
+  }
+
+  .page-header img {
+    width: 56px; height: 56px;
+    object-fit: contain;
+    margin-bottom: 16px;
+  }
+
+  .page-header h1 {
+    font-family: 'Cinzel', serif;
+    font-size: 22px;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+
+  .page-header p {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 13px;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+  }
+
+  .back-link {
+    display: inline-block;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    margin-bottom: 32px;
+  }
+  .back-link:hover { color: var(--green); }
+
+  /* ── SECTION ── */
+  .section {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    margin-bottom: 24px;
+    overflow: hidden;
+  }
+
+  .section-header {
+    background: #1c1c22;
+    border-bottom: 1px solid var(--border);
+    padding: 12px 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .section-number {
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    color: var(--gold);
+    background: rgba(201,168,76,0.1);
+    border: 1px solid rgba(201,168,76,0.3);
+    padding: 2px 8px;
+    letter-spacing: 0.1em;
+  }
+
+  .section-title {
+    font-family: 'Cinzel', serif;
+    font-size: 13px;
+    letter-spacing: 0.15em;
+    color: var(--text);
+    text-transform: uppercase;
+    flex: 1;
+  }
+
+  .section-badge {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px;
+    color: var(--gold);
+    letter-spacing: 0.05em;
+  }
+
+  .section-body {
+    padding: 20px;
+  }
+
+  /* ── GAME RULES ── */
+  .rules-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  @media (max-width: 600px) { .rules-grid { grid-template-columns: 1fr; } }
+
+  .rule-block h4 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 8px;
+  }
+
+  .rule-block ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .rule-block ul li {
+    font-size: 12px;
+    color: var(--text);
+    padding: 3px 0;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+  }
+
+  .rule-block ul li:last-child { border-bottom: none; }
+
+  .rule-block p {
+    font-size: 12px;
+    color: var(--text);
+    line-height: 1.6;
+  }
+
+  /* ── STRATAGEMS ── */
+  .stratagem {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .stratagem:last-child { border-bottom: none; padding-bottom: 0; }
+
+  .stratagem-cp {
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    color: var(--gold);
+    background: rgba(201,168,76,0.1);
+    border: 1px solid rgba(201,168,76,0.3);
+    padding: 3px 8px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .stratagem-name {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    color: var(--text);
+    text-transform: uppercase;
+    margin-bottom: 3px;
+  }
+
+  .stratagem-desc {
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+
+  /* ── SECONDARY OBJECTIVES ── */
+  .secondary-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+  }
+  @media (max-width: 600px) { .secondary-grid { grid-template-columns: 1fr; } }
+
+  .secondary-card {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    padding: 12px;
+    text-align: center;
+  }
+
+  .secondary-card .vp {
+    font-family: 'Cinzel', serif;
+    font-size: 22px;
+    color: var(--gold);
+    margin-bottom: 4px;
+  }
+
+  .secondary-card .vp-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    margin-bottom: 8px;
+  }
+
+  .secondary-card .name {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    color: var(--text);
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+
+  .secondary-card .desc {
+    font-size: 11px;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+
+  /* ── DEPLOYMENT MAPS ── */
+  .deployments-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  @media (max-width: 600px) { .deployments-grid { grid-template-columns: 1fr; } }
+
+  .deployment-card {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    overflow: hidden;
+  }
+
+  .deployment-card-header {
+    background: #1c1c22;
+    padding: 8px 12px;
+    border-bottom: 1px solid var(--border);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text);
+  }
+
+  .deployment-card svg {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .deployment-card-body {
+    padding: 10px 12px;
+  }
+
+  .deployment-stat {
+    display: flex;
+    gap: 8px;
+    font-size: 11px;
+    margin-bottom: 3px;
+  }
+
+  .deployment-stat-label {
+    color: var(--gold);
+    font-size: 10px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    min-width: 56px;
+    flex-shrink: 0;
+  }
+
+  .deployment-note {
+    font-size: 11px;
+    color: var(--muted);
+    font-style: italic;
+    margin-top: 6px;
+    padding-top: 6px;
+    border-top: 1px solid var(--border);
+    line-height: 1.5;
+  }
+
+  /* ── MISSIONS ── */
+  .mission-card {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    margin-bottom: 12px;
+    overflow: hidden;
+  }
+
+  .mission-card-header {
+    background: #1c1c22;
+    border-bottom: 1px solid var(--border);
+    padding: 10px 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .mission-number {
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    color: var(--muted);
+    background: var(--panel);
+    border: 1px solid var(--border);
+    width: 24px; height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .mission-name {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    color: var(--text);
+    text-transform: uppercase;
+    flex: 1;
+  }
+
+  .mission-maxvp {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 12px;
+    color: var(--gold);
+  }
+
+  .mission-body {
+    padding: 14px 16px;
+  }
+
+  .mission-desc {
+    font-size: 13px;
+    color: var(--text);
+    margin-bottom: 12px;
+    line-height: 1.6;
+  }
+
+  .mission-stats {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 4px 12px;
+    margin-bottom: 10px;
+  }
+
+  .mission-stat-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gold);
+    padding-top: 2px;
+  }
+
+  .mission-stat-value {
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  .mission-note {
+    font-size: 12px;
+    color: var(--muted);
+    font-style: italic;
+    padding: 8px 12px;
+    background: rgba(201,168,76,0.04);
+    border-left: 2px solid rgba(201,168,76,0.3);
+    line-height: 1.6;
+  }
+</style>
+</head>
+<body>
+
+<a class="back-link" href="index.html">← Back to Army Builder</a>
+
+<div class="page-header">
+  <img src="assets/logo.png" alt="Renegade Brigade">
+  <h1>Missions Reference</h1>
+  <p>Warhammer 40,000 · 8th Edition Index · Matched Play</p>
+</div>
+
+<!-- GAME RULES -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-title">Game Rules</span>
+  </div>
+  <div class="section-body">
+    <div class="rules-grid">
+      <div class="rule-block">
+        <h4>Turn Structure</h4>
+        <p>The game lasts <strong>5 battle rounds</strong>. After turn 5, roll a D6 — on <strong>3+</strong> play turn 6. After turn 6, roll again — on <strong>4+</strong> play turn 7.</p>
+        <p style="margin-top:8px;">Standard board: <strong>6' × 4'</strong> (72" × 48")</p>
+      </div>
+      <div class="rule-block">
+        <h4>Command Points by Detachment</h4>
+        <ul>
+          <li><span>Brigade</span><span style="color:var(--gold);font-weight:600;">9 CP</span></li>
+          <li><span>Battalion</span><span style="color:var(--gold);font-weight:600;">3 CP</span></li>
+          <li><span>Spearhead / Outrider / Vanguard</span><span style="color:var(--gold);font-weight:600;">1 CP</span></li>
+          <li><span>Supreme Command</span><span style="color:var(--gold);font-weight:600;">1 CP</span></li>
+          <li><span>Patrol</span><span style="color:var(--gold);font-weight:600;">0 CP</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- UNIVERSAL STRATAGEMS -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-title">Universal Stratagems</span>
+    <span class="section-badge">3 only in index rules</span>
+  </div>
+  <div class="section-body">
+    <div class="stratagem">
+      <span class="stratagem-cp">1 CP</span>
+      <div>
+        <div class="stratagem-name">Command Re-roll</div>
+        <div class="stratagem-desc">Use after making any dice roll — re-roll one of the dice.</div>
+      </div>
+    </div>
+    <div class="stratagem">
+      <span class="stratagem-cp">2 CP</span>
+      <div>
+        <div class="stratagem-name">Counter-offensive</div>
+        <div class="stratagem-desc">Use after an enemy unit has fought in the Fight phase — immediately fight with one of your own eligible units.</div>
+      </div>
+    </div>
+    <div class="stratagem">
+      <span class="stratagem-cp">2 CP</span>
+      <div>
+        <div class="stratagem-name">Insane Bravery</div>
+        <div class="stratagem-desc">Use before taking a Morale test for one of your units — that test is automatically passed.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SECONDARY OBJECTIVES -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-title">Secondary Objectives</span>
+    <span class="section-badge">Available in all Eternal War missions</span>
+  </div>
+  <div class="section-body">
+    <div class="secondary-grid">
+      <div class="secondary-card">
+        <div class="vp">1</div>
+        <div class="vp-label">Victory Point</div>
+        <div class="name">Slay the Warlord</div>
+        <div class="desc">Score 1 VP if the enemy Warlord has been slain by the end of the game.</div>
+      </div>
+      <div class="secondary-card">
+        <div class="vp">1</div>
+        <div class="vp-label">Victory Point</div>
+        <div class="name">First Blood</div>
+        <div class="desc">Score 1 VP if you were the first player to destroy an enemy unit during the game.</div>
+      </div>
+      <div class="secondary-card">
+        <div class="vp">1</div>
+        <div class="vp-label">Victory Point</div>
+        <div class="name">Linebreaker</div>
+        <div class="desc">Score 1 VP if you have at least one model in the enemy's deployment zone at the end of the game.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- DEPLOYMENT MAPS -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-title">Deployment Maps</span>
+    <span class="section-badge">6 standard maps</span>
+  </div>
+  <div class="section-body">
+    <div class="deployments-grid">
+
+      <div class="deployment-card">
+        <div class="deployment-card-header">Dawn of War</div>
+        <svg viewBox="0 0 200 120" xmlns="http://www.w3.org/2000/svg">
+          <rect x="0" y="0" width="200" height="120" fill="#0e0e10" stroke="#2a2a32" stroke-width="1"/>
+          <rect x="0" y="0" width="200" height="24" fill="#c9a84c" opacity="0.2"/>
+          <rect x="0" y="96" width="200" height="24" fill="#8b2020" opacity="0.25"/>
+          <line x1="0" y1="60" x2="200" y2="60" stroke="#2a2a32" stroke-dasharray="6,4" stroke-width="1"/>
+          <text x="100" y="14" text-anchor="middle" font-family="Barlow Condensed,sans-serif" font-size="9" fill="#c9a84c">PLAYER 1 — 12"</text>
+          <text x="100" y="114" text-anchor="middle" font-family="Barlow Condensed,sans-serif" font-size="9" fill="#c53030">PLAYER 2 — 12"</text>
+          <text x="100" y="63" text-anchor="middle" font-family="Barlow Condensed,sans-serif" font-size="8" fill="#71717a">No Man's Land</text>
+        </svg>
+        <div class="deployment-card-body">
+          <div class="deployment-stat"><span class="deployment-stat-label">Zone</span><span>12" from each long table edge</span></div>
+          <div class="deployment-stat"><span class="deployment-stat-label">Gap</span><span>24" between deployment zones</span></div>
+          <div class="deployment-note">Most common deployment. Short gap favours aggressive armies.</div>
+        </div>
+      </div>
+
+      <div class="deployment-card">
+        <div class="deployment-card-header">Hammer and Anvil</div>
+        <svg viewBox="0 0 200 120" xmlns="http://www.w3.org/2000/svg">
+          <rect x="0" y="0" width="200" height="120" fill="#0e0e10" stroke="#2a2a32" stroke-width="1"/>
+          <rect x="0" y="0" width="30" height="120" fill="#c9a84c" opacity="0.2"/>
+          <rect x="170" y="0" width="30" height="120" fill="#8b2020" opacity="0.25"/>
+          <line x1="100" y1="0" x2="100" y2="120" stroke="#2a2a32" stroke-dasharray="6,4" stroke-width="1"/>
+          <text x="15" y="63" text-anchor="middle" font-family="Barlow Condensed,sans-serif" font-size="9" fill="#c9a84c" transform="rotate(-90,15,63)">P1 — 12"</text>
+          <text x="185" y="63" text-anchor="middle" font-family="Barlow Condensed,sans-serif" font-size="9" fill="#c53030" transform="rotate(90,185,63)">P2 — 12"</text>
+          <text x="100" y="63" text-anchor="middle" font-family="Barlow Condensed,sans-serif" font-size="8" fill="#71717a">48" gap</text>
+        </svg>
+        <div class="deployment-card-body">
+          <div class="deployment-stat"><span class="deployment-stat-label">Zone</span><span>12" from each short table edge</span></div>
+          <div class="deployment-stat"><span class="deployment-stat-label">Gap</span><span>48" between deployment zones</span></div>
+          <div class="deployment-note">Long march. Favours gunlines — assault armies must cover a lot of ground.</div>
+        </div>
+      </div>
+
+      <div class="deployment-card">
+        <div class="deployment-card-header">Vanguard Strike</div>
+        <svg viewBox="0 0 200 120" xmlns="http://www.w3.org/2000/svg">
+          <rect x="0" y="0" width="200" height="120" fill="#0e0e10" stroke="#2a2a32" stroke-width="1"/>
+          <polygon points="0,0 90,0 0,54" fill="#c9a84c" opacity="0.2"/>
+          <polygon points="200,120 110,120 200,66" fill="#8b2020" opacity="0.25"/>
+          <line x1="90" y1="0" x2="200" y2="66" stroke="#2a2a32" stroke-dasharray="5,4" stroke-width="1"/>
+          <line x1="0" y1="54" x2="110" y2="120" stroke="#2a2a32" stroke-dasharray="5,4" stroke-width="1"/>
+          <text x="28" y="22" text-anchor="middle" font-family="Barlow Condensed,sans-serif" font-size="9" fill="#c9a84c">P1</text>
+          <text x="172" y="108" text-anchor="middle" font-family="Barlow Condensed,sans-serif" font-size="9" fill="#c53030">P2</text>
+        </svg>
+        <div class="deployment-card-body">
+          <div class="deployment-stat"><span class="deployment-stat-label">Zone</span><span>Corner — 24" from corner along each edge</span></div>
+          <div class="deployment-stat"><span class="deployment-stat-label">Gap</span><span>Diagonal centre strip</span></div>
+          <div class="deployment-note">Corner deployment. Flanking and reserve play are key.</div>
+        </div>
+      </div>
+
+      <div class="deployment-card">
+        <div class="deployment-card-header">Spearhead Assault</div>
+        <svg viewBox="0 0 200 120" xmlns="http://www.w3.org/2000/svg">
+          <rect x="0" y="0" width="200" height="120" fill="#0e0e10" stroke="#2a2a32" stroke-width="1"/>
+          <rect x="0" y="0" width="40" height="120" fill="#c9a84c" opacity="0.2"/>
+          <rect x="100" y="60" width="100" height="60" fill="#8b2020" opacity="0.25"/>
+          <line x1="100" y1="0" x2="100" y2="120" stroke="#2a2a32" stroke-dasharray="5,4" stroke-width="1"/>
+          <line x1="100" y1="60" x2="200" y2="60" stroke="#2a2a32" stroke-dasharray="5,4" stroke-width="1"/>
+          <text x="20" y="63" text-anchor="middle" font-family="Barlow Condensed,sans-serif" font-size="9" fill="#c9a84c" transform="rotate(-90,20,63)">P1 — 12"</text>
+          <text x="150" y="96" text-anchor="middle" font-family="Barlow Condensed,sans-serif" font-size="9" fill="#c53030">P2</text>
+        </svg>
+        <div class="deployment-card-body">
+          <div class="deployment-stat"><span class="deployment-stat-label">Zone</span><span>Attacker: 12" short edge. Defender: opposite quarter</span></div>
+          <div class="deployment-note">Asymmetric — attacker has more ground to cross.</div>
+        </div>
+      </div>
+
+      <div class="deployment-card">
+        <div class="deployment-card-header">Frontline Assault</div>
+        <svg viewBox="0 0 200 120" xmlns="http://www.w3.org/2000/svg">
+          <rect x="0" y="0" width="200" height="120" fill="#0e0e10" stroke="#2a2a32" stroke-width="1"/>
+          <rect x="0" y="0" width="200" height="42" fill="#c9a84c" opacity="0.2"/>
+          <rect x="0" y="78" width="200" height="42" fill="#8b2020" opacity="0.25"/>
+          <line x1="0" y1="42" x2="200" y2="42" stroke="#c9a84c" stroke-dasharray="4,3" stroke-width="1" opacity="0.5"/>
+          <line x1="0" y1="78" x2="200" y2="78" stroke="#c53030" stroke-dasharray="4,3" stroke-width="1" opacity="0.5"/>
+          <line x1="0" y1="60" x2="200" y2="60" stroke="#2a2a32" stroke-dasharray="6,4" stroke-width="1"/>
+          <text x="100" y="24" text-anchor="middle" font-family="Barlow Condensed,sans-serif" font-size="9" fill="#c9a84c">P1 — 6" from centre</text>
+          <text x="100" y="100" text-anchor="middle" font-family="Barlow Condensed,sans-serif" font-size="9" fill="#c53030">P2 — 6" from centre</text>
+        </svg>
+        <div class="deployment-card-body">
+          <div class="deployment-stat"><span class="deployment-stat-label">Zone</span><span>6" from the centre line each side</span></div>
+          <div class="deployment-stat"><span class="deployment-stat-label">Gap</span><span>12" between armies</span></div>
+          <div class="deployment-note">Close quarters from turn one — brutal for assault armies.</div>
+        </div>
+      </div>
+
+      <div class="deployment-card">
+        <div class="deployment-card-header">Search and Destroy</div>
+        <svg viewBox="0 0 200 120" xmlns="http://www.w3.org/2000/svg">
+          <rect x="0" y="0" width="200" height="120" fill="#0e0e10" stroke="#2a2a32" stroke-width="1"/>
+          <rect x="0" y="0" width="100" height="60" fill="#c9a84c" opacity="0.2"/>
+          <rect x="100" y="60" width="100" height="60" fill="#8b2020" opacity="0.25"/>
+          <line x1="100" y1="0" x2="100" y2="120" stroke="#2a2a32" stroke-dasharray="5,4" stroke-width="1"/>
+          <line x1="0" y1="60" x2="200" y2="60" stroke="#2a2a32" stroke-dasharray="5,4" stroke-width="1"/>
+          <text x="50" y="33" text-anchor="middle" font-family="Barlow Condensed,sans-serif" font-size="9" fill="#c9a84c">P1</text>
+          <text x="150" y="96" text-anchor="middle" font-family="Barlow Condensed,sans-serif" font-size="9" fill="#c53030">P2</text>
+        </svg>
+        <div class="deployment-card-body">
+          <div class="deployment-stat"><span class="deployment-stat-label">Zone</span><span>Own table quarter (12" from each edge)</span></div>
+          <div class="deployment-note">Good all-round deployment. Objectives in the contested centre.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ETERNAL WAR MISSIONS -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-title">Eternal War Missions</span>
+    <span class="section-badge">Roll D6 or choose — all include 3 secondary objectives</span>
+  </div>
+  <div class="section-body" style="padding:12px 20px;">
+
+    <div class="mission-card">
+      <div class="mission-card-header">
+        <span class="mission-number">1</span>
+        <span class="mission-name">Retrieval Mission</span>
+        <span class="mission-maxvp">Max 12 VP</span>
+      </div>
+      <div class="mission-body">
+        <div class="mission-desc">Seize and hold four objectives scattered across the battlefield.</div>
+        <div class="mission-stats">
+          <span class="mission-stat-label">Objectives</span><span class="mission-stat-value">4 — set up alternately, 6"+ from table edge, 12"+ from each other</span>
+          <span class="mission-stat-label">Scoring</span><span class="mission-stat-value">3 VPs per objective controlled at end of game</span>
+        </div>
+        <div class="mission-note">Troops with Objective Secured are essential. Hold two objectives and you break even with secondaries.</div>
+      </div>
+    </div>
+
+    <div class="mission-card">
+      <div class="mission-card-header">
+        <span class="mission-number">2</span>
+        <span class="mission-name">No Mercy</span>
+        <span class="mission-maxvp">Kill pts</span>
+      </div>
+      <div class="mission-body">
+        <div class="mission-desc">Destroy the enemy. Score a point for every unit you slay.</div>
+        <div class="mission-stats">
+          <span class="mission-stat-label">Objectives</span><span class="mission-stat-value">None</span>
+          <span class="mission-stat-label">Scoring</span><span class="mission-stat-value">1 VP per enemy unit destroyed (including units that flee)</span>
+        </div>
+        <div class="mission-note">Every model matters. Avoid handing over cheap kills — large units with redundancy score best. Playing second has a major advantage as you can react to the board state.</div>
+      </div>
+    </div>
+
+    <div class="mission-card">
+      <div class="mission-card-header">
+        <span class="mission-number">3</span>
+        <span class="mission-name">The Scouring</span>
+        <span class="mission-maxvp">Max 14 VP</span>
+      </div>
+      <div class="mission-body">
+        <div class="mission-desc">Six objectives of varying worth — one Superior (4 VP), one Inferior (1 VP), four standard (2 VP each). Values are assigned randomly after deployment.</div>
+        <div class="mission-stats">
+          <span class="mission-stat-label">Objectives</span><span class="mission-stat-value">6 — values revealed after deployment: one 4VP, one 1VP, four 2VP</span>
+          <span class="mission-stat-label">Scoring</span><span class="mission-stat-value">VP equal to the value of each objective controlled at game end. Fast Attack units have Objective Secured.</span>
+        </div>
+        <div class="mission-note">Fast Attack units score like Troops. Bikes, cavalry and jump pack units shine here. The random values add a bluffing element — holding all six secures a dominant win.</div>
+      </div>
+    </div>
+
+    <div class="mission-card">
+      <div class="mission-card-header">
+        <span class="mission-number">4</span>
+        <span class="mission-name">Big Guns Never Tire</span>
+        <span class="mission-maxvp">Max 15 VP</span>
+      </div>
+      <div class="mission-body">
+        <div class="mission-desc">Four objectives — Heavy Support units can hold them like Troops, and are worth bonus VPs when destroyed.</div>
+        <div class="mission-stats">
+          <span class="mission-stat-label">Objectives</span><span class="mission-stat-value">4 — set up alternately, 6"+ from table edge, 12"+ from each other</span>
+          <span class="mission-stat-label">Scoring</span><span class="mission-stat-value">3 VPs per objective controlled at game end, plus 1 VP per enemy Heavy Support unit destroyed</span>
+        </div>
+        <div class="mission-note">Tanks and heavy weapons platforms score objectives and are worth extra VPs when killed. Bringing lots of Heavy Support cuts both ways.</div>
+      </div>
+    </div>
+
+    <div class="mission-card">
+      <div class="mission-card-header">
+        <span class="mission-number">5</span>
+        <span class="mission-name">Secure and Control</span>
+        <span class="mission-maxvp">Max 9 VP</span>
+      </div>
+      <div class="mission-body">
+        <div class="mission-desc">Each player places one objective in their own deployment zone. Both must be seized.</div>
+        <div class="mission-stats">
+          <span class="mission-stat-label">Objectives</span><span class="mission-stat-value">2 — each player places one objective anywhere in their own deployment zone</span>
+          <span class="mission-stat-label">Scoring</span><span class="mission-stat-value">3 VPs per objective controlled at game end. Bonus 3 VPs if you control both objectives.</span>
+        </div>
+        <div class="mission-note">You must both defend and attack. Aggressive armies that take both objectives win convincingly. Defence in depth is essential — leaving your home objective unguarded is often punished.</div>
+      </div>
+    </div>
+
+    <div class="mission-card">
+      <div class="mission-card-header">
+        <span class="mission-number">6</span>
+        <span class="mission-name">The Relic</span>
+        <span class="mission-maxvp">Max 7 VP</span>
+      </div>
+      <div class="mission-body">
+        <div class="mission-desc">A single priceless relic sits at the centre of the battlefield. Seize it and carry it to safety — or at least keep it closest to your lines.</div>
+        <div class="mission-stats">
+          <span class="mission-stat-label">Objectives</span><span class="mission-stat-value">1 — placed at the exact centre of the battlefield</span>
+          <span class="mission-stat-label">Scoring</span><span class="mission-stat-value">Major Victory (4 VP): carry the Relic off the table or control it at game end. Minor Victory (2 VP): closest model to the Relic if unclaimed.</span>
+          <span class="mission-stat-label">Rules</span><span class="mission-stat-value">Only Infantry can pick up and carry the Relic. It moves with the carrier (max 9" per phase). Cannot be placed in a transport.</span>
+        </div>
+        <div class="mission-note">Fast infantry that can reach the centre early and escape with the Relic are invaluable. Denying the enemy a Major Victory by getting your own model nearest is a viable strategy if you can't hold it yourself.</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div style="text-align:center;margin-top:40px;">
+  <a class="back-link" href="index.html">← Back to Army Builder</a>
+</div>
+
+</body>
+</html>

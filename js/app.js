@@ -1113,6 +1113,10 @@ function switchTab(tab) {
       const isFlexCol = col.classList.contains('col-left') || col.classList.contains('col-browser');
       col.style.display = isFlexCol ? 'flex' : 'block';
       col.scrollTop = 0;
+      // Slide in animation
+      col.style.animation = 'none';
+      col.offsetHeight; // force reflow
+      col.style.animation = 'tabSlideIn 0.22s cubic-bezier(0.25,0.46,0.45,0.94)';
     } else {
       col.style.display = 'none';
     }
@@ -1153,9 +1157,11 @@ function currentTabIndex() {
     const idx = currentTabIndex();
     if (dx < 0 && idx < TAB_ORDER.length - 1) {
       // Swipe left → next tab
+      document.documentElement.style.setProperty('--swipe-from', '40px');
       switchTab(TAB_ORDER[idx + 1]);
     } else if (dx > 0 && idx > 0) {
       // Swipe right → previous tab
+      document.documentElement.style.setProperty('--swipe-from', '-40px');
       switchTab(TAB_ORDER[idx - 1]);
     }
   }, { passive: true });
