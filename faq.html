@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Warhammer 40,000 — Renegade Brigade FAQ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Barlow+Condensed:wght@300;400;600;700&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0e0e10;
+    --panel: #16161a;
+    --border: #2a2a32;
+    --text: #d4d4d8;
+    --muted: #71717a;
+    --gold: #c9a84c;
+    --green: #4aaa5a;
+    --red: #8b2020;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Barlow', sans-serif;
+    font-size: 14px;
+    line-height: 1.7;
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 40px 24px 80px;
+  }
+
+  .page-header {
+    text-align: center;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 32px;
+    margin-bottom: 40px;
+  }
+
+  .page-header img {
+    width: 56px; height: 56px;
+    object-fit: contain;
+    margin-bottom: 16px;
+  }
+
+  .page-header h1 {
+    font-family: 'Cinzel', serif;
+    font-size: 22px;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+
+  .page-header p {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 13px;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+  }
+
+  .back-link {
+    display: inline-block;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    margin-bottom: 32px;
+  }
+  .back-link:hover { color: var(--green); }
+
+  /* ── FAQ ENTRIES ── */
+  .faq-entry {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    margin-bottom: 16px;
+    overflow: hidden;
+  }
+
+  .faq-question {
+    background: #1c1c22;
+    border-bottom: 1px solid var(--border);
+    padding: 14px 20px;
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+  }
+
+  .faq-q-marker {
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    color: var(--gold);
+    background: rgba(201,168,76,0.1);
+    border: 1px solid rgba(201,168,76,0.3);
+    padding: 2px 8px;
+    letter-spacing: 0.1em;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .faq-question-text {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    color: var(--text);
+    line-height: 1.4;
+  }
+
+  .faq-answer {
+    padding: 18px 20px 18px 52px;
+  }
+
+  .faq-answer p {
+    color: var(--text);
+    margin-bottom: 10px;
+    line-height: 1.75;
+  }
+
+  .faq-answer p:last-child { margin-bottom: 0; }
+
+  .faq-answer em {
+    color: var(--gold);
+    font-style: normal;
+  }
+
+  .faq-answer a {
+    color: var(--green);
+    text-decoration: none;
+  }
+  .faq-answer a:hover { text-decoration: underline; }
+
+  /* ── DISCORD CTA ── */
+  .discord-block {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    padding: 24px 20px;
+    text-align: center;
+    margin-top: 32px;
+  }
+
+  .discord-block h3 {
+    font-family: 'Cinzel', serif;
+    font-size: 14px;
+    letter-spacing: 0.15em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+
+  .discord-block p {
+    font-size: 13px;
+    color: var(--muted);
+    margin-bottom: 16px;
+    line-height: 1.6;
+  }
+
+  .discord-btn {
+    display: inline-block;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--bg);
+    background: var(--green);
+    border: 1px solid var(--green);
+    padding: 10px 24px;
+    text-decoration: none;
+    transition: opacity 0.15s;
+  }
+  .discord-btn:hover { opacity: 0.85; }
+</style>
+</head>
+<body>
+
+<a class="back-link" href="index.html">← Back to Army Builder</a>
+
+<div class="page-header">
+  <img src="assets/logo.png" alt="Renegade Brigade">
+  <h1>Frequently Asked Questions</h1>
+  <p>Warhammer 40,000 · Renegade Brigade</p>
+</div>
+
+<div class="faq-entry">
+  <div class="faq-question">
+    <span class="faq-q-marker">Q</span>
+    <span class="faq-question-text">What is the idea behind Renegade Brigade?</span>
+  </div>
+  <div class="faq-answer">
+    <p>We want a system that is easy to learn, easy to teach, and consistent enough that you can step away and come back years later to find that very little — if anything — has changed.</p>
+  </div>
+</div>
+
+<div class="faq-entry">
+  <div class="faq-question">
+    <span class="faq-q-marker">Q</span>
+    <span class="faq-question-text">What makes this system lean?</span>
+  </div>
+  <div class="faq-answer">
+    <p>Towards the end of 8th edition Warhammer 40,000 there was serious stratagem bloat. That carried over into 9th edition in a different format. 10th promised to simplify things, but what we got instead was Detachment bloat — which multiplies the permutations of every army.</p>
+    <p>Considering the number of factions in the game, players are effectively expected to be aware of well over a hundred variations of opponents. Renegade Brigade gives everyone the same three stratagems, and armies have minimal variations — things like Dynasties, Kulturs, and Hive Fleets that are core to the identity of those factions, not bolted-on complexity.</p>
+  </div>
+</div>
+
+<div class="faq-entry">
+  <div class="faq-question">
+    <span class="faq-q-marker">Q</span>
+    <span class="faq-question-text">Is this better than the current official release?</span>
+  </div>
+  <div class="faq-answer">
+    <p>No. It simply caters to a different type of player. The official game has shifted heavily towards tournament play. Narrative and casual play are still supported, but they don't shape the rules or the datasheets the way competitive play does.</p>
+    <p>Tournament players are highly skilled — they stay on top of every Dataslate change, follow the meta closely, and put in real work. We are simply shining a different spotlight: a different way to enjoy the hobby, with a consistent context that doesn't require constant upkeep.</p>
+  </div>
+</div>
+
+<div class="faq-entry">
+  <div class="faq-question">
+    <span class="faq-q-marker">Q</span>
+    <span class="faq-question-text">Is this legal?</span>
+  </div>
+  <div class="faq-answer">
+    <p>Games Workshop has never forbidden anyone from playing older editions, and this is essentially 8th edition Warhammer 40,000 at the index level — just as it was in June 2017.</p>
+    <p>The difference is that we now have a shiny new app to help you build armies, and we are adding datasheets for models and armies that didn't exist in 2017. Want to play with Captain Titus and his retinue? We have a datasheet. The Twin Lance for T'au? It's there. The new Maelstrom armies? Of course. Leagues of Votann? Yes. And we will keep adding new units as they are released.</p>
+  </div>
+</div>
+
+<div class="faq-entry">
+  <div class="faq-question">
+    <span class="faq-q-marker">Q</span>
+    <span class="faq-question-text">What about older models?</span>
+  </div>
+  <div class="faq-answer">
+    <p>As long as you can use your models to represent something from 8th edition, it is completely fine. There are edge cases — the old Chaos Robot models from Space Crusade, for instance — that will need a conversation between players. But that's always been true.</p>
+    <p>More importantly, we think it is a shame when lovingly painted models get sent to Legends or quietly dropped from the game. Here, you can buy what you want, paint it, invest hours into it — and you will be able to use it. Forever.</p>
+  </div>
+</div>
+
+<div class="faq-entry">
+  <div class="faq-question">
+    <span class="faq-q-marker">Q</span>
+    <span class="faq-question-text">How do you keep points costs correct?</span>
+  </div>
+  <div class="faq-answer">
+    <p>We strictly use the values found in the 8th edition Indexes for any unit that existed at that time. Weapon loadout variations that came with newer models — such as the Necron Warrior with Gauss Reaper — are added as <em>New</em> entries and are subject to revision.</p>
+    <p>We have no interest in releasing a dataslate every few weeks. We will listen to community feedback and issue points revisions every six months. Once a unit has gone through three revisions without controversy, it becomes <em>canon</em> and will not be adjusted further.</p>
+  </div>
+</div>
+
+<div class="faq-entry">
+  <div class="faq-question">
+    <span class="faq-q-marker">Q</span>
+    <span class="faq-question-text">How do I join the community?</span>
+  </div>
+  <div class="faq-answer">
+    <p>There is the <em>Warhammer 40,000 — Renegade Brigade</em> Discord server, where you can find games, discuss lists, and contribute feedback on points and datasheets. We also play other games — all are welcome.</p>
+  </div>
+</div>
+
+<div style="text-align:center;margin-top:40px;">
+  <a class="back-link" href="index.html">← Back to Army Builder</a>
+</div>
+
+</body>
+</html>
