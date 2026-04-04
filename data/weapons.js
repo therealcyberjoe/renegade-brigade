@@ -728,5 +728,6 @@ const WEAPON_PROFILES = {
   'Stranglethorn Cannon': { range:'36"', type:'Assault D6',  s:7,  ap:-1, d:2,    special:'+1 to hit rolls against units of 10 or more models' },
   'Devourer with Brainleech Worms': { range:'18"', type:'Assault 6',   s:6,  ap:0,  d:1,    special:'Tyrant only — two arms = 12 shots total' },
   'Deathspitter with Slimer Maggots': { range:'24"', type:'Assault 3',  s:7,  ap:-1, d:2,    special:'Tyrant only' },
+  'Mace of Absolution': { range:'Melee', type:'Melee', s:'+2', ap:-3, d:2,    special:'Deals 1 additional mortal wound on unmodified wound rolls of 6 against FALLEN' },
 
 };

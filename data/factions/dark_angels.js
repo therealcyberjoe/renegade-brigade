@@ -54,6 +54,28 @@ var FACTION_DARK_ANGELS = [
                'Teleport Strike: Deep strike — arrive 9"+ from enemy',
                'Terminator Armour: 5+ invulnerable save'] },
 
+  { id:'da_deathwing_knights', name:'Deathwing Knights',
+    stats:['5"','2+','3+','4','4','2','3','9','2+'], role:'Elites', pts:235, min:5, max:10, ppm:47,
+    wargear:[],
+    composition:[
+      { role:'Knight Master', count:1,
+        wargear:['Flail of the Unforgiven','Storm Shield'] },
+      { role:'Deathwing Knight', count:4,
+        wargear:['Mace of Absolution','Storm Shield'],
+        options:[
+          { group:'Weapon', choices:[
+            { label:'Mace of Absolution', pts:0, default:true, weapons:['Mace of Absolution'] },
+            { label:'Power Sword',        pts:0, weapons:['Power Sword'], replaces:['Mace of Absolution'] },
+          ]},
+        ]},
+    ],
+    abilities:['And They Shall Know No Fear',
+               'Deathwing: Teleport Strike — may deep strike. If Belial is in army may arrive turn 1',
+               'Inner Circle: Auto-pass Morale — re-roll all failed hit rolls against FALLEN units',
+               'Storm Shield: 4+ invulnerable save',
+               'Fortress of Shields: While 3+ models remain, all models in unit gain +1 Toughness',
+               'Grim Resolve: Never fail Morale if unit did not move this turn'] },
+
   { id:'da_ravenwing', name:'Ravenwing Black Knights',
     stats:['14"','3+','3+','4','5','2','3','8','3+'], role:'Fast Attack', pts:130, min:3, max:9, ppm:43,
     wargear:[],
