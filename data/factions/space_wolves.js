@@ -1,6 +1,6 @@
 // FACTION_SPACE_WOLVES — chapter-specific units + shared SM pool
 // Must be loaded AFTER sm_shared.js
-const FACTION_SPACE_WOLVES = [
+var FACTION_SPACE_WOLVES = [
   ...SM_SHARED_UNITS,
 
   { id:'sw_ragnar', name:'Ragnar Blackmane',
@@ -147,4 +147,42 @@ const FACTION_SPACE_WOLVES = [
                'Bodyguard: Roll D6 when nearby Wolf Lord loses a wound — on 4+ Arjac suffers it instead',
                'Foehammer: Can be thrown — Assault 1, Range 12", S10 AP-3 D3 — after shooting returns to Arjac'] },
 
+
+  { id:'sw_stormwolf', name:'Stormwolf',
+    stats:['20-50"','5+','3+','8','7','14','6','9','3+'], role:'Flyer', pts:239, min:1, max:1, ppm:0,
+    wargear:['Twin Helfrost Cannon','2x Lascannon','2x Twin Heavy Bolter'],
+    options:[
+      { group:'Sponsons', choices:[
+        { label:'Twin Heavy Bolters',        pts:0,  default:true, weapons:['2x Twin Heavy Bolter'] },
+        { label:'Skyhammer Missile Launchers',pts:0, weapons:['2x Skyhammer Missile Launcher'], replaces:['2x Twin Heavy Bolter'] },
+        { label:'Twin Multi-meltas',          pts:0, weapons:['2x Twin Multi-melta'],            replaces:['2x Twin Heavy Bolter'] },
+      ]},
+    ],
+    abilities:['Supersonic: Minimum move 20" — maximum 50"',
+               'Hard to Hit: -1 to hit rolls',
+               'Hover: May switch to Hover mode — moves as Vehicle, loses Hard to Hit',
+               'Assault Vehicle: Models disembarking may still charge',
+               'Transport: Carries 16 Infantry (Terminators/Wulfen count as 2)',
+               'Explodes: On 6 when destroyed — D6 mortal wounds within 6"'] },
+
+  { id:'sw_stormfang', name:'Stormfang Gunship',
+    stats:['20-50"','5+','3+','8','7','14','6','9','3+'], role:'Heavy Support', pts:245, min:1, max:1, ppm:0,
+    wargear:['Helfrost Destructor','2x Twin Heavy Bolter','2x Stormstrike Missiles'],
+    options:[
+      { group:'Sponsons', choices:[
+        { label:'Twin Heavy Bolters',         pts:0,  default:true, weapons:['2x Twin Heavy Bolter'] },
+        { label:'Skyhammer Missile Launchers',pts:0,  weapons:['2x Skyhammer Missile Launcher'], replaces:['2x Twin Heavy Bolter'] },
+        { label:'Twin Multi-meltas',          pts:0,  weapons:['2x Twin Multi-melta'],            replaces:['2x Twin Heavy Bolter'] },
+      ]},
+      { group:'Dorsal', choices:[
+        { label:'Stormstrike Missiles',pts:0,  default:true, weapons:['2x Stormstrike Missiles'] },
+        { label:'Twin Lascannon',      pts:0,  weapons:['Twin Lascannon'], replaces:['2x Stormstrike Missiles'] },
+      ]},
+    ],
+    abilities:['Supersonic: Minimum move 20" — maximum 50"',
+               'Hard to Hit: -1 to hit rolls',
+               'Hover: May switch to Hover mode — moves as Vehicle, loses Hard to Hit',
+               'Transport: Carries 6 Infantry (Terminators/Wulfen count as 2)',
+               "Frozen Prey: After shooting Helfrost Destructor at a Monster or Vehicle — target is Frozen until end of opponent's next turn (-2 Move, -2 Advance/Charge rolls)",
+               'Explodes: On 6 when destroyed — D6 mortal wounds within 6"'] },
 ];

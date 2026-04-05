@@ -28,7 +28,14 @@ var SM_SHARED_UNITS = [
 
   { id:'sm_captain_gravis', name:'Captain in Gravis Armour',
     stats:['5"','3+','3+','4','5','6','4','9','3+'], role:'HQ', pts:100, min:1, max:1, ppm:0, isNew:true,
-    wargear:['Master-crafted Boltstorm Gauntlet','Flail of the Unforgiven'],
+    wargear:['Master-crafted Power Sword','Master-crafted Boltstorm Gauntlet'],
+    options:[
+      { group:'Melee', choices:[
+        { label:'Master-crafted Power Sword', pts:0, default:true, weapons:['Master-crafted Power Sword'] },
+        { label:'Power Fist',                 pts:5, weapons:['Power Fist'],   replaces:['Master-crafted Power Sword'] },
+        { label:'Thunder Hammer',             pts:8, weapons:['Thunder Hammer'],replaces:['Master-crafted Power Sword'] },
+      ]},
+    ],
     abilities:['And They Shall Know No Fear','Iron Halo: 4+ invulnerable save',
                'Rites of Battle: Re-roll hit rolls of 1 for friendly <Chapter> units within 6"'] },
 
@@ -60,12 +67,28 @@ var SM_SHARED_UNITS = [
   { id:'sm_chaplain', name:'Chaplain',
     stats:['6"','3+','3+','4','4','5','4','9','3+'], role:'HQ', pts:85, min:1, max:1, ppm:0,
     wargear:['Crozius Arcanum','Bolt Pistol','Rosarius'],
+    options:[
+      { group:'Sidearm', choices:[
+        { label:'Bolt Pistol',   pts:0,  default:true, weapons:['Bolt Pistol'] },
+        { label:'Plasma Pistol', pts:5,  weapons:['Plasma Pistol'], replaces:['Bolt Pistol'] },
+        { label:'Storm Bolter',  pts:2,  weapons:['Storm Bolter'],  replaces:['Bolt Pistol'] },
+        { label:'Combi-melta',   pts:10, weapons:['Combi-melta'],   replaces:['Bolt Pistol'] },
+      ]},
+    ],
     abilities:['And They Shall Know No Fear','Rosarius: 4+ invulnerable save',
                'Litanies of Battle: Choose one litany per turn to buff nearby units'] },
 
   { id:'sm_chaplain_terminator', name:'Chaplain in Terminator Armour',
     stats:['5"','3+','3+','4','4','5','4','9','2+'], role:'HQ', pts:100, min:1, max:1, ppm:0, isNew:true,
     wargear:['Crozius Arcanum','Storm Bolter'],
+    options:[
+      { group:'Ranged', choices:[
+        { label:'Storm Bolter',  pts:0,  default:true, weapons:['Storm Bolter'] },
+        { label:'Combi-melta',   pts:10, weapons:['Combi-melta'],  replaces:['Storm Bolter'] },
+        { label:'Combi-plasma',  pts:10, weapons:['Combi-plasma'], replaces:['Storm Bolter'] },
+        { label:'Combi-flamer',  pts:5,  weapons:['Combi-flamer'], replaces:['Storm Bolter'] },
+      ]},
+    ],
     abilities:['And They Shall Know No Fear','Terminator Armour: 5+ invulnerable save',
                'Litanies of Battle',
                'Teleport Strike: Deep strike — arrive 9"+ from enemy'] },
@@ -78,8 +101,20 @@ var SM_SHARED_UNITS = [
 
   { id:'sm_techmarine', name:'Techmarine',
     stats:['6"','3+','3+','4','4','4','2','8','3+'], role:'HQ', pts:55, min:1, max:1, ppm:0,
-    wargear:['Servo-arm','Boltgun','Power Axe'],
+    wargear:['Power Axe','Boltgun','Servo-harness (2x Servo-arm, Plasma Cutter, Flamer)'],
+    options:[
+      { group:'Ranged', choices:[
+        { label:'Boltgun',     pts:0,  default:true, weapons:['Boltgun'] },
+        { label:'Storm Bolter',pts:2,  weapons:['Storm Bolter'], replaces:['Boltgun'] },
+        { label:'Combi-melta', pts:10, weapons:['Combi-melta'],  replaces:['Boltgun'] },
+      ]},
+      { group:'Melee', choices:[
+        { label:'Power Axe',   pts:0, default:true, weapons:['Power Axe'] },
+        { label:'Power Sword', pts:0, weapons:['Power Sword'], replaces:['Power Axe'] },
+      ]},
+    ],
     abilities:['And They Shall Know No Fear',
+               'Servo-harness: 2 servo-arms (S8 AP-2 D3 melee, one use fix vehicle) + Plasma Cutter (S6 AP-2 D2 Melta) + Flamer',
                'Blessing of the Omnissiah: Restore D3 wounds to one friendly Vehicle within 1"',
                'Bolster Defences: Once per game one terrain piece gains +1 cover'] },
 
@@ -287,13 +322,33 @@ var SM_SHARED_UNITS = [
 
   { id:'sm_redemptor', name:'Redemptor Dreadnought',
     stats:['8"','3+','3+','7','7','13','5','8','3+'], role:'Elites', pts:156, min:1, max:1, ppm:0,
-    wargear:['Macro Plasma Incinerator','Onslaught Gatling Cannon'],
+    wargear:['Redemptor Fist','Fragstorm Grenade Launcher','Onslaught Gatling Cannon'],
+    options:[
+      { group:'Main Gun', choices:[
+        { label:'Onslaught Gatling Cannon', pts:0, default:true, weapons:['Onslaught Gatling Cannon'] },
+        { label:'Macro Plasma Incinerator', pts:0, weapons:['Macro Plasma Incinerator'], replaces:['Onslaught Gatling Cannon'] },
+      ]},
+      { group:'Fist Arm', choices:[
+        { label:'Fragstorm Grenade Launcher', pts:0, default:true, weapons:['Fragstorm Grenade Launcher'] },
+        { label:'Onslaught Gatling Cannon Arm',pts:0, weapons:['Onslaught Gatling Cannon'], replaces:['Fragstorm Grenade Launcher'] },
+      ]},
+    ],
     abilities:['And They Shall Know No Fear','Smokescreen',
                'Explodes: On 6 when destroyed — D6 mortal wounds within 6"'] },
 
   { id:'sm_brutalis', name:'Brutalis Dreadnought',
     stats:['8"','2+','3+','8','10','12','5','9','2+'], role:'Elites', pts:175, min:1, max:1, ppm:0, isNew:true,
     wargear:['Brutalis Fists','Twin Bolt Rifles'],
+    options:[
+      { group:'Ranged', choices:[
+        { label:'Twin Bolt Rifles',          pts:0, default:true, weapons:['Twin Bolt Rifles'] },
+        { label:'Twin Fragstorm Grenade Launchers',pts:0, weapons:['Twin Fragstorm Grenade Launchers'], replaces:['Twin Bolt Rifles'] },
+      ]},
+      { group:'Melee', choices:[
+        { label:'Brutalis Fists',  pts:0, default:true, weapons:['Brutalis Fists'] },
+        { label:'Brutalis Talons', pts:0, weapons:['Brutalis Talons'], replaces:['Brutalis Fists'] },
+      ]},
+    ],
     abilities:['And They Shall Know No Fear','Ferocious Charge: Add 3 to Attacks on charge turn',
                'Explodes: On 6 when destroyed — D6 mortal wounds within 3"'] },
 
@@ -800,8 +855,18 @@ var SM_SHARED_UNITS = [
 
   { id:'sm_land_raider', name:'Land Raider',
     stats:['10"','5+','3+','8','8','16','6','9','2+'], role:'Heavy Support', pts:285, min:1, max:1, ppm:0,
-    wargear:['Twin Lascannons','Multi-Melta','Heavy Bolter'],
-    abilities:['Power of the Machine Spirit','Smoke Launchers','Transport: Carries 10 Infantry',
+    wargear:['2x Twin Lascannon','Twin Heavy Bolter'],
+    options:[
+      { group:'Pintle', choices:[
+        { label:'None',                  pts:0,  default:true },
+        { label:'Storm Bolter',          pts:2,  weapons:['Storm Bolter'] },
+        { label:'Multi-melta',           pts:22, weapons:['Multi-melta'] },
+        { label:'Hunter-killer Missile', pts:6,  weapons:['Hunter-killer Missile'] },
+      ]},
+    ],
+    abilities:['Power of the Machine Spirit: May fire one weapon even if it moved',
+               'Smoke Launchers','Transport: Carries 10 Infantry',
+               'Assault Vehicle: Models disembarking may still charge',
                'Explodes: On 6 — D6 mortal wounds within 6"'] },
 
   { id:'sm_land_raider_terminus', name:'Land Raider Terminus Ultra',
@@ -833,7 +898,15 @@ var SM_SHARED_UNITS = [
   { id:'sm_rhino', name:'Rhino',
     stats:['12"','5+','3+','6','6','10','3','8','3+'], role:'Dedicated Transport', pts:72, min:1, max:1, ppm:0,
     wargear:['Storm Bolter'],
-    abilities:['Smoke Launchers','Transport: Carries 10 Infantry'] },
+    options:[
+      { group:'Pintle', choices:[
+        { label:'None',                  pts:0,  default:true },
+        { label:'Storm Bolter',          pts:2,  weapons:['Storm Bolter'] },
+        { label:'Hunter-killer Missile', pts:6,  weapons:['Hunter-killer Missile'] },
+      ]},
+    ],
+    abilities:['Smoke Launchers','Transport: Carries 10 Infantry',
+               'Repair: At start of your Movement phase restore 1 lost wound'] },
 
   { id:'sm_drop_pod', name:'Drop Pod',
     stats:['0"','-','-','5','5','8','-','7','3+'], role:'Dedicated Transport', pts:65, min:1, max:1, ppm:0,
@@ -858,7 +931,26 @@ var SM_SHARED_UNITS = [
   // ── FLYER ────────────────────────────────────────────────────────────
   { id:'sm_stormraven', name:'Stormraven Gunship',
     stats:['20-50"','5+','3+','8','7','14','6','9','3+'], role:'Flyer', pts:233, min:1, max:1, ppm:0,
-    wargear:['Twin Multi-Melta','Twin Lascannon','Hurricane Bolters'],
-    abilities:['Supersonic','Transport: Carries 12 Infantry or 1 Dreadnought',
-               'Hard to Hit: -1 to hit rolls','Explodes: On 6 — D6 mortal wounds within 6"'] },
+    wargear:['Twin Assault Cannon','Twin Heavy Bolter','2x Stormstrike Missiles'],
+    options:[
+      { group:'Turret', choices:[
+        { label:'Twin Assault Cannon',  pts:0, default:true, weapons:['Twin Assault Cannon'] },
+        { label:'Twin Lascannon',       pts:0, weapons:['Twin Lascannon'],       replaces:['Twin Assault Cannon'] },
+        { label:'Twin Plasma Cannon',   pts:0, weapons:['Twin Plasma Cannon'],   replaces:['Twin Assault Cannon'] },
+      ]},
+      { group:'Hull', choices:[
+        { label:'Twin Heavy Bolter',       pts:0, default:true, weapons:['Twin Heavy Bolter'] },
+        { label:'Twin Multi-melta',        pts:0, weapons:['Twin Multi-melta'],        replaces:['Twin Heavy Bolter'] },
+        { label:'Typhoon Missile Launcher',pts:0, weapons:['Typhoon Missile Launcher'],replaces:['Twin Heavy Bolter'] },
+      ]},
+      { group:'Sponsons', choices:[
+        { label:'None',              pts:0, default:true },
+        { label:'Hurricane Bolters', pts:0, weapons:['Hurricane Bolters'] },
+      ]},
+    ],
+    abilities:['Supersonic: Minimum move 20" — maximum 50"',
+               'Hard to Hit: -1 to hit rolls against this model',
+               'Transport: Carries 12 Infantry or 1 Dreadnought (rear grapple)',
+               'Assault Vehicle: Models disembarking may still charge',
+               'Explodes: On 6 — D6 mortal wounds within 6"'] },
 ];

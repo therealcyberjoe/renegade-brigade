@@ -797,6 +797,9 @@ function renderValidation() {
     if (max !== '∞' && count > max) msgs.push({ type:'error', msg: `${slotLabels[slot]}: ${count - max} over maximum.` });
   });
 
+  // One detachment rule
+  msgs.push({ type:'ok', msg: 'Renegade Brigade: one detachment per army — no souping.' });
+
   if (!msgs.length) msgs.push({ type:'ok', msg: 'List is valid.' });
 
   list.innerHTML = msgs.map(m => `

@@ -1,5 +1,5 @@
 // Must be loaded AFTER csm_shared.js
-const FACTION_CHAOS_SPACE_MARINES = [
+var FACTION_CHAOS_SPACE_MARINES = [
   ...CSM_SHARED_UNITS,
 
   // ── HQ ──────────────────────────────────────────────────────────────
@@ -70,5 +70,14 @@ const FACTION_CHAOS_SPACE_MARINES = [
                'Red Corsairs: Huron Blackheart ability — Psychic powers from the Hamadrya familiar',
                'Only one MASTERS OF THE MAELSTROM unit may be taken per army',
                'NOTE: Rules audit pending — this is a 10th edition release (Feb 2026) — stats and points require full verification'] },
+
+  { id:'csm_kravek_morne', name:'Kravek Morne — Warsmith of the Iron Warriors', isNew:true, unique:true,
+    stats:['5"','2+','2+','5','5','6','5','9','2+'], role:'HQ', pts:120, min:1, max:1, ppm:0,
+    wargear:['Last Argument','Power Fist','Baleflamer','Combi-bolter'],
+    abilities:["Chaos Undivided: May join Chaos Space Marines, Death Guard, Thousand Sons, World Eaters, or Emperor's Children detachments",
+               'Cataphractii Armour: 4+ invulnerable save — cannot Fall Back unless passes Leadership test',
+               'Leader: Can attach to Chaos Terminators, Mutilators, or Obliterators',
+               'Architect of Ruin: At start of battle select one enemy unit as Hated Foe — re-roll wound rolls against it. When it is destroyed pick a new Hated Foe',
+               'Headlong Destruction: +1 AP on all attacks made against the closest eligible enemy unit'] },
 
 ];

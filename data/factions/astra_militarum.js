@@ -411,17 +411,130 @@ var FACTION_ASTRA_MILITARUM = [
 
   { id:'ag_baneblade', name:'Baneblade',
     stats:['10"','5+','3+','8','9','26','9','8','2+'], role:'Lord of War', pts:531, min:1, max:1, ppm:0,
-    wargear:['Baneblade Cannon','Autocannon','Heavy Bolters'],
-    abilities:['Grinding Advance','Smoke Launchers',
+    wargear:['Baneblade Cannon','Demolisher Cannon','3x Twin Heavy Bolter','2x Lascannon','2x Heavy Stubber'],
+    options:[
+      { group:'Sponsons', choices:[
+        { label:'Twin Heavy Bolters',  pts:0,  default:true },
+        { label:'Twin Heavy Flamers',  pts:0,  weapons:['2x Twin Heavy Flamer'], replaces:['2x Twin Heavy Bolter'] },
+        { label:'Twin Lascannons',     pts:0,  weapons:['2x Twin Lascannon'],    replaces:['2x Twin Heavy Bolter'] },
+        { label:'Twin Multi-meltas',   pts:0,  weapons:['2x Twin Multi-melta'],  replaces:['2x Twin Heavy Bolter'] },
+      ]},
+      { group:'Pintle', choices:[
+        { label:'None',                pts:0, default:true },
+        { label:'Heavy Stubber',       pts:4, weapons:['Heavy Stubber'] },
+        { label:'Storm Bolter',        pts:2, weapons:['Storm Bolter'] },
+      ]},
+    ],
+    abilities:['Grinding Advance: Does not suffer -1 to hit for moving and firing Heavy weapons',
+               'Smoke Launchers',
                'Titanic: Never affected by Morale — can fire all weapons at different targets',
                'Steel Behemoth: Can move over models and terrain features under 4" tall',
                'Explodes: On 6 — 2D6 mortal wounds within 2D6"'] },
 
+  { id:'ag_hellhammer', name:'Hellhammer',
+    stats:['10"','5+','3+','8','9','26','9','8','2+'], role:'Lord of War', pts:410, min:1, max:1, ppm:0,
+    wargear:['Hellhammer Cannon','Demolisher Cannon','3x Twin Heavy Bolter','2x Lascannon'],
+    options:[
+      { group:'Sponsons', choices:[
+        { label:'Twin Heavy Bolters',  pts:0,  default:true },
+        { label:'Twin Heavy Flamers',  pts:0,  weapons:['2x Twin Heavy Flamer'], replaces:['2x Twin Heavy Bolter'] },
+        { label:'Twin Lascannons',     pts:0,  weapons:['2x Twin Lascannon'],    replaces:['2x Twin Heavy Bolter'] },
+        { label:'Twin Multi-meltas',   pts:0,  weapons:['2x Twin Multi-melta'],  replaces:['2x Twin Heavy Bolter'] },
+      ]},
+    ],
+    abilities:['Grinding Advance','Smoke Launchers','Titanic','Steel Behemoth',
+               'Hellhammer Cannon: Ignores bonus from Cover saves',
+               'Explodes: On 6 — 2D6 mortal wounds within 2D6"'] },
+
+  { id:'ag_banehammer', name:'Banehammer',
+    stats:['10"','5+','3+','8','9','26','9','8','2+'], role:'Lord of War', pts:375, min:1, max:1, ppm:0,
+    wargear:['Tremor Cannon','3x Twin Heavy Bolter','2x Lascannon'],
+    options:[
+      { group:'Sponsons', choices:[
+        { label:'Twin Heavy Bolters',  pts:0,  default:true },
+        { label:'Twin Heavy Flamers',  pts:0,  weapons:['2x Twin Heavy Flamer'], replaces:['2x Twin Heavy Bolter'] },
+        { label:'Twin Lascannons',     pts:0,  weapons:['2x Twin Lascannon'],    replaces:['2x Twin Heavy Bolter'] },
+        { label:'Twin Multi-meltas',   pts:0,  weapons:['2x Twin Multi-melta'],  replaces:['2x Twin Heavy Bolter'] },
+      ]},
+    ],
+    abilities:['Grinding Advance','Smoke Launchers','Titanic','Steel Behemoth',
+               'Tremor Cannon: Units hit must subtract 2 from Advance and Charge rolls until end of turn',
+               'Transport: Carries 25 Infantry (10 can fire from transport each turn)',
+               'Explodes: On 6 — 2D6 mortal wounds within 2D6"'] },
+
+  { id:'ag_banesword', name:'Banesword',
+    stats:['10"','5+','3+','8','9','26','9','8','2+'], role:'Lord of War', pts:408, min:1, max:1, ppm:0,
+    wargear:['Quake Cannon','3x Twin Heavy Bolter','2x Lascannon'],
+    options:[
+      { group:'Sponsons', choices:[
+        { label:'Twin Heavy Bolters',  pts:0,  default:true },
+        { label:'Twin Heavy Flamers',  pts:0,  weapons:['2x Twin Heavy Flamer'], replaces:['2x Twin Heavy Bolter'] },
+        { label:'Twin Lascannons',     pts:0,  weapons:['2x Twin Lascannon'],    replaces:['2x Twin Heavy Bolter'] },
+        { label:'Twin Multi-meltas',   pts:0,  weapons:['2x Twin Multi-melta'],  replaces:['2x Twin Heavy Bolter'] },
+      ]},
+    ],
+    abilities:['Grinding Advance','Smoke Launchers','Titanic','Steel Behemoth',
+               'Quake Cannon: Ignores Line of Sight — fires indirectly at -1 to hit',
+               'Explodes: On 6 — 2D6 mortal wounds within 2D6"'] },
+
+  { id:'ag_doomhammer', name:'Doomhammer',
+    stats:['10"','5+','3+','8','9','26','9','8','2+'], role:'Lord of War', pts:400, min:1, max:1, ppm:0,
+    wargear:['Magma Cannon','3x Twin Heavy Bolter','2x Lascannon'],
+    options:[
+      { group:'Sponsons', choices:[
+        { label:'Twin Heavy Bolters',  pts:0,  default:true },
+        { label:'Twin Heavy Flamers',  pts:0,  weapons:['2x Twin Heavy Flamer'], replaces:['2x Twin Heavy Bolter'] },
+        { label:'Twin Lascannons',     pts:0,  weapons:['2x Twin Lascannon'],    replaces:['2x Twin Heavy Bolter'] },
+        { label:'Twin Multi-meltas',   pts:0,  weapons:['2x Twin Multi-melta'],  replaces:['2x Twin Heavy Bolter'] },
+      ]},
+    ],
+    abilities:['Grinding Advance','Smoke Launchers','Titanic','Steel Behemoth',
+               'Transport: Carries 25 Infantry (10 can fire from transport each turn)',
+               'Explodes: On 6 — 2D6 mortal wounds within 2D6"'] },
+
+  { id:'ag_stormlord', name:'Stormlord',
+    stats:['10"','5+','3+','8','9','26','9','8','2+'], role:'Lord of War', pts:532, min:1, max:1, ppm:0,
+    wargear:['Vulcan Mega-Bolter','3x Twin Heavy Bolter','2x Lascannon'],
+    options:[
+      { group:'Sponsons', choices:[
+        { label:'Twin Heavy Bolters',  pts:0,  default:true },
+        { label:'Twin Heavy Flamers',  pts:0,  weapons:['2x Twin Heavy Flamer'], replaces:['2x Twin Heavy Bolter'] },
+        { label:'Twin Lascannons',     pts:0,  weapons:['2x Twin Lascannon'],    replaces:['2x Twin Heavy Bolter'] },
+        { label:'Twin Multi-meltas',   pts:0,  weapons:['2x Twin Multi-melta'],  replaces:['2x Twin Heavy Bolter'] },
+      ]},
+    ],
+    abilities:['Grinding Advance','Smoke Launchers','Titanic','Steel Behemoth',
+               'Transport: Carries 40 Infantry (20 can fire from open-topped transport each turn)',
+               'Explodes: On 6 — 2D6 mortal wounds within 2D6"'] },
+
+  { id:'ag_stormsword', name:'Stormsword',
+    stats:['10"','5+','3+','8','9','26','9','8','2+'], role:'Lord of War', pts:394, min:1, max:1, ppm:0,
+    wargear:['Stormsword Siege Cannon','3x Twin Heavy Bolter','2x Lascannon'],
+    options:[
+      { group:'Sponsons', choices:[
+        { label:'Twin Heavy Bolters',  pts:0,  default:true },
+        { label:'Twin Heavy Flamers',  pts:0,  weapons:['2x Twin Heavy Flamer'], replaces:['2x Twin Heavy Bolter'] },
+        { label:'Twin Lascannons',     pts:0,  weapons:['2x Twin Lascannon'],    replaces:['2x Twin Heavy Bolter'] },
+        { label:'Twin Multi-meltas',   pts:0,  weapons:['2x Twin Multi-melta'],  replaces:['2x Twin Heavy Bolter'] },
+      ]},
+    ],
+    abilities:['Grinding Advance','Smoke Launchers','Titanic','Steel Behemoth',
+               'Stormsword Siege Cannon: Ignores bonus from Cover saves',
+               'Explodes: On 6 — 2D6 mortal wounds within 2D6"'] },
+
   { id:'ag_shadowsword', name:'Shadowsword',
-    stats:['10"','5+','3+','8','9','22','6','8','2+'], role:'Lord of War', pts:494, min:1, max:1, ppm:0,
-    wargear:['Volcano Cannon','Sponson Weapons'],
-    abilities:['Grinding Advance','Smoke Launchers','Titanic',
-               'Volcano Cannon: S16 AP-5 D3D6 — always wounds Vehicles on 2+',
+    stats:['10"','5+','3+','8','9','26','9','8','2+'], role:'Lord of War', pts:494, min:1, max:1, ppm:0,
+    wargear:['Volcano Cannon','3x Twin Heavy Bolter','2x Lascannon'],
+    options:[
+      { group:'Sponsons', choices:[
+        { label:'Twin Heavy Bolters',  pts:0,  default:true },
+        { label:'Twin Heavy Flamers',  pts:0,  weapons:['2x Twin Heavy Flamer'], replaces:['2x Twin Heavy Bolter'] },
+        { label:'Twin Lascannons',     pts:0,  weapons:['2x Twin Lascannon'],    replaces:['2x Twin Heavy Bolter'] },
+        { label:'Twin Multi-meltas',   pts:0,  weapons:['2x Twin Multi-melta'],  replaces:['2x Twin Heavy Bolter'] },
+      ]},
+    ],
+    abilities:['Grinding Advance','Smoke Launchers','Titanic','Steel Behemoth',
+               'Volcano Cannon: S16 AP-5 D2D6 — re-roll failed Wound rolls against Titanic units, +1 to hit Titanic',
                'Explodes: On 6 — 2D6 mortal wounds within 2D6"'] },
 
   // ── DEDICATED TRANSPORT ─────────────────────────────────────────────
