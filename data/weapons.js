@@ -729,5 +729,14 @@ const WEAPON_PROFILES = {
   'Devourer with Brainleech Worms': { range:'18"', type:'Assault 6',   s:6,  ap:0,  d:1,    special:'Tyrant only — two arms = 12 shots total' },
   'Deathspitter with Slimer Maggots': { range:'24"', type:'Assault 3',  s:7,  ap:-1, d:2,    special:'Tyrant only' },
   'Mace of Absolution': { range:'Melee', type:'Melee', s:'+2', ap:-3, d:2,    special:'Deals 1 additional mortal wound on unmodified wound rolls of 6 against FALLEN' },
+  'Havoc Launcher': { range:'48"', type:'Heavy D6',   s:5,  ap:-1, d:1,    special:'Blast' },
+  'Hades Battle Cannon': { range:'72"', type:'Heavy D6',   s:8,  ap:-2, d:'D3', special:'Blast' },
+  'Ectoplasma Destructor': { range:'36"', type:'Heavy D3',   s:8,  ap:-4, d:'D3', special:'Overcharge: S9 AP-5 — on unmodified hit of 1 suffer 1 mortal wound' },
+  'Heavy Reaper Autocannon': { range:'36"', type:'Heavy 4',    s:7,  ap:-1, d:2,    special:'' },
+  'Hades Lascannon': { range:'48"', type:'Heavy 1',    s:10, ap:-4, d:'D6+2',special:'' },
+  'Heavy Baleflamer': { range:'12"', type:'Heavy D6',   s:6,  ap:-2, d:2,    special:'Auto-hits' },
+  'Heavy Missile Launcher': { range:'48"', type:'Heavy 2',    s:8,  ap:-2, d:'D3', special:'Frag: S4 AP0 D1 Blast / Krak: S8 AP-2 DD3' },
+  'Excruciator Cannons': { range:'24"', type:'Heavy 4',    s:5,  ap:-1, d:1,    special:'Carapace-mounted' },
+  'Magma Cutters': { range:'Melee',type:'Melee',      s:'+3',ap:-4, d:'D3', special:'Carapace-mounted auxiliary — melta equivalent in melee' },
 
 };

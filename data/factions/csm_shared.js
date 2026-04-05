@@ -306,10 +306,50 @@ var CSM_SHARED_UNITS = [
 
   { id:'csm_defiler', name:'Defiler',
     stats:['8"','3+','3+','8','8','18','4','8','3+'], role:'Heavy Support', pts:205, min:1, max:1, ppm:0,
-    wargear:['Battle Cannon','Twin Heavy Flamer','Reaper Autocannon'],
+    wargear:['Battle Cannon','Reaper Autocannon','Twin Heavy Flamer','Defiler Claws','Defiler Scourge'],
+    options:[
+      { group:'Left Arm', choices:[
+        { label:'Twin Heavy Flamer', pts:0,  default:true, weapons:['Twin Heavy Flamer'] },
+        { label:'Havoc Launcher',    pts:0,  weapons:['Havoc Launcher'],   replaces:['Twin Heavy Flamer'] },
+        { label:'Defiler Scourge',   pts:0,  weapons:['Defiler Scourge'],  replaces:['Twin Heavy Flamer'] },
+      ]},
+      { group:'Right Arm', choices:[
+        { label:'Reaper Autocannon', pts:0,  default:true, weapons:['Reaper Autocannon'] },
+        { label:'Twin Heavy Bolter', pts:0,  weapons:['Twin Heavy Bolter'],replaces:['Reaper Autocannon'] },
+        { label:'Twin Lascannon',    pts:0,  weapons:['Twin Lascannon'],   replaces:['Reaper Autocannon'] },
+      ]},
+    ],
     abilities:['Daemonic: 5+ invulnerable save',
-               'Battle Cannon: Heavy D6 S8 AP-2 DD3',
+               'Infernal Regeneration: At start of your turn roll D6 — on 6 restore 1 lost wound',
                'Explodes: On 6 when destroyed — D6 mortal wounds within 6"'] },
+
+  { id:'csm_defiler_new', name:'Defiler (New Kit)', isNew:true,
+    stats:['8"','3+','3+','8','8','18','4','8','3+'], role:'Heavy Support', pts:205, min:1, max:1, ppm:0,
+    wargear:['Hades Battle Cannon','Heavy Reaper Autocannon','Defiler Claws'],
+    options:[
+      { group:'Main Gun', choices:[
+        { label:'Hades Battle Cannon',    pts:0,  default:true, weapons:['Hades Battle Cannon'] },
+        { label:'Ectoplasma Destructor',  pts:0,  weapons:['Ectoplasma Destructor'],  replaces:['Hades Battle Cannon'] },
+      ]},
+      { group:'Right Hardpoint', choices:[
+        { label:'Heavy Reaper Autocannon',pts:0,  default:true, weapons:['Heavy Reaper Autocannon'] },
+        { label:'Hades Lascannon',        pts:0,  weapons:['Hades Lascannon'],         replaces:['Heavy Reaper Autocannon'] },
+        { label:'Heavy Baleflamer',       pts:0,  weapons:['Heavy Baleflamer'],         replaces:['Heavy Reaper Autocannon'] },
+      ]},
+      { group:'Left Hardpoint', choices:[
+        { label:'Heavy Reaper Autocannon',pts:0,  default:true, weapons:['Heavy Reaper Autocannon'] },
+        { label:'Hades Lascannon',        pts:0,  weapons:['Hades Lascannon'],         replaces:['Heavy Reaper Autocannon'] },
+        { label:'Heavy Missile Launcher', pts:0,  weapons:['Heavy Missile Launcher'],  replaces:['Heavy Reaper Autocannon'] },
+      ]},
+      { group:'Carapace Guns', choices:[
+        { label:'Excruciator Cannons',    pts:0,  default:true, weapons:['Excruciator Cannons'] },
+        { label:'Magma Cutters',          pts:0,  weapons:['Magma Cutters'],            replaces:['Excruciator Cannons'] },
+      ]},
+    ],
+    abilities:['Daemonic: 5+ invulnerable save',
+               'Infernal Regeneration: At start of your turn roll D6 — on 6 restore 1 lost wound',
+               'Explodes: On 6 when destroyed — D6 mortal wounds within 6"',
+               'NOTE: New 2026 kit — points and rules subject to revision'] },
 
   { id:'csm_rhino', name:'Chaos Rhino',
     stats:['12"','5+','3+','6','6','10','3','8','3+'], role:'Dedicated Transport', pts:72, min:1, max:1, ppm:0,
