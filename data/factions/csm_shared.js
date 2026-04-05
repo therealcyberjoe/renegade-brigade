@@ -2,6 +2,29 @@
 // Chaos Space Marines, Death Guard, Thousand Sons, World Eaters, Emperor's Children
 // Must be loaded BEFORE individual chaos faction files
 var CSM_SHARED_UNITS = [
+  { id:'csm_daemon_prince', name:'Daemon Prince',
+    stats:['8"','3+','4+','7','6','8','4','9','3+'], role:'HQ', pts:165, min:1, max:1, ppm:0,
+    wargear:['Malefic Talons','Daemonic Axe'],
+    options:[
+      { group:'Melee', choices:[
+        { label:'Malefic Talons',  pts:0,  default:true, weapons:['Malefic Talons'] },
+        { label:'Daemonic Axe',    pts:0,  weapons:['Daemonic Axe'],   replaces:['Malefic Talons'] },
+        { label:'Hellforged Sword',pts:0,  weapons:['Hellforged Sword'],replaces:['Malefic Talons'] },
+      ]},
+      { group:'Ranged', choices:[
+        { label:'None',            pts:0,  default:true },
+        { label:'Malefic Talons (second pair)', pts:0, weapons:['Malefic Talons'] },
+      ]},
+      { group:'Wings', choices:[
+        { label:'No Wings',        pts:0,  default:true },
+        { label:'Wings',           pts:30, weapons:['Wings'] },
+      ]},
+    ],
+    abilities:['Daemonic: 4+ invulnerable save',
+               'Chaos Undivided: May take a Mark of Chaos — gains relevant keyword',
+               'Death to the False Emperor: Hit rolls of 6+ against IMPERIUM units generate 1 extra attack',
+               'Warp-touched: Psyker — Smite + 1 Chaos power'] },
+
   { id:'csm_lord', name:'Chaos Lord',
     stats:['6"','3+','3+','4','4','5','4','9','3+'], role:'HQ', pts:76, min:1, max:1, ppm:0,
     wargear:['Power Sword','Bolt Pistol','Frag & Krak Grenades'],

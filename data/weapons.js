@@ -762,5 +762,7 @@ const WEAPON_PROFILES = {
   'Volcano Cannon': { range:'100"',type:'Heavy D3+3', s:16, ap:-5, d:'2D6',special:'Re-roll failed Wound rolls vs Titanic — +1 to hit Titanic' },
   'Daemon Sword': { range:'Melee',type:'Melee',      s:'+1',ap:-3, d:'D3', special:'On unmodified wound roll of 6 — deal 1 additional mortal wound' },
   'Magma Cutters (Maulerfiend)': { range:'Melee',type:'Melee',   s:'x2',ap:-5, d:'D3', special:'Melta — roll 2 dice for damage pick highest when within 1" of target' },
+  'Malefic Talons': { range:'Melee', type:'Melee', s:'+1', ap:-2, d:2,    special:'2 pairs = 4 attacks each at +1S AP-2 D2' },
+  'Hellforged Sword': { range:'Melee', type:'Melee', s:'+1', ap:-3, d:'D3', special:'' },
 
 };
