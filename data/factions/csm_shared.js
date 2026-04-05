@@ -95,7 +95,7 @@ var CSM_SHARED_UNITS = [
             { label:'Combi-melta',   pts:10,weapons:['Combi-Melta'],   replaces:['Bolter'] },
           ]},
         ]},
-      { role:'Special Weapon (up to 2)', count:2, wargear:['Bolt Pistol','Bolter','Frag & Krak Grenades'],
+      { role:'Special Weapon (opt)', count:1, wargear:['Bolt Pistol','Bolter','Frag & Krak Grenades'],
         options:[
           { group:'Special', choices:[
             { label:'Bolter',      pts:0, default:true },
@@ -105,7 +105,17 @@ var CSM_SHARED_UNITS = [
             { label:'Chainaxe',    pts:0, weapons:['Chainaxe'],    replaces:['Bolter'] },
           ]},
         ]},
-      { role:'Traitor', count:17, wargear:['Bolt Pistol','Bolter','Frag & Krak Grenades'] },
+      { role:'Special Weapon (opt)', count:1, wargear:['Bolt Pistol','Bolter','Frag & Krak Grenades'],
+        options:[
+          { group:'Special', choices:[
+            { label:'Bolter',      pts:0, default:true },
+            { label:'Plasma Gun',  pts:5, weapons:['Plasma Gun'],  replaces:['Bolter'] },
+            { label:'Meltagun',    pts:5, weapons:['Meltagun'],    replaces:['Bolter'] },
+            { label:'Flamer',      pts:3, weapons:['Flamer'],      replaces:['Bolter'] },
+            { label:'Chainaxe',    pts:0, weapons:['Chainaxe'],    replaces:['Bolter'] },
+          ]},
+        ]},
+      { role:'Chaos Space Marine', count:2, wargear:['Bolt Pistol','Bolter','Frag & Krak Grenades'] },
     ],
     abilities:['Chaos Undivided: May take a Mark of Chaos',
                'Aspiring Champion: 1 per unit — +1A and may take power weapon',
@@ -229,7 +239,16 @@ var CSM_SHARED_UNITS = [
             { label:'Power Fist',  pts:9, weapons:['Power Fist'],  replaces:['Chainsword'] },
           ]},
         ]},
-      { role:'Special Weapon (up to 2)', count:2, wargear:['Twin Boltgun','Chainsword'],
+      { role:'Special Weapon (opt)', count:1, wargear:['Twin Boltgun','Chainsword'],
+        options:[
+          { group:'Special', choices:[
+            { label:'Twin Boltgun', pts:0, default:true },
+            { label:'Meltagun',     pts:5, weapons:['Meltagun'],    replaces:['Twin Boltgun'] },
+            { label:'Plasma Gun',   pts:5, weapons:['Plasma Gun'],  replaces:['Twin Boltgun'] },
+            { label:'Flamer',       pts:3, weapons:['Flamer'],      replaces:['Twin Boltgun'] },
+          ]},
+        ]},
+      { role:'Special Weapon (opt)', count:1, wargear:['Twin Boltgun','Chainsword'],
         options:[
           { group:'Special', choices:[
             { label:'Twin Boltgun', pts:0, default:true },
@@ -241,8 +260,7 @@ var CSM_SHARED_UNITS = [
     ],
     abilities:['Veterans of the Long War',
                'Turbo-boost: May Advance and charge in same turn',
-               'Champion: 1 per unit — may take power weapon',
-               'Up to 2 models per 5 may replace Twin Boltgun with a special weapon'] },
+               'Champion: 1 per unit — may take power weapon'] },
 
   { id:'csm_raptors', name:'Raptors',
     stats:['12"','3+','3+','4','4','1','1','7','3+'], role:'Fast Attack', pts:65, min:5, max:10, ppm:13,
