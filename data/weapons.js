@@ -764,5 +764,16 @@ const WEAPON_PROFILES = {
   'Magma Cutters (Maulerfiend)': { range:'Melee',type:'Melee',   s:'x2',ap:-5, d:'D3', special:'Melta — roll 2 dice for damage pick highest when within 1" of target' },
   'Malefic Talons': { range:'Melee', type:'Melee', s:'+1', ap:-2, d:2,    special:'2 pairs = 4 attacks each at +1S AP-2 D2' },
   'Hellforged Sword': { range:'Melee', type:'Melee', s:'+1', ap:-3, d:'D3', special:'' },
+  'Frost Axe': { range:'Melee', type:'Melee', s:'+1', ap:-2, d:1,    special:'Re-roll failed wound rolls' },
+  'Frost Sword': { range:'Melee', type:'Melee', s:'+1', ap:-3, d:'D3', special:'' },
+  'Runic Axe': { range:'Melee', type:'Melee', s:'+1', ap:-2, d:'D3', special:'Counts as Force weapon' },
+  'Runic Sword': { range:'Melee', type:'Melee', s:'+1', ap:-3, d:'D3', special:'Counts as Force weapon' },
+  'Runic Staff': { range:'Melee', type:'Melee', s:'+2', ap:-1, d:'D3', special:'Counts as Force weapon' },
+  'Helfrost Pistol': { range:'18"',  type:'Pistol 1', s:5,  ap:-3, d:'D3', special:'Dispersed mode — on wound roll 3+ target moves -2" until next turn' },
+  'Tempest Hammer': { range:'Melee', type:'Melee', s:'x2',ap:-3, d:3,    special:'Iron Priest only' },
+  'Thunderwolf Bite': { range:'Melee', type:'Melee', s:5,   ap:-1, d:1,    special:'The wolf\'s attacks — 3 per model' },
+  'Wulfen Claws': { range:'Melee', type:'Melee', s:'+1', ap:-2, d:1,    special:'Each pair = 4 attacks — re-roll failed wound rolls' },
+  'Frost Claws': { range:'Melee', type:'Melee', s:'+1', ap:-2, d:2,    special:'Each pair = 4 attacks AP-2 D2 — re-roll failed wound rolls' },
+  'Fangsword': { range:'Melee', type:'Melee', s:'+2', ap:-3, d:2,    special:'Canis Wolfborn only' },
 
 };
